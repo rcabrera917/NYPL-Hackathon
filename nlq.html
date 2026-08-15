@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NYC Summer Meals — accessibility-aware map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    :root {
+      --green: #16a34a;
+      --amber: #f59e0b;
+      --red:   #dc2626;
+      --panel: #ffffff;
+      --bg:    #f4f5f7;
+      --text:  #111827;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color: var(--text); background: var(--bg); }
+    #app { display: grid; grid-template-columns: 1fr 380px; height: 100vh; }
+    @media (max-width: 760px) { #app { grid-template-columns: 1fr; grid-template-rows: 1fr auto; } #sidebar { max-height: 45vh; overflow-y: auto; } }
+    #map { height: 100%; width: 100%; }
+    #sidebar { background: var(--panel); border-left: 1px solid var(--border); overflow-y: auto; padding: 16px; }
+    h1 { font-size: 16px; margin: 0 0 12px; }
+    .search { display: flex; gap: 8px; margin-bottom: 12px; }
+    .search input { flex: 1; padding: 10px 12px; font-size: 14px; border: 1px solid var(--border); border-radius: 6px; }
+    .search button { padding: 10px 14px; font-size: 14px; border: 0; border-radius: 6px; background: #111827; color: #fff; cursor: pointer; }
+    .search button:disabled { opacity: 0.5; cursor: wait; }
+    .status { font-size: 12px; color: var(--muted); margin-bottom: 12px; min-height: 1em; }
+    .parse { background: #f9fafb; border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px; font-size: 12px; margin-bottom: 12px; }
+    .parse code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 600; color: #fff; text-transform: uppercase; letter-spacing: 0.02em; }
+    .badge.green { background: var(--green); }
+    .badge.amber { background: var(--amber); }
+    .badge.red   { background: var(--red); }
+    .detail { padding-top: 8px; border-top: 1px solid var(--border); }
+    .detail h2 { font-size: 15px; margin: 0 0 6px; }
+    .detail .addr { color: var(--muted); font-size: 13px; margin: 0 0 8px; }
+    .detail dl { margin: 0 0 12px; font-size: 13px; }
+    .detail dt { color: var(--muted); font-weight: 600; margin-top: 8px; }
+    .detail dd { margin: 2px 0 0 0; }
+    .detail ul { margin: 4px 0 0; padding-left: 18px; font-size: 13px; }
+    .detail li { margin-bottom: 3px; }
+    .hint { color: var(--muted); font-size: 12px; }
+    .fallback { color: #92400e; font-size: 12px; background: #fef3c7; border: 1px solid #fcd34d; border-radius: 6px; padding: 6px 8px; margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div id="map"></div>
+    <aside id="sidebar">
+      <h1>NYC Summer Meals</h1>
+      <form class="search" id="searchForm">
+        <input id="searchInput" type="text" placeholder="e.g. free lunch for my 6 year old near the Bronx" autocomplete="off" />
+        <button type="submit" id="searchBtn">Search</button>
+      </form>
+      <div class="status" id="status">Loading data…</div>
+      <div id="parseBox"></div>
+      <div id="detail" class="hint">Click a marker to see verdict, reasons, and provenance.</div>
+    </aside>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script type="module">
+    import { getVerdict } from "./src/lib/verdict.js";
+    import { keywordParse, filterSites } from "./src/lib/filter.js";
+
+    const COLORS = { green: "#16a34a", amber: "#f59e0b", red: "#dc2626" };
+    const statusEl = document.getElementById("status");
+    const parseBox = document.getElementById("parseBox");
+    const detailEl = document.getElementById("detail");
+    const form = document.getElementById("searchForm");
+    const input = document.getElementById("searchInput");
+    const btn = document.getElementById("searchBtn");
+
+    const map = L.map("map").setView([40.7580, -73.9855], 11);
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+
+    let sites = [];
+    let stations = {};
+    let markers = new Map(); // id -> Leaflet marker
+
+    async function loadData() {
+      const [s, st] = await Promise.all([
+        fetch("./public/data/sites.json").then((r) => r.json()),
+        fetch("./public/data/stations.json").then((r) => r.json()),
+      ]);
+      sites = s;
+      stations = st;
+    }
+
+    function renderMarkers(visibleIds) {
+      for (const m of markers.values()) map.removeLayer(m);
+      markers.clear();
+      const now = new Date();
+      const shown = visibleIds ? new Set(visibleIds) : null;
+      const bounds = [];
+      for (const site of sites) {
+        if (shown && !shown.has(site.id)) continue;
+        if (site.lat == null || site.lng == null) continue;
+        const stationStatus = site.nearestStationId ? stations[site.nearestStationId] : null;
+        const verdict = getVerdict(site, stationStatus, now);
+        const marker = L.circleMarker([site.lat, site.lng], {
+          radius: 8,
+          weight: 2,
+          color: "#111827",
+          fillColor: COLORS[verdict.state] ?? "#6b7280",
+          fillOpacity: 0.9,
+        }).addTo(map);
+        marker.on("click", () => showDetail(site, stationStatus, verdict));
+        markers.set(site.id, marker);
+        bounds.push([site.lat, site.lng]);
+      }
+      if (bounds.length > 0) map.fitBounds(bounds, { padding: [30, 30] });
+    }
+
+    function escapeHtml(s) {
+      return String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    }
+
+    function showDetail(site, stationStatus, verdict) {
+      const state = verdict.state;
+      const days = Array.isArray(site.daysOpen) ? site.daysOpen.join(", ") : "";
+      detailEl.className = "detail";
+      detailEl.innerHTML = `
+        <span class="badge ${state}">${state}</span>
+        <h2 style="margin-top:8px">${escapeHtml(site.name)}</h2>
+        <p class="addr">${escapeHtml(site.address)}</p>
+        <dl>
+          <dt>Verdict reasons</dt>
+          <dd><ul>${verdict.reasons.map((r) => `<li>${escapeHtml(r)}</li>`).join("")}</ul></dd>
+          <dt>Provenance</dt>
+          <dd><ul>${verdict.provenance.map((p) => `<li>${escapeHtml(p)}</li>`).join("")}</ul></dd>
+          ${site.phone ? `<dt>Phone</dt><dd>${escapeHtml(site.phone)}</dd>` : ""}
+          ${days ? `<dt>Open</dt><dd>${escapeHtml(days)}</dd>` : ""}
+          ${site.hoursText ? `<dt>Hours</dt><dd>${escapeHtml(site.hoursText)}</dd>` : ""}
+          ${site.nearestStationId ? `<dt>Nearest ADA station</dt><dd>${escapeHtml(site.nearestStationId)}${stationStatus ? ` (ADA=${stationStatus.ada}, ${stationStatus.elevators?.length ?? 0} elevators)` : ""}</dd>` : ""}
+        </dl>
+      `;
+    }
+
+    async function callParse(query) {
+      try {
+        const res = await fetch("/api/parse", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ query }),
+        });
+        if (!res.ok) return { parsed: keywordParse(query), source: "fallback", reason: `api ${res.status}` };
+        const parsed = await res.json();
+        return { parsed, source: "api" };
+      } catch (err) {
+        return { parsed: keywordParse(query), source: "fallback", reason: String(err) };
+      }
+    }
+
+    function renderParse(parsed, source, reason) {
+      const fallback = source === "fallback"
+        ? `<div class="fallback">/api/parse unavailable (${escapeHtml(reason)}) — used local keyword matcher.</div>`
+        : "";
+      parseBox.innerHTML = `${fallback}<div class="parse"><code>${escapeHtml(JSON.stringify(parsed))}</code></div>`;
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const q = input.value.trim();
+      if (!q) return;
+      btn.disabled = true;
+      statusEl.textContent = "Parsing query…";
+      const { parsed, source, reason } = await callParse(q);
+      renderParse(parsed, source, reason);
+      const { sites: filtered, applied } = filterSites(sites, parsed);
+      const ids = filtered.map((s) => s.id);
+      renderMarkers(ids);
+      statusEl.textContent = `${filtered.length} of ${sites.length} sites match${applied.length ? " — " + applied.join(", ") : ""}.`;
+      btn.disabled = false;
+    });
+
+    (async () => {
+      try {
+        await loadData();
+        renderMarkers(null);
+        statusEl.textContent = `${sites.length} sites loaded. Green = verified step-free + elevator in service. Amber = unknown. Red = blocked.`;
+      } catch (err) {
+        statusEl.textContent = `Failed to load data: ${err}`;
+      }
+    })();
+  </script>
+</body>
+</html>
