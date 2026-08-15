@@ -28,3 +28,12 @@ Do not change these shapes. Do not add fields.
 No auth. No backend. No database. Static JSON + client fetch only.
 Every accessibility claim renders with its provenance visible.
 Never assert a site is accessible without verifiedBy and verifiedAt.
+
+## Ownership update
+Rafy also owns: nlq.html, api/, scripts/, src/lib/filter.js
+Chris still owns: nypl.html, src/ (except src/lib/), config files
+nlq.html is a parallel prototype. Do not edit nypl.html.
+
+## Scope update
+One serverless function permitted: api/parse.js, for LLM query parsing only.
+Never put an API key in client code.
