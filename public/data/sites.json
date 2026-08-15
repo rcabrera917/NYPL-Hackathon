@@ -1,0 +1,53 @@
+[
+  {
+    "id": "site-001",
+    "name": "PS 130 Hernando De Soto",
+    "address": "143 Baxter St, New York, NY 10013",
+    "lat": 40.7168,
+    "lng": -73.9998,
+    "phone": "212-334-7220",
+    "siteType": "school",
+    "ageMin": 1,
+    "ageMax": 18,
+    "daysOpen": ["Mon", "Tue", "Wed", "Thu", "Fri"],
+    "hoursText": "Breakfast 8:00-9:00 AM, Lunch 11:30 AM-1:30 PM",
+    "nearestStationId": "640",
+    "entranceStepFree": true,
+    "verifiedBy": "rafy@determiniety.io",
+    "verifiedAt": "2026-08-12T14:20:00-04:00"
+  },
+  {
+    "id": "site-002",
+    "name": "Brooklyn Public Library — Central Branch",
+    "address": "10 Grand Army Plaza, Brooklyn, NY 11238",
+    "lat": 40.6725,
+    "lng": -73.9683,
+    "phone": "718-230-2100",
+    "siteType": "library",
+    "ageMin": 1,
+    "ageMax": 18,
+    "daysOpen": ["Mon", "Tue", "Wed", "Thu", "Fri"],
+    "hoursText": "Lunch 12:00-1:30 PM",
+    "nearestStationId": "238",
+    "entranceStepFree": false,
+    "verifiedBy": "rafy@determiniety.io",
+    "verifiedAt": "2026-08-10T10:05:00-04:00"
+  },
+  {
+    "id": "site-003",
+    "name": "Harlem YMCA",
+    "address": "180 W 135th St, New York, NY 10030",
+    "lat": 40.8145,
+    "lng": -73.9418,
+    "phone": "212-912-2100",
+    "siteType": "community_center",
+    "ageMin": 1,
+    "ageMax": 18,
+    "daysOpen": ["Mon", "Tue", "Wed", "Thu", "Fri"],
+    "hoursText": "Breakfast 8:30-9:30 AM, Lunch 12:00-1:00 PM",
+    "nearestStationId": "224",
+    "entranceStepFree": null,
+    "verifiedBy": null,
+    "verifiedAt": null
+  }
+]
