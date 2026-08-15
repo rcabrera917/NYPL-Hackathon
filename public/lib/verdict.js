@@ -70,14 +70,25 @@ export function getVerdict(site, stationStatus, date) {
     );
   }
 
-  // Red: season has ended, entrance explicitly not step-free, or any
-  // ADA-path elevator out.
+  // Red: season not yet open or already ended, entrance explicitly not
+  // step-free, or any ADA-path elevator out.
   const checkDate = date instanceof Date ? date : new Date(date);
+  const seasonStart = site.seasonStartAt ? new Date(site.seasonStartAt) : null;
   const seasonEnd = site.seasonEndAt ? new Date(site.seasonEndAt) : null;
+  const dateOk = !Number.isNaN(checkDate.getTime());
+  if (
+    seasonStart &&
+    !Number.isNaN(seasonStart.getTime()) &&
+    dateOk &&
+    checkDate < seasonStart
+  ) {
+    reasons.push(`season starts ${site.seasonStartAt.slice(0, 10)}`);
+    return { state: "red", reasons, provenance };
+  }
   if (
     seasonEnd &&
     !Number.isNaN(seasonEnd.getTime()) &&
-    !Number.isNaN(checkDate.getTime()) &&
+    dateOk &&
     checkDate > seasonEnd
   ) {
     reasons.push(`season ended ${site.seasonEndAt.slice(0, 10)}`);

@@ -210,6 +210,59 @@ function countByBorough(rows, borough) {
   return counts;
 }
 
+// Haversine in meters — used only by the dedupe pass.
+function distMeters(lat1, lng1, lat2, lng2) {
+  const R = 6371000;
+  const toRad = (d) => (d * Math.PI) / 180;
+  const dLat = toRad(lat2 - lat1);
+  const dLng = toRad(lng2 - lng1);
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(a));
+}
+
+function seasonSpanMs(row) {
+  if (!row.seasonStartAt || !row.seasonEndAt) return 0;
+  const s = Date.parse(row.seasonStartAt);
+  const e = Date.parse(row.seasonEndAt);
+  if (!Number.isFinite(s) || !Number.isFinite(e)) return 0;
+  return Math.max(0, e - s);
+}
+
+// Collapse rows that share name (case-insensitive) and lie within ~50m.
+// Keep the record with the widest season window. Log every collapse so
+// operators can see what merged and why.
+const DEDUPE_METERS = 50;
+function dedupe(rows) {
+  const kept = [];
+  const collapses = [];
+  for (const row of rows) {
+    const nameKey = (row.name ?? "").trim().toLowerCase();
+    let mergedInto = null;
+    for (let i = 0; i < kept.length; i++) {
+      const k = kept[i];
+      if ((k.name ?? "").trim().toLowerCase() !== nameKey) continue;
+      if (row.lat == null || k.lat == null || row.lng == null || k.lng == null) continue;
+      const d = distMeters(row.lat, row.lng, k.lat, k.lng);
+      if (d > DEDUPE_METERS) continue;
+      // Match. Keep whichever has the widest season window.
+      const rowSpan = seasonSpanMs(row);
+      const keepSpan = seasonSpanMs(k);
+      if (rowSpan > keepSpan) {
+        collapses.push({ kept: row.id, dropped: k.id, name: row.name, distanceMeters: Math.round(d), reason: `wider season (${Math.round(rowSpan / 86400000)}d vs ${Math.round(keepSpan / 86400000)}d)` });
+        kept[i] = row;
+      } else {
+        collapses.push({ kept: k.id, dropped: row.id, name: row.name, distanceMeters: Math.round(d), reason: `wider or equal season (${Math.round(keepSpan / 86400000)}d vs ${Math.round(rowSpan / 86400000)}d)` });
+      }
+      mergedInto = i;
+      break;
+    }
+    if (mergedInto == null) kept.push(row);
+  }
+  return { kept, collapses };
+}
+
 async function main() {
   const dryRun = process.argv.includes("--dry-run");
 
@@ -233,18 +286,37 @@ async function main() {
   const filtered = features.filter((f) => ALLOWED_SITE_TYPES.has(f.attributes.Site_Type));
   console.log(`After siteType filter (OPEN, OPEN RESTRICTED): ${filtered.length}`);
 
+  // Dropped or Expired sites should never reach the map.
+  const beforeStatusFilter = filtered.length;
+  const active = filtered.filter((f) => {
+    const a = f.attributes;
+    return a.Dropped !== "True" && a.Expired !== "True";
+  });
+  console.log(`After Dropped/Expired filter: ${active.length}  (${beforeStatusFilter - active.length} removed)`);
+
   const borough = new Map();
-  const normalized = filtered.map((f) => {
+  const normalized = active.map((f) => {
     const row = normalize(f);
     borough.set(row.id, COUNTY_TO_BOROUGH[f.attributes.County] ?? "(unknown)");
     return row;
   });
 
-  const satCount = normalized.filter((r) => r.daysOpen.includes("Sat")).length;
+  // Dedupe: collapse same-name records within ~50m, keep widest season.
+  const { kept: deduped, collapses } = dedupe(normalized);
+  if (collapses.length > 0) {
+    console.log(`Dedupe collapses (${collapses.length}):`);
+    for (const c of collapses) {
+      console.log(`  "${c.name}" @ ${c.distanceMeters}m  keep ${c.kept}  drop ${c.dropped}  (${c.reason})`);
+    }
+  } else {
+    console.log("Dedupe: no matches (name + within 50m)");
+  }
+
+  const satCount = deduped.filter((r) => r.daysOpen.includes("Sat")).length;
   console.log(`Sites with Saturday hours: ${satCount}`);
   console.log();
 
-  const selected = selectRows(normalized, borough, OUTPUT_CAP);
+  const selected = selectRows(deduped, borough, OUTPUT_CAP);
   const breakdown = countByBorough(selected, borough);
 
   console.log(`Selected rows: ${selected.length}`);

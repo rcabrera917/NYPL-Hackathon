@@ -16,7 +16,11 @@ Never edit package.json. Ask the operator to request it verbally.
 public/data/sites.json is an array of:
 { id, name, address, lat, lng, phone, siteType, ageMin, ageMax,
   daysOpen, hoursText, nearestStationId, entranceStepFree,
-  verifiedBy, verifiedAt }
+  verifiedBy, verifiedAt, seasonStartAt, seasonEndAt }
+
+seasonStartAt and seasonEndAt are ISO 8601 strings sourced from the
+FNS record's Start_date / End_date. verdict.js returns red outside
+that window.
 
 public/data/stations.json is keyed by GTFS stop id:
 { ada, adaDirectionNotes, elevators: [{ id, servingDescription,

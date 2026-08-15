@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "generated_at": "2026-08-15T20:21:23.769Z",
+    "generated_at": "2026-08-15T20:34:43.849Z",
     "radius_meters": 300,
     "sources": {
       "libraries": {
@@ -8,7 +8,7 @@
         "publisher": "NYC Department of City Planning",
         "filter": "facsubgrp = 'PUBLIC LIBRARIES'",
         "url": "https://data.cityofnewyork.us/City-Government/Facilities-Database/ji82-xba5",
-        "pulled_at": "2026-08-15T20:21:23.769Z",
+        "pulled_at": "2026-08-15T20:34:43.849Z",
         "note": "Fetched full set (~227 rows) and filtered per-site with haversine. The geometry column is text (WKT), not a Socrata Point, so within_circle is unsupported on this dataset — the fallback is equivalent.",
         "systems_included": [
           "NYPL (Manhattan / Bronx / Staten Island)",
@@ -20,7 +20,7 @@
         "dataset": "MTA Subway Stations (39hk-dx4f)",
         "publisher": "MTA, via NY State Open Data",
         "url": "https://data.ny.gov/Transportation/MTA-Subway-Stations/39hk-dx4f",
-        "pulled_at": "2026-08-15T20:21:23.769Z",
+        "pulled_at": "2026-08-15T20:34:43.849Z",
         "note": "Used only for gtfs_stop_id → (lat, lng) lookup so the corridor search can query around the site's nearest ADA station too."
       }
     }
@@ -306,24 +306,6 @@
       }
     ]
   },
-  "cycle-09-ny-sfsp-0623": {
-    "libraries": []
-  },
-  "cycle-10-ny-sfsp-0632": {
-    "libraries": []
-  },
-  "cycle-12-ny-sfsp-0150": {
-    "libraries": []
-  },
-  "cycle-12-ny-sfsp-0180": {
-    "libraries": []
-  },
-  "cycle-12-ny-sfsp-0633": {
-    "libraries": []
-  },
-  "cycle-13-ny-sfsp-0634": {
-    "libraries": []
-  },
   "cycle-05-ny-sfsp-0023": {
     "libraries": [
       {
@@ -380,5 +362,37 @@
         "mealSiteId": null
       }
     ]
+  },
+  "cycle-05-ny-sfsp-0037": {
+    "libraries": []
+  },
+  "cycle-05-ny-sfsp-0030": {
+    "libraries": []
+  },
+  "cycle-05-ny-sfsp-0088": {
+    "libraries": []
+  },
+  "cycle-05-ny-sfsp-0034": {
+    "libraries": [
+      {
+        "id": "d43a18e107abff5a6164579a5381cf64",
+        "name": "FLUSHING",
+        "system": "QPL",
+        "operator": "Queens Public Library",
+        "address": "41-17 MAIN STREET, FLUSHING, 11355",
+        "lat": 40.7577906006,
+        "lng": -73.828877909,
+        "borough": "QUEENS",
+        "distanceMeters": 223,
+        "isMealSite": false,
+        "mealSiteId": null
+      }
+    ]
+  },
+  "cycle-05-ny-sfsp-0122": {
+    "libraries": []
+  },
+  "cycle-05-ny-sfsp-0062": {
+    "libraries": []
   }
 }
