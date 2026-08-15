@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About — NYC Summer Meals</title>
+  <style>
+    :root {
+      --bg:     #0b1220;
+      --panel:  #101827;
+      --raised: #182236;
+      --text:   #e5e7eb;
+      --muted:  #94a3b8;
+      --border: #263041;
+      --accent: #38bdf8;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color: var(--text); background: var(--bg); line-height: 1.55; }
+    a { color: var(--accent); }
+    header { padding: 24px 32px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: baseline; }
+    header h1 { font-size: 20px; margin: 0; }
+    header nav a { font-size: 13px; text-decoration: none; margin-left: 16px; }
+    main { max-width: 820px; margin: 0 auto; padding: 32px; }
+    section { margin-bottom: 40px; }
+    section h2 { font-size: 18px; margin: 0 0 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+    section p { margin: 0 0 12px; color: var(--text); }
+    .muted { color: var(--muted); }
+    .placeholder { background: var(--raised); border: 1px dashed var(--border); border-radius: 6px; padding: 16px; margin-bottom: 12px; }
+    .placeholder h3 { margin: 0 0 8px; font-size: 15px; color: var(--accent); }
+    .placeholder p { color: var(--muted); font-style: italic; margin: 0; font-size: 13px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 13px; }
+    th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    th { color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; font-size: 11px; }
+    td.date { white-space: nowrap; color: var(--muted); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    ul { padding-left: 20px; }
+    li { margin-bottom: 6px; }
+    footer { padding: 24px 32px; border-top: 1px solid var(--border); color: var(--muted); font-size: 12px; text-align: center; }
+    .thanks { background: var(--raised); border-left: 3px solid var(--accent); padding: 12px 16px; border-radius: 4px; margin-top: 16px; font-size: 13px; }
+    .disclosure { background: var(--raised); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; margin-top: 16px; font-size: 13px; }
+    .disclosure strong { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>About</h1>
+    <nav><a href="nlq.html">← Back to the map</a></nav>
+  </header>
+  <main>
+
+    <section>
+      <h2>Why this exists</h2>
+
+      <div class="placeholder">
+        <h3>Rafy</h3>
+        <!-- REPLACE WITH AUTHOR-SUPPLIED TEXT — DO NOT GENERATE -->
+        <p>Author-supplied text to be added.</p>
+      </div>
+
+      <div class="placeholder">
+        <h3>Chris</h3>
+        <!-- REPLACE WITH AUTHOR-SUPPLIED TEXT — DO NOT GENERATE -->
+        <p>Author-supplied text to be added.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>The problem</h2>
+
+      <p>
+        About <strong>22% of New York City residents</strong> experienced food
+        insecurity in the past year, per the Robin Hood Poverty Tracker's 2024
+        Annual Survey of Housing and Economic Security (published 2025)
+        <a href="https://cssny.org/publications/entry/food-insecurity-in-new-york-a-widespread-crisis-affecting-millions">[1]</a>.
+        The rate reaches <strong>22.6% in the Bronx</strong> — roughly 320,000
+        Bronx residents — per Feeding America's Map the Meals Gap for calendar
+        year 2023, released 2025
+        <a href="https://foodbanknyc.github.io/borofastfacts_2.pdf">[2]</a>.
+      </p>
+
+      <p>
+        As of 2026, roughly <strong>160 of the NYC Subway's ~472 stations</strong>
+        — about 34% — are ADA-accessible
+        <a href="https://www.mta.info/accessibility/stations">[3]</a>.
+        Sixty-six percent are not. The MTA's 2025–2029 Capital Plan commits
+        $7.1B to bring another 60 stations to ADA compliance, with a systemwide
+        95% target for 2055
+        <a href="https://www.mta.info/article/accessibility-disability-pride-month-2026">[4]</a>.
+      </p>
+
+      <p>
+        The gap this app addresses sits between those two numbers: knowing a
+        meal site exists, and knowing whether a caregiver using a wheelchair,
+        pushing a stroller, or traveling with an older parent can actually get
+        to it. A site directory that shows only address and hours cannot
+        answer the second question. This build joins the USDA meal-site list
+        with MTA elevator status and step-free entrance records so the
+        accessibility of the trip is rendered alongside the meal.
+      </p>
+    </section>
+
+    <section>
+      <h2>Data sources and credits</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Dataset</th>
+            <th>Publisher</th>
+            <th>Used for</th>
+            <th>Link</th>
+            <th>Pulled</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Summer Meals Site Finder 2026 (Testing)</td>
+            <td>USDA FNS</td>
+            <td>Site list, coordinates, hours, days of operation</td>
+            <td><a href="https://services1.arcgis.com/RLQu0rK7h4kbsBq5/arcgis/rest/services/Summer_Meals_Site_Finder_2026_(Testing)/FeatureServer">ArcGIS FeatureServer</a></td>
+            <td class="date">2026-08-15</td>
+          </tr>
+          <tr>
+            <td>MTA Subway Stations</td>
+            <td>MTA, via NY State Open Data</td>
+            <td>GTFS stop IDs, coordinates, ADA status</td>
+            <td><a href="https://data.ny.gov/Transportation/MTA-Subway-Stations/39hk-dx4f">data.ny.gov 39hk-dx4f</a></td>
+            <td class="date">2026-08-15</td>
+          </tr>
+          <tr>
+            <td>MTA Subway Elevator and Escalator Asset Inventory</td>
+            <td>MTA, via NY State Open Data</td>
+            <td>Per-elevator service status (in-service vs out-of-service)</td>
+            <td><a href="https://data.ny.gov/Transportation/MTA-Subway-Elevator-and-Escalator-Asset-Inventory/94fv-bak7">data.ny.gov 94fv-bak7</a></td>
+            <td class="date">2026-08-15</td>
+          </tr>
+          <tr>
+            <td>NYC Planning Labs GeoSearch</td>
+            <td>NYC Department of City Planning</td>
+            <td>Client-side address autocomplete and geocoding</td>
+            <td><a href="https://geosearch.planninglabs.nyc/">geosearch.planninglabs.nyc</a></td>
+            <td class="date">live query</td>
+          </tr>
+          <tr>
+            <td>Basemap tiles (dark)</td>
+            <td>CARTO, over OpenStreetMap</td>
+            <td>Map tiles rendered on the site map</td>
+            <td><a href="https://carto.com/attributions">CARTO</a> · <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a></td>
+            <td class="date">live tiles</td>
+          </tr>
+          <tr>
+            <td>Leaflet 1.9.4</td>
+            <td>Volodymyr Agafonkin &amp; contributors</td>
+            <td>Interactive map rendering library</td>
+            <td><a href="https://leafletjs.com/">leafletjs.com</a></td>
+            <td class="date">CDN</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="thanks">
+        Thanks to <strong>NYC Open Data</strong> and the <strong>New York State
+        open data program</strong> for making the underlying feeds queryable,
+        and to the <strong>New York Public Library</strong> and
+        <strong>Major League Hacking</strong> for hosting the hackathon.
+      </p>
+    </section>
+
+    <section>
+      <h2>Honest limitations</h2>
+      <ul>
+        <li>
+          <strong>Accessibility is agency-reported or phone-verified, not
+          continuously monitored.</strong> The step-free entrance status of a
+          meal site comes from either the operating agency or a call our team
+          made on a specific date; conditions in the field may have changed
+          since. Every accessibility claim in the app renders with its source
+          and the date it was verified — treat those dates as authoritative,
+          not the badge itself.
+        </li>
+        <li>
+          <strong>Hours change without notice.</strong> The USDA feed is
+          updated periodically but is not real-time; sites close, add days, or
+          move without appearing in the feed. Call before you go.
+        </li>
+        <li>
+          <strong>Elevator status reflects an inventory refresh, not a
+          real-time feed.</strong> The MTA elevator dataset (94fv-bak7)
+          updates roughly daily. Same-day outages may not be reflected. If a
+          station's ADA path is critical to your trip, verify on the MTA's
+          live elevator/escalator status page before travel.
+        </li>
+        <li>
+          <strong>We cannot verify ingredients or allergens.</strong> If your
+          query mentions an allergy, the app displays a warning telling you to
+          call the site. The app will never assert that any site is
+          allergen-safe.
+        </li>
+        <li>
+          <strong>A verdict is a best estimate at the shown date, not a
+          guarantee.</strong> The green/amber/red state is computed from the
+          data we have; missing data always resolves to amber, never green.
+          The LLM search parser reads your question only — it never invents,
+          generates, or returns site data.
+        </li>
+        <li>
+          <strong>Source staleness we know about:</strong> the USDA 2026 site
+          list is labeled "Testing" by USDA and may not reflect the finalized
+          season roster. The MTA asset inventory is the freshest structured
+          source we found for elevator status without an API key, but it is
+          not the realtime GTFS-RT elevator feed.
+        </li>
+      </ul>
+
+      <div class="disclosure">
+        <strong>AI disclosure.</strong> Per Major League Hacking's requirement
+        that teams disclose AI tools used, this project was built with
+        <a href="https://www.anthropic.com/claude-code">Claude Code</a>,
+        Anthropic's CLI-based AI coding assistant. Claude Code was used for
+        code generation, data-source discovery, and integration throughout the
+        codebase. The runtime LLM query parser in <code>/api/parse</code> uses
+        the Anthropic Messages API (Claude Sonnet 4.6) to convert free-text
+        questions into a fixed JSON schema; that endpoint never generates,
+        invents, or returns site data.
+      </div>
+    </section>
+
+  </main>
+  <footer>
+    NYPL × MLH hackathon build · sites and stations refresh from the sources
+    above · this page is static.
+  </footer>
+</body>
+</html>

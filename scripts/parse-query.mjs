@@ -12,40 +12,46 @@
 //   ANTHROPIC_API_KEY=... node scripts/parse-query.mjs "necesito comida cerca del Bronx"
 //   ANTHROPIC_API_KEY=... node scripts/parse-query.mjs --test
 
-const MODEL = "claude-opus-4-7";
+const MODEL = "claude-sonnet-4-6";
 const API_URL = "https://api.anthropic.com/v1/messages";
 
 const SYSTEM_PROMPT = `You parse short, free-text messages from New York City residents \
-looking for social-services help (food, transit, housing, health). You only extract \
-what the user actually says. You never invent locations, sites, program names, or \
-services. Detect the language the user wrote in. If a field is not present in the \
-message, use null (for neighborhood) or "unknown" (for enums) or [] (for arrays). \
-Do not translate or paraphrase — extract only.
+looking for social-services help. You only extract what the user actually says. You \
+never invent sites, programs, addresses, or services. Return strict JSON only — no \
+prose, no markdown fences.
 
 Field guide:
-- detectedLanguage: common English name of the language (e.g. "Spanish", "Mandarin", \
-  "Bengali", "Russian", "English").
+- detectedLanguage: ISO 639-1 code (e.g. "en", "es", "zh", "bn", "ru").
 - need: single closest match from the enum. "unknown" if unclear.
-- ageGroups: descriptors mentioned or clearly implied ("infant", "toddler", "child", \
-  "teen", "adult", "senior"), or specific ages ("5 year old"). Empty [] if no age.
-- dietaryFlags: dietary restrictions mentioned ("halal", "kosher", "vegetarian", \
-  "vegan", "gluten-free", "nut-free"). Empty [] if none.
-- neighborhood: NYC neighborhood, borough, or landmark named verbatim in English \
-  (e.g. "Bronx", "LES", "Astoria", "Queens"). null if not specified.
-- urgency: "high" for "today"/"urgent"/"now"; "medium" for planning within \
-  days/weeks; "low" for general browsing; "unknown" if unclear.`;
+- ageGroups: enum values only. "infant" (0-2), "child" (3-12), "teen" (13-17), \
+  "adult" (18-64), "senior" (65+). Map specific ages to the closest bracket. \
+  Empty [] if no age.
+- dietaryFlags: enum values only. "allergy" for peanut/tree-nut/shellfish/etc. \
+  allergies. "medical" for medically-mandated diets. Empty [] if none.
+- accessibilityNeeds: enum values only. Empty [] if none.
+- urgency: "high" for "today"/"urgent"/"now"; "medium" for planning within days; \
+  "low" for general browsing.`;
 
 const OUTPUT_SCHEMA = {
   type: "object",
   properties: {
     detectedLanguage: { type: "string" },
     need: { type: "string", enum: ["food", "transit", "housing", "health", "unknown"] },
-    ageGroups: { type: "array", items: { type: "string" } },
-    dietaryFlags: { type: "array", items: { type: "string" } },
-    neighborhood: { anyOf: [{ type: "string" }, { type: "null" }] },
-    urgency: { type: "string", enum: ["low", "medium", "high", "unknown"] },
+    ageGroups: {
+      type: "array",
+      items: { type: "string", enum: ["infant", "child", "teen", "adult", "senior"] },
+    },
+    dietaryFlags: {
+      type: "array",
+      items: { type: "string", enum: ["halal", "kosher", "vegetarian", "allergy", "medical", "none"] },
+    },
+    accessibilityNeeds: {
+      type: "array",
+      items: { type: "string", enum: ["wheelchair", "walker", "stroller", "vision", "hearing", "none"] },
+    },
+    urgency: { type: "string", enum: ["high", "medium", "low"] },
   },
-  required: ["detectedLanguage", "need", "ageGroups", "dietaryFlags", "neighborhood", "urgency"],
+  required: ["detectedLanguage", "need", "ageGroups", "dietaryFlags", "accessibilityNeeds", "urgency"],
   additionalProperties: false,
 };
 
@@ -67,7 +73,7 @@ async function parseQuery(query) {
     },
     body: JSON.stringify({
       model: MODEL,
-      max_tokens: 512,
+      max_tokens: 1000,
       system: [{ type: "text", text: SYSTEM_PROMPT, cache_control: { type: "ephemeral" } }],
       output_config: { format: { type: "json_schema", schema: OUTPUT_SCHEMA } },
       messages: [{ role: "user", content: query }],

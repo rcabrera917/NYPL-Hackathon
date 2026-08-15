@@ -1,7 +1,10 @@
-// Client-side helpers for the search flow. Two exports:
-//   keywordParse(query)      — pure fallback when /api/parse is unavailable.
-//                              Produces the same 6-field shape.
-//   filterSites(sites, parsed) — filter and rank sites.json by a parse result.
+// Client-side helpers for the search flow. Exports:
+//   keywordParse(query)              — pure fallback when /api/parse fails.
+//                                      Produces the same shape as the API.
+//   rankSites(sites, parsed, origin) — sort by distance from origin (haversine),
+//                                      then decorate each site with matchChips[].
+//                                      Filters are ranking only — every site
+//                                      stays visible.
 //
 // No fetch, no imports. Runs in the browser.
 
@@ -15,28 +18,42 @@ const NEED_KEYWORDS = {
   ],
   transit: ["subway", "train", "bus", "transit", "mta"],
   housing: ["housing", "shelter", "apartment", "rent"],
-  health: ["clinic", "doctor", "medical", "hospital", "urgent care"],
+  health: ["clinic", "doctor", "medical", "hospital", "urgent care", "medicina"],
 };
 
-const NEIGHBORHOODS = [
-  "Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island",
-  "LES", "Lower East Side", "Harlem", "Chinatown", "Astoria",
-  "Forest Hills", "Flushing", "Williamsburg", "Bushwick", "Bed-Stuy",
+const URGENCY_HIGH = ["urgent", "today", "now", "immediately", "asap", "hoy", "ahora", "紧急", "срочно"];
+const URGENCY_MEDIUM = ["tomorrow", "this week", "soon", "mañana", "pronto"];
+
+const DIETARY_KEYWORDS = {
+  halal: ["halal"],
+  kosher: ["kosher"],
+  vegetarian: ["vegetarian", "vegan", "vegetariano", "vegano"],
+  allergy: ["allergy", "allergic", "peanut", "nut", "shellfish", "alergia", "alérgico"],
+  medical: ["diabetic", "diabetes", "low-sodium", "gluten-free", "celiac"],
+};
+
+const ACCESSIBILITY_KEYWORDS = {
+  wheelchair: ["wheelchair", "silla de ruedas"],
+  walker: ["walker", "andador"],
+  stroller: ["stroller", "cochecito"],
+  vision: ["blind", "vision impaired", "low vision", "ciego"],
+  hearing: ["deaf", "hearing impaired", "sordo"],
+};
+
+const AGE_BUCKETS = [
+  { key: "infant", min: 0, max: 2, words: ["infant", "baby", "bebé"] },
+  { key: "child", min: 3, max: 12, words: ["child", "children", "kid", "kids", "niño", "hijo"] },
+  { key: "teen", min: 13, max: 17, words: ["teen", "teenager", "adolescente"] },
+  { key: "adult", min: 18, max: 64, words: ["adult", "adulto"] },
+  { key: "senior", min: 65, max: 120, words: ["senior", "elderly", "abuelo", "anciano"] },
 ];
 
-const URGENCY_HIGH = ["urgent", "today", "now", "immediately", "asap", "紧急", "срочно"];
-const URGENCY_MEDIUM = ["tomorrow", "this week", "soon"];
-
-const DIETARY = ["halal", "kosher", "vegetarian", "vegan", "gluten-free", "nut-free"];
-
-const AGE_WORDS = ["infant", "toddler", "child", "children", "kid", "kids", "teen", "adult", "senior"];
-
-function detectLanguage(text) {
-  if (/[一-鿿]/.test(text)) return "Mandarin";
-  if (/[ঀ-৿]/.test(text)) return "Bengali";
-  if (/[Ѐ-ӿ]/.test(text)) return "Russian";
-  if (/[áéíóúñ¿¡]/i.test(text) || /\b(necesito|comida|niño|hijo|cerca)\b/i.test(text)) return "Spanish";
-  return "English";
+function detectLanguageIso(text) {
+  if (/[一-鿿]/.test(text)) return "zh";
+  if (/[ঀ-৿]/.test(text)) return "bn";
+  if (/[Ѐ-ӿ]/.test(text)) return "ru";
+  if (/[áéíóúñ¿¡]/i.test(text) || /\b(necesito|comida|niño|hijo|cerca|hoy|mañana)\b/i.test(text)) return "es";
+  return "en";
 }
 
 function detectNeed(lower) {
@@ -48,93 +65,106 @@ function detectNeed(lower) {
 
 function detectAgeGroups(lower) {
   const groups = new Set();
-  for (const w of AGE_WORDS) if (lower.includes(w)) groups.add(w);
-  const ageMatch = lower.match(/\b(\d{1,2})\s*(?:year|yr|año|años|岁|বছর|лет|года|год)/);
-  if (ageMatch) groups.add(`${ageMatch[1]} year old`);
+  for (const b of AGE_BUCKETS) {
+    if (b.words.some((w) => lower.includes(w))) groups.add(b.key);
+  }
+  const ageMatch = lower.match(/\b(\d{1,3})\s*(?:year|yr|año|años|岁|বছর|лет|года|год)/);
+  if (ageMatch) {
+    const n = parseInt(ageMatch[1], 10);
+    const bucket = AGE_BUCKETS.find((b) => n >= b.min && n <= b.max);
+    if (bucket) groups.add(bucket.key);
+  }
   return [...groups];
 }
 
-function detectDietary(lower) {
-  return DIETARY.filter((flag) => lower.includes(flag));
-}
-
-function detectNeighborhood(text) {
-  for (const n of NEIGHBORHOODS) {
-    if (text.toLowerCase().includes(n.toLowerCase())) return n;
+function detectMulti(lower, table) {
+  const out = [];
+  for (const [key, kws] of Object.entries(table)) {
+    if (kws.some((kw) => lower.includes(kw))) out.push(key);
   }
-  if (/皇后区|皇后/.test(text)) return "Queens";
-  if (/曼哈顿/.test(text)) return "Manhattan";
-  if (/布鲁克林/.test(text)) return "Brooklyn";
-  if (/ব্রুকলিন/.test(text)) return "Brooklyn";
-  if (/Манхэттен/i.test(text)) return "Manhattan";
-  if (/Бронкс/i.test(text)) return "Bronx";
-  return null;
+  return out;
 }
 
 function detectUrgency(lower) {
   if (URGENCY_HIGH.some((w) => lower.includes(w))) return "high";
   if (URGENCY_MEDIUM.some((w) => lower.includes(w))) return "medium";
-  return "unknown";
+  return "low";
 }
 
 export function keywordParse(query) {
   const text = String(query || "");
   const lower = text.toLowerCase();
+  const dietaryFlags = detectMulti(lower, DIETARY_KEYWORDS);
   return {
-    detectedLanguage: detectLanguage(text),
+    detectedLanguage: detectLanguageIso(text),
     need: detectNeed(lower),
     ageGroups: detectAgeGroups(lower),
-    dietaryFlags: detectDietary(lower),
-    neighborhood: detectNeighborhood(text),
+    dietaryFlags,
+    accessibilityNeeds: detectMulti(lower, ACCESSIBILITY_KEYWORDS),
     urgency: detectUrgency(lower),
+    allergyWarning: dietaryFlags.includes("allergy"),
   };
 }
 
-const DAY_NAMES = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
-function siteScore(site, parsed, todayLabel) {
-  let score = 0;
-  if (parsed.neighborhood) {
-    const hay = `${site.address ?? ""} ${site.name ?? ""}`.toLowerCase();
-    if (hay.includes(parsed.neighborhood.toLowerCase())) score += 10;
-  }
-  if (parsed.urgency === "high" && Array.isArray(site.daysOpen) && site.daysOpen.includes(todayLabel)) {
-    score += 5;
-  }
-  if (Array.isArray(parsed.ageGroups) && parsed.ageGroups.length > 0) {
-    const ageNum = parseInt(parsed.ageGroups.find((g) => /^\d/.test(g)) ?? "", 10);
-    if (!Number.isNaN(ageNum)) {
-      if (
-        (site.ageMin == null || ageNum >= site.ageMin) &&
-        (site.ageMax == null || ageNum <= site.ageMax)
-      ) {
-        score += 3;
-      }
-    }
-  }
-  return score;
+// Haversine distance in miles.
+export function haversineMiles(lat1, lng1, lat2, lng2) {
+  const R = 3958.7613;
+  const toRad = (d) => (d * Math.PI) / 180;
+  const dLat = toRad(lat2 - lat1);
+  const dLng = toRad(lng2 - lng1);
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(a));
 }
 
-// Returns { sites, applied } where applied lists the filters that took effect.
-// A "food" or "unknown" need shows every site (this is a summer-meals app);
-// other needs return an empty set because we don't have that data.
-export function filterSites(sites, parsed, date = new Date()) {
-  const applied = [];
-  if (!parsed || !Array.isArray(sites)) return { sites: [], applied };
+// Decorate each site with a distance, a matchChips[] array, and a rank score.
+// Filters are RANKING, never exclusion — every site stays in the returned list.
+export function rankSites(sites, parsed, origin) {
+  const needsAccess =
+    parsed && Array.isArray(parsed.accessibilityNeeds) &&
+    parsed.accessibilityNeeds.some((n) => n !== "none");
+  const needsDiet =
+    parsed && Array.isArray(parsed.dietaryFlags) &&
+    parsed.dietaryFlags.some((f) => f !== "none");
+  const urgencyHigh = parsed && parsed.urgency === "high";
 
-  if (parsed.need !== "food" && parsed.need !== "unknown") {
-    applied.push(`need=${parsed.need} (no matching data in this app)`);
-    return { sites: [], applied };
-  }
+  const decorated = sites.map((site) => {
+    const distanceMiles =
+      origin && site.lat != null && site.lng != null
+        ? haversineMiles(origin.lat, origin.lng, site.lat, site.lng)
+        : null;
 
-  const todayLabel = DAY_NAMES[date.getDay()];
-  const scored = sites
-    .map((s) => ({ site: s, score: siteScore(s, parsed, todayLabel) }))
-    .sort((a, b) => b.score - a.score);
+    const chips = [];
+    let score = 0;
 
-  if (parsed.neighborhood) applied.push(`neighborhood=${parsed.neighborhood}`);
-  if (parsed.urgency === "high") applied.push(`urgency=high (prefers open today: ${todayLabel})`);
-  if (parsed.ageGroups?.length) applied.push(`age=${parsed.ageGroups.join(",")}`);
+    if (needsAccess) {
+      if (site.entranceStepFree === true && site.verifiedBy) {
+        chips.push({ kind: "match", text: "step-free entrance verified" });
+        score += 20;
+      } else if (site.entranceStepFree === false) {
+        chips.push({ kind: "block", text: "entrance not step-free" });
+      } else {
+        chips.push({ kind: "unknown", text: "step-free status unknown — call ahead" });
+      }
+    }
 
-  return { sites: scored.map((s) => s.site), applied };
+    if (needsDiet) {
+      // sites.json contract carries no ingredient / dietary data.
+      chips.push({ kind: "unknown", text: "dietary details unknown — call ahead" });
+    }
+
+    if (urgencyHigh) score += 2;
+
+    return { site, distanceMiles, chips, score };
+  });
+
+  decorated.sort((a, b) => {
+    if (b.score !== a.score) return b.score - a.score;
+    const da = a.distanceMiles ?? Infinity;
+    const db = b.distanceMiles ?? Infinity;
+    return da - db;
+  });
+
+  return decorated;
 }
