@@ -11,7 +11,8 @@
 const NEED_KEYWORDS = {
   food: [
     "food", "meal", "meals", "lunch", "breakfast", "dinner", "eat", "hungry",
-    "comida", "almuerzo", "desayuno", "cena", "hambre",
+    "feed", "vegetables", "groceries", "produce",
+    "comida", "almuerzo", "desayuno", "cena", "hambre", "verduras", "alimentos",
     "免费", "午餐", "早餐", "晚餐", "食物", "吃",
     "খাবার", "খাদ্য",
     "еда", "питание", "обед", "завтрак", "ужин",
