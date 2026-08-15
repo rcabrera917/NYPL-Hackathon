@@ -1,0 +1,4982 @@
+{
+  "104": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL185",
+        "servingDescription": "231 St & Broadway (SE corner) to Van Cortlandt Park-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL184",
+        "servingDescription": "231 St & Broadway (SW corner) to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "109": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL179",
+        "servingDescription": "Nagle Ave & Dyckman St to uptown platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL156",
+        "servingDescription": "Freight Elevator At Dyckman Street/ Sub. Station",
+        "onAdaPath": false,
+        "inService": true
+      },
+      {
+        "id": "EL178",
+        "servingDescription": "Nagle Ave & Dyckman St to downtown platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "115": {
+    "ada": 2,
+    "adaDirectionNotes": "Accessible Uptown (northbound)",
+    "elevators": [
+      {
+        "id": "EL169X",
+        "servingDescription": "3 Landings",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL519",
+        "servingDescription": "Street (NE corner of Broadway and W 137 St) to uptown 1 platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL167X",
+        "servingDescription": "3 Landings",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL166X",
+        "servingDescription": "3 Landings",
+        "onAdaPath": true,
+        "inService": false
+      }
+    ]
+  },
+  "120": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL145",
+        "servingDescription": "Broadway (between 95 & 96 St) to downtown platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL146",
+        "servingDescription": "Broadway (between 95 & 96 St) to uptown platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "123": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL239",
+        "servingDescription": "Broadway (between 72 St & 73 St) to uptown platform",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL240",
+        "servingDescription": "Broadway (between 72 St & 73 St) to downtown platform",
+        "onAdaPath": true,
+        "inService": false
+      }
+    ]
+  },
+  "124": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL238",
+        "servingDescription": "West side of Broadway (between 65 St & 66 St) to downtown platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL237",
+        "servingDescription": "East side of Broadway (between 65 St & 66 St) to uptown platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "125": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL278",
+        "servingDescription": "mezzanine to uptown A/B/C/D platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL622",
+        "servingDescription": "Mezzanine to downtown A/B/C/D & 1 platforms",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL279",
+        "servingDescription": "Withdrawn - Confirmed Duplicate with EQ399963",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL277",
+        "servingDescription": "59 St-Columbus Circle - Station",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL280",
+        "servingDescription": "Central Park West & 60 St (NW corner) to uptown 1 platform and access to rest of complex via uptown A/B/C/D platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL276X",
+        "servingDescription": "8th Ave & 58 St (NW corner) to mezzanine for downtown 1 service and A/B/C/D service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "127": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL290X",
+        "servingDescription": "intermediate landing to mezzanine for A/C/E service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL291X",
+        "servingDescription": "8th Ave & 44 St entrance (SW corner) to intermediate landing for A/C/E service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL289X",
+        "servingDescription": "Port Authority Bus Terminal (8th Ave between 41st St & 42nd St) to mezzanine for A/C/E service in both directions via ramps",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL288X",
+        "servingDescription": "Port Authority Bus Terminal (8th Ave between 41st St & 42nd St) to mezzanine for A/C/E service in both directions via ramps",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL231X",
+        "servingDescription": "7th Ave & 42 St (SE corner) to mezzanine for service in both directions on all lines.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL230",
+        "servingDescription": "mezzanine to uptown N/Q/R/W platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL619",
+        "servingDescription": "43 St & Broadway (NW corner) to mezzanine for service in both directions for all lines.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL229",
+        "servingDescription": "Times Sq-42 St - Station",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL232",
+        "servingDescription": "Times Sq-42 St - Station",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL233",
+        "servingDescription": "mezzanine to uptown 1/2/3 platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "128": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL214",
+        "servingDescription": "concourse level of Penn Station to platform for uptown 1 service",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL216",
+        "servingDescription": "concourse level of Penn Station to platform for downtown 1 service",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL34X",
+        "servingDescription": "LIRR entrance - south side of 34 St (west of 7th Ave) to Penn Station concourse for service in both directions on all lines",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL215",
+        "servingDescription": "concourse level of Penn Station to platform for 2/3 service in both directions.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL618",
+        "servingDescription": "street to concourse level of Penn Station for direct access to 1/2/3 service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "132": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL614",
+        "servingDescription": "F/M uptown mezzanine to F/M uptown platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL611",
+        "servingDescription": "Street (NE corner of 14 St and 6 Av) to F/M uptown mezzanine and L mezzanine.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL615",
+        "servingDescription": "SW corner of 14 St & 7 Av to 1/2/3 mezzanine.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL617",
+        "servingDescription": "Mezzanine to downtown and Brooklyn 1/2/3 platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL609",
+        "servingDescription": "Lower mezzanine to L platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL613",
+        "servingDescription": "F/M downtown mezzanine to F/M downtown platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL612",
+        "servingDescription": "Street (NW corner of 14 St and 6 Av) to F/M downtown mezzanine and L mezzanine.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL610",
+        "servingDescription": "Lower mezzanine to L platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL616",
+        "servingDescription": "Mezzanine to uptown 1/2/3 platform.",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "137": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL336",
+        "servingDescription": "West Broadway & Chambers St (NW corner) to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL338",
+        "servingDescription": "mezzanine to downtown platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL337",
+        "servingDescription": "mezzanine to uptown platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "138": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL12X",
+        "servingDescription": "West Concourse balcony to PATH level with access to 1 train service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL11X",
+        "servingDescription": "West Concourse balcony to West Concourse with access to 1 service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL712",
+        "servingDescription": "mezzanine at Oculus main level to uptown 1 platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL713",
+        "servingDescription": "mezzanine at Oculus main level to downtown 1 platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL13X",
+        "servingDescription": "Oculus main level  to PATH level with access to 1 train service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL14X",
+        "servingDescription": "Greenwich St to Oculus Balcony with access to uptown 1 and downtown R/W service",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL736",
+        "servingDescription": "Greenwich Street (near southwest corner of Greenwich Street and Vesey Street) to downtown 1 platform and access to uptown 1 service",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "142": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL731",
+        "servingDescription": "mezzanine to platform for uptown service",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL730",
+        "servingDescription": "plaza in front of Staten Island Ferry Terminal (east side) to mezzanine for uptown service",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "205": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL194",
+        "servingDescription": "mezzanine to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL193",
+        "servingDescription": "mezzanine to Wakefield 241 St-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL192",
+        "servingDescription": "233 St & White Plans Rd (NW corner) to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "208": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL183",
+        "servingDescription": "Gun Hill Rd to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL182",
+        "servingDescription": "Gun Hill Rd to Wakefield 241 St-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "211": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL138",
+        "servingDescription": "mezzanine to Wakefield 241 St-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL137",
+        "servingDescription": "mezzanine to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL136",
+        "servingDescription": "White Plains Rd & Pelham Pkwy South (SW corner) to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "213": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL160",
+        "servingDescription": "Morris Park Ave & E 180 St to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL159",
+        "servingDescription": "Morris Park Ave & E 180 St to Bronx-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "217": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL127",
+        "servingDescription": "Westchester Ave & Simpson St (SW corner) to Bronx-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL128",
+        "servingDescription": "Westchester Ave & Simpson St (NE corner) to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "221": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL130",
+        "servingDescription": "Melrose Ave & 149 St (NW corner) to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL129",
+        "servingDescription": "3rd Ave & 149 St (SW corner) to Bronx-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "224": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL181",
+        "servingDescription": "135 St & Lenox Ave (SW corner) to downtown platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL180",
+        "servingDescription": "135 St & Lenox Ave (NE corner) to uptown and the Bronx-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "229": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL715X",
+        "servingDescription": "Transit Center",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL719",
+        "servingDescription": "mezzanine (Nassau St) and Broad St-bound J/Z to A/C platform for service in both directions and access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL728X",
+        "servingDescription": "Dey St & Broadway (SW corner) to downtown 4/5 platform, access to rest of Fulton St complex, and connection to Oculus complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL733X",
+        "servingDescription": "Transit Center (near Broadway & John St) to upper retail floors",
+        "onAdaPath": false,
+        "inService": true
+      },
+      {
+        "id": "EL723",
+        "servingDescription": "William St & Fulton St (SW corner) to mezzanine for 2/3 and A/C service in both directions and access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL725X",
+        "servingDescription": "Corbin Building",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL734X",
+        "servingDescription": "Transit Center",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL732",
+        "servingDescription": "2/3 platform for service in both directions to mezzanine for access to A/C platform and rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL714X",
+        "servingDescription": "Transit Center",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL716",
+        "servingDescription": "Transit Center concourse to uptown 4/5 platform and access to Brooklyn-bound J/Z platform and rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL729X",
+        "servingDescription": "Transit Center concourse to downntown 4/5 platform and access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL724X",
+        "servingDescription": "Corbin Building",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL718X",
+        "servingDescription": "Transit Center (near Broadway & John St) to uptown 4/5 platform and access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL717X",
+        "servingDescription": "Transit Center (near Broadway & John St) to uptown 4/5 platform and concourse for access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL722",
+        "servingDescription": "Nassau St & Fulton St (NE corner) to mezzanine for Broad St-bound J/Z service and access to A/C platform and rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL721",
+        "servingDescription": "2/3 mezzanine to A/C platform for service in both directions and access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL720",
+        "servingDescription": "concourse (Brooklyn-bound J/Z) to A/C platform for service in both directions and access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "232": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL774",
+        "servingDescription": "Mezzanine to Manhattan-bound 4/5 platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL318",
+        "servingDescription": "mezzanine to platforms for 2/3 service in both directions and access to 4/5 service via Manhattan-bound 2/3 platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL309",
+        "servingDescription": "mezzanine (Clinton St & Montague St) to intermediate mezzanine for R service in both directions",
+        "onAdaPath": false,
+        "inService": true
+      },
+      {
+        "id": "EL775",
+        "servingDescription": "Mezzanine to Flatbush Av-Brooklyn College-bound 5 and Utica Av-bound 4 platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL317",
+        "servingDescription": "Court St & Montague St (on plaza) to mezzanine for access to 2/3 service in both directions and Manhattan-bound 4/5 service",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL773",
+        "servingDescription": "Joralemon Street in front of Borough Hall to 4/5 mezzanine level.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL308",
+        "servingDescription": "mezzanine (Clinton St & Montague St) to intermediate mezzanine for R service in both directions",
+        "onAdaPath": false,
+        "inService": true
+      }
+    ]
+  },
+  "233": {
+    "ada": 2,
+    "adaDirectionNotes": "Accessible Outbound (southbound)",
+    "elevators": [
+      {
+        "id": "EL744X",
+        "servingDescription": "Next to Macy's entrance for New Lots Av/Flatbush Av-bound service.",
+        "onAdaPath": false,
+        "inService": true
+      }
+    ]
+  },
+  "235": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL303",
+        "servingDescription": "mezzanine (4th Ave & Pacific St) to Manhattan-bound D/N/R platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL304",
+        "servingDescription": "Brooklyn-bound 2/3 platform to mezzanine for access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL301",
+        "servingDescription": "4th Ave and Pacific St (NE corner) to mezzanine for D/N/R service in both directions and access to rest of complex via Brooklyn-bound 2/3 platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL307",
+        "servingDescription": "mezzanine to B/Q platform for service in both directions",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL306",
+        "servingDescription": "Manhattan-bound 2/3 platform to mezzanine for access to rest of complex",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL737X",
+        "servingDescription": "Hanson Pl to LIRR concourse for access to Manhattan-bound 2/3 platform rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL700X",
+        "servingDescription": "Plaza entrance in front of Barclays Center to accessible passageway for access to Manhattan-bound 2/3 platform and rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL300X",
+        "servingDescription": "Hanson Pl to LIRR concourse for access to Manhattan-bound 2/3 platform rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL305",
+        "servingDescription": "mezzanine to 4/5 platform for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL302",
+        "servingDescription": "mezzanine (4th Ave & Pacific St) to Coney Island and Bay Ridge-bound D/N/R platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "238": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL757",
+        "servingDescription": "Mezzanine to platform for Flatbush Av-bound 2 and New Lots Av-bound 3 service",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL755",
+        "servingDescription": "South side of Eastern Pkwy west of Washington Ave to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL756",
+        "servingDescription": "Mezzanine to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "244": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL321",
+        "servingDescription": "Nostrand Ave & Church Ave (SW corner) to Flatbush Av Brooklyn College-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL320",
+        "servingDescription": "Nostrand Ave & Church Ave (SE corner) to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "247": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL319",
+        "servingDescription": "Nostrand Ave & Flatbush Ave (SE corner) to platform for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "250": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL322",
+        "servingDescription": "Utica Ave & Eastern Pkwy to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL323",
+        "servingDescription": "mezzanine (eastern entrance near Utica Ave) to platforms for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "301": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": []
+  },
+  "402": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL523",
+        "servingDescription": "Street (SE corner of Jerome Av and E Mosholu Pkwy North) to Transfer Mezzanine & Woodlawn-bound Platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL524",
+        "servingDescription": "Transfer Mezzanine to Manhattan-bound Platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "407": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL187",
+        "servingDescription": "mezzanine to Woodlawn-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL188",
+        "servingDescription": "mezzanine to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL186",
+        "servingDescription": "Jerome Ave & Fordham Rd (SE corner) to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "412": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL506",
+        "servingDescription": "170th St & Jerome Av (SE corner) to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL507",
+        "servingDescription": "Mezzanine to platform for northbound 4 service",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL508",
+        "servingDescription": "Mezzanine to platform for southbound 4 service",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "414": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL135",
+        "servingDescription": "Mezzanine to B/D platform for Bedford Pk Blvd and Norwood 205 St-bound service.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL132",
+        "servingDescription": "UNLINK...WITHDRAW AND PLACE OUT OF SERVICE duplicate with EQ411330 Complex station.  This is a duplicate of 411330",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL131",
+        "servingDescription": "161 St & River Ave (NE corner) to mezzanine to reach 4/B/D service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL134",
+        "servingDescription": "mezzanine to Manhattan-bound B/D platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL133",
+        "servingDescription": "mezzanine to Manhattan-bound 4 platform",
+        "onAdaPath": true,
+        "inService": false
+      }
+    ]
+  },
+  "418": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL715X",
+        "servingDescription": "Transit Center",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL719",
+        "servingDescription": "mezzanine (Nassau St) and Broad St-bound J/Z to A/C platform for service in both directions and access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL728X",
+        "servingDescription": "Dey St & Broadway (SW corner) to downtown 4/5 platform, access to rest of Fulton St complex, and connection to Oculus complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL733X",
+        "servingDescription": "Transit Center (near Broadway & John St) to upper retail floors",
+        "onAdaPath": false,
+        "inService": true
+      },
+      {
+        "id": "EL723",
+        "servingDescription": "William St & Fulton St (SW corner) to mezzanine for 2/3 and A/C service in both directions and access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL725X",
+        "servingDescription": "Corbin Building",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL734X",
+        "servingDescription": "Transit Center",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL732",
+        "servingDescription": "2/3 platform for service in both directions to mezzanine for access to A/C platform and rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL714X",
+        "servingDescription": "Transit Center",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL716",
+        "servingDescription": "Transit Center concourse to uptown 4/5 platform and access to Brooklyn-bound J/Z platform and rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL729X",
+        "servingDescription": "Transit Center concourse to downntown 4/5 platform and access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL724X",
+        "servingDescription": "Corbin Building",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL718X",
+        "servingDescription": "Transit Center (near Broadway & John St) to uptown 4/5 platform and access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL717X",
+        "servingDescription": "Transit Center (near Broadway & John St) to uptown 4/5 platform and concourse for access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL722",
+        "servingDescription": "Nassau St & Fulton St (NE corner) to mezzanine for Broad St-bound J/Z service and access to A/C platform and rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL721",
+        "servingDescription": "2/3 mezzanine to A/C platform for service in both directions and access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL720",
+        "servingDescription": "concourse (Brooklyn-bound J/Z) to A/C platform for service in both directions and access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "420": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL710",
+        "servingDescription": "plaza south of Bowling Green Park to uptown platform and lower mezzanine for Brooklyn-bound service",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL711",
+        "servingDescription": "lower mezzanine to  Brooklyn-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "423": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL774",
+        "servingDescription": "Mezzanine to Manhattan-bound 4/5 platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL318",
+        "servingDescription": "mezzanine to platforms for 2/3 service in both directions and access to 4/5 service via Manhattan-bound 2/3 platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL309",
+        "servingDescription": "mezzanine (Clinton St & Montague St) to intermediate mezzanine for R service in both directions",
+        "onAdaPath": false,
+        "inService": true
+      },
+      {
+        "id": "EL775",
+        "servingDescription": "Mezzanine to Flatbush Av-Brooklyn College-bound 5 and Utica Av-bound 4 platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL317",
+        "servingDescription": "Court St & Montague St (on plaza) to mezzanine for access to 2/3 service in both directions and Manhattan-bound 4/5 service",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL773",
+        "servingDescription": "Joralemon Street in front of Borough Hall to 4/5 mezzanine level.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL308",
+        "servingDescription": "mezzanine (Clinton St & Montague St) to intermediate mezzanine for R service in both directions",
+        "onAdaPath": false,
+        "inService": true
+      }
+    ]
+  },
+  "503": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL199",
+        "servingDescription": "Gun Hill Road (between Sexton Pl and Dewitt Pl) to Eastchester Dyre Av-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL198",
+        "servingDescription": "Gun Hill Road (between Sexton Pl and Dewitt Pl) to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "601": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL122",
+        "servingDescription": "mezzanine to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL121",
+        "servingDescription": "Amendola Plaza entrance (adjacent to Bruckner Expwy) to mezzanine for Manhattan-bound service",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "604": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL512",
+        "servingDescription": "Street (NW corner of Westchester Av and Lane Av) to mezzanine.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL513",
+        "servingDescription": "Mezzanine to Pelham Bay Park-bound platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL164",
+        "servingDescription": "Passanger Yard Elevator At Phelham Inspection Barn",
+        "onAdaPath": false,
+        "inService": true
+      },
+      {
+        "id": "EL514",
+        "servingDescription": "Mezzanine to Manhattan-bound platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL174",
+        "servingDescription": "Passenger Yard Elevator At Westchester Yard",
+        "onAdaPath": false,
+        "inService": true
+      }
+    ]
+  },
+  "608": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL522",
+        "servingDescription": "Center of Hugh J. Grant Circle to mezzanine and Manhattan-bound platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL521",
+        "servingDescription": "Center of Hugh J. Grant Circle to mezzanine and Pelham Bay Park-bound platform.",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "613": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL197",
+        "servingDescription": "Mezzanine to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL196",
+        "servingDescription": "Mezzanine to Pelham Bay Parkway-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL195",
+        "servingDescription": "Hunts Pt Av side of traffic island to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "615": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL516",
+        "servingDescription": "NE corner of Southern Blvd and E 149 St for Manhattan-bound service.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL515",
+        "servingDescription": "SW corner of Southern Blvd and E 149 St for Pelham Bay Park-bound service.",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "621": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL125",
+        "servingDescription": "125 St & Lexington Av (NE corner) to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL126",
+        "servingDescription": "Mezzanine to platforms for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "626": {
+    "ada": 2,
+    "adaDirectionNotes": "Accessible Uptown (northbound)",
+    "elevators": [
+      {
+        "id": "EL273",
+        "servingDescription": "86 St & Lexington Ave (NE corner) to uptown 6 platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "628": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL286",
+        "servingDescription": "Street (NE corner of 68 St & Lexington Av) to mezzanine.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL285",
+        "servingDescription": "Mezzanine to uptown and Bronx-bound platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL284",
+        "servingDescription": "Mezzanine to downtown platform.",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "630": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL245",
+        "servingDescription": "mezzanine to E/F platform for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL201",
+        "servingDescription": "Uptown 6 platform to underpass downtown 6",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL202",
+        "servingDescription": "Downtown 6 platform to underpass for access to uptown 6 and E/F service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL203X",
+        "servingDescription": "52 St & Lexington Ave (NE corner) to mezzanine for E/F/6 service in both directions.",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "631": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL606X",
+        "servingDescription": "1 Vanderbilt lobby on the Vanderbilt side directly across from Grand Central. 5 landings: street/lobby level, SUMMIT/subway/grand central terminal level, subway shuttle/GCT food concourse level, private (offices), GCM LIRR.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL607X",
+        "servingDescription": "One Vanderbilt mezzanine level to platform level for Shuttle service and connection to 4/5/6 and 7 via passageway",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL206",
+        "servingDescription": "Mezzanine To Uptown 4/5/6 Platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL205",
+        "servingDescription": "mezzanine to downtown 4/5/6 platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL204",
+        "servingDescription": "42 St (between Park Ave & Lexington Ave) to mezzanine for 4/5/6/7 service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL296",
+        "servingDescription": "42 St & Lexington Av to mezzanine for 4/5/6/7 service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL608X",
+        "servingDescription": "42 St between Vanderbilt and Madison Ave (inside One Vanderbilt building) to mezzanine level for service on all lines",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL244",
+        "servingDescription": "mezzanine to 7 platform for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "633": {
+    "ada": 2,
+    "adaDirectionNotes": "Accessible Downtown (southbound)",
+    "elevators": [
+      {
+        "id": "EL279X",
+        "servingDescription": "28 St & Park Ave (SW corner) to downtown platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "634": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL299",
+        "servingDescription": "Park Ave & 23 St (NW corner) to downtown platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL298",
+        "servingDescription": "Park Ave & 23 St (NE corner) to uptown platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "637": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL328",
+        "servingDescription": "Houston St & Lafayette St (NW corner) to downtown 6 mezzanine and access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL329",
+        "servingDescription": "downtown 6 mezzanine to uptown B/D/F/M platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL331",
+        "servingDescription": "uptown 6 mezzanine and uptown B/D/F/M platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL332",
+        "servingDescription": "Bleecker St - Station",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL330",
+        "servingDescription": "downtown 6 mezzanine to downtown B/D/F/M platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "639": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL325",
+        "servingDescription": "Canal St & Lafayette St (NE corner) to downtown 6 platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL324",
+        "servingDescription": "Canal St & Lafayette St (NW corner) to uptown 6 platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "640": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL316",
+        "servingDescription": "mezzanine to uptown 4/5/6 platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL743",
+        "servingDescription": "mezzanine to Broad St-bound J/Z platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL315",
+        "servingDescription": "mezzanine to platform for downtown 4/5 service and 6 terminal",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL742",
+        "servingDescription": "mezzanine to Jamaica Center-bound J/Z platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL314",
+        "servingDescription": "plaza on east side of City Hall (opposite Brooklyn Bridge walkway) to mezzanine for service on all lines in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "701": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL414",
+        "servingDescription": "East of Main St & Roosevelt Ave to Manhattan-bound platform.",
+        "onAdaPath": true,
+        "inService": false
+      }
+    ]
+  },
+  "707": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL425",
+        "servingDescription": "Roosevelt Av & Junction Blvd (NE corner) to mezz and overpass for 7 in both directions.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL427",
+        "servingDescription": "overpass to Flushing Main St-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL426",
+        "servingDescription": "overpass to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "710": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL420",
+        "servingDescription": "Roosevelt Av & 74 St (SE corner) to Flushing Mn St-bound 7 plat & E/F/M/R/7 mezzanines.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL422",
+        "servingDescription": "mezzanine to Forest Hills and Jamaica-bound E/F/M/R platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL423",
+        "servingDescription": "mezzanine to Manhattan-bound 7 platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL421",
+        "servingDescription": "transfer mezzanine to Manhattan-bound E/F/M/R platform and mezzanine for access to Queens-bound E/F/M/R service",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "712": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL417X",
+        "servingDescription": "mezzanine to Flushing Main St-bound 7 platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL416X",
+        "servingDescription": "mezzanine to Manhattan-bound 7 platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL418X",
+        "servingDescription": "mezzanine to Penn Station-bound LIRR platform",
+        "onAdaPath": false,
+        "inService": true
+      },
+      {
+        "id": "EL415X",
+        "servingDescription": "Roosevelt Ave & 61 St (NE corner) to mezzanine for LIRR and 7 service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL419X",
+        "servingDescription": "mezzanine to Long Island-bound LIRR platform",
+        "onAdaPath": false,
+        "inService": true
+      }
+    ]
+  },
+  "718": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL479",
+        "servingDescription": "Mezzanine to lower platform and upper platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL791X",
+        "servingDescription": "Queens Plaza North between Crescent St and 27 St to mezzanine for service in both directions.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL478",
+        "servingDescription": "Street to mezzanine",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "719": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL482X",
+        "servingDescription": "NE corner of 44 Drive and 23 St to mezzanine for E/F service to Manhattan.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL446",
+        "servingDescription": "Jackson Ave & 23 St (NE corner) to mezzanine for 7 service in both directions and access to G mezzanine",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL447",
+        "servingDescription": "mezzanine to Manhattan-bound 7 platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL445X",
+        "servingDescription": "Flushing-bound 7 platform to mezzanine to EFG transfer.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL469",
+        "servingDescription": "Mezzanine to Brooklyn-bound platform/Court Sq-bound platform to mezzanine.",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "723": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL606X",
+        "servingDescription": "1 Vanderbilt lobby on the Vanderbilt side directly across from Grand Central. 5 landings: street/lobby level, SUMMIT/subway/grand central terminal level, subway shuttle/GCT food concourse level, private (offices), GCM LIRR.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL607X",
+        "servingDescription": "One Vanderbilt mezzanine level to platform level for Shuttle service and connection to 4/5/6 and 7 via passageway",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL206",
+        "servingDescription": "Mezzanine To Uptown 4/5/6 Platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL205",
+        "servingDescription": "mezzanine to downtown 4/5/6 platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL204",
+        "servingDescription": "42 St (between Park Ave & Lexington Ave) to mezzanine for 4/5/6/7 service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL296",
+        "servingDescription": "42 St & Lexington Av to mezzanine for 4/5/6/7 service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL608X",
+        "servingDescription": "42 St between Vanderbilt and Madison Ave (inside One Vanderbilt building) to mezzanine level for service on all lines",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL244",
+        "servingDescription": "mezzanine to 7 platform for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "725": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL290X",
+        "servingDescription": "intermediate landing to mezzanine for A/C/E service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL291X",
+        "servingDescription": "8th Ave & 44 St entrance (SW corner) to intermediate landing for A/C/E service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL289X",
+        "servingDescription": "Port Authority Bus Terminal (8th Ave between 41st St & 42nd St) to mezzanine for A/C/E service in both directions via ramps",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL288X",
+        "servingDescription": "Port Authority Bus Terminal (8th Ave between 41st St & 42nd St) to mezzanine for A/C/E service in both directions via ramps",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL231X",
+        "servingDescription": "7th Ave & 42 St (SE corner) to mezzanine for service in both directions on all lines.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL230",
+        "servingDescription": "mezzanine to uptown N/Q/R/W platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL619",
+        "servingDescription": "43 St & Broadway (NW corner) to mezzanine for service in both directions for all lines.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL229",
+        "servingDescription": "Times Sq-42 St - Station",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL232",
+        "servingDescription": "Times Sq-42 St - Station",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL233",
+        "servingDescription": "mezzanine to uptown 1/2/3 platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "726": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL601",
+        "servingDescription": "upper mezzanine to lower mezzanine for Flushing Main St-bound service",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL603",
+        "servingDescription": "34th St (between 10th Ave & 11th Ave) to upper mezzanine for Flushing Main St-bound service",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL600",
+        "servingDescription": "mezzanine to Flushing Main St-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL602",
+        "servingDescription": "upper mezzanine to lower mezzanine for Flushing Main St-bound service",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "901": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL606X",
+        "servingDescription": "1 Vanderbilt lobby on the Vanderbilt side directly across from Grand Central. 5 landings: street/lobby level, SUMMIT/subway/grand central terminal level, subway shuttle/GCT food concourse level, private (offices), GCM LIRR.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL607X",
+        "servingDescription": "One Vanderbilt mezzanine level to platform level for Shuttle service and connection to 4/5/6 and 7 via passageway",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL206",
+        "servingDescription": "Mezzanine To Uptown 4/5/6 Platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL205",
+        "servingDescription": "mezzanine to downtown 4/5/6 platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL204",
+        "servingDescription": "42 St (between Park Ave & Lexington Ave) to mezzanine for 4/5/6/7 service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL296",
+        "servingDescription": "42 St & Lexington Av to mezzanine for 4/5/6/7 service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL608X",
+        "servingDescription": "42 St between Vanderbilt and Madison Ave (inside One Vanderbilt building) to mezzanine level for service on all lines",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL244",
+        "servingDescription": "mezzanine to 7 platform for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "902": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL290X",
+        "servingDescription": "intermediate landing to mezzanine for A/C/E service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL291X",
+        "servingDescription": "8th Ave & 44 St entrance (SW corner) to intermediate landing for A/C/E service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL289X",
+        "servingDescription": "Port Authority Bus Terminal (8th Ave between 41st St & 42nd St) to mezzanine for A/C/E service in both directions via ramps",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL288X",
+        "servingDescription": "Port Authority Bus Terminal (8th Ave between 41st St & 42nd St) to mezzanine for A/C/E service in both directions via ramps",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL231X",
+        "servingDescription": "7th Ave & 42 St (SE corner) to mezzanine for service in both directions on all lines.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL230",
+        "servingDescription": "mezzanine to uptown N/Q/R/W platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL619",
+        "servingDescription": "43 St & Broadway (NW corner) to mezzanine for service in both directions for all lines.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL229",
+        "servingDescription": "Times Sq-42 St - Station",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL232",
+        "servingDescription": "Times Sq-42 St - Station",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL233",
+        "servingDescription": "mezzanine to uptown 1/2/3 platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "M01": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": []
+  },
+  "M16": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL391",
+        "servingDescription": "Marcy Ave & Broadway (NW corner) to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL392",
+        "servingDescription": "Marcy Ave & Broadway (SW corner) to Jamaica Center bound-platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "L10": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL778",
+        "servingDescription": "Mezzanine to Canarsie-bound platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL781",
+        "servingDescription": "Mezzanine to Church Av-bound platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL777",
+        "servingDescription": "Mezzanine to Manhattan-bound platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL776",
+        "servingDescription": "NW corner of Lorimer St and Metropolitan Ave providing access to the mezzanine control area.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL779",
+        "servingDescription": "SE corner of Metropolitan Avenue and Union Avenue  to the mezzanine control area.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL780",
+        "servingDescription": "Mezzanine to Queens-bound platform.",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "S01": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL339",
+        "servingDescription": "Fulton St & Franklin Ave (SW corner) to Euclid-bound C platform, S platform, and footbridge for access to Manhattan-bound C service",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL340",
+        "servingDescription": "footbridge to Manhattan-bound C platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "A41": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL327X",
+        "servingDescription": "Bridge St & Willoughby St (SE corner) to mezzanine for R service in both directions",
+        "onAdaPath": false,
+        "inService": true
+      },
+      {
+        "id": "EL709",
+        "servingDescription": "Jay St-MetroTech - Station",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL708",
+        "servingDescription": "mezzanine to platform for Coney Island-bound F and Queens-bound A/C service",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL706",
+        "servingDescription": "Jay St & Willoughby St (NW corner) to mezzanine for A/C/F/R service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL707",
+        "servingDescription": "mezzanine to Manhattan-bound A/C/F platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "G29": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL778",
+        "servingDescription": "Mezzanine to Canarsie-bound platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL781",
+        "servingDescription": "Mezzanine to Church Av-bound platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL777",
+        "servingDescription": "Mezzanine to Manhattan-bound platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL776",
+        "servingDescription": "NW corner of Lorimer St and Metropolitan Ave providing access to the mezzanine control area.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL779",
+        "servingDescription": "SE corner of Metropolitan Avenue and Union Avenue  to the mezzanine control area.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL780",
+        "servingDescription": "Mezzanine to Queens-bound platform.",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "G21": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL430",
+        "servingDescription": "mezzanine to Forest Hills and Jamaica-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL428",
+        "servingDescription": "Queens Plaza & Jackson Ave to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL429",
+        "servingDescription": "mezzanine to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "S25": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": []
+  },
+  "H01": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL489X",
+        "servingDescription": "Sidewalk entrance (east of the pedestrian skybridge) to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "A15": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL144",
+        "servingDescription": "mezzanine to uptown platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL143",
+        "servingDescription": "Mezzanine to downtown platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL142",
+        "servingDescription": "125 St & St Nicholas Ave (SW corner) to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "D03": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL502",
+        "servingDescription": "mezzanine to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL501",
+        "servingDescription": "mezzanine to Norwood 205 St-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL500",
+        "servingDescription": "Bedford Park Blvd and Grand Concourse (NW corner) to mezzanine for Manhattan-bound service",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "Q05": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL248",
+        "servingDescription": "95 St & 2nd Ave entrance (SW corner) to mezzanine for downtown service",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL247",
+        "servingDescription": "mezzanine to downtown platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "R30": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL371",
+        "servingDescription": "mezzanine to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL370",
+        "servingDescription": "Dekalb Ave & Flatbush Ave (SW corner) and mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL372",
+        "servingDescription": "mezzanine to Brighton Beach, Coney Island, and Bay Ridge-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "B04": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL405",
+        "servingDescription": "21 St & 41 Ave (NE corner) to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL407",
+        "servingDescription": "mezzanine to Jamaica-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL406",
+        "servingDescription": "mezzanine to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "R29": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL327X",
+        "servingDescription": "Bridge St & Willoughby St (SE corner) to mezzanine for R service in both directions",
+        "onAdaPath": false,
+        "inService": true
+      },
+      {
+        "id": "EL709",
+        "servingDescription": "Jay St-MetroTech - Station",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL708",
+        "servingDescription": "mezzanine to platform for Coney Island-bound F and Queens-bound A/C service",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL706",
+        "servingDescription": "Jay St & Willoughby St (NW corner) to mezzanine for A/C/F/R service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL707",
+        "servingDescription": "mezzanine to Manhattan-bound A/C/F platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "D24": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL303",
+        "servingDescription": "mezzanine (4th Ave & Pacific St) to Manhattan-bound D/N/R platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL304",
+        "servingDescription": "Brooklyn-bound 2/3 platform to mezzanine for access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL301",
+        "servingDescription": "4th Ave and Pacific St (NE corner) to mezzanine for D/N/R service in both directions and access to rest of complex via Brooklyn-bound 2/3 platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL307",
+        "servingDescription": "mezzanine to B/Q platform for service in both directions",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL306",
+        "servingDescription": "Manhattan-bound 2/3 platform to mezzanine for access to rest of complex",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL737X",
+        "servingDescription": "Hanson Pl to LIRR concourse for access to Manhattan-bound 2/3 platform rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL700X",
+        "servingDescription": "Plaza entrance in front of Barclays Center to accessible passageway for access to Manhattan-bound 2/3 platform and rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL300X",
+        "servingDescription": "Hanson Pl to LIRR concourse for access to Manhattan-bound 2/3 platform rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL305",
+        "servingDescription": "mezzanine to 4/5 platform for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL302",
+        "servingDescription": "mezzanine (4th Ave & Pacific St) to Coney Island and Bay Ridge-bound D/N/R platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "F27": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL375",
+        "servingDescription": "mezzanine to platform for Coney Island-bound F service and G terminal",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL373",
+        "servingDescription": "west side of McDonald Ave north of Church Ave to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL374",
+        "servingDescription": "mezzanine to platform for Manhattan-bound F and Queens-bound G service",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "F01": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL431",
+        "servingDescription": "179 Pl & Hillside Ave (SE corner) to mezzanine for Manhattan-bound service",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL432",
+        "servingDescription": "mezzanine to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL433",
+        "servingDescription": "mezzanine to terminal platform",
+        "onAdaPath": true,
+        "inService": false
+      }
+    ]
+  },
+  "R14": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL604",
+        "servingDescription": "55 St & 7th Ave (NE corner) to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL282",
+        "servingDescription": "Mezzanine to platform for southbound NQRW service",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL283",
+        "servingDescription": "Mezzanine to platform for northbound NQRW service",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL281",
+        "servingDescription": "57 St & 7th Ave (SW corner) to mezzanine for service in both directions",
+        "onAdaPath": false,
+        "inService": true
+      }
+    ]
+  },
+  "B21": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL378",
+        "servingDescription": "mezzanine to Coney Island-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL377",
+        "servingDescription": "mezzanine to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL376",
+        "servingDescription": "Bay Pkwy & 86 St (NW corner) to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "Q04": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL250",
+        "servingDescription": "86 St & 2nd Ave (SW corner)  to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL249",
+        "servingDescription": "mezzanine to platform for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "A24": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL278",
+        "servingDescription": "mezzanine to uptown A/B/C/D platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL622",
+        "servingDescription": "Mezzanine to downtown A/B/C/D & 1 platforms",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL279",
+        "servingDescription": "Withdrawn - Confirmed Duplicate with EQ399963",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL277",
+        "servingDescription": "59 St-Columbus Circle - Station",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL280",
+        "servingDescription": "Central Park West & 60 St (NW corner) to uptown 1 platform and access to rest of complex via uptown A/B/C/D platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL276X",
+        "servingDescription": "8th Ave & 58 St (NW corner) to mezzanine for downtown 1 service and A/B/C/D service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "R25": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL726X",
+        "servingDescription": "Fulton Center level to downtown R/W platform and access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL22X",
+        "servingDescription": "Church St to South Concourse balcony and mezzanine for downtown R/W service",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL727X",
+        "servingDescription": "Fulton center level to uptown R/W platform and access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL16X",
+        "servingDescription": "Oculus main level to Fulton Center level, balcony, and mezzanine for downtown R/W service",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL18X",
+        "servingDescription": "Church St to mezzanine for downtown R/W service",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL17X",
+        "servingDescription": "Oculus main level to Fulton Center level, balcony, and mezzanine for downtown R/W service",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL23X",
+        "servingDescription": "Church St to E line with access to downtown R/W, balcony & Oculus main level",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL326",
+        "servingDescription": "Park Pl & Church St (SE corner to E Line access to downtown R/W",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "A61": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL487",
+        "servingDescription": "Street (NW corner of Liberty Av and Cross Bay Blvd) to Manhattan-bound A platform and transfer mezzanine to Lefferts Blvd and Far Rockaway-bound A.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL488",
+        "servingDescription": "Transfer mezzanine to Lefferts Blvd, Far Rockaway, and Rockaway Park-bound A platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "D43": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL701",
+        "servingDescription": "N platform to overpass for access to D platform",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL399",
+        "servingDescription": "3 Landings",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL702",
+        "servingDescription": "D platform to overpass for access to mezzanine via N platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "G16": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL486",
+        "servingDescription": "Street (NE corner of 56t St and Broadway) to Manhattan and Brooklyn-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL485",
+        "servingDescription": "Street (SE corner of 54 St and Broadway) to Forest Hills-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "L29": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": []
+  },
+  "A31": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL223",
+        "servingDescription": "mezzanine to uptown A/C/E platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL222",
+        "servingDescription": "mezzanine to downtown A/C/E platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL224",
+        "servingDescription": "mezzanine to L platform for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL221",
+        "servingDescription": "8th Ave & 14 St (NW corner) to mezzanine for A/C/E/L service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "G22": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL482X",
+        "servingDescription": "NE corner of 44 Drive and 23 St to mezzanine for E/F service to Manhattan.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL446",
+        "servingDescription": "Jackson Ave & 23 St (NE corner) to mezzanine for 7 service in both directions and access to G mezzanine",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL447",
+        "servingDescription": "mezzanine to Manhattan-bound 7 platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL445X",
+        "servingDescription": "Flushing-bound 7 platform to mezzanine to EFG transfer.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL469",
+        "servingDescription": "Mezzanine to Brooklyn-bound platform/Court Sq-bound platform to mezzanine.",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "D19": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL614",
+        "servingDescription": "F/M uptown mezzanine to F/M uptown platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL611",
+        "servingDescription": "Street (NE corner of 14 St and 6 Av) to F/M uptown mezzanine and L mezzanine.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL615",
+        "servingDescription": "SW corner of 14 St & 7 Av to 1/2/3 mezzanine.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL617",
+        "servingDescription": "Mezzanine to downtown and Brooklyn 1/2/3 platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL609",
+        "servingDescription": "Lower mezzanine to L platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL613",
+        "servingDescription": "F/M downtown mezzanine to F/M downtown platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL612",
+        "servingDescription": "Street (NW corner of 14 St and 6 Av) to F/M downtown mezzanine and L mezzanine.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL610",
+        "servingDescription": "Lower mezzanine to L platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL616",
+        "servingDescription": "Mezzanine to uptown 1/2/3 platform.",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "B10": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL621",
+        "servingDescription": "Mezzanine to M (F nights, weekends) platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL620",
+        "servingDescription": "Street (SW corner of 56 St and 6 Av) to mezzanine.",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "A55": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL341",
+        "servingDescription": "Euclid Ave & Pitkin Ave (NE corner) to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL343",
+        "servingDescription": "mezzanine to platform for Queens-bound A service and C terminal",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL342",
+        "servingDescription": "mezzanine to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "A02": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL149",
+        "servingDescription": "Mezzanine to platform for Downtown and Brooklyn-bound service.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL148",
+        "servingDescription": "207 St & Broadway (NW corner) to mezzanine for Downtown and Brooklyn-bound service.",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "L03": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL219",
+        "servingDescription": "mezzanine to uptown N/Q/R/W platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL218",
+        "servingDescription": "mezzanine to L platform for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL220",
+        "servingDescription": "mezzanine to downtown N/Q/R/W platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL217",
+        "servingDescription": "14 St-Union Sq - Station",
+        "onAdaPath": true,
+        "inService": false
+      }
+    ]
+  },
+  "D15": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL235",
+        "servingDescription": "mezzanine to uptown platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL234",
+        "servingDescription": "49 St & 6th Ave (NW corner) to mezzanine for service in both directions.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL236",
+        "servingDescription": "Mezzanine to downtown platform.",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "M21": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL316",
+        "servingDescription": "mezzanine to uptown 4/5/6 platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL743",
+        "servingDescription": "mezzanine to Broad St-bound J/Z platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL315",
+        "servingDescription": "mezzanine to platform for downtown 4/5 service and 6 terminal",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL742",
+        "servingDescription": "mezzanine to Jamaica Center-bound J/Z platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL314",
+        "servingDescription": "plaza on east side of City Hall (opposite Brooklyn Bridge walkway) to mezzanine for service on all lines in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "D04": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL191",
+        "servingDescription": "mezzanine to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL190",
+        "servingDescription": "mezzanine to platform for Bedford Pk Blvd and Norwood 205 St-bound service",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL189",
+        "servingDescription": "Kingsbridge Rd & Grand Concourse (SE corner) to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "G08": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL439",
+        "servingDescription": "mezzanine to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL437",
+        "servingDescription": "South side of Queens Blvd (between 70 Rd & 71 Ave) to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL438",
+        "servingDescription": "mezzanine to platform for Jamaica-bound E/F service and M/R terminal",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "S11": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": []
+  },
+  "L26": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL772",
+        "servingDescription": "Passageway to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL771",
+        "servingDescription": "Street inside station house to passageway to Canarsie-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "F35": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL797",
+        "servingDescription": "Mezzanine to Coney Island-bound platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL795",
+        "servingDescription": "Street (SE corner of Kings Highway and McDonald Av) to mezzanine.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL796",
+        "servingDescription": "Mezzanine to Manhattan-bound platform.",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "S22": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": []
+  },
+  "R31": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL303",
+        "servingDescription": "mezzanine (4th Ave & Pacific St) to Manhattan-bound D/N/R platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL304",
+        "servingDescription": "Brooklyn-bound 2/3 platform to mezzanine for access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL301",
+        "servingDescription": "4th Ave and Pacific St (NE corner) to mezzanine for D/N/R service in both directions and access to rest of complex via Brooklyn-bound 2/3 platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL307",
+        "servingDescription": "mezzanine to B/Q platform for service in both directions",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL306",
+        "servingDescription": "Manhattan-bound 2/3 platform to mezzanine for access to rest of complex",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL737X",
+        "servingDescription": "Hanson Pl to LIRR concourse for access to Manhattan-bound 2/3 platform rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL700X",
+        "servingDescription": "Plaza entrance in front of Barclays Center to accessible passageway for access to Manhattan-bound 2/3 platform and rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL300X",
+        "servingDescription": "Hanson Pl to LIRR concourse for access to Manhattan-bound 2/3 platform rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL305",
+        "servingDescription": "mezzanine to 4/5 platform for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL302",
+        "servingDescription": "mezzanine (4th Ave & Pacific St) to Coney Island and Bay Ridge-bound D/N/R platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "D39": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL793",
+        "servingDescription": "Street to manhattan-bound platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL794",
+        "servingDescription": "Street (south side of Sheepshead Bay Rd @ 15 St) to Brighton Beach & Stillwell Av-bound platform.",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "A32": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL335",
+        "servingDescription": "uptown A/C/E platform to transfer mezzanine and uptown B/D/F/M platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL333",
+        "servingDescription": "W 3rd St & 6th Ave (NE corner) to mezzanine for A/C/E service and access to B/D/F/M service",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL334",
+        "servingDescription": "downtown A/C/E platform to transfer mezzanine and downtown B/D/F/M platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "G07": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL409",
+        "servingDescription": "89 Ave & Van Wyck Expwy (SW corner) to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL408",
+        "servingDescription": "mezzanine to platform for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "N04": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL741",
+        "servingDescription": "mezzanine to Coney Island-bound D platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL740",
+        "servingDescription": "mezzanine to Manhattan-bound D platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL738",
+        "servingDescription": "62 St & New Utrecht Av (SE corner) to Manhattan-bound N platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL739",
+        "servingDescription": "62 St & New Utrecht Av (SE corner) to Coney Island-bound N platform and D mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "H06": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL481",
+        "servingDescription": "Mezzanine to platform for Far Rockaway-bound service.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL480",
+        "servingDescription": "Street to transfer mezzanine for Far Rockaway-bound service, mezzanine to platform for Manhattan-bound service.",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "F11": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL245",
+        "servingDescription": "mezzanine to E/F platform for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL201",
+        "servingDescription": "Uptown 6 platform to underpass downtown 6",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL202",
+        "servingDescription": "Downtown 6 platform to underpass for access to uptown 6 and E/F service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL203X",
+        "servingDescription": "52 St & Lexington Ave (NE corner) to mezzanine for E/F/6 service in both directions.",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "D26": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL382",
+        "servingDescription": "Lincoln Rd & Ocean Ave (NE corner) to platform for Manhattan-bound B/Q service and Franklin Shuttle",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL383",
+        "servingDescription": "Lincoln Rd & Ocean Ave (NE corner) to Brighton Beach and Coney Island-bound B/Q platform",
+        "onAdaPath": true,
+        "inService": false
+      }
+    ]
+  },
+  "R16": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL290X",
+        "servingDescription": "intermediate landing to mezzanine for A/C/E service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL291X",
+        "servingDescription": "8th Ave & 44 St entrance (SW corner) to intermediate landing for A/C/E service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL289X",
+        "servingDescription": "Port Authority Bus Terminal (8th Ave between 41st St & 42nd St) to mezzanine for A/C/E service in both directions via ramps",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL288X",
+        "servingDescription": "Port Authority Bus Terminal (8th Ave between 41st St & 42nd St) to mezzanine for A/C/E service in both directions via ramps",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL231X",
+        "servingDescription": "7th Ave & 42 St (SE corner) to mezzanine for service in both directions on all lines.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL230",
+        "servingDescription": "mezzanine to uptown N/Q/R/W platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL619",
+        "servingDescription": "43 St & Broadway (NW corner) to mezzanine for service in both directions for all lines.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL229",
+        "servingDescription": "Times Sq-42 St - Station",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL232",
+        "servingDescription": "Times Sq-42 St - Station",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL233",
+        "servingDescription": "mezzanine to uptown 1/2/3 platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "A06": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL517",
+        "servingDescription": "Mezzanine to platform for Inwood-207 St-bound service.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL518",
+        "servingDescription": "Mezzanine to platform for Downtown and Brooklyn-bound service.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL118",
+        "servingDescription": "Upper mezzanine (184 St & Ft Washington Av) to lower mezzanine for service in both directions.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL117",
+        "servingDescription": "Upper mezzanine (184 St & Ft Washington Av) to lower mezzanine for service in both directions.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL119",
+        "servingDescription": "Upper mezzanine (184 St & Ft Washington Av) to lower mezzanine for service in both directions.",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "A48": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL345",
+        "servingDescription": "mezzanine to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL344",
+        "servingDescription": "Utica Ave & Fulton St (NW corner) to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL346",
+        "servingDescription": "mezzanine to platform for Euclid-bound C and Queens-bound A service",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "Q03": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL264",
+        "servingDescription": "2nd Ave & 72 St (SE corner) to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL265",
+        "servingDescription": "2nd Ave & 72 St (SE corner) to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL266",
+        "servingDescription": "2nd Ave & 72 St (SE corner) to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL267",
+        "servingDescription": "2nd Ave & 72 St (SE corner) to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL269",
+        "servingDescription": "Lower Mezzanine-first Upper Mezzanine-second Upper Mezzanine",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL259",
+        "servingDescription": "mezzanine to platform for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL262",
+        "servingDescription": "2nd Ave & 72 St (SE corner) to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "R41": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL389",
+        "servingDescription": "mezzanine to platform for Coney Island-bound N and Bay Ridge-bound R service",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL388",
+        "servingDescription": "mezzanine to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL387",
+        "servingDescription": "4th Ave and 59 St (NW corner) to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "A38": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL715X",
+        "servingDescription": "Transit Center",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL719",
+        "servingDescription": "mezzanine (Nassau St) and Broad St-bound J/Z to A/C platform for service in both directions and access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL728X",
+        "servingDescription": "Dey St & Broadway (SW corner) to downtown 4/5 platform, access to rest of Fulton St complex, and connection to Oculus complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL733X",
+        "servingDescription": "Transit Center (near Broadway & John St) to upper retail floors",
+        "onAdaPath": false,
+        "inService": true
+      },
+      {
+        "id": "EL723",
+        "servingDescription": "William St & Fulton St (SW corner) to mezzanine for 2/3 and A/C service in both directions and access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL725X",
+        "servingDescription": "Corbin Building",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL734X",
+        "servingDescription": "Transit Center",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL732",
+        "servingDescription": "2/3 platform for service in both directions to mezzanine for access to A/C platform and rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL714X",
+        "servingDescription": "Transit Center",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL716",
+        "servingDescription": "Transit Center concourse to uptown 4/5 platform and access to Brooklyn-bound J/Z platform and rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL729X",
+        "servingDescription": "Transit Center concourse to downntown 4/5 platform and access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL724X",
+        "servingDescription": "Corbin Building",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL718X",
+        "servingDescription": "Transit Center (near Broadway & John St) to uptown 4/5 platform and access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL717X",
+        "servingDescription": "Transit Center (near Broadway & John St) to uptown 4/5 platform and concourse for access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL722",
+        "servingDescription": "Nassau St & Fulton St (NE corner) to mezzanine for Broad St-bound J/Z service and access to A/C platform and rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL721",
+        "servingDescription": "2/3 mezzanine to A/C platform for service in both directions and access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL720",
+        "servingDescription": "concourse (Brooklyn-bound J/Z) to A/C platform for service in both directions and access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "D11": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL135",
+        "servingDescription": "Mezzanine to B/D platform for Bedford Pk Blvd and Norwood 205 St-bound service.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL132",
+        "servingDescription": "UNLINK...WITHDRAW AND PLACE OUT OF SERVICE duplicate with EQ411330 Complex station.  This is a duplicate of 411330",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL131",
+        "servingDescription": "161 St & River Ave (NE corner) to mezzanine to reach 4/B/D service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL134",
+        "servingDescription": "mezzanine to Manhattan-bound B/D platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL133",
+        "servingDescription": "mezzanine to Manhattan-bound 4 platform",
+        "onAdaPath": true,
+        "inService": false
+      }
+    ]
+  },
+  "D32": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": []
+  },
+  "D21": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL328",
+        "servingDescription": "Houston St & Lafayette St (NW corner) to downtown 6 mezzanine and access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL329",
+        "servingDescription": "downtown 6 mezzanine to uptown B/D/F/M platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL331",
+        "servingDescription": "uptown 6 mezzanine and uptown B/D/F/M platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL332",
+        "servingDescription": "Bleecker St - Station",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL330",
+        "servingDescription": "downtown 6 mezzanine to downtown B/D/F/M platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "B16": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL741",
+        "servingDescription": "mezzanine to Coney Island-bound D platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL740",
+        "servingDescription": "mezzanine to Manhattan-bound D platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL738",
+        "servingDescription": "62 St & New Utrecht Av (SE corner) to Manhattan-bound N platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL739",
+        "servingDescription": "62 St & New Utrecht Av (SE corner) to Coney Island-bound N platform and D mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "M22": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL715X",
+        "servingDescription": "Transit Center",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL719",
+        "servingDescription": "mezzanine (Nassau St) and Broad St-bound J/Z to A/C platform for service in both directions and access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL728X",
+        "servingDescription": "Dey St & Broadway (SW corner) to downtown 4/5 platform, access to rest of Fulton St complex, and connection to Oculus complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL733X",
+        "servingDescription": "Transit Center (near Broadway & John St) to upper retail floors",
+        "onAdaPath": false,
+        "inService": true
+      },
+      {
+        "id": "EL723",
+        "servingDescription": "William St & Fulton St (SW corner) to mezzanine for 2/3 and A/C service in both directions and access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL725X",
+        "servingDescription": "Corbin Building",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL734X",
+        "servingDescription": "Transit Center",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL732",
+        "servingDescription": "2/3 platform for service in both directions to mezzanine for access to A/C platform and rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL714X",
+        "servingDescription": "Transit Center",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL716",
+        "servingDescription": "Transit Center concourse to uptown 4/5 platform and access to Brooklyn-bound J/Z platform and rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL729X",
+        "servingDescription": "Transit Center concourse to downntown 4/5 platform and access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL724X",
+        "servingDescription": "Corbin Building",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL718X",
+        "servingDescription": "Transit Center (near Broadway & John St) to uptown 4/5 platform and access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL717X",
+        "servingDescription": "Transit Center (near Broadway & John St) to uptown 4/5 platform and concourse for access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL722",
+        "servingDescription": "Nassau St & Fulton St (NE corner) to mezzanine for Broad St-bound J/Z service and access to A/C platform and rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL721",
+        "servingDescription": "2/3 mezzanine to A/C platform for service in both directions and access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL720",
+        "servingDescription": "concourse (Brooklyn-bound J/Z) to A/C platform for service in both directions and access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "L12": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL786",
+        "servingDescription": "Street (NW corner of Bushwick Ave and Grand St) to Canarsie-Rockaway Pkwy-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL785",
+        "servingDescription": "Street (NE corner of Bushwick Avenue and Grand Street) to 8 Ave-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "M08": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL398",
+        "servingDescription": "mezzanine to M platform for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL397",
+        "servingDescription": "mezzanine to L platform for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL396",
+        "servingDescription": "Gates Ave & Wyckoff Ave (SE corner) to mezzanines for L and M service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "F24": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL782",
+        "servingDescription": "Street (NW corner of 7 Ave and 9 Street) to mezzanine",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL783",
+        "servingDescription": "Mezzanine to Manhattan and Queens-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL784",
+        "servingDescription": "Mezzanine to Church Av-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "H03": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL494X",
+        "servingDescription": "mezzanine to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL492X",
+        "servingDescription": "mezzanine to platform for Far Rockaway - Mott Av and Rockaway Park - Beach 116 St-bound service",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL493X",
+        "servingDescription": "mezzanine to platform for Far Rockaway - Mott Av and Rockaway Park - Beach 116 St-bound service",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL491X",
+        "servingDescription": "Colman Square to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL495X",
+        "servingDescription": "mezzanine to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL490X",
+        "servingDescription": "Colman Square to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "B08": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL442",
+        "servingDescription": "63 St & 3 Av mezzanine to platforms for service in both directions.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL402",
+        "servingDescription": "63 St & Lexington Av mezzanine to platforms for service in both directions.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL440",
+        "servingDescription": "63 St & 3 Av mezzanine to platforms for service in both directions.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL443",
+        "servingDescription": "63 St & 3 Av mezzanine to platforms for service in both directions.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL441",
+        "servingDescription": "63 St & 3 Av mezzanine to platforms for service in both directions.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL401",
+        "servingDescription": "63 St & Lexington Av (NW corner) to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL444",
+        "servingDescription": "3rd Ave & 63 St (NW corner) to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "D20": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL335",
+        "servingDescription": "uptown A/C/E platform to transfer mezzanine and uptown B/D/F/M platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL333",
+        "servingDescription": "W 3rd St & 6th Ave (NE corner) to mezzanine for A/C/E service and access to B/D/F/M service",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL334",
+        "servingDescription": "downtown A/C/E platform to transfer mezzanine and downtown B/D/F/M platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "G26": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL763",
+        "servingDescription": "East side of Manhattan Ave (between Greenpoint Ave and Kent St) to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL764",
+        "servingDescription": "Mezzanine to Court Sq-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL765",
+        "servingDescription": "Mezzanine to Church Av-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "L06": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL292",
+        "servingDescription": "E 14 St and Avenue A (NW corner) to 8 Av-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL293",
+        "servingDescription": "E 14 St and Avenue A (SW corner) to Canarsie-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "A27": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL290X",
+        "servingDescription": "intermediate landing to mezzanine for A/C/E service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL291X",
+        "servingDescription": "8th Ave & 44 St entrance (SW corner) to intermediate landing for A/C/E service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL289X",
+        "servingDescription": "Port Authority Bus Terminal (8th Ave between 41st St & 42nd St) to mezzanine for A/C/E service in both directions via ramps",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL288X",
+        "servingDescription": "Port Authority Bus Terminal (8th Ave between 41st St & 42nd St) to mezzanine for A/C/E service in both directions via ramps",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL231X",
+        "servingDescription": "7th Ave & 42 St (SE corner) to mezzanine for service in both directions on all lines.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL230",
+        "servingDescription": "mezzanine to uptown N/Q/R/W platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL619",
+        "servingDescription": "43 St & Broadway (NW corner) to mezzanine for service in both directions for all lines.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL229",
+        "servingDescription": "Times Sq-42 St - Station",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL232",
+        "servingDescription": "Times Sq-42 St - Station",
+        "onAdaPath": true,
+        "inService": false
+      },
+      {
+        "id": "EL233",
+        "servingDescription": "mezzanine to uptown 1/2/3 platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "H11": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL497",
+        "servingDescription": "Beach 22nd & Mott Ave to platform for Manhattan-bound service",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL498",
+        "servingDescription": "Beach 22nd & Mott Ave to platform for Manhattan-bound service",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "L02": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL614",
+        "servingDescription": "F/M uptown mezzanine to F/M uptown platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL611",
+        "servingDescription": "Street (NE corner of 14 St and 6 Av) to F/M uptown mezzanine and L mezzanine.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL615",
+        "servingDescription": "SW corner of 14 St & 7 Av to 1/2/3 mezzanine.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL617",
+        "servingDescription": "Mezzanine to downtown and Brooklyn 1/2/3 platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL609",
+        "servingDescription": "Lower mezzanine to L platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL613",
+        "servingDescription": "F/M downtown mezzanine to F/M downtown platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL612",
+        "servingDescription": "Street (NW corner of 14 St and 6 Av) to F/M downtown mezzanine and L mezzanine.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL610",
+        "servingDescription": "Lower mezzanine to L platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL616",
+        "servingDescription": "Mezzanine to uptown 1/2/3 platform.",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "A07": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL124",
+        "servingDescription": "Mezzanine to platform for service in both directions.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL123",
+        "servingDescription": "177 St & Fort Washington Ave (NE corner) to mezzanine for service in both directions.",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "R44": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL745",
+        "servingDescription": "4th Ave and 86 St (SE corner) to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL746",
+        "servingDescription": "mezzanine to platform for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "S09": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": []
+  },
+  "L17": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL398",
+        "servingDescription": "mezzanine to M platform for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL397",
+        "servingDescription": "mezzanine to L platform for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL396",
+        "servingDescription": "Gates Ave & Wyckoff Ave (SE corner) to mezzanines for L and M service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "R09": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL479",
+        "servingDescription": "Mezzanine to lower platform and upper platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL791X",
+        "servingDescription": "Queens Plaza North between Crescent St and 27 St to mezzanine for service in both directions.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL478",
+        "servingDescription": "Street to mezzanine",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "G06": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL450X",
+        "servingDescription": "Sutphin Blvd & Archer Ave (SW intersection) to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL449X",
+        "servingDescription": "Sutphin Blvd & Archer Ave (SW intersection) to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL448X",
+        "servingDescription": "Sutphin Blvd & Archer Ave (SW intersection) to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL454",
+        "servingDescription": "Yard To Storage Room",
+        "onAdaPath": false,
+        "inService": true
+      },
+      {
+        "id": "EL411",
+        "servingDescription": "mezzanine to platforms for E/J/Z service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "F06": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL435",
+        "servingDescription": "mezzanine to Jamaica-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL451",
+        "servingDescription": "Freight Elevator At Jamaica Yard",
+        "onAdaPath": false,
+        "inService": true
+      },
+      {
+        "id": "EL436",
+        "servingDescription": "mezzanine to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL434",
+        "servingDescription": "Kew Gardens Rd & Union Tpke (SW corner) to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "R20": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL219",
+        "servingDescription": "mezzanine to uptown N/Q/R/W platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL218",
+        "servingDescription": "mezzanine to L platform for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL220",
+        "servingDescription": "mezzanine to downtown N/Q/R/W platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL217",
+        "servingDescription": "14 St-Union Sq - Station",
+        "onAdaPath": true,
+        "inService": false
+      }
+    ]
+  },
+  "S19": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": []
+  },
+  "H15": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL499",
+        "servingDescription": "Passenger Yard Elevator At Rockaway Park Beach 116 Street",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "S31": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": []
+  },
+  "E01": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL726X",
+        "servingDescription": "Fulton Center level to downtown R/W platform and access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL22X",
+        "servingDescription": "Church St to South Concourse balcony and mezzanine for downtown R/W service",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL727X",
+        "servingDescription": "Fulton center level to uptown R/W platform and access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL16X",
+        "servingDescription": "Oculus main level to Fulton Center level, balcony, and mezzanine for downtown R/W service",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL18X",
+        "servingDescription": "Church St to mezzanine for downtown R/W service",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL17X",
+        "servingDescription": "Oculus main level to Fulton Center level, balcony, and mezzanine for downtown R/W service",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL23X",
+        "servingDescription": "Church St to E line with access to downtown R/W, balcony & Oculus main level",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL326",
+        "servingDescription": "Park Pl & Church St (SE corner to E Line access to downtown R/W",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "S03": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": []
+  },
+  "R17": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL200X",
+        "servingDescription": "6th Ave & 32 St (NW corner) to mezzanine for PATH service and access to subway service via stairs or non-ADA ramp",
+        "onAdaPath": false,
+        "inService": true
+      },
+      {
+        "id": "EL210",
+        "servingDescription": "mezzanine to uptown B/D/F/M platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL209",
+        "servingDescription": "mezzanine to downtown B/D/F/M platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL212",
+        "servingDescription": "mezzanine to uptown N/Q/R/W platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL211",
+        "servingDescription": "mezzanine to downtown N/Q/R/W platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL213",
+        "servingDescription": "6th Ave & 34 St entrance (SW corner) to mezzanine for service in both directions on all lines",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "R45": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL381",
+        "servingDescription": "Mezzanine to platform for Manhattan-bound R service.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL380",
+        "servingDescription": "Street (NW corner of 95 St & 4 Av) to mezzanine for Manhattan-bound R service.",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "A09": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL113",
+        "servingDescription": "transfer mezzanine to overpass for 1 train service in both directions",
+        "onAdaPath": false,
+        "inService": true
+      },
+      {
+        "id": "EL114",
+        "servingDescription": "transfer mezzanine to overpass for 1 train service in both directions",
+        "onAdaPath": false,
+        "inService": true
+      },
+      {
+        "id": "EL139",
+        "servingDescription": "168 St & St Nicholas Ave (SE corner) to mezzanine for A/C service in both directions and access to non-ADA 1 line elevators",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL140",
+        "servingDescription": "mezzanine to platform for uptown A service and C terminal",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL111",
+        "servingDescription": "transfer mezzanine to overpass for 1 train service in both directions",
+        "onAdaPath": false,
+        "inService": true
+      },
+      {
+        "id": "EL141",
+        "servingDescription": "mezzanine to downtown A/C platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL112",
+        "servingDescription": "transfer mezzanine to overpass for 1 train service in both directions",
+        "onAdaPath": false,
+        "inService": true
+      }
+    ]
+  },
+  "G05": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL412",
+        "servingDescription": "Archer Ave & Parsons Blvd (SW corner) to mezzanine for service in both directions on both lines",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL413",
+        "servingDescription": "mezzanine to platforms for E/J/Z service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "G14": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL420",
+        "servingDescription": "Roosevelt Av & 74 St (SE corner) to Flushing Mn St-bound 7 plat & E/F/M/R/7 mezzanines.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL422",
+        "servingDescription": "mezzanine to Forest Hills and Jamaica-bound E/F/M/R platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL423",
+        "servingDescription": "mezzanine to Manhattan-bound 7 platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL421",
+        "servingDescription": "transfer mezzanine to Manhattan-bound E/F/M/R platform and mezzanine for access to Queens-bound E/F/M/R service",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "D35": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL761",
+        "servingDescription": "South side of Kings Hwy (west of 16 St) to Brighton Beach and Coney Island-bound platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL760",
+        "servingDescription": "South side of Kings Hwy (west of 16 St) to Manhattan-bound platform.",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "R03": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL465",
+        "servingDescription": "Hoyt Ave South and 31 St (SE corner) to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL467",
+        "servingDescription": "mezzanine to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL464",
+        "servingDescription": "Hoyt Ave North and 31 St (NW corner) to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL466",
+        "servingDescription": "mezzanine to Astoria Ditmars Blvd-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "A65": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL462",
+        "servingDescription": "Lefferts Blvd & Liberty Ave to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL463",
+        "servingDescription": "mezzanine to platform for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "D28": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL791",
+        "servingDescription": "Street (18 St between Church Av & Caton Av) to Manhattan-bound platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL792",
+        "servingDescription": "Street (18 St between Church Av & Caton Av) to Brighton Beach and Coney Island-bound platform.",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "A28": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL226",
+        "servingDescription": "uptown C/E platform to lower mezzanine for access to Penn Station concourse and rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL227",
+        "servingDescription": "Penn Station concourse to A platform for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL225",
+        "servingDescription": "34 St & 8th Ave (SE corner) to uptown C/E platform and access to rest of complex",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL228",
+        "servingDescription": "Penn Station concourse to downtown C/E platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "A45": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL339",
+        "servingDescription": "Fulton St & Franklin Ave (SW corner) to Euclid-bound C platform, S platform, and footbridge for access to Manhattan-bound C service",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL340",
+        "servingDescription": "footbridge to Manhattan-bound C platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "N02": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL752",
+        "servingDescription": "Street inside station house at 62nd St and 8th Ave to Coney Island-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL753",
+        "servingDescription": "Street inside station house at 62nd St and 8th Ave to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "D17": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL200X",
+        "servingDescription": "6th Ave & 32 St (NW corner) to mezzanine for PATH service and access to subway service via stairs or non-ADA ramp",
+        "onAdaPath": false,
+        "inService": true
+      },
+      {
+        "id": "EL210",
+        "servingDescription": "mezzanine to uptown B/D/F/M platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL209",
+        "servingDescription": "mezzanine to downtown B/D/F/M platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL212",
+        "servingDescription": "mezzanine to uptown N/Q/R/W platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL211",
+        "servingDescription": "mezzanine to downtown N/Q/R/W platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL213",
+        "servingDescription": "6th Ave & 34 St entrance (SW corner) to mezzanine for service in both directions on all lines",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "L01": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL223",
+        "servingDescription": "mezzanine to uptown A/C/E platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL222",
+        "servingDescription": "mezzanine to downtown A/C/E platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL224",
+        "servingDescription": "mezzanine to L platform for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL221",
+        "servingDescription": "8th Ave & 14 St (NW corner) to mezzanine for A/C/E/L service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "M12": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL394",
+        "servingDescription": "mezzanine to Jamaica Center and Middle Village-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL393",
+        "servingDescription": "Flushing Ave & Broadway (SE corner) to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL395",
+        "servingDescription": "mezzanine to Manhattan bound-platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "D07": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL509",
+        "servingDescription": "SW corner of Echo Pl and Grand Concourse providing access to the mezzanine.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL510",
+        "servingDescription": "Mezzanine to Manhattan-bound platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL511",
+        "servingDescription": "Mezzanine to Norwood-205 St-bound platform.",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "L08": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL359",
+        "servingDescription": "Bedford Av and N 7 St (NE corner) to mezzanine for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL358",
+        "servingDescription": "mezzanine to platform for service in both directions",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "B06": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL404",
+        "servingDescription": "West Rd to Jamaica-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL403",
+        "servingDescription": "West Rd to Manhattan-bound platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "J15": {
+    "ada": 1,
+    "adaDirectionNotes": null,
+    "elevators": [
+      {
+        "id": "EL484",
+        "servingDescription": "Street (SW corner of Jamaica Ave and Woodhaven Blvd Service Rd) to Jamaica-bound platform.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL483",
+        "servingDescription": "Street (NW corner of Jamaica Ave and Woodhaven Blvd Service Rd) to Manhattan-bound platform.",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "R15": {
+    "ada": 2,
+    "adaDirectionNotes": "Accessible Uptown (northbound)",
+    "elevators": [
+      {
+        "id": "EL268X",
+        "servingDescription": "49 St & 7th Ave (NE corner) to uptown platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "L20": {
+    "ada": 2,
+    "adaDirectionNotes": "Accessible Manhattan (northbound)",
+    "elevators": []
+  },
+  "A25": {
+    "ada": 2,
+    "adaDirectionNotes": "Accessible Downtown (southbound)",
+    "elevators": [
+      {
+        "id": "EL207X",
+        "servingDescription": "49 St and 8th Ave (NW corner) to downtown C and access to downtown E",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL208X",
+        "servingDescription": "downtown C platform to downtown E platform",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "F09": {
+    "ada": 2,
+    "adaDirectionNotes": "Accessible Manhattan (southbound)",
+    "elevators": [
+      {
+        "id": "EL482X",
+        "servingDescription": "NE corner of 44 Drive and 23 St to mezzanine for E/F service to Manhattan.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL446",
+        "servingDescription": "Jackson Ave & 23 St (NE corner) to mezzanine for 7 service in both directions and access to G mezzanine",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL447",
+        "servingDescription": "mezzanine to Manhattan-bound 7 platform",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL445X",
+        "servingDescription": "Flushing-bound 7 platform to mezzanine to EFG transfer.",
+        "onAdaPath": true,
+        "inService": true
+      },
+      {
+        "id": "EL469",
+        "servingDescription": "Mezzanine to Brooklyn-bound platform/Court Sq-bound platform to mezzanine.",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  },
+  "A33": {
+    "ada": 2,
+    "adaDirectionNotes": "Accessible Downtown (southbound)",
+    "elevators": [
+      {
+        "id": "EL1106",
+        "servingDescription": "Street to downtown C/E platform.",
+        "onAdaPath": true,
+        "inService": true
+      }
+    ]
+  }
+}
