@@ -245,6 +245,14 @@
       }
     }
 
+    function fitToAllSites() {
+      const pts = state.sites
+        .filter((s) => s.lat != null && s.lng != null)
+        .map((s) => [s.lat, s.lng]);
+      if (pts.length === 0) return;
+      map.fitBounds(L.latLngBounds(pts), { padding: [40, 40] });
+    }
+
     function renderList() {
       const list = $("siteList");
       list.innerHTML = "";
@@ -461,6 +469,7 @@
         applyI18n();
         $("dateInput").value = toIsoDate(state.selectedDate);
         rerankAndRender();
+        fitToAllSites();
         renderStatus();
       } catch (err) {
         $("status").textContent = `Failed to load data: ${err.message ?? err}`;
