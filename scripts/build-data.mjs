@@ -122,6 +122,20 @@ function slugify(s) {
     .replace(/^-+|-+$/g, "");
 }
 
+// Convert FNS Start_date / End_date (Unix ms) to ISO 8601, or pass through
+// an already-ISO string. Returns null for anything else.
+function toIso(v) {
+  if (v == null) return null;
+  if (typeof v === "string") {
+    const t = Date.parse(v);
+    return Number.isFinite(t) ? new Date(t).toISOString() : null;
+  }
+  if (typeof v === "number" && Number.isFinite(v)) {
+    return new Date(v).toISOString();
+  }
+  return null;
+}
+
 function normalize(feature) {
   const a = feature.attributes;
   const rawId = a.MasterID ?? String(a.FID);
@@ -141,6 +155,10 @@ function normalize(feature) {
     entranceStepFree: null,
     verifiedBy: null,
     verifiedAt: null,
+    // Extension beyond CLAUDE.md's original frozen contract — season bounds
+    // let verdict.js render red once the SFSP season closes.
+    seasonStartAt: toIso(a.Start_date),
+    seasonEndAt: toIso(a.End_date),
   };
 }
 

@@ -63,7 +63,26 @@ export function getVerdict(site, stationStatus, date) {
     provenance.push(`station ${site.nearestStationId} status unavailable`);
   }
 
-  // Red: entrance explicitly not step-free, or any ADA-path elevator out.
+  // Season bounds provenance (extension to the original frozen contract).
+  if (site.seasonStartAt || site.seasonEndAt) {
+    provenance.push(
+      `season: ${site.seasonStartAt?.slice(0, 10) ?? "?"} → ${site.seasonEndAt?.slice(0, 10) ?? "?"}`,
+    );
+  }
+
+  // Red: season has ended, entrance explicitly not step-free, or any
+  // ADA-path elevator out.
+  const checkDate = date instanceof Date ? date : new Date(date);
+  const seasonEnd = site.seasonEndAt ? new Date(site.seasonEndAt) : null;
+  if (
+    seasonEnd &&
+    !Number.isNaN(seasonEnd.getTime()) &&
+    !Number.isNaN(checkDate.getTime()) &&
+    checkDate > seasonEnd
+  ) {
+    reasons.push(`season ended ${site.seasonEndAt.slice(0, 10)}`);
+    return { state: "red", reasons, provenance };
+  }
   if (site.entranceStepFree === false) {
     reasons.push("entrance is not step-free");
     return { state: "red", reasons, provenance };
