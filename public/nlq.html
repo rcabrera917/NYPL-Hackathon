@@ -93,8 +93,9 @@
     .c311 .m { color: var(--muted); }
     .c311 .src { color: var(--muted); font-size: 10px; margin-top: 2px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
     .c311 .type-row { display: flex; justify-content: space-between; padding: 2px 0; font-size: 11px; }
-    .contradiction { background: rgba(245,158,11,0.14); border: 1px solid rgba(245,158,11,0.55); color: #fcd34d; padding: 8px 10px; border-radius: 6px; margin-top: 8px; font-size: 12px; line-height: 1.4; }
-    .contradiction strong { color: #fde68a; }
+    .elev-note { background: rgba(124,58,237,0.08); border-left: 3px solid rgba(124,58,237,0.55); color: var(--text); padding: 8px 10px; border-radius: 3px; margin-top: 8px; font-size: 12px; line-height: 1.45; }
+    .elev-note strong { color: #c4b5fd; }
+    .elev-note .m { color: var(--muted); }
   </style>
 </head>
 <body>
@@ -412,20 +413,35 @@
           .sort((a, b) => b[1] - a[1])
           .map(([type, n]) => `<div class="type-row"><span>${escapeHtml(type)}</span><span class="m">${n}</span></div>`)
           .join("");
-        // Contradiction notice — context only. Never changes verdict state.
-        const contradictionBlock = c311.contradictionElevator
-          ? `<div class="contradiction"><strong>Agency status and resident reports disagree.</strong>
-             The nearest ADA station's elevators are reported <em>in service</em>, but
-             ${c311.byType["Elevator"] ?? 0} elevator complaint(s) have been filed in the
-             corridor over the last ${src?.lookback_days ?? 90} days. This is context, not
-             a verdict input — check the MTA live elevator status before you go.</div>`
-          : "";
+
+        // Elevator framing — 311 elevator complaints are DOB/HPD building
+        // elevators, NOT transit. Copy is neutral context, not a contradiction.
+        let elevatorBlock = "";
+        const elevDetail = c311.byTypeDetail?.Elevator;
+        if (elevDetail && elevDetail.count > 0) {
+          const agencies = Object.keys(elevDetail.byAgency ?? {}).sort();
+          const agencyLabel = agencies.length > 0 ? agencies.join("/") : "DOB/HPD";
+          const singleDeviceCount = elevDetail.byDescriptor?.["Elevator - Single Device On Property/No Alternate Service"] ?? 0;
+          const singleSentence = singleDeviceCount > 0
+            ? ` ${singleDeviceCount} of these were &ldquo;single device, no alternate service&rdquo; &mdash; a building with one elevator and no backup.`
+            : "";
+          elevatorBlock = `
+            <div class="elev-note">
+              <strong>${elevDetail.count} building-elevator complaint${elevDetail.count === 1 ? "" : "s"}</strong>
+              filed within 300m in the last ${src?.lookback_days ?? 90} days
+              (${escapeHtml(agencyLabel)}).${singleSentence}
+              These are residential buildings, not the subway station.
+              <div class="m" style="margin-top:4px">Source: NYC 311 (erm2-nwe9)</div>
+            </div>
+          `;
+        }
+
         c311Block = `
           <div class="c311">
             <div><span class="n">311 complaints in corridor</span><span class="m">${c311.total} total, last ${src?.lookback_days ?? 90} days</span></div>
             ${typeRows}
             ${srcLine ? `<div class="src">${srcLine}</div>` : ""}
-            ${contradictionBlock}
+            ${elevatorBlock}
           </div>
         `;
       }
@@ -440,7 +456,6 @@
       const summary = [
         libs.length > 0 ? `${libs.length} ${libs.length === 1 ? "library" : "libraries"}` : "",
         has311 ? `${c311.total} 311` : "",
-        c311?.contradictionElevator ? "⚠ elevator contradiction" : "",
       ].filter(Boolean).join(" · ");
 
       return `

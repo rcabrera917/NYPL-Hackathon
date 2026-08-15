@@ -20,7 +20,6 @@ import { fileURLToPath } from "node:url";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const SITES_PATH = resolve(HERE, "..", "public", "data", "sites.json");
-const STATIONS_PATH = resolve(HERE, "..", "public", "data", "stations.json");
 const OUT_PATH = resolve(HERE, "..", "public", "data", "overlays.json");
 
 const FACILITIES_URL = "https://data.cityofnewyork.us/resource/ji82-xba5.json";
@@ -187,17 +186,13 @@ async function main() {
   const cutoffIso = cutoff.toISOString().slice(0, 19); // Socrata literal
   const typeList = NYC311_TARGET_TYPES.map((t) => `'${t.toLowerCase()}'`).join(",");
 
-  // Load stations.json for the contradiction check.
-  const stationsData = JSON.parse(await readFile(STATIONS_PATH, "utf8"));
-
   let complaint311Total = 0;
   let sitesWith311 = 0;
-  let contradictionCount = 0;
 
   for (const site of sites) {
     if (site.lat == null || site.lng == null) {
       const entry = perSite.get(site.id) ?? { libraries: [] };
-      entry.complaints311 = { total: 0, byType: {}, samples: [], contradictionElevator: false };
+      entry.complaints311 = { total: 0, byType: {}, byAgency: {}, byTypeDetail: {}, samples: [] };
       perSite.set(site.id, entry);
       continue;
     }
@@ -212,7 +207,8 @@ async function main() {
       .join(" OR ");
     const where = `created_date > '${cutoffIso}' AND lower(complaint_type) in (${typeList}) AND (${circles})`;
     const url = new URL(NYC311_URL);
-    url.searchParams.set("$select", "unique_key,complaint_type,descriptor,status,created_date,incident_address");
+    // agency + descriptor now captured for the per-type breakdown.
+    url.searchParams.set("$select", "unique_key,complaint_type,descriptor,status,created_date,agency,agency_name,incident_address");
     url.searchParams.set("$where", where);
     url.searchParams.set("$order", "created_date DESC");
     url.searchParams.set("$limit", "500");
@@ -221,20 +217,33 @@ async function main() {
     if (!res.ok) {
       console.warn(`  ${site.id}: 311 fetch failed HTTP ${res.status}`);
       const entry = perSite.get(site.id) ?? { libraries: [] };
-      entry.complaints311 = { total: 0, byType: {}, samples: [], contradictionElevator: false, error: `HTTP ${res.status}` };
+      entry.complaints311 = { total: 0, byType: {}, byAgency: {}, byTypeDetail: {}, samples: [], error: `HTTP ${res.status}` };
       perSite.set(site.id, entry);
       continue;
     }
     const rows = await res.json();
 
-    // Aggregate.
+    // Aggregate — total by type, agency across all types, and a per-type
+    // breakdown carrying its own agency + descriptor tallies.
     const byType = {};
+    const byAgency = {};
+    const byTypeDetail = {};
     for (const r of rows) {
       // Normalize type casing so "Elevator" and "ELEVATOR" merge cleanly.
       const key = String(r.complaint_type ?? "").replace(/\s+/g, " ").trim().toLowerCase();
       const canonical =
         NYC311_TARGET_TYPES.find((t) => t.toLowerCase() === key) ?? r.complaint_type ?? "Unknown";
+      const agency = r.agency ?? "?";
+      const descriptor = r.descriptor ?? "(no descriptor)";
+
       byType[canonical] = (byType[canonical] ?? 0) + 1;
+      byAgency[agency] = (byAgency[agency] ?? 0) + 1;
+
+      if (!byTypeDetail[canonical]) byTypeDetail[canonical] = { count: 0, byAgency: {}, byDescriptor: {} };
+      const detail = byTypeDetail[canonical];
+      detail.count++;
+      detail.byAgency[agency] = (detail.byAgency[agency] ?? 0) + 1;
+      detail.byDescriptor[descriptor] = (detail.byDescriptor[descriptor] ?? 0) + 1;
     }
     const samples = rows.slice(0, 5).map((r) => ({
       key: r.unique_key,
@@ -243,30 +252,11 @@ async function main() {
       status: r.status ?? null,
       createdAt: r.created_date,
       address: r.incident_address ?? null,
+      agency: r.agency ?? null,
     }));
 
-    // Contradiction: station reports all ADA-path elevators in service,
-    // but the corridor has Elevator-typed 311 complaints in the window.
-    let contradictionElevator = false;
-    const elevatorCount = byType["Elevator"] ?? 0;
-    if (elevatorCount > 0 && site.nearestStationId) {
-      const st = stationsData[site.nearestStationId];
-      if (st && Array.isArray(st.elevators)) {
-        const adaPath = st.elevators.filter((e) => e.onAdaPath === true);
-        if (adaPath.length > 0 && adaPath.every((e) => e.inService === true)) {
-          contradictionElevator = true;
-          contradictionCount++;
-        }
-      }
-    }
-
     const entry = perSite.get(site.id) ?? { libraries: [] };
-    entry.complaints311 = {
-      total: rows.length,
-      byType,
-      samples,
-      contradictionElevator,
-    };
+    entry.complaints311 = { total: rows.length, byType, byAgency, byTypeDetail, samples };
     perSite.set(site.id, entry);
 
     complaint311Total += rows.length;
@@ -275,7 +265,6 @@ async function main() {
 
   console.log(`  ${complaint311Total} complaints across all corridors`);
   console.log(`  ${sitesWith311} of ${sites.length} sites have >=1 complaint in the ${RADIUS_METERS}m corridor`);
-  console.log(`  ${contradictionCount} sites carry an elevator contradiction (station "in service" vs resident reports)`);
 
   // ---- Assemble overlays.json -------------------------------------------
   const out = {
@@ -306,7 +295,7 @@ async function main() {
           pulled_at: pulledAt,
           lookback_days: NYC311_LOOKBACK_DAYS,
           filter: `complaint_type in (${NYC311_TARGET_TYPES.map((t) => JSON.stringify(t)).join(", ")}) AND within_circle(location, siteOrStation, ${RADIUS_METERS}m)`,
-          note: "Per-site query uses Socrata within_circle() OR'd across the site coord and its nearest ADA station coord. Complaint types are matched case-insensitively so 'Elevator' and 'ELEVATOR' merge.",
+          note: "Per-site query uses Socrata within_circle() OR'd across the site coord and its nearest ADA station coord. Complaint types are matched case-insensitively so 'Elevator' and 'ELEVATOR' merge. Elevator complaints in this feed are DOB/HPD building elevators — NOT transit elevators. MTA elevator status is a separate feed.",
         },
       },
     },
