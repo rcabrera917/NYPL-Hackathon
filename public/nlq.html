@@ -188,7 +188,9 @@
     .rc-badge-col { flex-shrink: 0; padding-top: 3px; width: 62px; text-align: center; }
     .rc-content { flex: 1; min-width: 0; }
     .rc-name { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
-    .rc-addr { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+    .rc-addr { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+    .rc-meal { font-size: 12px; color: #cbd5e1; margin-bottom: 6px; line-height: 1.4; }
+    .rc-meal .sep { color: var(--muted); margin: 0 4px; }
     .rc-meta { display: flex; gap: 12px; font-size: 11px; color: var(--muted); margin-bottom: 6px; align-items: center; }
     .rc-reason { font-size: 12.5px; color: var(--text); line-height: 1.4; }
 
@@ -412,6 +414,60 @@
       return parts.join('<span class="sep">·</span>');
     }
 
+    // ---- one-line "what this is + when + which days" summary --------------
+    // Reads only fields already in sites.json (siteType, hoursText, daysOpen).
+    const DAY_ORDER_CANON = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    function siteTypeLabel(t) {
+      if (t === "OPEN") return "Free summer meals";
+      if (t === "OPEN RESTRICTED") return "Free summer meals (restricted access)";
+      return "Free summer meals";
+    }
+    // "08:15am-09:15am" -> "8:15–9:15am". Trims leading zero, en-dash range,
+    // drops start am/pm when it matches the end.
+    function compactTime(s) {
+      const m = s.match(/^\s*(\d{1,2}):(\d{2})(am|pm)\s*-\s*(\d{1,2}):(\d{2})(am|pm)\s*$/i);
+      if (!m) return s;
+      const [, h1, mm1, ap1, h2, mm2, ap2] = m;
+      const start = `${parseInt(h1, 10)}:${mm1}${ap1.toLowerCase() === ap2.toLowerCase() ? "" : ap1.toLowerCase()}`;
+      const end = `${parseInt(h2, 10)}:${mm2}${ap2.toLowerCase()}`;
+      return `${start}–${end}`;
+    }
+    // "Breakfast 08:15am-09:15am, Lunch 12:00pm-03:00pm"
+    //   -> "Breakfast 8:15–9:15am, Lunch 12:00–3:00pm"
+    function formatHoursCompact(hoursText) {
+      if (!hoursText) return "";
+      return hoursText.split(",").map((seg) => {
+        const t = seg.trim();
+        const m = t.match(/^(.+?)\s+(\d{1,2}:\d{2}(?:am|pm)\s*-\s*\d{1,2}:\d{2}(?:am|pm))\s*$/i);
+        return m ? `${m[1]} ${compactTime(m[2])}` : t;
+      }).join(", ");
+    }
+    // ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"] -> "Sun–Sat"
+    // ["Mon","Tue","Wed","Thu","Fri"] -> "Mon–Fri"
+    // ["Mon","Wed","Fri"] -> "Mon, Wed, Fri"
+    function compressDays(days) {
+      if (!Array.isArray(days) || days.length === 0) return "";
+      const idxs = [...new Set(days.map((d) => DAY_ORDER_CANON.indexOf(d)).filter((i) => i >= 0))].sort((a, b) => a - b);
+      if (idxs.length === 0) return "";
+      const runs = [];
+      let start = idxs[0], prev = idxs[0];
+      for (let i = 1; i < idxs.length; i++) {
+        if (idxs[i] === prev + 1) { prev = idxs[i]; continue; }
+        runs.push([start, prev]);
+        start = idxs[i]; prev = idxs[i];
+      }
+      runs.push([start, prev]);
+      return runs.map(([s, e]) => (s === e ? DAY_ORDER_CANON[s] : `${DAY_ORDER_CANON[s]}–${DAY_ORDER_CANON[e]}`)).join(", ");
+    }
+    function mealLine(site) {
+      const parts = [siteTypeLabel(site.siteType)];
+      const hrs = formatHoursCompact(site.hoursText);
+      if (hrs) parts.push(hrs);
+      const days = compressDays(site.daysOpen);
+      if (days) parts.push(days);
+      return parts.join(' <span class="sep">·</span> ');
+    }
+
     // ---- map (unchanged) --------------------------------------------------
     const map = L.map("map").setView([40.7580, -73.9855], 11);
     L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
@@ -608,6 +664,7 @@
             <div class="rc-content">
               <div class="rc-name">${escapeHtml(site.name)}</div>
               <div class="rc-addr">${escapeHtml(site.address)}</div>
+              <div class="rc-meal">${mealLine(site)}</div>
               <div class="rc-meta">${distText ? `<span>${escapeHtml(distText)}</span>` : ""}${row.chips.map((c) => `<span class="chip ${c.kind}">${escapeHtml(c.text)}</span>`).join("")}</div>
               ${topReason ? `<div class="rc-reason">${escapeHtml(topReason)}</div>` : ""}
             </div>
