@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "generated_at": "2026-08-15T20:34:43.849Z",
+    "generated_at": "2026-08-15T20:37:14.072Z",
     "radius_meters": 300,
     "sources": {
       "libraries": {
@@ -8,7 +8,7 @@
         "publisher": "NYC Department of City Planning",
         "filter": "facsubgrp = 'PUBLIC LIBRARIES'",
         "url": "https://data.cityofnewyork.us/City-Government/Facilities-Database/ji82-xba5",
-        "pulled_at": "2026-08-15T20:34:43.849Z",
+        "pulled_at": "2026-08-15T20:37:14.072Z",
         "note": "Fetched full set (~227 rows) and filtered per-site with haversine. The geometry column is text (WKT), not a Socrata Point, so within_circle is unsupported on this dataset — the fallback is equivalent.",
         "systems_included": [
           "NYPL (Manhattan / Bronx / Staten Island)",
@@ -20,22 +20,228 @@
         "dataset": "MTA Subway Stations (39hk-dx4f)",
         "publisher": "MTA, via NY State Open Data",
         "url": "https://data.ny.gov/Transportation/MTA-Subway-Stations/39hk-dx4f",
-        "pulled_at": "2026-08-15T20:34:43.849Z",
+        "pulled_at": "2026-08-15T20:37:14.072Z",
         "note": "Used only for gtfs_stop_id → (lat, lng) lookup so the corridor search can query around the site's nearest ADA station too."
+      },
+      "complaints311": {
+        "dataset": "NYC 311 Service Requests (erm2-nwe9)",
+        "publisher": "NYC Department of Information Technology & Telecommunications (DoITT)",
+        "url": "https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9",
+        "pulled_at": "2026-08-15T20:37:14.072Z",
+        "lookback_days": 90,
+        "filter": "complaint_type in (\"Elevator\", \"Sidewalk Condition\", \"Root/Sewer/Sidewalk Condition\", \"Curb Condition\", \"Scaffold Safety\", \"DEP Sidewalk Condition\") AND within_circle(location, siteOrStation, 300m)",
+        "note": "Per-site query uses Socrata within_circle() OR'd across the site coord and its nearest ADA station coord. Complaint types are matched case-insensitively so 'Elevator' and 'ELEVATOR' merge."
       }
     }
   },
   "cycle-05-ny-sfsp-0031": {
-    "libraries": []
+    "libraries": [],
+    "complaints311": {
+      "total": 4,
+      "byType": {
+        "Root/Sewer/Sidewalk Condition": 1,
+        "Elevator": 3
+      },
+      "samples": [
+        {
+          "key": "69974001",
+          "type": "Root/Sewer/Sidewalk Condition",
+          "descriptor": "Trees and Sidewalks Program",
+          "status": "In Progress",
+          "createdAt": "2026-08-06T13:58:47.000",
+          "address": "1010 AVENUE SAINT JOHN"
+        },
+        {
+          "key": "69347196",
+          "type": "Elevator",
+          "descriptor": "Elevator - Multiple Devices On Property",
+          "status": "Open",
+          "createdAt": "2026-06-13T16:07:07.000",
+          "address": "880 EAST  147 STREET"
+        },
+        {
+          "key": "69094599",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-05-22T11:46:24.000",
+          "address": "551 WALES AVENUE"
+        },
+        {
+          "key": "69078096",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-05-21T12:09:54.000",
+          "address": "585 WALES AVENUE"
+        }
+      ],
+      "contradictionElevator": true
+    }
   },
   "cycle-05-ny-sfsp-0100": {
-    "libraries": []
+    "libraries": [],
+    "complaints311": {
+      "total": 52,
+      "byType": {
+        "Elevator": 39,
+        "Sidewalk Condition": 10,
+        "Curb Condition": 2,
+        "Root/Sewer/Sidewalk Condition": 1
+      },
+      "samples": [
+        {
+          "key": "70054858",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-13T18:31:45.000",
+          "address": "35 EAST CLARKE PLACE"
+        },
+        {
+          "key": "70060074",
+          "type": "Sidewalk Condition",
+          "descriptor": "Blocked - Construction",
+          "status": "In Progress",
+          "createdAt": "2026-08-13T08:06:10.000",
+          "address": "1349 INWOOD AVENUE"
+        },
+        {
+          "key": "70043507",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-12T14:31:04.000",
+          "address": "20 EAST CLARKE PLACE"
+        },
+        {
+          "key": "70036173",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-08-11T19:45:52.000",
+          "address": "35 EAST CLARKE PLACE"
+        },
+        {
+          "key": "70024278",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-08-10T11:09:24.000",
+          "address": "35 EAST CLARKE PLACE"
+        }
+      ],
+      "contradictionElevator": true
+    }
   },
   "cycle-05-ny-sfsp-0140": {
-    "libraries": []
+    "libraries": [],
+    "complaints311": {
+      "total": 36,
+      "byType": {
+        "Curb Condition": 4,
+        "Elevator": 19,
+        "Sidewalk Condition": 4,
+        "Scaffold Safety": 9
+      },
+      "samples": [
+        {
+          "key": "70041658",
+          "type": "Curb Condition",
+          "descriptor": "Broken Curb",
+          "status": "In Progress",
+          "createdAt": "2026-08-12T19:34:47.000",
+          "address": "400 EAST 14 STREET"
+        },
+        {
+          "key": "70040552",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-12T17:51:56.000",
+          "address": "611 EAST   11 STREET"
+        },
+        {
+          "key": "70044669",
+          "type": "ELEVATOR",
+          "descriptor": "MAINTENANCE",
+          "status": "Open",
+          "createdAt": "2026-08-12T08:20:03.000",
+          "address": "611 EAST   11 STREET"
+        },
+        {
+          "key": "70036163",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-08-11T15:29:28.000",
+          "address": "621 EAST    9 STREET"
+        },
+        {
+          "key": "70028694",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-11T11:03:36.000",
+          "address": "621 EAST    9 STREET"
+        }
+      ],
+      "contradictionElevator": true
+    }
   },
   "cycle-05-ny-sfsp-0630": {
-    "libraries": []
+    "libraries": [],
+    "complaints311": {
+      "total": 98,
+      "byType": {
+        "Sidewalk Condition": 20,
+        "Elevator": 74,
+        "Curb Condition": 4
+      },
+      "samples": [
+        {
+          "key": "70041515",
+          "type": "Sidewalk Condition",
+          "descriptor": "Blocked - Construction",
+          "status": "In Progress",
+          "createdAt": "2026-08-12T12:01:55.000",
+          "address": "400 OCEAN AVENUE"
+        },
+        {
+          "key": "70031685",
+          "type": "Elevator",
+          "descriptor": "Elevator - Multiple Devices On Property",
+          "status": "Open",
+          "createdAt": "2026-08-10T22:19:21.000",
+          "address": "522 OCEAN AVENUE"
+        },
+        {
+          "key": "69989734",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-08-07T18:56:09.000",
+          "address": "239 OCEAN AVENUE"
+        },
+        {
+          "key": "69954062",
+          "type": "Elevator",
+          "descriptor": "Elevator - Multiple Devices On Property",
+          "status": "Open",
+          "createdAt": "2026-08-04T07:25:05.000",
+          "address": "239 OCEAN AVENUE"
+        },
+        {
+          "key": "69941916",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-08-03T10:50:58.000",
+          "address": "499 OCEAN AVENUE"
+        }
+      ],
+      "contradictionElevator": true
+    }
   },
   "cycle-05-ny-sfsp-0285": {
     "libraries": [
@@ -52,10 +258,113 @@
         "isMealSite": false,
         "mealSiteId": null
       }
-    ]
+    ],
+    "complaints311": {
+      "total": 75,
+      "byType": {
+        "Elevator": 65,
+        "Sidewalk Condition": 8,
+        "Curb Condition": 1,
+        "Root/Sewer/Sidewalk Condition": 1
+      },
+      "samples": [
+        {
+          "key": "70056248",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-13T18:21:57.000",
+          "address": "210 WEST  147 STREET"
+        },
+        {
+          "key": "70046342",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-08-12T17:45:31.000",
+          "address": "210 WEST  147 STREET"
+        },
+        {
+          "key": "70042046",
+          "type": "Elevator",
+          "descriptor": "Elevator - Multiple Devices On Property",
+          "status": "Open",
+          "createdAt": "2026-08-12T14:43:26.000",
+          "address": "321 EDGECOMB AVENUE"
+        },
+        {
+          "key": "70047780",
+          "type": "Elevator",
+          "descriptor": "Elevator - Multiple Devices On Property",
+          "status": "Open",
+          "createdAt": "2026-08-12T11:57:36.000",
+          "address": "210 WEST  147 STREET"
+        },
+        {
+          "key": "69971125",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-06T16:02:53.000",
+          "address": "250 WEST  146 STREET"
+        }
+      ],
+      "contradictionElevator": false
+    }
   },
   "cycle-05-ny-sfsp-0230": {
-    "libraries": []
+    "libraries": [],
+    "complaints311": {
+      "total": 40,
+      "byType": {
+        "Elevator": 33,
+        "Root/Sewer/Sidewalk Condition": 2,
+        "Sidewalk Condition": 5
+      },
+      "samples": [
+        {
+          "key": "70039124",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-08-12T10:40:49.000",
+          "address": "540 WEST  165 STREET"
+        },
+        {
+          "key": "70009632",
+          "type": "Elevator",
+          "descriptor": "Elevator - Multiple Devices On Property",
+          "status": "Open",
+          "createdAt": "2026-08-09T14:34:30.000",
+          "address": "501 WEST  176 STREET"
+        },
+        {
+          "key": "70001807",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-08T17:52:49.000",
+          "address": "1090 ST NICHOLAS AVENUE"
+        },
+        {
+          "key": "69997828",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-08-08T17:28:30.000",
+          "address": "1090 SAINT NICHOLAS AVENUE"
+        },
+        {
+          "key": "69991170",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-07T17:20:17.000",
+          "address": "620 WEST  170 STREET"
+        }
+      ],
+      "contradictionElevator": true
+    }
   },
   "cycle-05-ny-sfsp-0801": {
     "libraries": [
@@ -72,7 +381,58 @@
         "isMealSite": false,
         "mealSiteId": null
       }
-    ]
+    ],
+    "complaints311": {
+      "total": 44,
+      "byType": {
+        "Elevator": 28,
+        "Sidewalk Condition": 15,
+        "Curb Condition": 1
+      },
+      "samples": [
+        {
+          "key": "70060544",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-13T08:05:22.000",
+          "address": "158 EAST  122 STREET"
+        },
+        {
+          "key": "70008313",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-09T15:08:42.000",
+          "address": "2293 3 AVENUE"
+        },
+        {
+          "key": "69962307",
+          "type": "Sidewalk Condition",
+          "descriptor": "Blocked - Construction",
+          "status": "Closed",
+          "createdAt": "2026-08-05T15:04:03.000",
+          "address": "162 EAST 124 STREET"
+        },
+        {
+          "key": "69966889",
+          "type": "Elevator",
+          "descriptor": "Elevator - Multiple Devices On Property",
+          "status": "Open",
+          "createdAt": "2026-08-05T06:15:03.000",
+          "address": "2253 THIRD AVENUE"
+        },
+        {
+          "key": "69956525",
+          "type": "Sidewalk Condition",
+          "descriptor": "Sidewalk Collapsed",
+          "status": "In Progress",
+          "createdAt": "2026-08-04T16:53:02.000",
+          "address": "162 EAST 124 STREET"
+        }
+      ],
+      "contradictionElevator": true
+    }
   },
   "cycle-05-ny-sfsp-0311": {
     "libraries": [
@@ -89,7 +449,60 @@
         "isMealSite": false,
         "mealSiteId": null
       }
-    ]
+    ],
+    "complaints311": {
+      "total": 73,
+      "byType": {
+        "Elevator": 5,
+        "Sidewalk Condition": 38,
+        "Scaffold Safety": 3,
+        "Curb Condition": 25,
+        "Root/Sewer/Sidewalk Condition": 2
+      },
+      "samples": [
+        {
+          "key": "70046353",
+          "type": "Elevator",
+          "descriptor": "Elevator - Multiple Devices On Property",
+          "status": "Closed",
+          "createdAt": "2026-08-12T09:15:51.000",
+          "address": "500 EAST   77 STREET"
+        },
+        {
+          "key": "70031682",
+          "type": "Elevator",
+          "descriptor": "Elevator - Multiple Devices On Property",
+          "status": "Open",
+          "createdAt": "2026-08-11T20:32:13.000",
+          "address": "500 EAST   77 STREET"
+        },
+        {
+          "key": "70022261",
+          "type": "Sidewalk Condition",
+          "descriptor": "Blocked - Construction",
+          "status": "Closed",
+          "createdAt": "2026-08-10T15:10:56.000",
+          "address": "227 EAST 69 STREET"
+        },
+        {
+          "key": "69960507",
+          "type": "Scaffold Safety",
+          "descriptor": "Suspended (Hanging) Scaffolds - No Pmt/Lic/Dangerous/Accident",
+          "status": "Closed",
+          "createdAt": "2026-08-05T17:28:28.000",
+          "address": "1409 2 AVENUE"
+        },
+        {
+          "key": "69946031",
+          "type": "Curb Condition",
+          "descriptor": "Broken Curb",
+          "status": "In Progress",
+          "createdAt": "2026-08-03T19:35:55.000",
+          "address": "517 EAST 77 STREET"
+        }
+      ],
+      "contradictionElevator": true
+    }
   },
   "cycle-05-ny-sfsp-0766": {
     "libraries": [
@@ -106,13 +519,169 @@
         "isMealSite": false,
         "mealSiteId": null
       }
-    ]
+    ],
+    "complaints311": {
+      "total": 51,
+      "byType": {
+        "Elevator": 30,
+        "Sidewalk Condition": 19,
+        "Curb Condition": 1,
+        "Scaffold Safety": 1
+      },
+      "samples": [
+        {
+          "key": "70060544",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-13T08:05:22.000",
+          "address": "158 EAST  122 STREET"
+        },
+        {
+          "key": "70008313",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-09T15:08:42.000",
+          "address": "2293 3 AVENUE"
+        },
+        {
+          "key": "69962307",
+          "type": "Sidewalk Condition",
+          "descriptor": "Blocked - Construction",
+          "status": "Closed",
+          "createdAt": "2026-08-05T15:04:03.000",
+          "address": "162 EAST 124 STREET"
+        },
+        {
+          "key": "69966889",
+          "type": "Elevator",
+          "descriptor": "Elevator - Multiple Devices On Property",
+          "status": "Open",
+          "createdAt": "2026-08-05T06:15:03.000",
+          "address": "2253 THIRD AVENUE"
+        },
+        {
+          "key": "69956525",
+          "type": "Sidewalk Condition",
+          "descriptor": "Sidewalk Collapsed",
+          "status": "In Progress",
+          "createdAt": "2026-08-04T16:53:02.000",
+          "address": "162 EAST 124 STREET"
+        }
+      ],
+      "contradictionElevator": true
+    }
   },
   "cycle-05-ny-sfsp-0793": {
-    "libraries": []
+    "libraries": [],
+    "complaints311": {
+      "total": 28,
+      "byType": {
+        "Elevator": 11,
+        "Root/Sewer/Sidewalk Condition": 1,
+        "Curb Condition": 1,
+        "Sidewalk Condition": 15
+      },
+      "samples": [
+        {
+          "key": "70053438",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-13T09:28:03.000",
+          "address": "3130 ALBANY CRESCENT"
+        },
+        {
+          "key": "70008315",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-08-09T19:16:22.000",
+          "address": "3130 ALBANY CRESCENT"
+        },
+        {
+          "key": "70003098",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-08T10:07:55.000",
+          "address": "3128 BAILEY AVENUE"
+        },
+        {
+          "key": "69947924",
+          "type": "Root/Sewer/Sidewalk Condition",
+          "descriptor": "Trees and Sidewalks Program",
+          "status": "In Progress",
+          "createdAt": "2026-08-04T17:15:41.000",
+          "address": "3049 BAILEY AVENUE"
+        },
+        {
+          "key": "69880839",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-07-27T14:06:57.000",
+          "address": "3204 KINGSBRIDGE AVENUE"
+        }
+      ],
+      "contradictionElevator": true
+    }
   },
   "cycle-05-ny-sfsp-0368": {
-    "libraries": []
+    "libraries": [],
+    "complaints311": {
+      "total": 23,
+      "byType": {
+        "Elevator": 16,
+        "Curb Condition": 1,
+        "Sidewalk Condition": 4,
+        "Root/Sewer/Sidewalk Condition": 2
+      },
+      "samples": [
+        {
+          "key": "70032889",
+          "type": "ELEVATOR",
+          "descriptor": "MAINTENANCE",
+          "status": "Open",
+          "createdAt": "2026-08-11T11:37:59.000",
+          "address": "800 EAST  180 STREET"
+        },
+        {
+          "key": "70016224",
+          "type": "Curb Condition",
+          "descriptor": "Broken Curb",
+          "status": "In Progress",
+          "createdAt": "2026-08-10T14:27:08.000",
+          "address": "820 EAST 180 STREET"
+        },
+        {
+          "key": "69943415",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-08-03T16:31:52.000",
+          "address": "2150 CLINTON AVENUE"
+        },
+        {
+          "key": "69938986",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-08-03T15:39:12.000",
+          "address": "2150 CLINTON AVENUE"
+        },
+        {
+          "key": "69917061",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-08-01T08:57:12.000",
+          "address": "2150 CLINTON AVENUE"
+        }
+      ],
+      "contradictionElevator": true
+    }
   },
   "cycle-05-ny-sfsp-0217": {
     "libraries": [
@@ -129,13 +698,141 @@
         "isMealSite": false,
         "mealSiteId": null
       }
-    ]
+    ],
+    "complaints311": {
+      "total": 15,
+      "byType": {
+        "Curb Condition": 3,
+        "Elevator": 6,
+        "Sidewalk Condition": 6
+      },
+      "samples": [
+        {
+          "key": "70041658",
+          "type": "Curb Condition",
+          "descriptor": "Broken Curb",
+          "status": "In Progress",
+          "createdAt": "2026-08-12T19:34:47.000",
+          "address": "400 EAST 14 STREET"
+        },
+        {
+          "key": "69985468",
+          "type": "Elevator",
+          "descriptor": "Elevator - Multiple Devices On Property",
+          "status": "Closed",
+          "createdAt": "2026-08-07T08:01:50.000",
+          "address": "222 EAST    2 STREET"
+        },
+        {
+          "key": "69973980",
+          "type": "Elevator",
+          "descriptor": "Elevator - Multiple Devices On Property",
+          "status": "Open",
+          "createdAt": "2026-08-06T20:36:50.000",
+          "address": "133 PITT STREET"
+        },
+        {
+          "key": "69963827",
+          "type": "Curb Condition",
+          "descriptor": "Curb Defect-Metal Protruding",
+          "status": "Closed",
+          "createdAt": "2026-08-05T23:49:47.000",
+          "address": "239 1 AVENUE"
+        },
+        {
+          "key": "69949067",
+          "type": "Sidewalk Condition",
+          "descriptor": "Broken Sidewalk",
+          "status": "In Progress",
+          "createdAt": "2026-08-04T09:34:11.000",
+          "address": "66 CLINTON STREET"
+        }
+      ],
+      "contradictionElevator": true
+    }
   },
   "cycle-05-ny-sfsp-0119": {
-    "libraries": []
+    "libraries": [],
+    "complaints311": {
+      "total": 62,
+      "byType": {
+        "Elevator": 56,
+        "Sidewalk Condition": 4,
+        "Curb Condition": 2
+      },
+      "samples": [
+        {
+          "key": "70044915",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-12T13:53:59.000",
+          "address": "1930 ANTHONY AVENUE"
+        },
+        {
+          "key": "70021235",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-08-10T15:31:27.000",
+          "address": "2000 ANTHONY AVENUE"
+        },
+        {
+          "key": "70008314",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-09T10:05:48.000",
+          "address": "2001 MORRIS AVENUE"
+        },
+        {
+          "key": "69992614",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-08-07T17:07:21.000",
+          "address": "2000 ANTHONY AVENUE"
+        },
+        {
+          "key": "69962862",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-05T19:25:24.000",
+          "address": "2000 ANTHONY AVENUE"
+        }
+      ],
+      "contradictionElevator": true
+    }
   },
   "cycle-05-ny-sfsp-0818": {
-    "libraries": []
+    "libraries": [],
+    "complaints311": {
+      "total": 2,
+      "byType": {
+        "Sidewalk Condition": 1,
+        "Elevator": 1
+      },
+      "samples": [
+        {
+          "key": "70052985",
+          "type": "Sidewalk Condition",
+          "descriptor": "Blocked - Construction",
+          "status": "In Progress",
+          "createdAt": "2026-08-13T16:04:05.000",
+          "address": "4 TRINITY PLACE"
+        },
+        {
+          "key": "69955585",
+          "type": "Elevator",
+          "descriptor": "Elevator - Multiple Devices On Property",
+          "status": "Open",
+          "createdAt": "2026-08-04T02:38:15.000",
+          "address": "55 RICHMOND TERRACE"
+        }
+      ],
+      "contradictionElevator": false
+    }
   },
   "cycle-05-ny-sfsp-0171": {
     "libraries": [
@@ -152,19 +849,265 @@
         "isMealSite": false,
         "mealSiteId": null
       }
-    ]
+    ],
+    "complaints311": {
+      "total": 54,
+      "byType": {
+        "Curb Condition": 41,
+        "Sidewalk Condition": 12,
+        "Root/Sewer/Sidewalk Condition": 1
+      },
+      "samples": [
+        {
+          "key": "70028385",
+          "type": "Curb Condition",
+          "descriptor": "Defacement",
+          "status": "In Progress",
+          "createdAt": "2026-08-12T00:46:39.000",
+          "address": "37-45 99 STREET"
+        },
+        {
+          "key": "70035820",
+          "type": "Curb Condition",
+          "descriptor": "Defacement",
+          "status": "In Progress",
+          "createdAt": "2026-08-12T00:35:49.000",
+          "address": "37-55 99 STREET"
+        },
+        {
+          "key": "70028384",
+          "type": "Curb Condition",
+          "descriptor": "Defacement",
+          "status": "In Progress",
+          "createdAt": "2026-08-12T00:28:31.000",
+          "address": "38-27 99 STREET"
+        },
+        {
+          "key": "70034292",
+          "type": "Curb Condition",
+          "descriptor": "Defacement",
+          "status": "In Progress",
+          "createdAt": "2026-08-11T23:11:17.000",
+          "address": "31-43 101 STREET"
+        },
+        {
+          "key": "70028382",
+          "type": "Curb Condition",
+          "descriptor": "Defacement",
+          "status": "In Progress",
+          "createdAt": "2026-08-11T22:49:55.000",
+          "address": "32-18 101 STREET"
+        }
+      ],
+      "contradictionElevator": false
+    }
   },
   "cycle-05-ny-sfsp-0694": {
-    "libraries": []
+    "libraries": [],
+    "complaints311": {
+      "total": 26,
+      "byType": {
+        "Sidewalk Condition": 13,
+        "Curb Condition": 4,
+        "Elevator": 9
+      },
+      "samples": [
+        {
+          "key": "70060088",
+          "type": "Sidewalk Condition",
+          "descriptor": "Sidewalk Grating - Missing",
+          "status": "In Progress",
+          "createdAt": "2026-08-13T09:38:44.000",
+          "address": "250 GRAND STREET"
+        },
+        {
+          "key": "70034253",
+          "type": "Curb Condition",
+          "descriptor": "Broken Curb",
+          "status": "In Progress",
+          "createdAt": "2026-08-11T14:39:43.000",
+          "address": "133 BAXTER STREET"
+        },
+        {
+          "key": "69961100",
+          "type": "Sidewalk Condition",
+          "descriptor": "Blocked - Construction",
+          "status": "In Progress",
+          "createdAt": "2026-08-05T11:06:24.000",
+          "address": "47 LUDLOW STREET"
+        },
+        {
+          "key": "69955084",
+          "type": "Sidewalk Condition",
+          "descriptor": "Sidewalk Grating - Defective",
+          "status": "Closed",
+          "createdAt": "2026-08-04T17:10:13.000",
+          "address": "50 FRANKLIN STREET"
+        },
+        {
+          "key": "69841486",
+          "type": "Curb Condition",
+          "descriptor": "Broken Curb",
+          "status": "Closed",
+          "createdAt": "2026-07-25T18:02:31.000",
+          "address": "401 BROADWAY"
+        }
+      ],
+      "contradictionElevator": true
+    }
   },
   "cycle-05-ny-sfsp-0167": {
-    "libraries": []
+    "libraries": [],
+    "complaints311": {
+      "total": 7,
+      "byType": {
+        "Elevator": 1,
+        "Sidewalk Condition": 3,
+        "Root/Sewer/Sidewalk Condition": 3
+      },
+      "samples": [
+        {
+          "key": "69955585",
+          "type": "Elevator",
+          "descriptor": "Elevator - Multiple Devices On Property",
+          "status": "Open",
+          "createdAt": "2026-08-04T02:38:15.000",
+          "address": "55 RICHMOND TERRACE"
+        },
+        {
+          "key": "69894472",
+          "type": "Sidewalk Condition",
+          "descriptor": "Blocked - Construction",
+          "status": "Closed",
+          "createdAt": "2026-07-30T09:30:59.000",
+          "address": "2 GROVE AVENUE"
+        },
+        {
+          "key": "69881046",
+          "type": "Sidewalk Condition",
+          "descriptor": "Pedestrian Ramp Defective",
+          "status": "Closed",
+          "createdAt": "2026-07-28T11:29:58.000",
+          "address": "121 PORT RICHMOND AVENUE"
+        },
+        {
+          "key": "69863625",
+          "type": "Root/Sewer/Sidewalk Condition",
+          "descriptor": "Trees and Sidewalks Program",
+          "status": "In Progress",
+          "createdAt": "2026-07-27T12:38:20.000",
+          "address": "45 GROVE AVENUE"
+        },
+        {
+          "key": "69828784",
+          "type": "Root/Sewer/Sidewalk Condition",
+          "descriptor": "Trees and Sidewalks Program",
+          "status": "In Progress",
+          "createdAt": "2026-07-24T17:07:15.000",
+          "address": "25 FABER STREET"
+        }
+      ],
+      "contradictionElevator": false
+    }
   },
   "cycle-05-ny-sfsp-0438": {
-    "libraries": []
+    "libraries": [],
+    "complaints311": {
+      "total": 8,
+      "byType": {
+        "Curb Condition": 3,
+        "Elevator": 2,
+        "Sidewalk Condition": 3
+      },
+      "samples": [
+        {
+          "key": "70041658",
+          "type": "Curb Condition",
+          "descriptor": "Broken Curb",
+          "status": "In Progress",
+          "createdAt": "2026-08-12T19:34:47.000",
+          "address": "400 EAST 14 STREET"
+        },
+        {
+          "key": "69963827",
+          "type": "Curb Condition",
+          "descriptor": "Curb Defect-Metal Protruding",
+          "status": "Closed",
+          "createdAt": "2026-08-05T23:49:47.000",
+          "address": "239 1 AVENUE"
+        },
+        {
+          "key": "69922228",
+          "type": "Curb Condition",
+          "descriptor": "Broken Curb",
+          "status": "In Progress",
+          "createdAt": "2026-08-01T13:38:49.000",
+          "address": "426 EAST 12 STREET"
+        },
+        {
+          "key": "69914374",
+          "type": "Elevator",
+          "descriptor": "Elevator - Multiple Devices On Property",
+          "status": "Closed",
+          "createdAt": "2026-07-31T17:37:45.000",
+          "address": "6 PETER COOPER ROAD"
+        },
+        {
+          "key": "69785665",
+          "type": "Sidewalk Condition",
+          "descriptor": "Newspaper Box Complaint",
+          "status": "In Progress",
+          "createdAt": "2026-07-20T13:53:24.000",
+          "address": "173 1 AVENUE"
+        }
+      ],
+      "contradictionElevator": true
+    }
   },
   "cycle-05-ny-sfsp-0359": {
-    "libraries": []
+    "libraries": [],
+    "complaints311": {
+      "total": 4,
+      "byType": {
+        "Elevator": 2,
+        "Sidewalk Condition": 2
+      },
+      "samples": [
+        {
+          "key": "69955585",
+          "type": "Elevator",
+          "descriptor": "Elevator - Multiple Devices On Property",
+          "status": "Open",
+          "createdAt": "2026-08-04T02:38:15.000",
+          "address": "55 RICHMOND TERRACE"
+        },
+        {
+          "key": "69285804",
+          "type": "Sidewalk Condition",
+          "descriptor": "Sidewalk Staircase",
+          "status": "In Progress",
+          "createdAt": "2026-06-08T10:11:06.000",
+          "address": "MURRAY HULBERT AVENUE"
+        },
+        {
+          "key": "69207854",
+          "type": "Elevator",
+          "descriptor": "Elevator - Multiple Devices On Property",
+          "status": "Closed",
+          "createdAt": "2026-06-01T09:02:49.000",
+          "address": "96 CENTRAL AVENUE"
+        },
+        {
+          "key": "69074917",
+          "type": "Sidewalk Condition",
+          "descriptor": "Sidewalk Staircase",
+          "status": "Closed",
+          "createdAt": "2026-05-21T14:45:56.000",
+          "address": "6 VICTORY BOULEVARD"
+        }
+      ],
+      "contradictionElevator": false
+    }
   },
   "cycle-05-ny-sfsp-0393": {
     "libraries": [
@@ -181,7 +1124,57 @@
         "isMealSite": false,
         "mealSiteId": null
       }
-    ]
+    ],
+    "complaints311": {
+      "total": 7,
+      "byType": {
+        "Root/Sewer/Sidewalk Condition": 6,
+        "Sidewalk Condition": 1
+      },
+      "samples": [
+        {
+          "key": "70016642",
+          "type": "Root/Sewer/Sidewalk Condition",
+          "descriptor": "Trees and Sidewalks Program",
+          "status": "In Progress",
+          "createdAt": "2026-08-10T09:57:15.000",
+          "address": "2933 FENTON AVENUE"
+        },
+        {
+          "key": "69946498",
+          "type": "Root/Sewer/Sidewalk Condition",
+          "descriptor": "Trees and Sidewalks Program",
+          "status": "In Progress",
+          "createdAt": "2026-08-03T10:19:00.000",
+          "address": "2941 FENTON AVENUE"
+        },
+        {
+          "key": "69943012",
+          "type": "Sidewalk Condition",
+          "descriptor": "Broken Sidewalk",
+          "status": "In Progress",
+          "createdAt": "2026-08-03T09:26:20.000",
+          "address": "2941 FENTON AVENUE"
+        },
+        {
+          "key": "69885147",
+          "type": "Root/Sewer/Sidewalk Condition",
+          "descriptor": "Trees and Sidewalks Program",
+          "status": "In Progress",
+          "createdAt": "2026-07-29T10:13:45.000",
+          "address": "3057 GRACE AVENUE"
+        },
+        {
+          "key": "69860877",
+          "type": "Root/Sewer/Sidewalk Condition",
+          "descriptor": "Trees and Sidewalks Program",
+          "status": "In Progress",
+          "createdAt": "2026-07-27T07:58:57.000",
+          "address": "2919 DEWITT PLACE"
+        }
+      ],
+      "contradictionElevator": false
+    }
   },
   "cycle-05-ny-sfsp-0440": {
     "libraries": [
@@ -198,13 +1191,166 @@
         "isMealSite": false,
         "mealSiteId": null
       }
-    ]
+    ],
+    "complaints311": {
+      "total": 70,
+      "byType": {
+        "Elevator": 47,
+        "Sidewalk Condition": 19,
+        "Curb Condition": 3,
+        "Scaffold Safety": 1
+      },
+      "samples": [
+        {
+          "key": "70060544",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-13T08:05:22.000",
+          "address": "158 EAST  122 STREET"
+        },
+        {
+          "key": "70022770",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-10T09:51:00.000",
+          "address": "60 ST NICHOLAS AVENUE"
+        },
+        {
+          "key": "70008313",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-09T15:08:42.000",
+          "address": "2293 3 AVENUE"
+        },
+        {
+          "key": "69995236",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-08-08T17:16:09.000",
+          "address": "19 ST NICHOLAS AVENUE"
+        },
+        {
+          "key": "69993897",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-08-08T14:28:31.000",
+          "address": "19 ST NICHOLAS AVENUE"
+        }
+      ],
+      "contradictionElevator": true
+    }
   },
   "cycle-05-ny-sfsp-0411": {
-    "libraries": []
+    "libraries": [],
+    "complaints311": {
+      "total": 67,
+      "byType": {
+        "Elevator": 62,
+        "Curb Condition": 2,
+        "Sidewalk Condition": 3
+      },
+      "samples": [
+        {
+          "key": "70053439",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-13T10:32:53.000",
+          "address": "815 GERARD AVENUE"
+        },
+        {
+          "key": "70040558",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-08-12T18:19:05.000",
+          "address": "1020 GERARD AVENUE"
+        },
+        {
+          "key": "70044916",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-08-12T14:52:50.000",
+          "address": "815 GERARD AVENUE"
+        },
+        {
+          "key": "70039132",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-08-12T14:18:05.000",
+          "address": "1020 GERARD AVENUE"
+        },
+        {
+          "key": "70049271",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-08-12T13:31:03.000",
+          "address": "1020 GERARD AVENUE"
+        }
+      ],
+      "contradictionElevator": false
+    }
   },
   "cycle-05-ny-sfsp-0343": {
-    "libraries": []
+    "libraries": [],
+    "complaints311": {
+      "total": 13,
+      "byType": {
+        "Sidewalk Condition": 12,
+        "Curb Condition": 1
+      },
+      "samples": [
+        {
+          "key": "69945920",
+          "type": "Sidewalk Condition",
+          "descriptor": "Blocked - Construction",
+          "status": "Closed",
+          "createdAt": "2026-08-03T18:23:45.000",
+          "address": "EDGERTON BOULEVARD"
+        },
+        {
+          "key": "69939921",
+          "type": "Sidewalk Condition",
+          "descriptor": "Blocked - Construction",
+          "status": "Closed",
+          "createdAt": "2026-08-03T13:32:08.000",
+          "address": "EDGERTON BOULEVARD"
+        },
+        {
+          "key": "69882455",
+          "type": "Sidewalk Condition",
+          "descriptor": "Sidewalk Grating - Defective",
+          "status": "Closed",
+          "createdAt": "2026-07-29T15:49:16.000",
+          "address": "88-39 181 STREET"
+        },
+        {
+          "key": "69788876",
+          "type": "Sidewalk Condition",
+          "descriptor": "Sidewalk Violation",
+          "status": "Closed",
+          "createdAt": "2026-07-20T10:51:31.000",
+          "address": "173-18 103 ROAD"
+        },
+        {
+          "key": "69717151",
+          "type": "Sidewalk Condition",
+          "descriptor": "Sidewalk Violation",
+          "status": "Closed",
+          "createdAt": "2026-07-14T12:12:25.000",
+          "address": "106-24 RUSCOE STREET"
+        }
+      ],
+      "contradictionElevator": false
+    }
   },
   "cycle-05-ny-sfsp-0371": {
     "libraries": [
@@ -234,7 +1380,59 @@
         "isMealSite": false,
         "mealSiteId": null
       }
-    ]
+    ],
+    "complaints311": {
+      "total": 70,
+      "byType": {
+        "Curb Condition": 4,
+        "Elevator": 36,
+        "Sidewalk Condition": 29,
+        "Root/Sewer/Sidewalk Condition": 1
+      },
+      "samples": [
+        {
+          "key": "70060215",
+          "type": "Curb Condition",
+          "descriptor": "Broken Curb",
+          "status": "In Progress",
+          "createdAt": "2026-08-13T15:27:53.000",
+          "address": "16 EAST 126 STREET"
+        },
+        {
+          "key": "70060544",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-13T08:05:22.000",
+          "address": "158 EAST  122 STREET"
+        },
+        {
+          "key": "70046339",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-08-12T08:48:13.000",
+          "address": "15 WEST  123 STREET"
+        },
+        {
+          "key": "70008313",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-09T15:08:42.000",
+          "address": "2293 3 AVENUE"
+        },
+        {
+          "key": "70012272",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-08-09T11:57:14.000",
+          "address": "28 WEST  127 STREET"
+        }
+      ],
+      "contradictionElevator": true
+    }
   },
   "cycle-05-ny-sfsp-0715": {
     "libraries": [
@@ -251,10 +1449,112 @@
         "isMealSite": false,
         "mealSiteId": null
       }
-    ]
+    ],
+    "complaints311": {
+      "total": 90,
+      "byType": {
+        "Elevator": 71,
+        "Sidewalk Condition": 15,
+        "Curb Condition": 3,
+        "Scaffold Safety": 1
+      },
+      "samples": [
+        {
+          "key": "70052068",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-13T16:56:20.000",
+          "address": "301 ST NICHOLAS AVENUE"
+        },
+        {
+          "key": "70040551",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-08-12T15:08:18.000",
+          "address": "301 ST NICHOLAS AVENUE"
+        },
+        {
+          "key": "70027312",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-08-11T10:35:44.000",
+          "address": "301 SAINT NICHOLAS AVENUE"
+        },
+        {
+          "key": "70037164",
+          "type": "Sidewalk Condition",
+          "descriptor": "Blocked - Construction",
+          "status": "In Progress",
+          "createdAt": "2026-08-11T08:54:34.000",
+          "address": "497 WEST 129 STREET"
+        },
+        {
+          "key": "70015051",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-08-10T09:19:01.000",
+          "address": "301 ST NICHOLAS AVENUE"
+        }
+      ],
+      "contradictionElevator": true
+    }
   },
   "cycle-05-ny-sfsp-0392": {
-    "libraries": []
+    "libraries": [],
+    "complaints311": {
+      "total": 8,
+      "byType": {
+        "Root/Sewer/Sidewalk Condition": 3,
+        "Sidewalk Condition": 5
+      },
+      "samples": [
+        {
+          "key": "70057763",
+          "type": "Root/Sewer/Sidewalk Condition",
+          "descriptor": "Trees and Sidewalks Program",
+          "status": "In Progress",
+          "createdAt": "2026-08-13T13:35:31.000",
+          "address": "140 CHESHIRE PLACE"
+        },
+        {
+          "key": "69986888",
+          "type": "Sidewalk Condition",
+          "descriptor": "Pedestrian Ramp Defective",
+          "status": "Closed",
+          "createdAt": "2026-08-07T09:06:09.000",
+          "address": "SENECA AVENUE"
+        },
+        {
+          "key": "69977967",
+          "type": "Sidewalk Condition",
+          "descriptor": "Broken Sidewalk",
+          "status": "In Progress",
+          "createdAt": "2026-08-06T13:17:44.000",
+          "address": "125 BEVERLY AVENUE"
+        },
+        {
+          "key": "69720377",
+          "type": "Sidewalk Condition",
+          "descriptor": "Sidewalk Violation",
+          "status": "Closed",
+          "createdAt": "2026-07-14T15:37:17.000",
+          "address": "66 SENECA AVENUE"
+        },
+        {
+          "key": "69581870",
+          "type": "Root/Sewer/Sidewalk Condition",
+          "descriptor": "Trees and Sidewalks Program",
+          "status": "In Progress",
+          "createdAt": "2026-07-03T20:27:50.000",
+          "address": "1322 CLOVE ROAD"
+        }
+      ],
+      "contradictionElevator": false
+    }
   },
   "cycle-05-ny-sfsp-0439": {
     "libraries": [
@@ -271,10 +1571,78 @@
         "isMealSite": false,
         "mealSiteId": null
       }
-    ]
+    ],
+    "complaints311": {
+      "total": 31,
+      "byType": {
+        "Elevator": 17,
+        "Curb Condition": 4,
+        "Sidewalk Condition": 10
+      },
+      "samples": [
+        {
+          "key": "70044917",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-08-12T07:34:37.000",
+          "address": "135-11 40 ROAD"
+        },
+        {
+          "key": "70034653",
+          "type": "Elevator",
+          "descriptor": "Elevator - Multiple Devices On Property",
+          "status": "Open",
+          "createdAt": "2026-08-11T14:23:19.000",
+          "address": "136-11 41 AVENUE"
+        },
+        {
+          "key": "69978262",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-06T14:17:15.000",
+          "address": "136-31 41 AVENUE"
+        },
+        {
+          "key": "69947893",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-08-04T08:14:47.000",
+          "address": "135-11 40 ROAD"
+        },
+        {
+          "key": "69817249",
+          "type": "Curb Condition",
+          "descriptor": "Broken Curb",
+          "status": "Closed",
+          "createdAt": "2026-07-23T14:20:10.000",
+          "address": "136-72 ROOSEVELT AVENUE"
+        }
+      ],
+      "contradictionElevator": false
+    }
   },
   "cycle-08-ny-sfsp-0002": {
-    "libraries": []
+    "libraries": [],
+    "complaints311": {
+      "total": 1,
+      "byType": {
+        "Root/Sewer/Sidewalk Condition": 1
+      },
+      "samples": [
+        {
+          "key": "70054930",
+          "type": "Root/Sewer/Sidewalk Condition",
+          "descriptor": "Trees and Sidewalks Program",
+          "status": "In Progress",
+          "createdAt": "2026-08-13T11:39:31.000",
+          "address": "126 CRAIG AVENUE"
+        }
+      ],
+      "contradictionElevator": false
+    }
   },
   "cycle-09-ny-sfsp-0542": {
     "libraries": [
@@ -304,7 +1672,59 @@
         "isMealSite": false,
         "mealSiteId": null
       }
-    ]
+    ],
+    "complaints311": {
+      "total": 57,
+      "byType": {
+        "Elevator": 36,
+        "Root/Sewer/Sidewalk Condition": 2,
+        "Sidewalk Condition": 13,
+        "Curb Condition": 6
+      },
+      "samples": [
+        {
+          "key": "70044917",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-08-12T07:34:37.000",
+          "address": "135-11 40 ROAD"
+        },
+        {
+          "key": "70034653",
+          "type": "Elevator",
+          "descriptor": "Elevator - Multiple Devices On Property",
+          "status": "Open",
+          "createdAt": "2026-08-11T14:23:19.000",
+          "address": "136-11 41 AVENUE"
+        },
+        {
+          "key": "69978262",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-06T14:17:15.000",
+          "address": "136-31 41 AVENUE"
+        },
+        {
+          "key": "69947893",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-08-04T08:14:47.000",
+          "address": "135-11 40 ROAD"
+        },
+        {
+          "key": "69940545",
+          "type": "Root/Sewer/Sidewalk Condition",
+          "descriptor": "Trees and Sidewalks Program",
+          "status": "In Progress",
+          "createdAt": "2026-08-03T13:21:29.000",
+          "address": "140-13 34 AVENUE"
+        }
+      ],
+      "contradictionElevator": false
+    }
   },
   "cycle-05-ny-sfsp-0023": {
     "libraries": [
@@ -321,13 +1741,169 @@
         "isMealSite": false,
         "mealSiteId": null
       }
-    ]
+    ],
+    "complaints311": {
+      "total": 30,
+      "byType": {
+        "Elevator": 18,
+        "Sidewalk Condition": 8,
+        "Root/Sewer/Sidewalk Condition": 3,
+        "Curb Condition": 1
+      },
+      "samples": [
+        {
+          "key": "70034651",
+          "type": "Elevator",
+          "descriptor": "Elevator - Multiple Devices On Property",
+          "status": "Open",
+          "createdAt": "2026-08-11T09:47:35.000",
+          "address": "1919 MCGRAW AVENUE"
+        },
+        {
+          "key": "69989388",
+          "type": "Sidewalk Condition",
+          "descriptor": "Sidewalk Violation",
+          "status": "In Progress",
+          "createdAt": "2026-08-07T16:34:37.000",
+          "address": "433 BOLTON AVENUE"
+        },
+        {
+          "key": "69969710",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-05T17:38:10.000",
+          "address": "1314 VIRGINIA AVENUE"
+        },
+        {
+          "key": "69915528",
+          "type": "Sidewalk Condition",
+          "descriptor": "Broken Sidewalk",
+          "status": "In Progress",
+          "createdAt": "2026-08-01T11:26:41.000",
+          "address": "1930 MCGRAW AVENUE"
+        },
+        {
+          "key": "69882359",
+          "type": "Root/Sewer/Sidewalk Condition",
+          "descriptor": "Trees and Sidewalks Program",
+          "status": "In Progress",
+          "createdAt": "2026-07-29T11:16:43.000",
+          "address": "511 WHITE PLAINS ROAD"
+        }
+      ],
+      "contradictionElevator": true
+    }
   },
   "cycle-05-ny-sfsp-0017": {
-    "libraries": []
+    "libraries": [],
+    "complaints311": {
+      "total": 35,
+      "byType": {
+        "Elevator": 18,
+        "Sidewalk Condition": 8,
+        "Root/Sewer/Sidewalk Condition": 7,
+        "Curb Condition": 2
+      },
+      "samples": [
+        {
+          "key": "70059111",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-13T18:44:10.000",
+          "address": "2064 NOSTRAND AVENUE"
+        },
+        {
+          "key": "70059119",
+          "type": "Elevator",
+          "descriptor": "Elevator - Multiple Devices On Property",
+          "status": "Open",
+          "createdAt": "2026-08-13T13:48:43.000",
+          "address": "2064 NOSTRAND AVENUE"
+        },
+        {
+          "key": "70041760",
+          "type": "ELEVATOR",
+          "descriptor": "MAINTENANCE",
+          "status": "Open",
+          "createdAt": "2026-08-12T18:31:19.000",
+          "address": "2400 NOSTRAND AVENUE"
+        },
+        {
+          "key": "70038793",
+          "type": "Sidewalk Condition",
+          "descriptor": "Sidewalk Violation",
+          "status": "In Progress",
+          "createdAt": "2026-08-12T11:22:18.000",
+          "address": "1128 EAST 32 STREET"
+        },
+        {
+          "key": "69995239",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-08T13:29:10.000",
+          "address": "715 EAST   32 STREET"
+        }
+      ],
+      "contradictionElevator": true
+    }
   },
   "cycle-05-ny-sfsp-0035": {
-    "libraries": []
+    "libraries": [],
+    "complaints311": {
+      "total": 42,
+      "byType": {
+        "Sidewalk Condition": 21,
+        "Elevator": 19,
+        "Curb Condition": 1,
+        "Root/Sewer/Sidewalk Condition": 1
+      },
+      "samples": [
+        {
+          "key": "69963854",
+          "type": "Sidewalk Condition",
+          "descriptor": "Broken Sidewalk",
+          "status": "In Progress",
+          "createdAt": "2026-08-05T14:55:14.000",
+          "address": "11 TIMES SQUARE"
+        },
+        {
+          "key": "69960011",
+          "type": "Elevator",
+          "descriptor": "Elevator - Multiple Devices On Property",
+          "status": "Closed",
+          "createdAt": "2026-08-05T14:37:54.000",
+          "address": "305 WEST   39 STREET"
+        },
+        {
+          "key": "69965039",
+          "type": "Sidewalk Condition",
+          "descriptor": "Sidewalk Collapsed",
+          "status": "Closed",
+          "createdAt": "2026-08-05T10:41:05.000",
+          "address": "640 8 AVENUE"
+        },
+        {
+          "key": "69952160",
+          "type": "Curb Condition",
+          "descriptor": "Curb Defect-Metal Protruding",
+          "status": "Closed",
+          "createdAt": "2026-08-04T12:44:50.000",
+          "address": "207 WEST 40 STREET"
+        },
+        {
+          "key": "69882255",
+          "type": "Elevator",
+          "descriptor": "Elevator - Multiple Devices On Property",
+          "status": "Closed",
+          "createdAt": "2026-07-29T18:20:19.000",
+          "address": "521 WEST   42 STREET"
+        }
+      ],
+      "contradictionElevator": false
+    }
   },
   "cycle-05-ny-sfsp-0007": {
     "libraries": [
@@ -344,7 +1920,59 @@
         "isMealSite": false,
         "mealSiteId": null
       }
-    ]
+    ],
+    "complaints311": {
+      "total": 21,
+      "byType": {
+        "Curb Condition": 8,
+        "Sidewalk Condition": 6,
+        "Root/Sewer/Sidewalk Condition": 1,
+        "Elevator": 6
+      },
+      "samples": [
+        {
+          "key": "70034290",
+          "type": "Curb Condition",
+          "descriptor": "Defacement",
+          "status": "In Progress",
+          "createdAt": "2026-08-11T11:01:58.000",
+          "address": "69-10 YELLOWSTONE BOULEVARD"
+        },
+        {
+          "key": "70010766",
+          "type": "Curb Condition",
+          "descriptor": "Defacement",
+          "status": "In Progress",
+          "createdAt": "2026-08-09T09:25:01.000",
+          "address": "69-10 YELLOWSTONE BOULEVARD"
+        },
+        {
+          "key": "69923362",
+          "type": "Sidewalk Condition",
+          "descriptor": "Blocked - Construction",
+          "status": "Closed",
+          "createdAt": "2026-08-01T09:27:45.000",
+          "address": "110-11 71 AVENUE"
+        },
+        {
+          "key": "69898225",
+          "type": "Sidewalk Condition",
+          "descriptor": "Newspaper Box Complaint",
+          "status": "In Progress",
+          "createdAt": "2026-07-30T16:56:53.000",
+          "address": "106-20 CONTINENTAL AVENUE"
+        },
+        {
+          "key": "69895769",
+          "type": "Sidewalk Condition",
+          "descriptor": "Dumpster - Construction Waste",
+          "status": "In Progress",
+          "createdAt": "2026-07-30T11:46:45.000",
+          "address": "68-80 108 STREET"
+        }
+      ],
+      "contradictionElevator": true
+    }
   },
   "cycle-05-ny-sfsp-0120": {
     "libraries": [
@@ -361,16 +1989,222 @@
         "isMealSite": false,
         "mealSiteId": null
       }
-    ]
+    ],
+    "complaints311": {
+      "total": 6,
+      "byType": {
+        "Sidewalk Condition": 4,
+        "Root/Sewer/Sidewalk Condition": 2
+      },
+      "samples": [
+        {
+          "key": "69836202",
+          "type": "Sidewalk Condition",
+          "descriptor": "Broken Sidewalk",
+          "status": "In Progress",
+          "createdAt": "2026-07-24T10:51:13.000",
+          "address": "225 KATAN AVENUE"
+        },
+        {
+          "key": "69726309",
+          "type": "Root/Sewer/Sidewalk Condition",
+          "descriptor": "Trees and Sidewalks Program",
+          "status": "In Progress",
+          "createdAt": "2026-07-15T14:31:24.000",
+          "address": "68 MARGARET STREET"
+        },
+        {
+          "key": "69678509",
+          "type": "Root/Sewer/Sidewalk Condition",
+          "descriptor": "Trees and Sidewalks Program",
+          "status": "In Progress",
+          "createdAt": "2026-07-10T20:29:44.000",
+          "address": "80 MARGARET STREET"
+        },
+        {
+          "key": "69663558",
+          "type": "Sidewalk Condition",
+          "descriptor": "Pedestrian Ramp Defective",
+          "status": "Closed",
+          "createdAt": "2026-07-09T12:00:57.000",
+          "address": "195 WELLINGTON COURT"
+        },
+        {
+          "key": "69474945",
+          "type": "Sidewalk Condition",
+          "descriptor": "Broken Sidewalk",
+          "status": "Closed",
+          "createdAt": "2026-06-24T13:41:51.000",
+          "address": "3917 AMBOY ROAD"
+        }
+      ],
+      "contradictionElevator": false
+    }
   },
   "cycle-05-ny-sfsp-0037": {
-    "libraries": []
+    "libraries": [],
+    "complaints311": {
+      "total": 82,
+      "byType": {
+        "Elevator": 55,
+        "Sidewalk Condition": 17,
+        "Curb Condition": 6,
+        "Root/Sewer/Sidewalk Condition": 4
+      },
+      "samples": [
+        {
+          "key": "70046283",
+          "type": "ELEVATOR",
+          "descriptor": "MAINTENANCE",
+          "status": "Open",
+          "createdAt": "2026-08-12T18:21:39.000",
+          "address": "3100 WEBSTER AVENUE"
+        },
+        {
+          "key": "70024280",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-10T13:02:07.000",
+          "address": "2939 GRAND CONCOURSE"
+        },
+        {
+          "key": "70020897",
+          "type": "Sidewalk Condition",
+          "descriptor": "Broken Sidewalk",
+          "status": "In Progress",
+          "createdAt": "2026-08-10T06:17:30.000",
+          "address": "3065 DECATUR AVENUE"
+        },
+        {
+          "key": "70013594",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-09T18:02:53.000",
+          "address": "3010 VALENTINE AVENUE"
+        },
+        {
+          "key": "69961097",
+          "type": "Sidewalk Condition",
+          "descriptor": "Broken Sidewalk",
+          "status": "In Progress",
+          "createdAt": "2026-08-05T06:14:47.000",
+          "address": "3065 DECATUR AVENUE"
+        }
+      ],
+      "contradictionElevator": true
+    }
   },
   "cycle-05-ny-sfsp-0030": {
-    "libraries": []
+    "libraries": [],
+    "complaints311": {
+      "total": 23,
+      "byType": {
+        "Elevator": 6,
+        "Root/Sewer/Sidewalk Condition": 6,
+        "Sidewalk Condition": 9,
+        "Curb Condition": 2
+      },
+      "samples": [
+        {
+          "key": "69991168",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-07T15:19:51.000",
+          "address": "1280 EAST   12 STREET"
+        },
+        {
+          "key": "69979740",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-06T12:57:11.000",
+          "address": "1585 EAST   14 STREET"
+        },
+        {
+          "key": "69976875",
+          "type": "Root/Sewer/Sidewalk Condition",
+          "descriptor": "Trees and Sidewalks Program",
+          "status": "In Progress",
+          "createdAt": "2026-08-06T07:31:24.000",
+          "address": "1613 AVENUE P"
+        },
+        {
+          "key": "69966559",
+          "type": "Sidewalk Condition",
+          "descriptor": "Sidewalk Violation",
+          "status": "Closed",
+          "createdAt": "2026-08-05T17:26:26.000",
+          "address": "1609 AVENUE P"
+        },
+        {
+          "key": "69967949",
+          "type": "Sidewalk Condition",
+          "descriptor": "Sidewalk Violation",
+          "status": "Closed",
+          "createdAt": "2026-08-05T17:20:29.000",
+          "address": "1609 AVENUE P"
+        }
+      ],
+      "contradictionElevator": true
+    }
   },
   "cycle-05-ny-sfsp-0088": {
-    "libraries": []
+    "libraries": [],
+    "complaints311": {
+      "total": 31,
+      "byType": {
+        "Elevator": 20,
+        "Sidewalk Condition": 8,
+        "Root/Sewer/Sidewalk Condition": 1,
+        "Curb Condition": 2
+      },
+      "samples": [
+        {
+          "key": "70060546",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-13T16:47:08.000",
+          "address": "23 EAST  109 STREET"
+        },
+        {
+          "key": "70059113",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-13T13:11:59.000",
+          "address": "23 EAST  109 STREET"
+        },
+        {
+          "key": "70046343",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-12T19:07:18.000",
+          "address": "23 EAST  109 STREET"
+        },
+        {
+          "key": "70037667",
+          "type": "Elevator",
+          "descriptor": "Elevator - Multiple Devices On Property",
+          "status": "Closed",
+          "createdAt": "2026-08-11T09:25:22.000",
+          "address": "21 EAST  107 STREET"
+        },
+        {
+          "key": "70008310",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-09T12:27:37.000",
+          "address": "305 EAST   97 STREET"
+        }
+      ],
+      "contradictionElevator": true
+    }
   },
   "cycle-05-ny-sfsp-0034": {
     "libraries": [
@@ -387,12 +2221,148 @@
         "isMealSite": false,
         "mealSiteId": null
       }
-    ]
+    ],
+    "complaints311": {
+      "total": 34,
+      "byType": {
+        "Elevator": 17,
+        "Curb Condition": 4,
+        "Sidewalk Condition": 13
+      },
+      "samples": [
+        {
+          "key": "70044917",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-08-12T07:34:37.000",
+          "address": "135-11 40 ROAD"
+        },
+        {
+          "key": "70034653",
+          "type": "Elevator",
+          "descriptor": "Elevator - Multiple Devices On Property",
+          "status": "Open",
+          "createdAt": "2026-08-11T14:23:19.000",
+          "address": "136-11 41 AVENUE"
+        },
+        {
+          "key": "69978262",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-06T14:17:15.000",
+          "address": "136-31 41 AVENUE"
+        },
+        {
+          "key": "69947893",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-08-04T08:14:47.000",
+          "address": "135-11 40 ROAD"
+        },
+        {
+          "key": "69817249",
+          "type": "Curb Condition",
+          "descriptor": "Broken Curb",
+          "status": "Closed",
+          "createdAt": "2026-07-23T14:20:10.000",
+          "address": "136-72 ROOSEVELT AVENUE"
+        }
+      ],
+      "contradictionElevator": false
+    }
   },
   "cycle-05-ny-sfsp-0122": {
-    "libraries": []
+    "libraries": [],
+    "complaints311": {
+      "total": 3,
+      "byType": {
+        "Elevator": 2,
+        "Sidewalk Condition": 1
+      },
+      "samples": [
+        {
+          "key": "69955585",
+          "type": "Elevator",
+          "descriptor": "Elevator - Multiple Devices On Property",
+          "status": "Open",
+          "createdAt": "2026-08-04T02:38:15.000",
+          "address": "55 RICHMOND TERRACE"
+        },
+        {
+          "key": "69808466",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-07-21T17:05:43.000",
+          "address": "201 HAMILTON AVENUE"
+        },
+        {
+          "key": "69659420",
+          "type": "Sidewalk Condition",
+          "descriptor": "Sidewalk Violation",
+          "status": "In Progress",
+          "createdAt": "2026-07-09T12:06:45.000",
+          "address": "177 WESTERVELT AVENUE"
+        }
+      ],
+      "contradictionElevator": false
+    }
   },
   "cycle-05-ny-sfsp-0062": {
-    "libraries": []
+    "libraries": [],
+    "complaints311": {
+      "total": 15,
+      "byType": {
+        "Elevator": 13,
+        "Root/Sewer/Sidewalk Condition": 1,
+        "Sidewalk Condition": 1
+      },
+      "samples": [
+        {
+          "key": "70012275",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-08-09T14:49:40.000",
+          "address": "1012 KELLY STREET"
+        },
+        {
+          "key": "69908601",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Closed",
+          "createdAt": "2026-07-31T14:01:00.000",
+          "address": "1049 FOX STREET"
+        },
+        {
+          "key": "69898478",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-07-30T14:28:09.000",
+          "address": "1049 FOX STREET"
+        },
+        {
+          "key": "69812922",
+          "type": "Elevator",
+          "descriptor": "Elevator - Single Device On Property/No Alternate Service",
+          "status": "Open",
+          "createdAt": "2026-07-22T16:47:30.000",
+          "address": "975 SIMPSON STREET"
+        },
+        {
+          "key": "69736254",
+          "type": "Elevator",
+          "descriptor": "Elevator - Multiple Devices On Property",
+          "status": "Closed",
+          "createdAt": "2026-07-16T10:52:46.000",
+          "address": "980 WESTCHESTER AVENUE"
+        }
+      ],
+      "contradictionElevator": true
+    }
   }
 }

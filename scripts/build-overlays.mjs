@@ -20,12 +20,25 @@ import { fileURLToPath } from "node:url";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const SITES_PATH = resolve(HERE, "..", "public", "data", "sites.json");
+const STATIONS_PATH = resolve(HERE, "..", "public", "data", "stations.json");
 const OUT_PATH = resolve(HERE, "..", "public", "data", "overlays.json");
 
 const FACILITIES_URL = "https://data.cityofnewyork.us/resource/ji82-xba5.json";
 const MTA_STATIONS_URL = "https://data.ny.gov/resource/39hk-dx4f.json";
+const NYC311_URL = "https://data.cityofnewyork.us/resource/erm2-nwe9.json";
 const RADIUS_METERS = 300;
 const MEAL_SITE_MATCH_METERS = 60;
+const NYC311_LOOKBACK_DAYS = 90;
+// Complaint types worth surfacing on a site's corridor. Values must match
+// the 311 dataset's complaint_type strings (case-insensitive compare).
+const NYC311_TARGET_TYPES = [
+  "Elevator",                       // NYCHA / HPD elevator issues
+  "Sidewalk Condition",             // DOT sidewalk cracks / trips
+  "Root/Sewer/Sidewalk Condition",  // Parks-driven sidewalk damage
+  "Curb Condition",                 // DOT curb / curb-cut issues
+  "Scaffold Safety",                // DOB scaffolding hazards
+  "DEP Sidewalk Condition",         // DEP-driven sidewalk work
+];
 
 async function fetchAll(url, params) {
   const u = new URL(url);
@@ -167,6 +180,103 @@ async function main() {
   const withHits = [...perSite.values()].filter((v) => v.libraries.length > 0).length;
   console.log(`  ${withHits} of ${sites.length} sites have >=1 library within the ${RADIUS_METERS}m corridor`);
 
+  // ---- Layer 2: 311 complaints (elevator / sidewalk / curb / scaffold) --
+  console.log(`\n[Layer 2: 311 — last ${NYC311_LOOKBACK_DAYS} days, target complaint types]`);
+  console.log(`  types included: ${NYC311_TARGET_TYPES.map((t) => JSON.stringify(t)).join(", ")}`);
+  const cutoff = new Date(Date.now() - NYC311_LOOKBACK_DAYS * 86400000);
+  const cutoffIso = cutoff.toISOString().slice(0, 19); // Socrata literal
+  const typeList = NYC311_TARGET_TYPES.map((t) => `'${t.toLowerCase()}'`).join(",");
+
+  // Load stations.json for the contradiction check.
+  const stationsData = JSON.parse(await readFile(STATIONS_PATH, "utf8"));
+
+  let complaint311Total = 0;
+  let sitesWith311 = 0;
+  let contradictionCount = 0;
+
+  for (const site of sites) {
+    if (site.lat == null || site.lng == null) {
+      const entry = perSite.get(site.id) ?? { libraries: [] };
+      entry.complaints311 = { total: 0, byType: {}, samples: [], contradictionElevator: false };
+      perSite.set(site.id, entry);
+      continue;
+    }
+    const origins = [];
+    origins.push({ lat: site.lat, lng: site.lng });
+    const stationCoord = site.nearestStationId ? stationById.get(site.nearestStationId) : null;
+    if (stationCoord && Number.isFinite(stationCoord.lat)) origins.push(stationCoord);
+
+    // Single request per site: OR across up to two within_circle predicates.
+    const circles = origins
+      .map((o) => `within_circle(location, ${o.lat}, ${o.lng}, ${RADIUS_METERS})`)
+      .join(" OR ");
+    const where = `created_date > '${cutoffIso}' AND lower(complaint_type) in (${typeList}) AND (${circles})`;
+    const url = new URL(NYC311_URL);
+    url.searchParams.set("$select", "unique_key,complaint_type,descriptor,status,created_date,incident_address");
+    url.searchParams.set("$where", where);
+    url.searchParams.set("$order", "created_date DESC");
+    url.searchParams.set("$limit", "500");
+
+    const res = await fetch(url);
+    if (!res.ok) {
+      console.warn(`  ${site.id}: 311 fetch failed HTTP ${res.status}`);
+      const entry = perSite.get(site.id) ?? { libraries: [] };
+      entry.complaints311 = { total: 0, byType: {}, samples: [], contradictionElevator: false, error: `HTTP ${res.status}` };
+      perSite.set(site.id, entry);
+      continue;
+    }
+    const rows = await res.json();
+
+    // Aggregate.
+    const byType = {};
+    for (const r of rows) {
+      // Normalize type casing so "Elevator" and "ELEVATOR" merge cleanly.
+      const key = String(r.complaint_type ?? "").replace(/\s+/g, " ").trim().toLowerCase();
+      const canonical =
+        NYC311_TARGET_TYPES.find((t) => t.toLowerCase() === key) ?? r.complaint_type ?? "Unknown";
+      byType[canonical] = (byType[canonical] ?? 0) + 1;
+    }
+    const samples = rows.slice(0, 5).map((r) => ({
+      key: r.unique_key,
+      type: r.complaint_type,
+      descriptor: r.descriptor ?? null,
+      status: r.status ?? null,
+      createdAt: r.created_date,
+      address: r.incident_address ?? null,
+    }));
+
+    // Contradiction: station reports all ADA-path elevators in service,
+    // but the corridor has Elevator-typed 311 complaints in the window.
+    let contradictionElevator = false;
+    const elevatorCount = byType["Elevator"] ?? 0;
+    if (elevatorCount > 0 && site.nearestStationId) {
+      const st = stationsData[site.nearestStationId];
+      if (st && Array.isArray(st.elevators)) {
+        const adaPath = st.elevators.filter((e) => e.onAdaPath === true);
+        if (adaPath.length > 0 && adaPath.every((e) => e.inService === true)) {
+          contradictionElevator = true;
+          contradictionCount++;
+        }
+      }
+    }
+
+    const entry = perSite.get(site.id) ?? { libraries: [] };
+    entry.complaints311 = {
+      total: rows.length,
+      byType,
+      samples,
+      contradictionElevator,
+    };
+    perSite.set(site.id, entry);
+
+    complaint311Total += rows.length;
+    if (rows.length > 0) sitesWith311++;
+  }
+
+  console.log(`  ${complaint311Total} complaints across all corridors`);
+  console.log(`  ${sitesWith311} of ${sites.length} sites have >=1 complaint in the ${RADIUS_METERS}m corridor`);
+  console.log(`  ${contradictionCount} sites carry an elevator contradiction (station "in service" vs resident reports)`);
+
   // ---- Assemble overlays.json -------------------------------------------
   const out = {
     _meta: {
@@ -188,6 +298,15 @@ async function main() {
           url: "https://data.ny.gov/Transportation/MTA-Subway-Stations/39hk-dx4f",
           pulled_at: pulledAt,
           note: "Used only for gtfs_stop_id → (lat, lng) lookup so the corridor search can query around the site's nearest ADA station too.",
+        },
+        complaints311: {
+          dataset: "NYC 311 Service Requests (erm2-nwe9)",
+          publisher: "NYC Department of Information Technology & Telecommunications (DoITT)",
+          url: "https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9",
+          pulled_at: pulledAt,
+          lookback_days: NYC311_LOOKBACK_DAYS,
+          filter: `complaint_type in (${NYC311_TARGET_TYPES.map((t) => JSON.stringify(t)).join(", ")}) AND within_circle(location, siteOrStation, ${RADIUS_METERS}m)`,
+          note: "Per-site query uses Socrata within_circle() OR'd across the site coord and its nearest ADA station coord. Complaint types are matched case-insensitively so 'Elevator' and 'ELEVATOR' merge.",
         },
       },
     },
