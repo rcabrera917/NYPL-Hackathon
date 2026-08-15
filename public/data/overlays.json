@@ -1,0 +1,384 @@
+{
+  "_meta": {
+    "generated_at": "2026-08-15T20:21:23.769Z",
+    "radius_meters": 300,
+    "sources": {
+      "libraries": {
+        "dataset": "NYC Facilities Database (ji82-xba5)",
+        "publisher": "NYC Department of City Planning",
+        "filter": "facsubgrp = 'PUBLIC LIBRARIES'",
+        "url": "https://data.cityofnewyork.us/City-Government/Facilities-Database/ji82-xba5",
+        "pulled_at": "2026-08-15T20:21:23.769Z",
+        "note": "Fetched full set (~227 rows) and filtered per-site with haversine. The geometry column is text (WKT), not a Socrata Point, so within_circle is unsupported on this dataset — the fallback is equivalent.",
+        "systems_included": [
+          "NYPL (Manhattan / Bronx / Staten Island)",
+          "BPL (Brooklyn)",
+          "QPL (Queens)"
+        ]
+      },
+      "stations_lookup": {
+        "dataset": "MTA Subway Stations (39hk-dx4f)",
+        "publisher": "MTA, via NY State Open Data",
+        "url": "https://data.ny.gov/Transportation/MTA-Subway-Stations/39hk-dx4f",
+        "pulled_at": "2026-08-15T20:21:23.769Z",
+        "note": "Used only for gtfs_stop_id → (lat, lng) lookup so the corridor search can query around the site's nearest ADA station too."
+      }
+    }
+  },
+  "cycle-05-ny-sfsp-0031": {
+    "libraries": []
+  },
+  "cycle-05-ny-sfsp-0100": {
+    "libraries": []
+  },
+  "cycle-05-ny-sfsp-0140": {
+    "libraries": []
+  },
+  "cycle-05-ny-sfsp-0630": {
+    "libraries": []
+  },
+  "cycle-05-ny-sfsp-0285": {
+    "libraries": [
+      {
+        "id": "702313a7935fa64dfa88e4a7a12efb61",
+        "name": "MACOMB'S BRIDGE LIBRARY",
+        "system": "NYPL",
+        "operator": "New York Public Library",
+        "address": "2633 ADAM CLAYTON POWELL JR BOULEVARD, NEW YORK, 10039",
+        "lat": 40.8253749522,
+        "lng": -73.935513889,
+        "borough": "MANHATTAN",
+        "distanceMeters": 185,
+        "isMealSite": false,
+        "mealSiteId": null
+      }
+    ]
+  },
+  "cycle-05-ny-sfsp-0230": {
+    "libraries": []
+  },
+  "cycle-05-ny-sfsp-0801": {
+    "libraries": [
+      {
+        "id": "eec118768e15a5e03d3354abda7b00da",
+        "name": "125TH STREET LIBRARY",
+        "system": "NYPL",
+        "operator": "New York Public Library",
+        "address": "224 EAST 125 STREET, NEW YORK, 10035",
+        "lat": 40.8030267103,
+        "lng": -73.9348530293,
+        "borough": "MANHATTAN",
+        "distanceMeters": 262,
+        "isMealSite": false,
+        "mealSiteId": null
+      }
+    ]
+  },
+  "cycle-05-ny-sfsp-0311": {
+    "libraries": [
+      {
+        "id": "7bb83076843517e6390b3d1124d6150f",
+        "name": "WEBSTER LIBRARY",
+        "system": "NYPL",
+        "operator": "New York Public Library",
+        "address": "1465 YORK AVENUE, NEW YORK, 10075",
+        "lat": 40.7706620178,
+        "lng": -73.9513514661,
+        "borough": "MANHATTAN",
+        "distanceMeters": 182,
+        "isMealSite": false,
+        "mealSiteId": null
+      }
+    ]
+  },
+  "cycle-05-ny-sfsp-0766": {
+    "libraries": [
+      {
+        "id": "eec118768e15a5e03d3354abda7b00da",
+        "name": "125TH STREET LIBRARY",
+        "system": "NYPL",
+        "operator": "New York Public Library",
+        "address": "224 EAST 125 STREET, NEW YORK, 10035",
+        "lat": 40.8030267103,
+        "lng": -73.9348530293,
+        "borough": "MANHATTAN",
+        "distanceMeters": 262,
+        "isMealSite": false,
+        "mealSiteId": null
+      }
+    ]
+  },
+  "cycle-05-ny-sfsp-0793": {
+    "libraries": []
+  },
+  "cycle-05-ny-sfsp-0368": {
+    "libraries": []
+  },
+  "cycle-05-ny-sfsp-0217": {
+    "libraries": [
+      {
+        "id": "6cf4c3064982a8e30f161319e2ca6d2d",
+        "name": "HAMILTON FISH PARK LIBRARY",
+        "system": "NYPL",
+        "operator": "New York Public Library",
+        "address": "415 EAST HOUSTON STREET, NEW YORK, 10002",
+        "lat": 40.7193762137,
+        "lng": -73.9796208845,
+        "borough": "MANHATTAN",
+        "distanceMeters": 184,
+        "isMealSite": false,
+        "mealSiteId": null
+      }
+    ]
+  },
+  "cycle-05-ny-sfsp-0119": {
+    "libraries": []
+  },
+  "cycle-05-ny-sfsp-0818": {
+    "libraries": []
+  },
+  "cycle-05-ny-sfsp-0171": {
+    "libraries": [
+      {
+        "id": "aac228ca754138338e855489cb94bec5",
+        "name": "LANGSTON HUGHES",
+        "system": "QPL",
+        "operator": "Queens Public Library",
+        "address": "100-01 NORTHERN BOULEVARD, CORONA, 11368",
+        "lat": 40.7576399329,
+        "lng": -73.8681396185,
+        "borough": "QUEENS",
+        "distanceMeters": 160,
+        "isMealSite": false,
+        "mealSiteId": null
+      }
+    ]
+  },
+  "cycle-05-ny-sfsp-0694": {
+    "libraries": []
+  },
+  "cycle-05-ny-sfsp-0167": {
+    "libraries": []
+  },
+  "cycle-05-ny-sfsp-0438": {
+    "libraries": []
+  },
+  "cycle-05-ny-sfsp-0359": {
+    "libraries": []
+  },
+  "cycle-05-ny-sfsp-0393": {
+    "libraries": [
+      {
+        "id": "11227fa7d859b1c64029c0a3c92b4911",
+        "name": "EASTCHESTER LIBRARY",
+        "system": "NYPL",
+        "operator": "New York Public Library",
+        "address": "1385 EAST GUN HILL ROAD, BRONX, 10469",
+        "lat": 40.8701459976,
+        "lng": -73.8450655401,
+        "borough": "BRONX",
+        "distanceMeters": 131,
+        "isMealSite": false,
+        "mealSiteId": null
+      }
+    ]
+  },
+  "cycle-05-ny-sfsp-0440": {
+    "libraries": [
+      {
+        "id": "eec118768e15a5e03d3354abda7b00da",
+        "name": "125TH STREET LIBRARY",
+        "system": "NYPL",
+        "operator": "New York Public Library",
+        "address": "224 EAST 125 STREET, NEW YORK, 10035",
+        "lat": 40.8030267103,
+        "lng": -73.9348530293,
+        "borough": "MANHATTAN",
+        "distanceMeters": 262,
+        "isMealSite": false,
+        "mealSiteId": null
+      }
+    ]
+  },
+  "cycle-05-ny-sfsp-0411": {
+    "libraries": []
+  },
+  "cycle-05-ny-sfsp-0343": {
+    "libraries": []
+  },
+  "cycle-05-ny-sfsp-0371": {
+    "libraries": [
+      {
+        "id": "b144192f59ca2c82202a2f258e9dc134",
+        "name": "HARLEM LIBRARY",
+        "system": "NYPL",
+        "operator": "New York Public Library",
+        "address": "9 WEST 124 STREET, NEW YORK, 10027",
+        "lat": 40.8061988843,
+        "lng": -73.9433023724,
+        "borough": "MANHATTAN",
+        "distanceMeters": 70,
+        "isMealSite": false,
+        "mealSiteId": null
+      },
+      {
+        "id": "eec118768e15a5e03d3354abda7b00da",
+        "name": "125TH STREET LIBRARY",
+        "system": "NYPL",
+        "operator": "New York Public Library",
+        "address": "224 EAST 125 STREET, NEW YORK, 10035",
+        "lat": 40.8030267103,
+        "lng": -73.9348530293,
+        "borough": "MANHATTAN",
+        "distanceMeters": 262,
+        "isMealSite": false,
+        "mealSiteId": null
+      }
+    ]
+  },
+  "cycle-05-ny-sfsp-0715": {
+    "libraries": [
+      {
+        "id": "1e61ab24f52d4baa3dbda1d3e19426a2",
+        "name": "GEORGE BRUCE LIBRARY",
+        "system": "NYPL",
+        "operator": "New York Public Library",
+        "address": "518 WEST 125 STREET, NEW YORK, 10027",
+        "lat": 40.8137809586,
+        "lng": -73.957055147,
+        "borough": "MANHATTAN",
+        "distanceMeters": 227,
+        "isMealSite": false,
+        "mealSiteId": null
+      }
+    ]
+  },
+  "cycle-05-ny-sfsp-0392": {
+    "libraries": []
+  },
+  "cycle-05-ny-sfsp-0439": {
+    "libraries": [
+      {
+        "id": "d43a18e107abff5a6164579a5381cf64",
+        "name": "FLUSHING",
+        "system": "QPL",
+        "operator": "Queens Public Library",
+        "address": "41-17 MAIN STREET, FLUSHING, 11355",
+        "lat": 40.7577906006,
+        "lng": -73.828877909,
+        "borough": "QUEENS",
+        "distanceMeters": 223,
+        "isMealSite": false,
+        "mealSiteId": null
+      }
+    ]
+  },
+  "cycle-08-ny-sfsp-0002": {
+    "libraries": []
+  },
+  "cycle-09-ny-sfsp-0542": {
+    "libraries": [
+      {
+        "id": "d43a18e107abff5a6164579a5381cf64",
+        "name": "FLUSHING",
+        "system": "QPL",
+        "operator": "Queens Public Library",
+        "address": "41-17 MAIN STREET, FLUSHING, 11355",
+        "lat": 40.7577906006,
+        "lng": -73.828877909,
+        "borough": "QUEENS",
+        "distanceMeters": 223,
+        "isMealSite": false,
+        "mealSiteId": null
+      },
+      {
+        "id": "4ef7549ea636d64430a7590f4de5f1f9",
+        "name": "MITCHELL-LINDEN",
+        "system": "QPL",
+        "operator": "Queens Public Library",
+        "address": "31-32 UNION STREET, FLUSHING, 11354",
+        "lat": 40.769143933,
+        "lng": -73.8269749843,
+        "borough": "QUEENS",
+        "distanceMeters": 291,
+        "isMealSite": false,
+        "mealSiteId": null
+      }
+    ]
+  },
+  "cycle-09-ny-sfsp-0623": {
+    "libraries": []
+  },
+  "cycle-10-ny-sfsp-0632": {
+    "libraries": []
+  },
+  "cycle-12-ny-sfsp-0150": {
+    "libraries": []
+  },
+  "cycle-12-ny-sfsp-0180": {
+    "libraries": []
+  },
+  "cycle-12-ny-sfsp-0633": {
+    "libraries": []
+  },
+  "cycle-13-ny-sfsp-0634": {
+    "libraries": []
+  },
+  "cycle-05-ny-sfsp-0023": {
+    "libraries": [
+      {
+        "id": "6011ab9825262c85e7922e6b103f14e2",
+        "name": "PARKCHESTER LIBRARY",
+        "system": "NYPL",
+        "operator": "New York Public Library",
+        "address": "1985 WESTCHESTER AVENUE, BRONX, 10462",
+        "lat": 40.8337678169,
+        "lng": -73.8583561777,
+        "borough": "BRONX",
+        "distanceMeters": 216,
+        "isMealSite": false,
+        "mealSiteId": null
+      }
+    ]
+  },
+  "cycle-05-ny-sfsp-0017": {
+    "libraries": []
+  },
+  "cycle-05-ny-sfsp-0035": {
+    "libraries": []
+  },
+  "cycle-05-ny-sfsp-0007": {
+    "libraries": [
+      {
+        "id": "497687da0afcbc04b816edaac77f5cd5",
+        "name": "FOREST HILLS",
+        "system": "QPL",
+        "operator": "Queens Public Library",
+        "address": "108-19 71 AVENUE, FOREST HILLS, 11375",
+        "lat": 40.7221495973,
+        "lng": -73.8430473293,
+        "borough": "QUEENS",
+        "distanceMeters": 134,
+        "isMealSite": false,
+        "mealSiteId": null
+      }
+    ]
+  },
+  "cycle-05-ny-sfsp-0120": {
+    "libraries": [
+      {
+        "id": "7729bd161464d46386b115db7f369a31",
+        "name": "GREAT KILLS LIBRARY",
+        "system": "NYPL",
+        "operator": "New York Public Library",
+        "address": "56 GIFFORDS LANE, STATEN ISLAND, 10308",
+        "lat": 40.5524320334,
+        "lng": -74.1511120698,
+        "borough": "STATEN ISLAND",
+        "distanceMeters": 136,
+        "isMealSite": false,
+        "mealSiteId": null
+      }
+    ]
+  }
+}

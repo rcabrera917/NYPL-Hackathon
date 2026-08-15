@@ -74,6 +74,20 @@
     .detail li { margin-bottom: 3px; word-break: break-word; }
     .detail a { color: var(--accent); text-decoration: none; }
     .hint { color: var(--muted); font-size: 12px; padding: 8px; }
+    /* Along-the-way overlay layer (additive). */
+    .layer-toggle { display: flex; align-items: center; gap: 8px; margin: 8px 0 0; font-size: 12px; color: var(--muted); }
+    .layer-toggle input { accent-color: var(--accent); }
+    .lib-marker { background: #7c3aed; width: 12px; height: 12px; border: 2px solid #0b1220; border-radius: 2px; box-shadow: 0 0 0 1px rgba(255,255,255,0.15); }
+    details.corridor { margin-top: 12px; border-top: 1px solid var(--border); padding-top: 8px; }
+    details.corridor > summary { cursor: pointer; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; padding: 4px 0; }
+    details.corridor > summary::marker { color: var(--accent); }
+    .corridor-item { padding: 6px 0; border-top: 1px dashed var(--border); font-size: 12px; }
+    .corridor-item:first-of-type { border-top: none; }
+    .corridor-item .n { font-weight: 600; }
+    .corridor-item .m { color: var(--muted); }
+    .corridor-item .src { color: var(--muted); font-size: 10px; margin-top: 2px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .corridor-item .lib-chip { display: inline-block; background: rgba(124,58,237,0.2); color: #c4b5fd; border: 1px solid rgba(124,58,237,0.5); padding: 1px 6px; border-radius: 999px; font-size: 10px; margin-right: 4px; }
+    .corridor-item .meal-chip { display: inline-block; background: rgba(34,197,94,0.15); color: #86efac; border: 1px solid rgba(34,197,94,0.4); padding: 1px 6px; border-radius: 999px; font-size: 10px; margin-right: 4px; }
   </style>
 </head>
 <body>
@@ -106,6 +120,11 @@
       </div>
 
       <button id="searchBtn" class="primary" type="button" style="width:100%">Search</button>
+
+      <label class="layer-toggle">
+        <input type="checkbox" id="toggleLibraries" checked />
+        <span id="toggleLibrariesLabel">Show libraries</span>
+      </label>
 
       <div class="status" id="status"></div>
       <div id="banners"></div>
@@ -199,6 +218,10 @@
     }).addTo(map);
     const markers = new Map(); // id -> Leaflet marker
     let originMarker = null;
+    // Additive overlay layer for libraries (and later 311/cooling/permits).
+    // If this fails to load, the rest of the map keeps working.
+    const overlayLayers = { libraries: L.layerGroup() };
+    let overlaysData = null; // { _meta, "<siteId>": { libraries: [...] } }
 
     // ---- data load --------------------------------------------------------
     async function loadData() {
@@ -211,6 +234,37 @@
       state.stations = stations;
       state.lang = dict.lang;
       state.i18n = dict.dict;
+    }
+
+    // Fault-tolerant: overlay is additive and optional. Silent failure.
+    async function loadOverlays() {
+      try {
+        const res = await fetch("data/overlays.json");
+        if (!res.ok) return;
+        overlaysData = await res.json();
+      } catch (err) {
+        console.warn("overlays.json unavailable — corridor context disabled", err);
+        overlaysData = null;
+      }
+    }
+
+    function renderLibraryLayer() {
+      overlayLayers.libraries.clearLayers();
+      if (!overlaysData) return;
+      // Deduplicate library markers (a branch can be in >1 site's corridor).
+      const seen = new Map();
+      for (const [siteId, entry] of Object.entries(overlaysData)) {
+        if (siteId.startsWith("_")) continue;
+        for (const lib of entry.libraries ?? []) {
+          if (!seen.has(lib.id)) seen.set(lib.id, lib);
+        }
+      }
+      for (const lib of seen.values()) {
+        const icon = L.divIcon({ className: "", html: '<div class="lib-marker"></div>', iconSize: [12, 12], iconAnchor: [6, 6] });
+        const marker = L.marker([lib.lat, lib.lng], { icon });
+        marker.bindTooltip(`${lib.name} (${lib.system})`, { direction: "top", offset: [0, -6] });
+        overlayLayers.libraries.addLayer(marker);
+      }
     }
 
     // ---- rendering --------------------------------------------------------
@@ -309,6 +363,40 @@
           ${site.nearestStationId ? `<dt>${escapeHtml(tr("nearestStation"))}</dt><dd>${escapeHtml(site.nearestStationId)}${station ? ` — ADA=${station.ada}, ${station.elevators?.length ?? 0} elevators` : ""}</dd>` : ""}
           ${distLine}
         </dl>
+        ${renderCorridorSection(site)}
+      `;
+    }
+
+    // Along-the-way corridor block. Fault-tolerant: if overlaysData is null
+    // (fetch failed) we render nothing. Never blocks the main panel.
+    function renderCorridorSection(site) {
+      if (!overlaysData) return "";
+      const entry = overlaysData[site.id];
+      if (!entry) return "";
+      const libs = Array.isArray(entry.libraries) ? entry.libraries : [];
+      if (libs.length === 0) return "";
+
+      const src = overlaysData._meta?.sources?.libraries;
+      const srcLine = src
+        ? `${escapeHtml(src.dataset)} · pulled ${escapeHtml((src.pulled_at ?? "").slice(0, 10))}`
+        : "";
+
+      const items = libs.map((lib) => `
+        <div class="corridor-item">
+          <span class="lib-chip">${escapeHtml(lib.system ?? "Library")}</span>
+          ${lib.isMealSite ? '<span class="meal-chip">★ also a meal site</span>' : ""}
+          <span class="n">${escapeHtml(lib.name)}</span>
+          <span class="m"> — ${escapeHtml(lib.address)}</span>
+          <div class="m">${lib.distanceMeters != null ? lib.distanceMeters + " m along the corridor" : ""}</div>
+          ${srcLine ? `<div class="src">${srcLine}</div>` : ""}
+        </div>
+      `).join("");
+
+      return `
+        <details class="corridor" open>
+          <summary>Along the way — ${libs.length} nearby ${libs.length === 1 ? "library" : "libraries"}</summary>
+          ${items}
+        </details>
       `;
     }
 
@@ -461,6 +549,10 @@
       renderMarkers();
       renderList();
     });
+    $("toggleLibraries").addEventListener("change", (e) => {
+      if (e.target.checked) overlayLayers.libraries.addTo(map);
+      else map.removeLayer(overlayLayers.libraries);
+    });
 
     // ---- boot -------------------------------------------------------------
     (async () => {
@@ -471,6 +563,11 @@
         rerankAndRender();
         fitToAllSites();
         renderStatus();
+        // Overlay is additive & optional. Runs after core render — failure
+        // here never blocks the map.
+        await loadOverlays();
+        renderLibraryLayer();
+        if ($("toggleLibraries").checked) overlayLayers.libraries.addTo(map);
       } catch (err) {
         $("status").textContent = `Failed to load data: ${err.message ?? err}`;
       }
