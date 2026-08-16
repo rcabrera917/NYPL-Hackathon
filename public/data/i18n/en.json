@@ -1,5 +1,6 @@
 {
-  "title": "NYC Summer Meals",
+  "title": "Reachable NYC",
+  "subtitle": "Free summer meals for anyone 18 and under. Verdict shows whether a step-free, elevator-served trip is possible.",
   "intentLabel": "What do you need?",
   "intentPlaceholder": "e.g. free lunch for my 6 year old",
   "addressLabel": "Your location (optional)",

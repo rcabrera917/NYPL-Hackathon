@@ -1,5 +1,6 @@
 {
-  "title": "纽约市夏季餐食",
+  "title": "Reachable NYC",
+  "subtitle": "为18岁及以下的任何人提供免费夏季餐食。判定显示是否可以走无台阶、有电梯的路线抵达。",
   "intentLabel": "您需要什么？",
   "intentPlaceholder": "例如：为我6岁的孩子提供免费午餐",
   "addressLabel": "您的位置（可选）",

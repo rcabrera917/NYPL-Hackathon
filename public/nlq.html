@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NYC Summer Meals — accessibility-aware map</title>
+  <title>Reachable NYC — accessibility-aware map of NYC free summer meals</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
     :root {
@@ -334,7 +334,7 @@
        ========================================================= -->
   <div id="resting-panel">
     <div class="rest-card">
-      <h1 id="titleEl">NYC Summer Meals</h1>
+      <h1 id="titleEl">Reachable NYC</h1>
       <p class="subtitle" id="subtitleEl">Free summer meals for anyone 18 and under. Verdict shows whether a step-free, elevator-served trip is possible.</p>
 
       <div class="big-field autocomplete">
@@ -471,7 +471,8 @@
 
     function applyI18n() {
       $("titleEl").textContent = tr("title");
-      document.title = tr("title");
+      $("subtitleEl").textContent = tr("subtitle");
+      document.title = `${tr("title")} — accessibility-aware map of NYC free summer meals`;
       $("intentLabel").textContent = tr("intentLabel");
       $("intentInput").placeholder = tr("intentPlaceholder");
       $("addressLabel").textContent = tr("addressLabel");

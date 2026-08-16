@@ -1,4 +1,4 @@
-# Future context layers
+# Reachable NYC — future context layers
 
 Datasets that were verified in NYC Open Data during this build but not
 wired into `scripts/build-overlays.mjs`. Each entry explains what the

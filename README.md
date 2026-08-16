@@ -1,6 +1,7 @@
-# Can I Actually Get There?
+# Reachable NYC
 
 An accessibility-aware map of NYC free summer meal sites.
+(Working title during the build: "Can I Actually Get There?")
 
 **Live:** https://nypl-hackathon.vercel.app/public/nlq.html
 **Built at:** "Built for NYC" AI Hackathon — New York Public Library + Major League Hacking, Stavros Niarchos Foundation Library, August 15–16, 2026
