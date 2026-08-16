@@ -38,6 +38,8 @@
     .thanks { background: var(--raised); border-left: 3px solid var(--accent); padding: 12px 16px; border-radius: 4px; margin-top: 16px; font-size: 13px; }
     .disclosure { background: var(--raised); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; margin-top: 16px; font-size: 13px; }
     .disclosure strong { color: var(--accent); }
+    /* Lede: opening section, slightly larger body text for emphasis. */
+    .lede p { font-size: 16px; }
   </style>
 </head>
 <body>
@@ -46,6 +48,21 @@
     <nav><a href="nlq.html">← Back to the map</a></nav>
   </header>
   <main>
+
+    <section class="lede">
+      <h2>Why we don't give you directions</h2>
+      <p>
+        Every routing engine — Google, Apple, OSRM — routes for someone who can use
+        stairs. None of them know where the curb cuts are, or which subway exit is
+        step-free, or that a sidewalk shed narrowed the path to thirty inches. If we
+        drew you a line, we could be sending a wheelchair user into a staircase.
+      </p>
+      <p>
+        So we hand the turns to your maps app, and we own the part it can't do:
+        whether the elevator is working, and whether the door has a step. That gap
+        is the product.
+      </p>
+    </section>
 
     <section>
       <h2>Why we built this</h2>
