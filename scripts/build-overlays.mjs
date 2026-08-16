@@ -10,12 +10,14 @@
 //   [ ] 3. Cooling centers
 //   [ ] 4. Film permits (date-scoped)
 //   [x] 5. Census tract context (ACS 5-year 2023 + USDA LRAM 2019)
+//   [x] 6. Street Tree Census — living trees in the 300m corridor
 //
 // Usage:
-//   node scripts/build-overlays.mjs             # all layers, fetch/print/write
-//   node scripts/build-overlays.mjs --dry-run   # no write
-//   node scripts/build-overlays.mjs --only=5    # run only Layer 5 and merge
-//                                                 into existing overlays.json
+//   node scripts/build-overlays.mjs                # all layers, fetch/print/write
+//   node scripts/build-overlays.mjs --dry-run      # no write
+//   node scripts/build-overlays.mjs --only=5       # run one layer, merge into
+//                                                    existing overlays.json
+//   node scripts/build-overlays.mjs --only=5,6,7   # or several
 
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
@@ -30,6 +32,7 @@ const FACILITIES_URL = "https://data.cityofnewyork.us/resource/ji82-xba5.json";
 const MTA_STATIONS_URL = "https://data.ny.gov/resource/39hk-dx4f.json";
 const NYC311_URL = "https://data.cityofnewyork.us/resource/erm2-nwe9.json";
 const FCC_BLOCK_URL = "https://geo.fcc.gov/api/census/block/find";
+const TREES_URL = "https://data.cityofnewyork.us/resource/uvpi-gqnh.json";
 const CENSUS_ACS_DETAIL_URL = "https://api.census.gov/data/2023/acs/acs5";
 const CENSUS_ACS_SUBJECT_URL = "https://api.census.gov/data/2023/acs/acs5/subject";
 const ACS_VINTAGE_LABEL = "ACS 5-year, 2023";
@@ -257,6 +260,44 @@ function median(nums) {
   return sorted.length % 2 === 0 ? (sorted[m - 1] + sorted[m]) / 2 : sorted[m];
 }
 
+// Origins used by every corridor layer: the site itself and its
+// nearest ADA station. Missing coords are silently dropped — every
+// downstream layer must be robust to zero origins.
+function originsFor(site, stationById) {
+  const origins = [];
+  if (site.lat != null && site.lng != null) origins.push({ lat: site.lat, lng: site.lng });
+  const s = site.nearestStationId ? stationById.get(site.nearestStationId) : null;
+  if (s && Number.isFinite(s.lat)) origins.push(s);
+  return origins;
+}
+
+// Bounding box that comfortably covers a haversine circle of `radiusMeters`
+// around every origin. Used for datasets where `within_circle` isn't
+// available (e.g. tree census — lat/lng are numeric but there is no
+// Point column). Latitude buffer is straight; longitude buffer scales
+// by cos(lat). We pad by 5% and take the union of all origin bboxes.
+function unionBboxMeters(origins, radiusMeters) {
+  if (!origins.length) return null;
+  const dLat = (radiusMeters / 111_320) * 1.05;
+  let minLat = Infinity, maxLat = -Infinity, minLng = Infinity, maxLng = -Infinity;
+  for (const o of origins) {
+    const dLng = (radiusMeters / (111_320 * Math.cos((o.lat * Math.PI) / 180))) * 1.05;
+    minLat = Math.min(minLat, o.lat - dLat);
+    maxLat = Math.max(maxLat, o.lat + dLat);
+    minLng = Math.min(minLng, o.lng - dLng);
+    maxLng = Math.max(maxLng, o.lng + dLng);
+  }
+  return { minLat, maxLat, minLng, maxLng };
+}
+
+// True corridor test: is the point within radiusMeters of any origin.
+function pointInCorridor(pointLat, pointLng, origins, radiusMeters) {
+  for (const o of origins) {
+    if (haversineMeters(pointLat, pointLng, o.lat, o.lng) <= radiusMeters) return true;
+  }
+  return false;
+}
+
 async function runCensusLayer(sites, perSite, pulledAt, opts = {}) {
   console.log(`\n[Layer 5: Census tract context — ${ACS_VINTAGE_LABEL} + ${LRAM_VINTAGE_LABEL}]`);
   const key = process.env.CENSUS_API_KEY || "";
@@ -462,61 +503,176 @@ async function runCensusLayer(sites, perSite, pulledAt, opts = {}) {
   };
 }
 
+// ---- Layer 6 helper: Street Tree Census -------------------------------
+// The tree dataset (uvpi-gqnh) has numeric latitude/longitude columns
+// but no Point column, so within_circle is unavailable. We bbox the
+// query at Socrata and haversine-filter the result client-side.
+async function fetchLivingTreesInBbox(bbox) {
+  const params = {
+    $where:
+      `status = 'Alive' ` +
+      `AND latitude between ${bbox.minLat} and ${bbox.maxLat} ` +
+      `AND longitude between ${bbox.minLng} and ${bbox.maxLng}`,
+    $select: "tree_id,latitude,longitude,tree_dbh,spc_common,health,status",
+    $limit: "10000",
+  };
+  const rows = await fetchAll(TREES_URL, params);
+  return rows.map((r) => ({
+    id: r.tree_id,
+    lat: Number(r.latitude),
+    lng: Number(r.longitude),
+    dbhInches: r.tree_dbh != null ? Number(r.tree_dbh) : null,
+    species: r.spc_common ?? null,
+    health: r.health ?? null,
+  }));
+}
+
+async function runTreeLayer(sites, perSite, pulledAt, opts) {
+  console.log(`\n[Layer 6: Street Tree Census — living trees in ${RADIUS_METERS}m corridor]`);
+  console.log(`  dataset: uvpi-gqnh (2015 Street Tree Census, NYC Parks) — note the 2015 vintage`);
+  const stationById = opts.stationById;
+  let totalTrees = 0;
+  let totalLargeTrees = 0;
+  let sitesWithTrees = 0;
+  let sitesWithNoOrigins = 0;
+
+  for (const site of sites) {
+    const origins = originsFor(site, stationById);
+    const entry = perSite.get(site.id) ?? {};
+    if (!origins.length) {
+      entry.trees = { count: 0, error: "no coords" };
+      perSite.set(site.id, entry);
+      sitesWithNoOrigins++;
+      continue;
+    }
+    const bbox = unionBboxMeters(origins, RADIUS_METERS);
+    let count = 0;
+    let largeCount = 0; // dbh >= 12 inches — a rough mature-canopy proxy
+    let bySpeciesTop = [];
+    try {
+      const trees = await fetchLivingTreesInBbox(bbox);
+      const inCorridor = trees.filter((t) => pointInCorridor(t.lat, t.lng, origins, RADIUS_METERS));
+      count = inCorridor.length;
+      for (const t of inCorridor) {
+        if (t.dbhInches != null && t.dbhInches >= 12) largeCount++;
+      }
+      const bySpecies = new Map();
+      for (const t of inCorridor) {
+        if (!t.species) continue;
+        bySpecies.set(t.species, (bySpecies.get(t.species) ?? 0) + 1);
+      }
+      bySpeciesTop = [...bySpecies.entries()]
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 3)
+        .map(([species, n]) => ({ species, count: n }));
+      entry.trees = { count, largeCount, topSpecies: bySpeciesTop };
+    } catch (err) {
+      console.warn(`  ${site.id}: trees fetch failed — ${err.message}`);
+      entry.trees = { count: 0, error: err.message };
+    }
+    perSite.set(site.id, entry);
+    totalTrees += count;
+    totalLargeTrees += largeCount;
+    if (count > 0) sitesWithTrees++;
+  }
+
+  console.log(`  ${totalTrees} living trees across all corridors (${totalLargeTrees} with dbh ≥ 12")`);
+  console.log(`  ${sitesWithTrees} of ${sites.length} sites have >=1 living tree in the ${RADIUS_METERS}m corridor`);
+  if (sitesWithNoOrigins > 0) console.log(`  ${sitesWithNoOrigins} sites had no origins (no coord)`);
+  return {
+    dataset: "NYC 2015 Street Tree Census (uvpi-gqnh)",
+    publisher: "NYC Department of Parks & Recreation",
+    url: "https://data.cityofnewyork.us/Environment/2015-Street-Tree-Census-Tree-Data/uvpi-gqnh",
+    vintage_label: "NYC Street Tree Census, 2015",
+    pulled_at: pulledAt,
+    note: "Counts living street trees within 300m of the site or its nearest ADA station. dbh ≥ 12\" flagged as a rough mature-canopy proxy. This is a shade / walkability signal — no temperature claim is made from it.",
+  };
+}
+
+function parseOnlyFlag(argv) {
+  const arg = argv.find((a) => a.startsWith("--only="));
+  if (!arg) return null;
+  const list = arg.slice("--only=".length).split(",").map((s) => s.trim()).filter(Boolean);
+  return new Set(list);
+}
+
 async function main() {
   const dryRun = process.argv.includes("--dry-run");
-  const onlyCensus = process.argv.includes("--only=5") || process.argv.includes("--only-census");
+  const only = parseOnlyFlag(process.argv);
+  const runLayer = (id) => !only || only.has(String(id));
   const pulledAt = new Date().toISOString();
 
   console.log("Loading sites.json...");
   const sites = JSON.parse(await readFile(SITES_PATH, "utf8"));
   console.log(`  ${sites.length} sites`);
 
-  // --only=5 short-circuit: skip Layers 1-2, merge Layer 5 into whatever
-  // overlays.json already contains on disk. Keeps the network cost down
-  // when iterating on the census layer.
-  if (onlyCensus) {
-    let existing = { _meta: {} };
+  // --only=<list> short-circuit: skip network-heavy Layers 1-2, run the
+  // requested subset, merge into whatever overlays.json already contains.
+  // Layers 5+ all need station coords, so we fetch them here once.
+  if (only) {
+    console.log(`\n--only=${[...only].join(",")} — merging into existing overlays.json`);
+    let existing = { _meta: { sources: {} } };
     try {
       existing = JSON.parse(await readFile(OUT_PATH, "utf8"));
+      existing._meta = existing._meta || {};
+      existing._meta.sources = existing._meta.sources || {};
     } catch (err) {
-      console.warn(`  no existing overlays.json (${err.code ?? err.message}) — will write a census-only file`);
+      console.warn(`  no existing overlays.json (${err.code ?? err.message}) — will write from scratch`);
     }
     const perSite = new Map();
     for (const site of sites) {
       const prior = existing[site.id];
       perSite.set(site.id, prior ? { ...prior } : {});
     }
-    const censusMeta = await runCensusLayer(sites, perSite, pulledAt);
+
+    // Station coords used by every Layer 5+.
+    console.log("Fetching MTA station coords (for corridor origins)...");
+    const stationsRaw = await fetchAll(MTA_STATIONS_URL, {
+      $select: "gtfs_stop_id,gtfs_latitude,gtfs_longitude",
+    });
+    const stationById = new Map();
+    for (const s of stationsRaw) {
+      stationById.set(s.gtfs_stop_id, { lat: Number(s.gtfs_latitude), lng: Number(s.gtfs_longitude) });
+    }
+    console.log(`  ${stationById.size} station coords`);
+
+    if (runLayer(5)) {
+      const censusMeta = await runCensusLayer(sites, perSite, pulledAt, { stationById });
+      existing._meta.sources.census_acs = {
+        dataset: "American Community Survey 5-year estimates (2023)",
+        publisher: "U.S. Census Bureau",
+        vintage_label: ACS_VINTAGE_LABEL,
+        url: "https://www.census.gov/data/developers/data-sets/acs-5year.html",
+        endpoints: [CENSUS_ACS_DETAIL_URL, CENSUS_ACS_SUBJECT_URL],
+        variables: ACS_VARS,
+        citywide_ambulatory_median: censusMeta.citywide_ambulatory_median,
+        citywide_disability_median: censusMeta.citywide_disability_median,
+        citywide_tract_count: censusMeta.citywide_tract_count,
+        pulled_at: pulledAt,
+        note: "Never presented as current. Tract-level estimates lag by roughly two years. Detailed (B/C) and subject (S) tables are served from different endpoints.",
+      };
+      existing._meta.sources.usda_lram = {
+        dataset: "USDA Food Access Research Atlas, 2019 data (LRAM)",
+        publisher: "USDA Economic Research Service",
+        vintage_label: LRAM_VINTAGE_LABEL,
+        source_file: "public/data/usda-lram-2019.json (preprocess of FoodAccessResearchAtlasData2019.xlsx)",
+        note: "Vehicle-flag variant retained — the successor SRAM drops it.",
+        pulled_at: pulledAt,
+      };
+      existing._meta.sources.tract_lookup = {
+        dataset: "FCC Block Find API (Census 2020 vintage)",
+        url: "https://geo.fcc.gov/api/census/block/find",
+        note: censusMeta.fcc_note,
+        pulled_at: pulledAt,
+      };
+    }
+
+    if (runLayer(6)) {
+      const meta = await runTreeLayer(sites, perSite, pulledAt, { stationById });
+      existing._meta.sources.trees = meta;
+    }
+
     const out = { ...existing };
-    out._meta = out._meta || {};
-    out._meta.sources = out._meta.sources || {};
-    out._meta.sources.census_acs = {
-      dataset: "American Community Survey 5-year estimates (2023)",
-      publisher: "U.S. Census Bureau",
-      vintage_label: ACS_VINTAGE_LABEL,
-      url: "https://www.census.gov/data/developers/data-sets/acs-5year.html",
-      endpoints: [CENSUS_ACS_DETAIL_URL, CENSUS_ACS_SUBJECT_URL],
-      variables: ACS_VARS,
-      citywide_ambulatory_median: censusMeta.citywide_ambulatory_median,
-      citywide_disability_median: censusMeta.citywide_disability_median,
-      citywide_tract_count: censusMeta.citywide_tract_count,
-      pulled_at: pulledAt,
-      note: "Never presented as current. Tract-level estimates lag by roughly two years. Detailed (B/C) and subject (S) tables are served from different endpoints.",
-    };
-    out._meta.sources.usda_lram = {
-      dataset: "USDA Food Access Research Atlas, 2019 data (LRAM)",
-      publisher: "USDA Economic Research Service",
-      vintage_label: LRAM_VINTAGE_LABEL,
-      source_file: "public/data/usda-lram-2019.json (preprocess of FoodAccessResearchAtlasData2019.xlsx)",
-      note: "Vehicle-flag variant retained — the successor SRAM drops it.",
-      pulled_at: pulledAt,
-    };
-    out._meta.sources.tract_lookup = {
-      dataset: "FCC Block Find API (Census 2020 vintage)",
-      url: "https://geo.fcc.gov/api/census/block/find",
-      note: censusMeta.fcc_note,
-      pulled_at: pulledAt,
-    };
     for (const site of sites) out[site.id] = perSite.get(site.id) ?? {};
     if (dryRun) {
       console.log("\n--dry-run set; not writing file.");
@@ -704,6 +860,9 @@ async function main() {
   // ---- Layer 5: Census tract context (ACS 2023 + LRAM 2019) -------------
   const censusMeta = await runCensusLayer(sites, perSite, pulledAt, { stationById });
 
+  // ---- Layer 6: Street Tree Census (uvpi-gqnh) --------------------------
+  const treesMeta = await runTreeLayer(sites, perSite, pulledAt, { stationById });
+
   // ---- Assemble overlays.json -------------------------------------------
   const out = {
     _meta: {
@@ -762,6 +921,7 @@ async function main() {
           note: "Site → tract via first 11 digits of the returned 15-digit block FIPS.",
           pulled_at: pulledAt,
         },
+        trees: treesMeta,
       },
     },
   };

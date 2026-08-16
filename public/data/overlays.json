@@ -134,6 +134,14 @@
         "url": "https://geo.fcc.gov/api/census/block/find",
         "note": "Site → tract via FCC geo.fcc.gov/api/census/block/find (2020 vintage). Tract = first 11 digits of the 15-digit block FIPS.",
         "pulled_at": "2026-08-16T14:39:32.654Z"
+      },
+      "trees": {
+        "dataset": "NYC 2015 Street Tree Census (uvpi-gqnh)",
+        "publisher": "NYC Department of Parks & Recreation",
+        "url": "https://data.cityofnewyork.us/Environment/2015-Street-Tree-Census-Tree-Data/uvpi-gqnh",
+        "vintage_label": "NYC Street Tree Census, 2015",
+        "pulled_at": "2026-08-16T14:45:15.037Z",
+        "note": "Counts living street trees within 300m of the site or its nearest ADA station. dbh ≥ 12\" flagged as a rough mature-canopy proxy. This is a shade / walkability signal — no temperature claim is made from it."
       }
     }
   },
@@ -227,6 +235,24 @@
         "tractUnreliableReason": "estimate exceeds 30% — small-tract / group-quarters artifact suspected"
       },
       "lram": null
+    },
+    "trees": {
+      "count": 424,
+      "largeCount": 82,
+      "topSpecies": [
+        {
+          "species": "pin oak",
+          "count": 45
+        },
+        {
+          "species": "honeylocust",
+          "count": 44
+        },
+        {
+          "species": "Japanese zelkova",
+          "count": 37
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0100": {
@@ -364,6 +390,24 @@
         "povertyRate": 31.7317663325268,
         "urban": true
       }
+    },
+    "trees": {
+      "count": 606,
+      "largeCount": 74,
+      "topSpecies": [
+        {
+          "species": "honeylocust",
+          "count": 68
+        },
+        {
+          "species": "Sophora",
+          "count": 61
+        },
+        {
+          "species": "Japanese zelkova",
+          "count": 43
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0140": {
@@ -498,6 +542,24 @@
         "povertyRate": 20.1742526663662,
         "urban": true
       }
+    },
+    "trees": {
+      "count": 873,
+      "largeCount": 197,
+      "topSpecies": [
+        {
+          "species": "honeylocust",
+          "count": 240
+        },
+        {
+          "species": "Callery pear",
+          "count": 102
+        },
+        {
+          "species": "Sophora",
+          "count": 81
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0630": {
@@ -616,6 +678,24 @@
         "tractUnreliableReason": null
       },
       "lram": null
+    },
+    "trees": {
+      "count": 562,
+      "largeCount": 331,
+      "topSpecies": [
+        {
+          "species": "honeylocust",
+          "count": 221
+        },
+        {
+          "species": "pin oak",
+          "count": 64
+        },
+        {
+          "species": "Sophora",
+          "count": 33
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0285": {
@@ -766,6 +846,24 @@
         "povertyRate": 12.8544924463292,
         "urban": true
       }
+    },
+    "trees": {
+      "count": 712,
+      "largeCount": 159,
+      "topSpecies": [
+        {
+          "species": "honeylocust",
+          "count": 153
+        },
+        {
+          "species": "pin oak",
+          "count": 132
+        },
+        {
+          "species": "Callery pear",
+          "count": 92
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0230": {
@@ -890,6 +988,24 @@
         "povertyRate": 0,
         "urban": true
       }
+    },
+    "trees": {
+      "count": 678,
+      "largeCount": 126,
+      "topSpecies": [
+        {
+          "species": "honeylocust",
+          "count": 106
+        },
+        {
+          "species": "pin oak",
+          "count": 80
+        },
+        {
+          "species": "Sophora",
+          "count": 69
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0801": {
@@ -1026,6 +1142,24 @@
         "povertyRate": 37.3564463705309,
         "urban": true
       }
+    },
+    "trees": {
+      "count": 456,
+      "largeCount": 111,
+      "topSpecies": [
+        {
+          "species": "honeylocust",
+          "count": 114
+        },
+        {
+          "species": "Japanese zelkova",
+          "count": 58
+        },
+        {
+          "species": "Callery pear",
+          "count": 55
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0311": {
@@ -1177,6 +1311,24 @@
         "tractUnreliableReason": "MOE ≥ 50% of estimate"
       },
       "lram": null
+    },
+    "trees": {
+      "count": 836,
+      "largeCount": 247,
+      "topSpecies": [
+        {
+          "species": "honeylocust",
+          "count": 305
+        },
+        {
+          "species": "Callery pear",
+          "count": 156
+        },
+        {
+          "species": "ginkgo",
+          "count": 94
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0766": {
@@ -1327,6 +1479,24 @@
         "povertyRate": 25.183773482167197,
         "urban": true
       }
+    },
+    "trees": {
+      "count": 628,
+      "largeCount": 137,
+      "topSpecies": [
+        {
+          "species": "honeylocust",
+          "count": 152
+        },
+        {
+          "species": "Japanese zelkova",
+          "count": 101
+        },
+        {
+          "species": "London planetree",
+          "count": 61
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0793": {
@@ -1461,6 +1631,24 @@
         "povertyRate": 21.079691516709502,
         "urban": true
       }
+    },
+    "trees": {
+      "count": 415,
+      "largeCount": 122,
+      "topSpecies": [
+        {
+          "species": "pin oak",
+          "count": 67
+        },
+        {
+          "species": "honeylocust",
+          "count": 61
+        },
+        {
+          "species": "Callery pear",
+          "count": 37
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0368": {
@@ -1595,6 +1783,24 @@
         "povertyRate": 27.2727272727273,
         "urban": true
       }
+    },
+    "trees": {
+      "count": 519,
+      "largeCount": 146,
+      "topSpecies": [
+        {
+          "species": "honeylocust",
+          "count": 92
+        },
+        {
+          "species": "littleleaf linden",
+          "count": 47
+        },
+        {
+          "species": "pin oak",
+          "count": 33
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0217": {
@@ -1731,6 +1937,24 @@
         "povertyRate": 37.9695746662527,
         "urban": true
       }
+    },
+    "trees": {
+      "count": 716,
+      "largeCount": 188,
+      "topSpecies": [
+        {
+          "species": "honeylocust",
+          "count": 175
+        },
+        {
+          "species": "Callery pear",
+          "count": 85
+        },
+        {
+          "species": "London planetree",
+          "count": 73
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0119": {
@@ -1854,6 +2078,24 @@
         "povertyRate": 29.3264248704663,
         "urban": true
       }
+    },
+    "trees": {
+      "count": 752,
+      "largeCount": 197,
+      "topSpecies": [
+        {
+          "species": "honeylocust",
+          "count": 204
+        },
+        {
+          "species": "Callery pear",
+          "count": 78
+        },
+        {
+          "species": "littleleaf linden",
+          "count": 44
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0818": {
@@ -1934,6 +2176,24 @@
         "povertyRate": 24.757118927973202,
         "urban": true
       }
+    },
+    "trees": {
+      "count": 139,
+      "largeCount": 33,
+      "topSpecies": [
+        {
+          "species": "ginkgo",
+          "count": 25
+        },
+        {
+          "species": "London planetree",
+          "count": 23
+        },
+        {
+          "species": "Callery pear",
+          "count": 11
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0171": {
@@ -2068,6 +2328,24 @@
         "povertyRate": 20.8946439081813,
         "urban": true
       }
+    },
+    "trees": {
+      "count": 804,
+      "largeCount": 340,
+      "topSpecies": [
+        {
+          "species": "honeylocust",
+          "count": 100
+        },
+        {
+          "species": "littleleaf linden",
+          "count": 96
+        },
+        {
+          "species": "pin oak",
+          "count": 76
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0694": {
@@ -2196,6 +2474,24 @@
         "povertyRate": 22.5720309205903,
         "urban": true
       }
+    },
+    "trees": {
+      "count": 323,
+      "largeCount": 55,
+      "topSpecies": [
+        {
+          "species": "ginkgo",
+          "count": 61
+        },
+        {
+          "species": "London planetree",
+          "count": 58
+        },
+        {
+          "species": "Japanese zelkova",
+          "count": 30
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0167": {
@@ -2309,6 +2605,24 @@
         "tractUnreliableReason": "MOE ≥ 50% of estimate"
       },
       "lram": null
+    },
+    "trees": {
+      "count": 134,
+      "largeCount": 36,
+      "topSpecies": [
+        {
+          "species": "Callery pear",
+          "count": 28
+        },
+        {
+          "species": "London planetree",
+          "count": 14
+        },
+        {
+          "species": "honeylocust",
+          "count": 14
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0438": {
@@ -2429,6 +2743,24 @@
         "povertyRate": 28.730577543242504,
         "urban": true
       }
+    },
+    "trees": {
+      "count": 620,
+      "largeCount": 177,
+      "topSpecies": [
+        {
+          "species": "honeylocust",
+          "count": 254
+        },
+        {
+          "species": "London planetree",
+          "count": 67
+        },
+        {
+          "species": "ginkgo",
+          "count": 44
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0359": {
@@ -2527,6 +2859,24 @@
         "povertyRate": 27.931121802988102,
         "urban": true
       }
+    },
+    "trees": {
+      "count": 182,
+      "largeCount": 59,
+      "topSpecies": [
+        {
+          "species": "London planetree",
+          "count": 53
+        },
+        {
+          "species": "honeylocust",
+          "count": 43
+        },
+        {
+          "species": "Sophora",
+          "count": 12
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0393": {
@@ -2641,6 +2991,24 @@
         "tractUnreliableReason": "MOE ≥ 50% of estimate"
       },
       "lram": null
+    },
+    "trees": {
+      "count": 491,
+      "largeCount": 216,
+      "topSpecies": [
+        {
+          "species": "London planetree",
+          "count": 49
+        },
+        {
+          "species": "cherry",
+          "count": 45
+        },
+        {
+          "species": "pin oak",
+          "count": 35
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0440": {
@@ -2791,6 +3159,24 @@
         "povertyRate": 37.977718234381605,
         "urban": true
       }
+    },
+    "trees": {
+      "count": 700,
+      "largeCount": 185,
+      "topSpecies": [
+        {
+          "species": "honeylocust",
+          "count": 140
+        },
+        {
+          "species": "ginkgo",
+          "count": 117
+        },
+        {
+          "species": "London planetree",
+          "count": 83
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0411": {
@@ -2906,6 +3292,24 @@
         "tractUnreliableReason": null
       },
       "lram": null
+    },
+    "trees": {
+      "count": 660,
+      "largeCount": 158,
+      "topSpecies": [
+        {
+          "species": "honeylocust",
+          "count": 126
+        },
+        {
+          "species": "London planetree",
+          "count": 103
+        },
+        {
+          "species": "Japanese zelkova",
+          "count": 68
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0343": {
@@ -3017,6 +3421,24 @@
         "povertyRate": 14.143269483075299,
         "urban": true
       }
+    },
+    "trees": {
+      "count": 474,
+      "largeCount": 126,
+      "topSpecies": [
+        {
+          "species": "purple-leaf plum",
+          "count": 51
+        },
+        {
+          "species": "cherry",
+          "count": 47
+        },
+        {
+          "species": "ginkgo",
+          "count": 45
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0371": {
@@ -3180,6 +3602,24 @@
         "povertyRate": 20.2314165497896,
         "urban": true
       }
+    },
+    "trees": {
+      "count": 740,
+      "largeCount": 163,
+      "topSpecies": [
+        {
+          "species": "honeylocust",
+          "count": 160
+        },
+        {
+          "species": "Callery pear",
+          "count": 109
+        },
+        {
+          "species": "Japanese zelkova",
+          "count": 75
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0715": {
@@ -3330,6 +3770,24 @@
         "povertyRate": 20.1603474194087,
         "urban": true
       }
+    },
+    "trees": {
+      "count": 535,
+      "largeCount": 84,
+      "topSpecies": [
+        {
+          "species": "honeylocust",
+          "count": 93
+        },
+        {
+          "species": "Callery pear",
+          "count": 59
+        },
+        {
+          "species": "pin oak",
+          "count": 49
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0392": {
@@ -3432,6 +3890,24 @@
         "tractUnreliableReason": "MOE ≥ 50% of estimate"
       },
       "lram": null
+    },
+    "trees": {
+      "count": 604,
+      "largeCount": 317,
+      "topSpecies": [
+        {
+          "species": "pin oak",
+          "count": 69
+        },
+        {
+          "species": "Callery pear",
+          "count": 55
+        },
+        {
+          "species": "London planetree",
+          "count": 43
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0439": {
@@ -3562,6 +4038,24 @@
         "tractUnreliableReason": null
       },
       "lram": null
+    },
+    "trees": {
+      "count": 211,
+      "largeCount": 71,
+      "topSpecies": [
+        {
+          "species": "honeylocust",
+          "count": 48
+        },
+        {
+          "species": "Callery pear",
+          "count": 42
+        },
+        {
+          "species": "pin oak",
+          "count": 22
+        }
+      ]
     }
   },
   "cycle-08-ny-sfsp-0002": {
@@ -3622,6 +4116,24 @@
         "povertyRate": 6.36012032660077,
         "urban": true
       }
+    },
+    "trees": {
+      "count": 539,
+      "largeCount": 148,
+      "topSpecies": [
+        {
+          "species": "Callery pear",
+          "count": 293
+        },
+        {
+          "species": "sweetgum",
+          "count": 44
+        },
+        {
+          "species": "red maple",
+          "count": 27
+        }
+      ]
     }
   },
   "cycle-09-ny-sfsp-0542": {
@@ -3786,6 +4298,24 @@
         "povertyRate": 32.4430479183032,
         "urban": true
       }
+    },
+    "trees": {
+      "count": 527,
+      "largeCount": 218,
+      "topSpecies": [
+        {
+          "species": "honeylocust",
+          "count": 74
+        },
+        {
+          "species": "pin oak",
+          "count": 62
+        },
+        {
+          "species": "Callery pear",
+          "count": 58
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0023": {
@@ -3930,6 +4460,24 @@
         "povertyRate": 9.76173541963016,
         "urban": true
       }
+    },
+    "trees": {
+      "count": 575,
+      "largeCount": 185,
+      "topSpecies": [
+        {
+          "species": "London planetree",
+          "count": 96
+        },
+        {
+          "species": "honeylocust",
+          "count": 95
+        },
+        {
+          "species": "cherry",
+          "count": 49
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0017": {
@@ -4065,6 +4613,24 @@
         "povertyRate": 16.433385173665098,
         "urban": true
       }
+    },
+    "trees": {
+      "count": 622,
+      "largeCount": 317,
+      "topSpecies": [
+        {
+          "species": "Norway maple",
+          "count": 91
+        },
+        {
+          "species": "London planetree",
+          "count": 64
+        },
+        {
+          "species": "honeylocust",
+          "count": 59
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0035": {
@@ -4193,6 +4759,24 @@
         "tractUnreliableReason": "MOE ≥ 50% of estimate"
       },
       "lram": null
+    },
+    "trees": {
+      "count": 417,
+      "largeCount": 64,
+      "topSpecies": [
+        {
+          "species": "honeylocust",
+          "count": 112
+        },
+        {
+          "species": "Callery pear",
+          "count": 82
+        },
+        {
+          "species": "ginkgo",
+          "count": 64
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0007": {
@@ -4340,6 +4924,24 @@
         "povertyRate": 6.21556473829201,
         "urban": true
       }
+    },
+    "trees": {
+      "count": 859,
+      "largeCount": 291,
+      "topSpecies": [
+        {
+          "species": "honeylocust",
+          "count": 134
+        },
+        {
+          "species": "pin oak",
+          "count": 98
+        },
+        {
+          "species": "Callery pear",
+          "count": 57
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0120": {
@@ -4462,6 +5064,24 @@
         "povertyRate": 9.7497468537538,
         "urban": true
       }
+    },
+    "trees": {
+      "count": 619,
+      "largeCount": 158,
+      "topSpecies": [
+        {
+          "species": "Callery pear",
+          "count": 183
+        },
+        {
+          "species": "honeylocust",
+          "count": 75
+        },
+        {
+          "species": "pin oak",
+          "count": 62
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0037": {
@@ -4599,6 +5219,24 @@
         "povertyRate": 34.0676883780332,
         "urban": true
       }
+    },
+    "trees": {
+      "count": 572,
+      "largeCount": 192,
+      "topSpecies": [
+        {
+          "species": "honeylocust",
+          "count": 98
+        },
+        {
+          "species": "pin oak",
+          "count": 69
+        },
+        {
+          "species": "littleleaf linden",
+          "count": 39
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0030": {
@@ -4732,6 +5370,24 @@
         "povertyRate": 25.493316359007,
         "urban": true
       }
+    },
+    "trees": {
+      "count": 594,
+      "largeCount": 309,
+      "topSpecies": [
+        {
+          "species": "Norway maple",
+          "count": 87
+        },
+        {
+          "species": "London planetree",
+          "count": 80
+        },
+        {
+          "species": "pin oak",
+          "count": 45
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0088": {
@@ -4864,6 +5520,24 @@
         "povertyRate": 46.1694456962596,
         "urban": true
       }
+    },
+    "trees": {
+      "count": 657,
+      "largeCount": 202,
+      "topSpecies": [
+        {
+          "species": "honeylocust",
+          "count": 157
+        },
+        {
+          "species": "London planetree",
+          "count": 91
+        },
+        {
+          "species": "Callery pear",
+          "count": 72
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0034": {
@@ -5003,6 +5677,24 @@
         "povertyRate": 7.4186222558667705,
         "urban": true
       }
+    },
+    "trees": {
+      "count": 589,
+      "largeCount": 254,
+      "topSpecies": [
+        {
+          "species": "Callery pear",
+          "count": 98
+        },
+        {
+          "species": "honeylocust",
+          "count": 77
+        },
+        {
+          "species": "ginkgo",
+          "count": 48
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0122": {
@@ -5093,6 +5785,24 @@
         "povertyRate": 38.382863759166305,
         "urban": true
       }
+    },
+    "trees": {
+      "count": 324,
+      "largeCount": 134,
+      "topSpecies": [
+        {
+          "species": "London planetree",
+          "count": 70
+        },
+        {
+          "species": "Callery pear",
+          "count": 31
+        },
+        {
+          "species": "honeylocust",
+          "count": 18
+        }
+      ]
     }
   },
   "cycle-05-ny-sfsp-0062": {
@@ -5215,6 +5925,24 @@
         "povertyRate": 30.8602999210734,
         "urban": true
       }
+    },
+    "trees": {
+      "count": 868,
+      "largeCount": 273,
+      "topSpecies": [
+        {
+          "species": "honeylocust",
+          "count": 234
+        },
+        {
+          "species": "Japanese zelkova",
+          "count": 84
+        },
+        {
+          "species": "littleleaf linden",
+          "count": 57
+        }
+      ]
     }
   }
 }
