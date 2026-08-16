@@ -157,12 +157,80 @@
     }
     .toggle-pill input { accent-color: var(--accent); margin: 0; }
 
+    /* Results column is a repositionable side panel. Absolutely
+       positioned inside #results-scroll so left/right toggling and
+       drag don't reflow the top bar. */
+    #results-scroll {
+      flex: 1; position: relative; pointer-events: none;
+    }
     #results-column {
       pointer-events: auto;
-      width: 100%; max-width: 640px;
-      margin: 20px auto; padding: 0 12px 40px;
-      flex: 1; overflow-y: auto;
+      position: absolute; top: 12px; bottom: 12px;
+      width: min(640px, 44vw); max-width: 640px;
+      padding: 0 12px 40px;
+      overflow-y: auto;
+      background: rgba(11, 18, 32, 0.55);
+      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+      border: 1px solid var(--border); border-radius: 10px;
+      transition: left 0.18s ease, right 0.18s ease;
     }
+    body.dock-right #results-column { right: 20px; left: auto; }
+    body.dock-left  #results-column { left: 20px; right: auto; }
+    body.dock-hidden #results-column { display: none; }
+    /* On narrow viewports the docked column would eat the map. Fall
+       back to a full-width column below 720px. */
+    @media (max-width: 720px) {
+      #results-column { width: calc(100% - 24px); left: 12px; right: 12px; }
+    }
+    #results-column.dragging {
+      transition: none;
+      opacity: 0.9;
+      cursor: grabbing;
+    }
+
+    /* Restore-tab shown when dock is "hidden". */
+    #dock-tab {
+      pointer-events: auto;
+      position: absolute; top: 20px;
+      display: none;
+      background: rgba(16,24,39,0.92);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 12px; color: var(--text);
+      cursor: pointer;
+    }
+    body.dock-hidden #dock-tab { display: block; }
+    body.dock-hidden.dock-side-right #dock-tab { right: 8px; }
+    body.dock-hidden.dock-side-left  #dock-tab { left: 8px; }
+
+    /* Column drag handle + inline dock controls. */
+    #col-handle {
+      cursor: grab; user-select: none;
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      padding: 8px 6px 8px 12px; margin: 0 -12px 10px;
+      background: rgba(16,24,39,0.85);
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      border-bottom: 1px solid var(--border);
+      border-radius: 10px 10px 0 0;
+      position: sticky; top: 0; z-index: 5;
+    }
+    #col-handle .grip {
+      color: var(--muted); font-size: 11px; letter-spacing: 0.04em;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    #col-handle .grip::before {
+      content: "\2261"; /* triple bar */
+      font-size: 14px; color: var(--muted);
+    }
+    .dock-controls { display: flex; gap: 4px; }
+    .dock-btn {
+      padding: 4px 9px; font-size: 11px; line-height: 1;
+      background: transparent; border: 1px solid var(--border);
+      border-radius: 6px; color: var(--muted); cursor: pointer;
+    }
+    .dock-btn:hover { color: var(--text); }
+    .dock-btn.active { color: var(--text); border-color: var(--accent); background: rgba(59,130,246,0.15); }
     #plainIntent {
       font-size: 13px; color: var(--muted); margin: 4px 0 14px;
       text-align: center; line-height: 1.5;
@@ -319,11 +387,22 @@
       </label>
     </div>
 
-    <div id="results-column">
-      <div id="banners"></div>
-      <div id="plainIntent"></div>
-      <div id="results-list"></div>
-      <div id="privacyNoticeResults" class="notice"></div>
+    <div id="results-scroll">
+      <div id="results-column">
+        <div id="col-handle" title="Drag to reposition; snaps to the nearest side">
+          <span class="grip">Results</span>
+          <div class="dock-controls" role="group" aria-label="Panel position">
+            <button type="button" class="dock-btn" data-dock="left"   title="Dock left">Left</button>
+            <button type="button" class="dock-btn" data-dock="right"  title="Dock right">Right</button>
+            <button type="button" class="dock-btn" data-dock="hidden" title="Hide">Hide</button>
+          </div>
+        </div>
+        <div id="banners"></div>
+        <div id="plainIntent"></div>
+        <div id="results-list"></div>
+        <div id="privacyNoticeResults" class="notice"></div>
+      </div>
+      <button type="button" id="dock-tab" title="Show results panel">Results</button>
     </div>
   </div>
 
@@ -346,6 +425,8 @@
       decorated: [],
       expandedId: null,
       lastQuery: "",
+      dock: "right",         // "left" | "right" | "hidden"
+      lastVisibleDock: "right",
     };
 
     const $ = (id) => document.getElementById(id);
@@ -507,6 +588,71 @@
     let originMarker = null;
     const overlayLayers = { libraries: L.layerGroup() };
     let overlaysData = null;
+
+    // ---- dock: left / right / hidden ------------------------------------
+    // Session-only state — no localStorage in this environment.
+    function setDock(side) {
+      if (side !== "left" && side !== "right" && side !== "hidden") return;
+      state.dock = side;
+      if (side !== "hidden") state.lastVisibleDock = side;
+      document.body.classList.remove("dock-left", "dock-right", "dock-hidden", "dock-side-left", "dock-side-right");
+      if (side === "hidden") {
+        document.body.classList.add("dock-hidden");
+        document.body.classList.add(state.lastVisibleDock === "left" ? "dock-side-left" : "dock-side-right");
+      } else {
+        document.body.classList.add(`dock-${side}`);
+      }
+      for (const btn of document.querySelectorAll(".dock-btn")) {
+        btn.classList.toggle("active", btn.dataset.dock === state.dock);
+      }
+      // If a card is expanded, re-fit so the framed area still avoids
+      // whichever side the column now covers.
+      if (state.expandedId) {
+        const site = state.sites.find((s) => s.id === state.expandedId);
+        if (site) refitForExpanded(site);
+      }
+    }
+
+    // Padding used by fitBounds so the site→station line is never drawn
+    // underneath the docked column. Returns paddingTopLeft (west/north
+    // slack) and paddingBottomRight (east/south slack). Values are in
+    // pixels; Leaflet subtracts these from the usable viewport.
+    function dockPadding() {
+      const topBarH = document.getElementById("top-bar")?.getBoundingClientRect().height ?? 56;
+      const margin = 40;
+      let colW = 0;
+      if (state.dock !== "hidden") {
+        const col = document.getElementById("results-column");
+        if (col) colW = Math.ceil(col.getBoundingClientRect().width) + 30;
+      }
+      // On narrow viewports the column falls back to full-width via CSS
+      // media query — there's no map side to bias toward, so use
+      // symmetric padding.
+      const fullWidth = colW > window.innerWidth * 0.7;
+      if (fullWidth || state.dock === "hidden") {
+        return { tl: [margin, topBarH + margin], br: [margin, margin] };
+      }
+      if (state.dock === "right") {
+        return { tl: [margin, topBarH + margin], br: [colW, margin] };
+      }
+      // left
+      return { tl: [colW, topBarH + margin], br: [margin, margin] };
+    }
+
+    function refitForExpanded(site) {
+      const m = markers.get(site.id);
+      const station = stationFor(site);
+      if (!m) return;
+      const p = dockPadding();
+      if (station && Number.isFinite(station.lat)) {
+        map.fitBounds(
+          L.latLngBounds([m.getLatLng(), [station.lat, station.lng]]),
+          { paddingTopLeft: p.tl, paddingBottomRight: p.br, maxZoom: 15 },
+        );
+      } else {
+        map.setView(m.getLatLng(), Math.max(map.getZoom(), 14));
+      }
+    }
 
     // Straight-line "as the crow flies" link + station pin. Drawn only
     // when a result card is expanded, torn down when it collapses or
@@ -682,6 +828,7 @@
           state.expandedId = site.id;
           renderList();
           drawStationLink(site);
+          refitForExpanded(site);
           document.querySelector(`.result-card[data-id="${CSS.escape(site.id)}"]`)?.scrollIntoView({ behavior: "smooth", block: "start" });
         });
         markers.set(site.id, marker);
@@ -849,18 +996,10 @@
           renderList();
           if (!isExpanded) {
             // Just expanded this card. Draw the site→station straight
-            // line, then re-center so both endpoints are visible.
+            // line, then re-fit — padding aware of the docked column so
+            // the line is not framed underneath the panel.
             drawStationLink(site);
-            const m = markers.get(site.id);
-            const station = stationFor(site);
-            if (m && station && Number.isFinite(station.lat)) {
-              map.fitBounds(
-                L.latLngBounds([m.getLatLng(), [station.lat, station.lng]]),
-                { padding: [60, 60], maxZoom: 15 },
-              );
-            } else if (m) {
-              map.setView(m.getLatLng(), Math.max(map.getZoom(), 14));
-            }
+            refitForExpanded(site);
           } else {
             // Just collapsed the currently-expanded card.
             clearStationLink();
@@ -1082,6 +1221,50 @@
       if (e.target.checked) overlayLayers.libraries.addTo(map);
       else map.removeLayer(overlayLayers.libraries);
     });
+
+    // Dock: buttons + restore-tab + drag-to-snap.
+    for (const btn of document.querySelectorAll(".dock-btn")) {
+      btn.addEventListener("click", () => setDock(btn.dataset.dock));
+    }
+    $("dock-tab").addEventListener("click", () => setDock(state.lastVisibleDock));
+
+    // Drag the column by its top handle; snap to whichever half of the
+    // viewport it is released nearest. Uses pointer events so it works
+    // for mouse and touch. Ignores drags that start on the dock buttons.
+    (() => {
+      const handle = $("col-handle");
+      const column = $("results-column");
+      let drag = null;
+      handle.addEventListener("pointerdown", (e) => {
+        if (e.target.closest(".dock-btn")) return; // let buttons handle themselves
+        drag = { startX: e.clientX, startY: e.clientY, moved: false };
+        handle.setPointerCapture(e.pointerId);
+        column.classList.add("dragging");
+      });
+      handle.addEventListener("pointermove", (e) => {
+        if (!drag) return;
+        const dx = e.clientX - drag.startX;
+        const dy = e.clientY - drag.startY;
+        if (!drag.moved && Math.hypot(dx, dy) > 4) drag.moved = true;
+        if (drag.moved) column.style.transform = `translateX(${dx}px)`;
+      });
+      const finishDrag = (e) => {
+        if (!drag) return;
+        column.classList.remove("dragging");
+        column.style.transform = "";
+        if (drag.moved) {
+          const side = e.clientX < window.innerWidth / 2 ? "left" : "right";
+          setDock(side);
+        }
+        drag = null;
+      };
+      handle.addEventListener("pointerup", finishDrag);
+      handle.addEventListener("pointercancel", finishDrag);
+    })();
+
+    // Initial dock: right. This runs before setMode so the class is
+    // already applied when the results panel first becomes visible.
+    setDock("right");
 
     // ---- boot -------------------------------------------------------------
     (async () => {
