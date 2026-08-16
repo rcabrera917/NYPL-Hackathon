@@ -488,11 +488,17 @@
 
     // ---- state machine ----------------------------------------------------
     function setMode(mode) {
-      document.body.className = `state-${mode}`;
+      // Toggle only the state-* classes so unrelated body classes
+      // (dock-*, dock-side-*) survive.
+      document.body.classList.remove("state-resting", "state-results");
+      document.body.classList.add(`state-${mode}`);
       if (mode === "resting") {
         // Focus back into the search box for immediate re-typing.
         setTimeout(() => $("intentInput").focus(), 60);
       }
+      // Belt-and-suspenders: reapply the dock so any downstream
+      // full-className reset in a future change can't strand us.
+      setDock(state.dock);
     }
 
     function syncDateInputs() {
@@ -1273,10 +1279,13 @@
         applyI18n();
         syncDateInputs();
         rerankAndRender();
-        fitToAllSites();
         await loadOverlays();
         renderLibraryLayer();
         if ($("toggleLibraries").checked) overlayLayers.libraries.addTo(map);
+        // Frame the five boroughs behind the resting card — must run
+        // immediately before setMode so nothing after loadOverlays can
+        // reset the view.
+        fitToAllSites();
         setMode("resting");
       } catch (err) {
         // Even if boot fails, keep the resting card visible so users see
