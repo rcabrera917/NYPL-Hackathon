@@ -729,7 +729,7 @@
       const popupHtml =
         `<div style="font-size:12px;line-height:1.35">` +
         `<div><strong>${escapeHtml(label)}</strong></div>` +
-        `<div style="color:#6b7280;margin-top:2px">${miles.toFixed(2)} mi — straight-line distance, not a walking route.</div>` +
+        `<div style="color:#6b7280;margin-top:2px">${escapeHtml(distancePhrase(miles))} — straight-line distance, not a walking route.</div>` +
         `</div>`;
       line.bindPopup(popupHtml);
       const stationIcon = L.divIcon({
@@ -809,6 +809,20 @@
       return COMPLAINT_TYPE_LABELS[type] || type;
     }
 
+    // Convert a distance in miles to the NYC north-south block
+    // convention (20 blocks/mi). Rounds to the nearest whole block;
+    // never returns "0 blocks" — a distance below 0.025 mi renders as
+    // "less than a block" instead. Output format:
+    //   "about 6 blocks (0.31 mi)"  |  "less than a block (0.01 mi)"
+    // Both strings come out of i18n so translations control phrasing.
+    function distancePhrase(miles) {
+      if (!Number.isFinite(miles)) return "";
+      const mileStr = `${miles.toFixed(2)} mi`;
+      if (miles < 0.025) return `${tr("blocksLess")} (${mileStr})`;
+      const blocks = Math.max(1, Math.round(miles * 20));
+      return `${tr("blocksAbout", { n: blocks })} (${mileStr})`;
+    }
+
     // Human station label with routes: "Prospect Park (B, Q, S)".
     function stationDisplayName(station, gtfsId) {
       if (!station) return gtfsId ? "nearest ADA station" : "";
@@ -842,12 +856,18 @@
       const directions = station?.adaDirectionNotes
         ? `<div class="meta-sub">${escapeHtml(station.adaDirectionNotes)}</div>`
         : "";
+      const distance =
+        station && site.lat != null && site.lng != null &&
+        Number.isFinite(station.lat) && Number.isFinite(station.lng)
+          ? `<div class="meta-sub">${escapeHtml(distancePhrase(haversineMiles(site.lat, site.lng, station.lat, station.lng)))}</div>`
+          : "";
       return `
         <div class="meta-line">
           <span class="k">${escapeHtml(tr("nearestStation"))}</span>
           ${escapeHtml(label)}${escapeHtml(elevPart)}
           <span class="code-suffix">GTFS ${escapeHtml(site.nearestStationId)}</span>
         </div>
+        ${distance}
         ${directions}
       `;
     }

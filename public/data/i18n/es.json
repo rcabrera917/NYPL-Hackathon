@@ -1,7 +1,9 @@
 {
   "title": "Reachable NYC",
   "subtitle": "Comidas de verano gratis para personas de 18 años o menos. El veredicto indica si es posible un viaje sin escalones, con ascensor accesible.",
-  "navHint": "La línea punteada muestra qué estación accesible sirve a cada sitio — es una línea recta, no una ruta a pie. Establezca su ubicación arriba para ordenar por distancia.",
+  "navHint": "La línea punteada muestra qué estación accesible sirve a cada sitio — es una línea recta, no una ruta a pie. Establezca su ubicación arriba para ordenar por distancia. El recuento de cuadras es aproximado — las cuadras de NYC varían en longitud, y esta es distancia en línea recta.",
+  "blocksAbout": "unas {n} cuadras",
+  "blocksLess": "menos de una cuadra",
   "gtHeading": "Cómo llegar",
   "gtCallLabel": "Llame antes — confirme el horario y la entrada",
   "gtDirectionsButton": "Direcciones",

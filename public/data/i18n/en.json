@@ -1,7 +1,9 @@
 {
   "title": "Reachable NYC",
   "subtitle": "Free summer meals for anyone 18 and under. Verdict shows whether a step-free, elevator-served trip is possible.",
-  "navHint": "Dashed line shows which accessible subway station serves each site — it is a straight line, not a walking route. Set your location above to sort by distance.",
+  "navHint": "Dashed line shows which accessible subway station serves each site — it is a straight line, not a walking route. Set your location above to sort by distance. Block counts are approximate — NYC blocks vary in length, and this is straight-line distance.",
+  "blocksAbout": "about {n} blocks",
+  "blocksLess": "less than a block",
   "gtHeading": "Getting there",
   "gtCallLabel": "Call ahead — confirm hours and entrance",
   "gtDirectionsButton": "Directions",
