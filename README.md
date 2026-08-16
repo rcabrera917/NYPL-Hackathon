@@ -134,7 +134,7 @@ The parse endpoint needs `ANTHROPIC_API_KEY` set as an environment variable in t
 
 **Rafy Cabrera** —
 
-**Chris** —
+**Chris Franqui** —
 
 ---
 
