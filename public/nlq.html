@@ -231,6 +231,42 @@
     }
     .dock-btn:hover { color: var(--text); }
     .dock-btn.active { color: var(--text); border-color: var(--accent); background: rgba(59,130,246,0.15); }
+
+    /* Persistent nav hint at the top of the results column. */
+    .nav-hint {
+      font-size: 12px; color: var(--muted); line-height: 1.5;
+      padding: 10px 12px; margin: 0 -12px 12px;
+      background: rgba(56, 189, 248, 0.06);
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* "Getting there" block inside the expanded card. */
+    .getting-there {
+      margin: 14px 0 6px;
+      padding: 12px;
+      background: rgba(148, 163, 184, 0.06);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .getting-there h3 { margin: 0 0 10px; font-size: 13px; color: var(--text); }
+    .gt-row { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
+    .gt-row:last-child { margin-bottom: 0; }
+    .gt-row .gt-label { font-size: 11px; color: var(--muted); }
+    .gt-row a.gt-call {
+      display: inline-block; padding: 10px 14px;
+      background: var(--raised); border: 1px solid var(--border);
+      border-radius: 8px; color: var(--text); text-decoration: none;
+      font-size: 14px; font-weight: 500;
+    }
+    .gt-row a.gt-call:hover { border-color: var(--accent); }
+    .gt-row a.gt-directions {
+      display: inline-block; padding: 10px 14px;
+      background: var(--accent); color: #0b1220; border: 1px solid var(--accent);
+      border-radius: 8px; text-decoration: none;
+      font-size: 14px; font-weight: 600; text-align: center;
+    }
+    .gt-row a.gt-directions:hover { filter: brightness(1.08); }
+    .gt-caveat { font-size: 11px; color: var(--muted); margin-top: 6px; line-height: 1.4; }
     #plainIntent {
       font-size: 13px; color: var(--muted); margin: 4px 0 14px;
       text-align: center; line-height: 1.5;
@@ -397,6 +433,7 @@
             <button type="button" class="dock-btn" data-dock="hidden" title="Hide">Hide</button>
           </div>
         </div>
+        <div class="nav-hint" id="navHintEl"></div>
         <div id="banners"></div>
         <div id="plainIntent"></div>
         <div id="results-list"></div>
@@ -484,6 +521,7 @@
       $("dateLabelTop").textContent = tr("dateLabel");
       $("searchBtn").textContent = tr("searchButton");
       $("editHint").textContent = "edit";
+      $("navHintEl").textContent = tr("navHint");
       document.documentElement.lang = state.lang;
     }
 
@@ -1018,6 +1056,58 @@
 
     // Expanded card body: verdict reasons, provenance (never behind a
     // toggle), site meta, Along-the-way corridor.
+    // Google Maps universal URL. Handled by the OS: iOS opens Apple Maps
+    // or Google Maps (whichever is installed as default); Android opens
+    // Google Maps; desktop opens a browser tab. travelmode=transit is
+    // the closest thing to "step-free" the platform routers can produce,
+    // but they still don't verify elevator status — hence the caveat.
+    function directionsUrl(site, origin) {
+      const params = new URLSearchParams({
+        api: "1",
+        destination: `${site.lat},${site.lng}`,
+        travelmode: "transit",
+      });
+      if (origin && origin.lat != null && origin.lng != null) {
+        params.set("origin", `${origin.lat},${origin.lng}`);
+      }
+      return `https://www.google.com/maps/dir/?${params.toString()}`;
+    }
+
+    function renderGettingThere(site) {
+      const telHref = site.phone
+        ? `tel:${String(site.phone).replace(/[^0-9+]/g, "")}`
+        : null;
+      const dirHref = site.lat != null && site.lng != null
+        ? directionsUrl(site, state.origin)
+        : null;
+      if (!telHref && !dirHref) return "";
+      const callRow = telHref
+        ? `
+          <div class="gt-row">
+            <a class="gt-call" href="${escapeHtml(telHref)}">
+              📞 ${escapeHtml(site.phone)}
+            </a>
+            <div class="gt-label">${escapeHtml(tr("gtCallLabel"))}</div>
+          </div>`
+        : "";
+      const dirRow = dirHref
+        ? `
+          <div class="gt-row">
+            <a class="gt-directions" href="${escapeHtml(dirHref)}" target="_blank" rel="noopener noreferrer">
+              ${escapeHtml(tr("gtDirectionsButton"))}
+            </a>
+            <div class="gt-caveat">${escapeHtml(tr("gtDirectionsCaveat"))}</div>
+          </div>`
+        : "";
+      return `
+        <div class="getting-there">
+          <h3>${escapeHtml(tr("gtHeading"))}</h3>
+          ${callRow}
+          ${dirRow}
+        </div>
+      `;
+    }
+
     function renderResultBody(row, v) {
       const site = row.site;
       const station = stationFor(site);
@@ -1030,6 +1120,7 @@
           <ul>${v.reasons.map((r) => `<li>${escapeHtml(r)}</li>`).join("")}</ul>
           <h3>${escapeHtml(tr("provenance"))}</h3>
           <ul>${v.provenance.map((p) => `<li>${escapeHtml(p)}</li>`).join("")}</ul>
+          ${renderGettingThere(site)}
           ${phoneLink ? `<div class="meta-line"><span class="k">${escapeHtml(tr("phone"))}</span>${phoneLink}</div>` : ""}
           ${renderNearestStationLine(site, station)}
           ${renderCorridorSection(site)}

@@ -1,6 +1,11 @@
 {
   "title": "Reachable NYC",
   "subtitle": "为18岁及以下的任何人提供免费夏季餐食。判定显示是否可以走无台阶、有电梯的路线抵达。",
+  "navHint": "虚线表示为每个地点服务的无障碍地铁站——这是直线距离，不是步行路线。在上方设置您的位置以按距离排序。",
+  "gtHeading": "如何前往",
+  "gtCallLabel": "提前致电 — 确认营业时间和入口",
+  "gtDirectionsButton": "路线",
+  "gtDirectionsCaveat": "在您的地图应用中打开。那些路线不考虑无台阶通道 — 出发前请查看上方的电梯状态。",
   "intentLabel": "您需要什么？",
   "intentPlaceholder": "例如：为我6岁的孩子提供免费午餐",
   "addressLabel": "您的位置（可选）",
