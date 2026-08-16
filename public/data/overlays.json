@@ -159,6 +159,14 @@
         "lookback_months": 24,
         "pulled_at": "2026-08-16T14:49:42.124Z",
         "note": "Filter: number_of_pedestrians_injured > 0. This is a crossing-risk indicator based on reported crashes — not a comment on people or crime."
+      },
+      "restrooms": {
+        "dataset": "Public Restrooms (i7jb-7jku)",
+        "publisher": "NYC Department of Parks & Recreation (feed) + Department of Information Technology & Telecommunications",
+        "url": "https://data.cityofnewyork.us/Health/Public-Restrooms/i7jb-7jku",
+        "vintage_label": "NYC Public Restrooms — filtered to status='Operational'",
+        "pulled_at": "2026-08-16T14:51:57.193Z",
+        "note": "Operational status is what the dataset reports; it does not confirm the restroom is open at the moment of the trip."
       }
     }
   },
@@ -281,6 +289,11 @@
       "pedInjured": 9,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 1,
+      "nearestToSiteMeters": 49,
+      "hasChangingStation": true
     }
   },
   "cycle-05-ny-sfsp-0100": {
@@ -447,6 +460,11 @@
       "pedInjured": 40,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 2,
+      "nearestToSiteMeters": 42,
+      "hasChangingStation": false
     }
   },
   "cycle-05-ny-sfsp-0140": {
@@ -610,6 +628,11 @@
       "pedInjured": 27,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 0,
+      "nearestToSiteMeters": null,
+      "hasChangingStation": false
     }
   },
   "cycle-05-ny-sfsp-0630": {
@@ -757,6 +780,11 @@
       "pedInjured": 60,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 1,
+      "nearestToSiteMeters": 460,
+      "hasChangingStation": true
     }
   },
   "cycle-05-ny-sfsp-0285": {
@@ -936,6 +964,11 @@
       "pedInjured": 30,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 4,
+      "nearestToSiteMeters": 240,
+      "hasChangingStation": true
     }
   },
   "cycle-05-ny-sfsp-0230": {
@@ -1089,6 +1122,11 @@
       "pedInjured": 38,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 1,
+      "nearestToSiteMeters": 316,
+      "hasChangingStation": true
     }
   },
   "cycle-05-ny-sfsp-0801": {
@@ -1254,6 +1292,11 @@
       "pedInjured": 45,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 1,
+      "nearestToSiteMeters": 342,
+      "hasChangingStation": true
     }
   },
   "cycle-05-ny-sfsp-0311": {
@@ -1434,6 +1477,11 @@
       "pedInjured": 27,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 2,
+      "nearestToSiteMeters": 78,
+      "hasChangingStation": true
     }
   },
   "cycle-05-ny-sfsp-0766": {
@@ -1613,6 +1661,11 @@
       "pedInjured": 42,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 2,
+      "nearestToSiteMeters": 193,
+      "hasChangingStation": true
     }
   },
   "cycle-05-ny-sfsp-0793": {
@@ -1776,6 +1829,11 @@
       "pedInjured": 38,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 3,
+      "nearestToSiteMeters": 100,
+      "hasChangingStation": true
     }
   },
   "cycle-05-ny-sfsp-0368": {
@@ -1939,6 +1997,11 @@
       "pedInjured": 18,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 0,
+      "nearestToSiteMeters": null,
+      "hasChangingStation": false
     }
   },
   "cycle-05-ny-sfsp-0217": {
@@ -2104,6 +2167,11 @@
       "pedInjured": 27,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 0,
+      "nearestToSiteMeters": null,
+      "hasChangingStation": false
     }
   },
   "cycle-05-ny-sfsp-0119": {
@@ -2256,6 +2324,11 @@
       "pedInjured": 41,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 4,
+      "nearestToSiteMeters": 46,
+      "hasChangingStation": true
     }
   },
   "cycle-05-ny-sfsp-0818": {
@@ -2365,6 +2438,11 @@
       "pedInjured": 5,
       "pedKilled": 1,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 0,
+      "nearestToSiteMeters": null,
+      "hasChangingStation": false
     }
   },
   "cycle-05-ny-sfsp-0171": {
@@ -2528,6 +2606,11 @@
       "pedInjured": 31,
       "pedKilled": 1,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 1,
+      "nearestToSiteMeters": 158,
+      "hasChangingStation": false
     }
   },
   "cycle-05-ny-sfsp-0694": {
@@ -2685,6 +2768,11 @@
       "pedInjured": 70,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 2,
+      "nearestToSiteMeters": 35,
+      "hasChangingStation": true
     }
   },
   "cycle-05-ny-sfsp-0167": {
@@ -2827,6 +2915,11 @@
       "pedInjured": 3,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 0,
+      "nearestToSiteMeters": null,
+      "hasChangingStation": false
     }
   },
   "cycle-05-ny-sfsp-0438": {
@@ -2976,6 +3069,11 @@
       "pedInjured": 33,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 0,
+      "nearestToSiteMeters": null,
+      "hasChangingStation": false
     }
   },
   "cycle-05-ny-sfsp-0359": {
@@ -3103,6 +3201,11 @@
       "pedInjured": 9,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 0,
+      "nearestToSiteMeters": null,
+      "hasChangingStation": false
     }
   },
   "cycle-05-ny-sfsp-0393": {
@@ -3246,6 +3349,11 @@
       "pedInjured": 18,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 2,
+      "nearestToSiteMeters": 155,
+      "hasChangingStation": false
     }
   },
   "cycle-05-ny-sfsp-0440": {
@@ -3425,6 +3533,11 @@
       "pedInjured": 39,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 3,
+      "nearestToSiteMeters": 147,
+      "hasChangingStation": true
     }
   },
   "cycle-05-ny-sfsp-0411": {
@@ -3569,6 +3682,11 @@
       "pedInjured": 29,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 2,
+      "nearestToSiteMeters": 134,
+      "hasChangingStation": true
     }
   },
   "cycle-05-ny-sfsp-0343": {
@@ -3709,6 +3827,11 @@
       "pedInjured": 20,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 2,
+      "nearestToSiteMeters": 42,
+      "hasChangingStation": true
     }
   },
   "cycle-05-ny-sfsp-0371": {
@@ -3901,6 +4024,11 @@
       "pedInjured": 40,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 3,
+      "nearestToSiteMeters": 68,
+      "hasChangingStation": true
     }
   },
   "cycle-05-ny-sfsp-0715": {
@@ -4080,6 +4208,11 @@
       "pedInjured": 44,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 2,
+      "nearestToSiteMeters": 88,
+      "hasChangingStation": true
     }
   },
   "cycle-05-ny-sfsp-0392": {
@@ -4211,6 +4344,11 @@
       "pedInjured": 5,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 0,
+      "nearestToSiteMeters": null,
+      "hasChangingStation": false
     }
   },
   "cycle-05-ny-sfsp-0439": {
@@ -4370,6 +4508,11 @@
       "pedInjured": 42,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 1,
+      "nearestToSiteMeters": 5956,
+      "hasChangingStation": true
     }
   },
   "cycle-08-ny-sfsp-0002": {
@@ -4459,6 +4602,11 @@
       "pedInjured": 2,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 0,
+      "nearestToSiteMeters": null,
+      "hasChangingStation": false
     }
   },
   "cycle-09-ny-sfsp-0542": {
@@ -4652,6 +4800,11 @@
       "pedInjured": 56,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 2,
+      "nearestToSiteMeters": 291,
+      "hasChangingStation": true
     }
   },
   "cycle-05-ny-sfsp-0023": {
@@ -4825,6 +4978,11 @@
       "pedInjured": 38,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 2,
+      "nearestToSiteMeters": 2133,
+      "hasChangingStation": true
     }
   },
   "cycle-05-ny-sfsp-0017": {
@@ -4989,6 +5147,11 @@
       "pedInjured": 43,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 0,
+      "nearestToSiteMeters": null,
+      "hasChangingStation": false
     }
   },
   "cycle-05-ny-sfsp-0035": {
@@ -5146,6 +5309,11 @@
       "pedInjured": 84,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 2,
+      "nearestToSiteMeters": 248,
+      "hasChangingStation": true
     }
   },
   "cycle-05-ny-sfsp-0007": {
@@ -5322,6 +5490,11 @@
       "pedInjured": 25,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 1,
+      "nearestToSiteMeters": 376,
+      "hasChangingStation": true
     }
   },
   "cycle-05-ny-sfsp-0120": {
@@ -5473,6 +5646,11 @@
       "pedInjured": 5,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 1,
+      "nearestToSiteMeters": 3274,
+      "hasChangingStation": true
     }
   },
   "cycle-05-ny-sfsp-0037": {
@@ -5639,6 +5817,11 @@
       "pedInjured": 21,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 0,
+      "nearestToSiteMeters": null,
+      "hasChangingStation": false
     }
   },
   "cycle-05-ny-sfsp-0030": {
@@ -5801,6 +5984,11 @@
       "pedInjured": 52,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 0,
+      "nearestToSiteMeters": null,
+      "hasChangingStation": false
     }
   },
   "cycle-05-ny-sfsp-0088": {
@@ -5962,6 +6150,11 @@
       "pedInjured": 25,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 2,
+      "nearestToSiteMeters": 295,
+      "hasChangingStation": true
     }
   },
   "cycle-05-ny-sfsp-0034": {
@@ -6130,6 +6323,11 @@
       "pedInjured": 52,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 1,
+      "nearestToSiteMeters": 4847,
+      "hasChangingStation": true
     }
   },
   "cycle-05-ny-sfsp-0122": {
@@ -6249,6 +6447,11 @@
       "pedInjured": 6,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 0,
+      "nearestToSiteMeters": null,
+      "hasChangingStation": false
     }
   },
   "cycle-05-ny-sfsp-0062": {
@@ -6400,6 +6603,11 @@
       "pedInjured": 35,
       "pedKilled": 0,
       "lookbackMonths": 24
+    },
+    "restrooms": {
+      "count": 3,
+      "nearestToSiteMeters": 257,
+      "hasChangingStation": true
     }
   }
 }

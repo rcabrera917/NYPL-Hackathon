@@ -13,6 +13,13 @@
 //   [x] 6. Street Tree Census — living trees in the 300m corridor
 //   [x] 7. CityBench (DOT) — public bench locations, nearest bench distance
 //   [x] 8. Motor Vehicle Collisions — pedestrian-injury crashes (24 mo)
+//   [ ] 9. Sidewalk sheds (DOB permits) — SKIPPED. No NYC Open Data
+//          dataset for active sidewalk sheds carries coordinates. DOB
+//          Permit Issuance (ipu4-2q9a) and DOB NOW filings (w9ak-ipjd)
+//          key by BIN/BBL; joining to a building-footprints dataset for
+//          coords is possible but too heavy for a corridor layer here.
+//          Documented in FUTURE.md.
+//   [x] 10. Public Restrooms — Operational restrooms in the corridor
 //
 // Usage:
 //   node scripts/build-overlays.mjs                # all layers, fetch/print/write
@@ -38,6 +45,7 @@ const TREES_URL = "https://data.cityofnewyork.us/resource/uvpi-gqnh.json";
 const BENCHES_URL = "https://data.cityofnewyork.us/resource/kuxa-tauh.json";
 const COLLISIONS_URL = "https://data.cityofnewyork.us/resource/h9gi-nx95.json";
 const COLLISIONS_LOOKBACK_MONTHS = 24;
+const RESTROOMS_URL = "https://data.cityofnewyork.us/resource/i7jb-7jku.json";
 const CENSUS_ACS_DETAIL_URL = "https://api.census.gov/data/2023/acs/acs5";
 const CENSUS_ACS_SUBJECT_URL = "https://api.census.gov/data/2023/acs/acs5/subject";
 const ACS_VINTAGE_LABEL = "ACS 5-year, 2023";
@@ -786,6 +794,88 @@ async function runCollisionLayer(sites, perSite, pulledAt, opts) {
   };
 }
 
+// ---- Layer 10 helper: Public Restrooms --------------------------------
+// i7jb-7jku exposes a `location_1` Point column, supports within_circle.
+async function fetchRestroomsNearOrigin(origin, radiusMeters) {
+  const params = {
+    $where: `within_circle(location_1, ${origin.lat}, ${origin.lng}, ${radiusMeters}) AND status = 'Operational'`,
+    $select: "facility_name,location_type,operator,status,changing_stations,latitude,longitude",
+    $limit: "1000",
+  };
+  return fetchAll(RESTROOMS_URL, params);
+}
+
+async function runRestroomLayer(sites, perSite, pulledAt, opts) {
+  console.log(`\n[Layer 10: Public Restrooms — operational restrooms in ${RADIUS_METERS}m corridor]`);
+  console.log(`  dataset: i7jb-7jku (Public Restrooms) filtered to status='Operational'`);
+  const stationById = opts.stationById;
+  let totalRestrooms = 0;
+  let sitesWithRestroom = 0;
+  let sitesWithChangingStation = 0;
+
+  for (const site of sites) {
+    const origins = originsFor(site, stationById);
+    const entry = perSite.get(site.id) ?? {};
+    if (!origins.length) {
+      entry.restrooms = { count: 0, error: "no coords" };
+      perSite.set(site.id, entry);
+      continue;
+    }
+    const seen = new Map();
+    try {
+      for (const o of origins) {
+        const rows = await fetchRestroomsNearOrigin(o, RADIUS_METERS);
+        for (const r of rows) {
+          const key = `${r.facility_name}|${r.latitude}|${r.longitude}`;
+          if (seen.has(key)) continue;
+          seen.set(key, {
+            name: r.facility_name ?? null,
+            locationType: r.location_type ?? null,
+            operator: r.operator ?? null,
+            changingStations: r.changing_stations === "Yes",
+            lat: Number(r.latitude),
+            lng: Number(r.longitude),
+          });
+        }
+      }
+    } catch (err) {
+      console.warn(`  ${site.id}: restrooms fetch failed — ${err.message}`);
+      entry.restrooms = { count: 0, error: err.message };
+      perSite.set(site.id, entry);
+      continue;
+    }
+    const restrooms = [...seen.values()];
+    let nearestMeters = null;
+    if (restrooms.length && site.lat != null && site.lng != null) {
+      for (const r of restrooms) {
+        if (!Number.isFinite(r.lat)) continue;
+        const d = haversineMeters(r.lat, r.lng, site.lat, site.lng);
+        if (nearestMeters == null || d < nearestMeters) nearestMeters = d;
+      }
+    }
+    const hasChanging = restrooms.some((r) => r.changingStations);
+    entry.restrooms = {
+      count: restrooms.length,
+      nearestToSiteMeters: nearestMeters != null ? Math.round(nearestMeters) : null,
+      hasChangingStation: hasChanging,
+    };
+    perSite.set(site.id, entry);
+    totalRestrooms += restrooms.length;
+    if (restrooms.length > 0) sitesWithRestroom++;
+    if (hasChanging) sitesWithChangingStation++;
+  }
+  console.log(`  ${totalRestrooms} operational restrooms across corridors (deduped per site)`);
+  console.log(`  ${sitesWithRestroom} of ${sites.length} sites have >=1 operational restroom in corridor; ${sitesWithChangingStation} include a changing station`);
+  return {
+    dataset: "Public Restrooms (i7jb-7jku)",
+    publisher: "NYC Department of Parks & Recreation (feed) + Department of Information Technology & Telecommunications",
+    url: "https://data.cityofnewyork.us/Health/Public-Restrooms/i7jb-7jku",
+    vintage_label: "NYC Public Restrooms — filtered to status='Operational'",
+    pulled_at: pulledAt,
+    note: "Operational status is what the dataset reports; it does not confirm the restroom is open at the moment of the trip.",
+  };
+}
+
 function parseOnlyFlag(argv) {
   const arg = argv.find((a) => a.startsWith("--only="));
   if (!arg) return null;
@@ -875,6 +965,10 @@ async function main() {
     if (runLayer(8)) {
       const meta = await runCollisionLayer(sites, perSite, pulledAt, { stationById });
       existing._meta.sources.pedCollisions = meta;
+    }
+    if (runLayer(10)) {
+      const meta = await runRestroomLayer(sites, perSite, pulledAt, { stationById });
+      existing._meta.sources.restrooms = meta;
     }
 
     const out = { ...existing };
@@ -1074,6 +1168,11 @@ async function main() {
   // ---- Layer 8: Motor Vehicle Collisions (h9gi-nx95) --------------------
   const pedCollisionsMeta = await runCollisionLayer(sites, perSite, pulledAt, { stationById });
 
+  // ---- Layer 9: (skipped — see header note) -----------------------------
+
+  // ---- Layer 10: Public Restrooms (i7jb-7jku) ---------------------------
+  const restroomsMeta = await runRestroomLayer(sites, perSite, pulledAt, { stationById });
+
   // ---- Assemble overlays.json -------------------------------------------
   const out = {
     _meta: {
@@ -1135,6 +1234,7 @@ async function main() {
         trees: treesMeta,
         benches: benchesMeta,
         pedCollisions: pedCollisionsMeta,
+        restrooms: restroomsMeta,
       },
     },
   };
