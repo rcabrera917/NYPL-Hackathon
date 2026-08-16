@@ -12,6 +12,7 @@
 //   [x] 5. Census tract context (ACS 5-year 2023 + USDA LRAM 2019)
 //   [x] 6. Street Tree Census — living trees in the 300m corridor
 //   [x] 7. CityBench (DOT) — public bench locations, nearest bench distance
+//   [x] 8. Motor Vehicle Collisions — pedestrian-injury crashes (24 mo)
 //
 // Usage:
 //   node scripts/build-overlays.mjs                # all layers, fetch/print/write
@@ -35,6 +36,8 @@ const NYC311_URL = "https://data.cityofnewyork.us/resource/erm2-nwe9.json";
 const FCC_BLOCK_URL = "https://geo.fcc.gov/api/census/block/find";
 const TREES_URL = "https://data.cityofnewyork.us/resource/uvpi-gqnh.json";
 const BENCHES_URL = "https://data.cityofnewyork.us/resource/kuxa-tauh.json";
+const COLLISIONS_URL = "https://data.cityofnewyork.us/resource/h9gi-nx95.json";
+const COLLISIONS_LOOKBACK_MONTHS = 24;
 const CENSUS_ACS_DETAIL_URL = "https://api.census.gov/data/2023/acs/acs5";
 const CENSUS_ACS_SUBJECT_URL = "https://api.census.gov/data/2023/acs/acs5/subject";
 const ACS_VINTAGE_LABEL = "ACS 5-year, 2023";
@@ -58,10 +61,15 @@ const NYC311_TARGET_TYPES = [
 async function fetchAll(url, params) {
   const u = new URL(url);
   for (const [k, v] of Object.entries(params ?? {})) u.searchParams.set(k, v);
-  u.searchParams.set("$limit", "50000");
-  const res = await fetch(u);
-  if (!res.ok) throw new Error(`HTTP ${res.status} ${u}`);
-  return res.json();
+  if (!u.searchParams.has("$limit")) u.searchParams.set("$limit", "50000");
+  // One retry on 5xx — Socrata occasionally 500s under load and a
+  // second attempt usually succeeds.
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const res = await fetch(u);
+    if (res.ok) return res.json();
+    if (res.status < 500 || attempt === 1) throw new Error(`HTTP ${res.status} ${u}`);
+    await new Promise((r) => setTimeout(r, 500));
+  }
 }
 
 function haversineMeters(lat1, lng1, lat2, lng2) {
@@ -687,6 +695,97 @@ async function runBenchLayer(sites, perSite, pulledAt, opts) {
   };
 }
 
+// ---- Layer 8 helper: Motor Vehicle Collisions -------------------------
+// h9gi-nx95 exposes a `location` (location type) column that supports
+// within_circle. We filter to pedestrian-injury crashes in the last
+// 24 months. Framed as crossing risk, not crime.
+async function fetchPedInjuryCrashesNearOrigin(origin, radiusMeters, cutoffIso) {
+  const params = {
+    $where:
+      `within_circle(location, ${origin.lat}, ${origin.lng}, ${radiusMeters}) ` +
+      `AND crash_date >= '${cutoffIso}' ` +
+      `AND number_of_pedestrians_injured > 0`,
+    $select:
+      "collision_id,crash_date,crash_time,latitude,longitude," +
+      "number_of_pedestrians_injured,number_of_pedestrians_killed," +
+      "on_street_name,cross_street_name,contributing_factor_vehicle_1",
+    $limit: "5000",
+  };
+  return fetchAll(COLLISIONS_URL, params);
+}
+
+async function runCollisionLayer(sites, perSite, pulledAt, opts) {
+  const cutoff = new Date(Date.now() - COLLISIONS_LOOKBACK_MONTHS * 30 * 86400000);
+  const cutoffIso = cutoff.toISOString().slice(0, 19);
+  console.log(`\n[Layer 8: Motor Vehicle Collisions — pedestrian-injury crashes, last ${COLLISIONS_LOOKBACK_MONTHS} months]`);
+  console.log(`  dataset: h9gi-nx95 (NYPD Motor Vehicle Collisions - Crashes)`);
+  console.log(`  cutoff: ${cutoffIso}`);
+  const stationById = opts.stationById;
+  let totalCrashes = 0;
+  let totalPedInjured = 0;
+  let totalPedKilled = 0;
+  let sitesWithCrashes = 0;
+
+  for (const site of sites) {
+    const origins = originsFor(site, stationById);
+    const entry = perSite.get(site.id) ?? {};
+    if (!origins.length) {
+      entry.pedCollisions = { count: 0, error: "no coords" };
+      perSite.set(site.id, entry);
+      continue;
+    }
+    const seen = new Map();
+    try {
+      for (const o of origins) {
+        const rows = await fetchPedInjuryCrashesNearOrigin(o, RADIUS_METERS, cutoffIso);
+        for (const r of rows) {
+          if (seen.has(r.collision_id)) continue;
+          const injured = Number(r.number_of_pedestrians_injured) || 0;
+          const killed = Number(r.number_of_pedestrians_killed) || 0;
+          seen.set(r.collision_id, {
+            id: r.collision_id,
+            crashDate: r.crash_date ?? null,
+            pedInjured: injured,
+            pedKilled: killed,
+            onStreet: r.on_street_name?.trim() || null,
+            crossStreet: r.cross_street_name?.trim() || null,
+          });
+        }
+      }
+    } catch (err) {
+      console.warn(`  ${site.id}: collisions fetch failed — ${err.message}`);
+      entry.pedCollisions = { count: 0, error: err.message };
+      perSite.set(site.id, entry);
+      continue;
+    }
+    const crashes = [...seen.values()];
+    const pedInjured = crashes.reduce((n, c) => n + c.pedInjured, 0);
+    const pedKilled = crashes.reduce((n, c) => n + c.pedKilled, 0);
+    entry.pedCollisions = {
+      count: crashes.length,
+      pedInjured,
+      pedKilled,
+      lookbackMonths: COLLISIONS_LOOKBACK_MONTHS,
+    };
+    perSite.set(site.id, entry);
+    totalCrashes += crashes.length;
+    totalPedInjured += pedInjured;
+    totalPedKilled += pedKilled;
+    if (crashes.length > 0) sitesWithCrashes++;
+  }
+  console.log(`  ${totalCrashes} pedestrian-injury crashes across corridors — ${totalPedInjured} pedestrians injured, ${totalPedKilled} killed`);
+  console.log(`  ${sitesWithCrashes} of ${sites.length} sites have >=1 pedestrian-injury crash in the ${RADIUS_METERS}m corridor`);
+  return {
+    dataset: "Motor Vehicle Collisions - Crashes (h9gi-nx95)",
+    publisher: "NYC Police Department (NYPD)",
+    url: "https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95",
+    vintage_label: `NYPD Collisions, last ${COLLISIONS_LOOKBACK_MONTHS} months`,
+    lookback_months: COLLISIONS_LOOKBACK_MONTHS,
+    pulled_at: pulledAt,
+    note: "Filter: number_of_pedestrians_injured > 0. This is a crossing-risk indicator based on reported crashes — not a comment on people or crime.",
+  };
+}
+
 function parseOnlyFlag(argv) {
   const arg = argv.find((a) => a.startsWith("--only="));
   if (!arg) return null;
@@ -772,6 +871,10 @@ async function main() {
     if (runLayer(7)) {
       const meta = await runBenchLayer(sites, perSite, pulledAt, { stationById });
       existing._meta.sources.benches = meta;
+    }
+    if (runLayer(8)) {
+      const meta = await runCollisionLayer(sites, perSite, pulledAt, { stationById });
+      existing._meta.sources.pedCollisions = meta;
     }
 
     const out = { ...existing };
@@ -968,6 +1071,9 @@ async function main() {
   // ---- Layer 7: CityBench (kuxa-tauh) -----------------------------------
   const benchesMeta = await runBenchLayer(sites, perSite, pulledAt, { stationById });
 
+  // ---- Layer 8: Motor Vehicle Collisions (h9gi-nx95) --------------------
+  const pedCollisionsMeta = await runCollisionLayer(sites, perSite, pulledAt, { stationById });
+
   // ---- Assemble overlays.json -------------------------------------------
   const out = {
     _meta: {
@@ -1028,6 +1134,7 @@ async function main() {
         },
         trees: treesMeta,
         benches: benchesMeta,
+        pedCollisions: pedCollisionsMeta,
       },
     },
   };

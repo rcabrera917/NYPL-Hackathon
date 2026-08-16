@@ -150,6 +150,15 @@
         "vintage_label": "NYC CityBench (Historical)",
         "pulled_at": "2026-08-16T14:46:41.590Z",
         "note": "Dataset labeled 'Historical' by DOT. Some benches may have been removed since installation; use as a range-of-rest indicator, not a guarantee."
+      },
+      "pedCollisions": {
+        "dataset": "Motor Vehicle Collisions - Crashes (h9gi-nx95)",
+        "publisher": "NYC Police Department (NYPD)",
+        "url": "https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95",
+        "vintage_label": "NYPD Collisions, last 24 months",
+        "lookback_months": 24,
+        "pulled_at": "2026-08-16T14:49:42.124Z",
+        "note": "Filter: number_of_pedestrians_injured > 0. This is a crossing-risk indicator based on reported crashes — not a comment on people or crime."
       }
     }
   },
@@ -266,6 +275,12 @@
       "count": 1,
       "nearestToStationMeters": 175,
       "nearestToSiteMeters": 1599
+    },
+    "pedCollisions": {
+      "count": 9,
+      "pedInjured": 9,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0100": {
@@ -426,6 +441,12 @@
       "count": 3,
       "nearestToStationMeters": 24,
       "nearestToSiteMeters": 257
+    },
+    "pedCollisions": {
+      "count": 38,
+      "pedInjured": 40,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0140": {
@@ -583,6 +604,12 @@
       "count": 10,
       "nearestToStationMeters": 25,
       "nearestToSiteMeters": 64
+    },
+    "pedCollisions": {
+      "count": 27,
+      "pedInjured": 27,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0630": {
@@ -724,6 +751,12 @@
       "count": 4,
       "nearestToStationMeters": 274,
       "nearestToSiteMeters": 85
+    },
+    "pedCollisions": {
+      "count": 58,
+      "pedInjured": 60,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0285": {
@@ -897,6 +930,12 @@
       "count": 4,
       "nearestToStationMeters": 163,
       "nearestToSiteMeters": 121
+    },
+    "pedCollisions": {
+      "count": 30,
+      "pedInjured": 30,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0230": {
@@ -1044,6 +1083,12 @@
       "count": 3,
       "nearestToStationMeters": 108,
       "nearestToSiteMeters": 348
+    },
+    "pedCollisions": {
+      "count": 37,
+      "pedInjured": 38,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0801": {
@@ -1203,6 +1248,12 @@
       "count": 7,
       "nearestToStationMeters": 78,
       "nearestToSiteMeters": 384
+    },
+    "pedCollisions": {
+      "count": 44,
+      "pedInjured": 45,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0311": {
@@ -1377,6 +1428,12 @@
       "count": 10,
       "nearestToStationMeters": 40,
       "nearestToSiteMeters": 521
+    },
+    "pedCollisions": {
+      "count": 26,
+      "pedInjured": 27,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0766": {
@@ -1550,6 +1607,12 @@
       "count": 11,
       "nearestToStationMeters": 78,
       "nearestToSiteMeters": 29
+    },
+    "pedCollisions": {
+      "count": 41,
+      "pedInjured": 42,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0793": {
@@ -1707,6 +1770,12 @@
       "count": 2,
       "nearestToStationMeters": 225,
       "nearestToSiteMeters": 1269
+    },
+    "pedCollisions": {
+      "count": 35,
+      "pedInjured": 38,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0368": {
@@ -1864,6 +1933,12 @@
       "count": 2,
       "nearestToStationMeters": 1464,
       "nearestToSiteMeters": 219
+    },
+    "pedCollisions": {
+      "count": 18,
+      "pedInjured": 18,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0217": {
@@ -2023,6 +2098,12 @@
       "count": 5,
       "nearestToStationMeters": 25,
       "nearestToSiteMeters": 1082
+    },
+    "pedCollisions": {
+      "count": 27,
+      "pedInjured": 27,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0119": {
@@ -2169,6 +2250,12 @@
       "count": 0,
       "nearestToStationMeters": null,
       "nearestToSiteMeters": null
+    },
+    "pedCollisions": {
+      "count": 41,
+      "pedInjured": 41,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0818": {
@@ -2272,6 +2359,12 @@
       "count": 3,
       "nearestToStationMeters": 254,
       "nearestToSiteMeters": 217
+    },
+    "pedCollisions": {
+      "count": 4,
+      "pedInjured": 5,
+      "pedKilled": 1,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0171": {
@@ -2429,6 +2522,12 @@
       "count": 1,
       "nearestToStationMeters": 919,
       "nearestToSiteMeters": 160
+    },
+    "pedCollisions": {
+      "count": 30,
+      "pedInjured": 31,
+      "pedKilled": 1,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0694": {
@@ -2580,6 +2679,12 @@
       "count": 8,
       "nearestToStationMeters": 80,
       "nearestToSiteMeters": 188
+    },
+    "pedCollisions": {
+      "count": 66,
+      "pedInjured": 70,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0167": {
@@ -2716,6 +2821,12 @@
       "count": 1,
       "nearestToStationMeters": 254,
       "nearestToSiteMeters": 5161
+    },
+    "pedCollisions": {
+      "count": 3,
+      "pedInjured": 3,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0438": {
@@ -2859,6 +2970,12 @@
       "count": 7,
       "nearestToStationMeters": 25,
       "nearestToSiteMeters": 132
+    },
+    "pedCollisions": {
+      "count": 33,
+      "pedInjured": 33,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0359": {
@@ -2980,6 +3097,12 @@
       "count": 2,
       "nearestToStationMeters": 254,
       "nearestToSiteMeters": 257
+    },
+    "pedCollisions": {
+      "count": 9,
+      "pedInjured": 9,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0393": {
@@ -3117,6 +3240,12 @@
       "count": 1,
       "nearestToStationMeters": 96,
       "nearestToSiteMeters": 765
+    },
+    "pedCollisions": {
+      "count": 17,
+      "pedInjured": 18,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0440": {
@@ -3290,6 +3419,12 @@
       "count": 10,
       "nearestToStationMeters": 78,
       "nearestToSiteMeters": 90
+    },
+    "pedCollisions": {
+      "count": 37,
+      "pedInjured": 39,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0411": {
@@ -3428,6 +3563,12 @@
       "count": 8,
       "nearestToStationMeters": 231,
       "nearestToSiteMeters": 109
+    },
+    "pedCollisions": {
+      "count": 29,
+      "pedInjured": 29,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0343": {
@@ -3562,6 +3703,12 @@
       "count": 2,
       "nearestToStationMeters": 26,
       "nearestToSiteMeters": 948
+    },
+    "pedCollisions": {
+      "count": 20,
+      "pedInjured": 20,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0371": {
@@ -3748,6 +3895,12 @@
       "count": 8,
       "nearestToStationMeters": 78,
       "nearestToSiteMeters": 140
+    },
+    "pedCollisions": {
+      "count": 39,
+      "pedInjured": 40,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0715": {
@@ -3921,6 +4074,12 @@
       "count": 6,
       "nearestToStationMeters": 82,
       "nearestToSiteMeters": 202
+    },
+    "pedCollisions": {
+      "count": 40,
+      "pedInjured": 44,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0392": {
@@ -4046,6 +4205,12 @@
       "count": 1,
       "nearestToStationMeters": 236,
       "nearestToSiteMeters": 2916
+    },
+    "pedCollisions": {
+      "count": 5,
+      "pedInjured": 5,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0439": {
@@ -4199,6 +4364,12 @@
       "count": 2,
       "nearestToStationMeters": 212,
       "nearestToSiteMeters": 5980
+    },
+    "pedCollisions": {
+      "count": 41,
+      "pedInjured": 42,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-08-ny-sfsp-0002": {
@@ -4282,6 +4453,12 @@
       "count": 0,
       "nearestToStationMeters": null,
       "nearestToSiteMeters": null
+    },
+    "pedCollisions": {
+      "count": 2,
+      "pedInjured": 2,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-09-ny-sfsp-0542": {
@@ -4469,6 +4646,12 @@
       "count": 4,
       "nearestToStationMeters": 212,
       "nearestToSiteMeters": 228
+    },
+    "pedCollisions": {
+      "count": 54,
+      "pedInjured": 56,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0023": {
@@ -4636,6 +4819,12 @@
       "count": 4,
       "nearestToStationMeters": 220,
       "nearestToSiteMeters": 21
+    },
+    "pedCollisions": {
+      "count": 32,
+      "pedInjured": 38,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0017": {
@@ -4794,6 +4983,12 @@
       "count": 3,
       "nearestToStationMeters": 68,
       "nearestToSiteMeters": 955
+    },
+    "pedCollisions": {
+      "count": 42,
+      "pedInjured": 43,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0035": {
@@ -4945,6 +5140,12 @@
       "count": 5,
       "nearestToStationMeters": 549,
       "nearestToSiteMeters": 178
+    },
+    "pedCollisions": {
+      "count": 84,
+      "pedInjured": 84,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0007": {
@@ -5115,6 +5316,12 @@
       "count": 10,
       "nearestToStationMeters": 16,
       "nearestToSiteMeters": 430
+    },
+    "pedCollisions": {
+      "count": 25,
+      "pedInjured": 25,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0120": {
@@ -5260,6 +5467,12 @@
       "count": 0,
       "nearestToStationMeters": null,
       "nearestToSiteMeters": null
+    },
+    "pedCollisions": {
+      "count": 5,
+      "pedInjured": 5,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0037": {
@@ -5420,6 +5633,12 @@
       "count": 9,
       "nearestToStationMeters": 278,
       "nearestToSiteMeters": 41
+    },
+    "pedCollisions": {
+      "count": 20,
+      "pedInjured": 21,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0030": {
@@ -5576,6 +5795,12 @@
       "count": 3,
       "nearestToStationMeters": 36,
       "nearestToSiteMeters": 92
+    },
+    "pedCollisions": {
+      "count": 52,
+      "pedInjured": 52,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0088": {
@@ -5731,6 +5956,12 @@
       "count": 13,
       "nearestToStationMeters": 53,
       "nearestToSiteMeters": 29
+    },
+    "pedCollisions": {
+      "count": 24,
+      "pedInjured": 25,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0034": {
@@ -5893,6 +6124,12 @@
       "count": 10,
       "nearestToStationMeters": 212,
       "nearestToSiteMeters": 112
+    },
+    "pedCollisions": {
+      "count": 51,
+      "pedInjured": 52,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0122": {
@@ -6006,6 +6243,12 @@
       "count": 1,
       "nearestToStationMeters": 254,
       "nearestToSiteMeters": 725
+    },
+    "pedCollisions": {
+      "count": 6,
+      "pedInjured": 6,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   },
   "cycle-05-ny-sfsp-0062": {
@@ -6151,6 +6394,12 @@
       "count": 2,
       "nearestToStationMeters": 101,
       "nearestToSiteMeters": 826
+    },
+    "pedCollisions": {
+      "count": 34,
+      "pedInjured": 35,
+      "pedKilled": 0,
+      "lookbackMonths": 24
     }
   }
 }
