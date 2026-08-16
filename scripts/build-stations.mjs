@@ -3,6 +3,13 @@
 // open-data feeds, and stamp public/data/sites.json with each site's
 // nearest ADA station.
 //
+// Contract extension (2026-08-16): each station record now also carries
+// name, routes (array), line, and borough so the UI can render
+// "Prospect Park (B, Q, S)" instead of "D28". The GTFS id remains the
+// key and is shown only in monospace provenance suffixes. Adding
+// display-only fields is compatible with the original frozen shape:
+// ada, adaDirectionNotes, elevators[] are unchanged.
+//
 // Sources:
 //   Stations w/ ADA + coords: data.ny.gov 39hk-dx4f
 //   Elevator asset inventory: data.ny.gov 94fv-bak7 (updated ~daily;
@@ -46,6 +53,16 @@ function haversineMiles(lat1, lng1, lat2, lng2) {
     Math.sin(dLat / 2) ** 2 +
     Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
   return 2 * R * Math.asin(Math.sqrt(a));
+}
+
+// MTA borough single-letter code -> full name for the human-facing label.
+const BOROUGH_NAME = { M: "Manhattan", Bk: "Brooklyn", Q: "Queens", Bx: "Bronx", SI: "Staten Island" };
+
+// daytime_routes ships as a whitespace-separated list, e.g. "N W" or
+// "B Q S". Split and trim.
+function parseRoutes(raw) {
+  if (!raw || typeof raw !== "string") return [];
+  return raw.trim().split(/\s+/).filter(Boolean);
 }
 
 // Build the adaDirectionNotes string for a partially-accessible (ada=2)
@@ -104,6 +121,10 @@ async function main() {
     const complexKey = s.complex_id ?? s.station_id;
     const elevators = (elevatorsByComplex.get(complexKey) ?? []).map(normalizeElevator);
     stations[s.gtfs_stop_id] = {
+      name: s.stop_name ?? null,
+      routes: parseRoutes(s.daytime_routes),
+      line: s.line ?? null,
+      borough: s.borough ? (BOROUGH_NAME[s.borough] ?? s.borough) : null,
       ada: Number(s.ada),
       adaDirectionNotes: buildDirectionNotes(s),
       elevators,

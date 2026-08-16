@@ -3,13 +3,40 @@
 // no fetch — inputs in, verdict out.
 //
 // stationStatus is expected to be stations[site.nearestStationId] —
-// i.e. { ada, adaDirectionNotes, elevators: [{id, servingDescription,
-// onAdaPath, inService}] } — or null/undefined if unknown.
+// i.e. { name?, routes?, line?, borough?, ada, adaDirectionNotes,
+// elevators: [{id, servingDescription, onAdaPath, inService}] } —
+// or null/undefined if unknown.
 //
 // date is a Date or anything Date can parse. Day-of-week is read in
 // the local timezone of the caller.
+//
+// Human-readable strings only. Machine identifiers (GTFS stop id,
+// elevator equipment code) never appear in a sentence — the caller
+// can render them separately in monospace from the raw JSON.
 
 const DAY_NAMES = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+// Render a human station label: "Prospect Park (B, Q, S)". Falls back
+// to whatever we do have (name, then borough, then a generic "nearest
+// ADA station" — never leaks the raw GTFS id into a sentence).
+function stationLabel(stationStatus, stationId) {
+  if (!stationStatus) return stationId ? "nearest ADA station" : null;
+  const name = stationStatus.name || null;
+  const routes = Array.isArray(stationStatus.routes) ? stationStatus.routes : [];
+  if (name && routes.length) return `${name} (${routes.join(", ")})`;
+  if (name) return name;
+  if (stationStatus.borough) return `nearest ADA station in ${stationStatus.borough}`;
+  return "nearest ADA station";
+}
+
+// Render a human elevator label using the equipment feed's serving
+// description. Fall back to "elevator (ID X)" — the raw code only
+// appears when we have nothing better.
+function elevatorLabel(e) {
+  const desc = e && e.servingDescription ? String(e.servingDescription).trim() : "";
+  if (desc) return `elevator ${desc}`;
+  return e && e.id ? `elevator (ID ${e.id})` : "elevator";
+}
 
 function dayLabel(date) {
   const d = date instanceof Date ? date : new Date(date);
@@ -37,15 +64,24 @@ export function getVerdict(site, stationStatus, date) {
   const reasons = [];
   const provenance = [];
 
+  const stationHuman = stationLabel(stationStatus, site.nearestStationId);
+
   const source = verificationSource(site);
   if (source) {
-    provenance.push(`entranceStepFree=${site.entranceStepFree} verified by ${source}`);
+    const verb = site.entranceStepFree === true ? "verified step-free" :
+                 site.entranceStepFree === false ? "verified NOT step-free" :
+                 "verification recorded (result unclear)";
+    provenance.push(`entrance ${verb} by ${source}`);
+  } else if (site.entranceStepFree === true) {
+    provenance.push("entrance reported step-free — unverified");
+  } else if (site.entranceStepFree === false) {
+    provenance.push("entrance reported NOT step-free — unverified");
   } else {
-    provenance.push(`entranceStepFree=${site.entranceStepFree ?? "unknown"} (unverified)`);
+    provenance.push("entrance step-free status unknown, unverified");
   }
 
   if (site.nearestStationId) {
-    provenance.push(`nearest ADA station: ${site.nearestStationId}`);
+    provenance.push(`nearest ADA station: ${stationHuman}`);
   } else {
     provenance.push("no nearest ADA station on record");
   }
@@ -53,14 +89,14 @@ export function getVerdict(site, stationStatus, date) {
   const pathElevators = adaPathElevators(stationStatus);
   if (stationStatus) {
     if (pathElevators.length === 0) {
-      provenance.push(`no ADA-path elevators on record for ${site.nearestStationId}`);
+      provenance.push(`no ADA-path elevators on record for ${stationHuman}`);
     } else {
       for (const e of pathElevators) {
-        provenance.push(`elevator ${e.id}: ${e.inService ? "in service" : "OUT OF SERVICE"}`);
+        provenance.push(`${elevatorLabel(e)} — ${e.inService ? "in service" : "OUT OF SERVICE"}`);
       }
     }
   } else if (site.nearestStationId) {
-    provenance.push(`station ${site.nearestStationId} status unavailable`);
+    provenance.push(`${stationHuman} status unavailable`);
   }
 
   // Season bounds provenance (extension to the original frozen contract).
@@ -101,7 +137,7 @@ export function getVerdict(site, stationStatus, date) {
   const outElevators = pathElevators.filter((e) => e.inService !== true);
   if (outElevators.length > 0) {
     reasons.push(
-      `required elevator(s) out of service: ${outElevators.map((e) => e.id).join(", ")}`,
+      `required elevator(s) out of service: ${outElevators.map(elevatorLabel).join("; ")}`,
     );
     return { state: "red", reasons, provenance };
   }
@@ -134,11 +170,11 @@ export function getVerdict(site, stationStatus, date) {
   if (!stationStatus) {
     reasons.push(
       site.nearestStationId
-        ? `station ${site.nearestStationId} status unavailable`
+        ? `${stationHuman} status unavailable`
         : "no nearest ADA station on record",
     );
   } else if (pathElevators.length === 0) {
-    reasons.push("no ADA-path elevators listed for nearest station");
+    reasons.push(`no ADA-path elevators listed for ${stationHuman}`);
   }
 
   return { state: "amber", reasons, provenance };

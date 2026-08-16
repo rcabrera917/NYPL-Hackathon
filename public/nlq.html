@@ -224,6 +224,8 @@
     .result-body li { margin-bottom: 3px; word-break: break-word; }
     .result-body .meta-line { font-size: 12px; margin-top: 6px; }
     .result-body .meta-line .k { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; display: block; }
+    .result-body .meta-line .code-suffix { color: var(--muted); font-size: 10px; margin-left: 6px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .result-body .meta-sub { color: var(--muted); font-size: 11px; margin-top: 2px; padding-left: 2px; }
 
     /* ---- Overlay layer + corridor styles (unchanged) ---- */
     .lib-marker { background: #7c3aed; width: 12px; height: 12px; border: 2px solid #0b1220; border-radius: 2px; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15); }
@@ -552,6 +554,65 @@
       return getVerdict(site, stationFor(site), state.selectedDate);
     }
 
+    // ---- human labels ----------------------------------------------------
+    // 311 complaint_type strings from NYC Open Data read as agency
+    // categorization, not English. Map to plain-language equivalents so
+    // the corridor block reads like a walk description, not a form.
+    const COMPLAINT_TYPE_LABELS = {
+      "Elevator": "Building elevator complaint",
+      "Sidewalk Condition": "Broken sidewalk",
+      "Root/Sewer/Sidewalk Condition": "Sidewalk damaged by tree roots or sewer",
+      "Curb Condition": "Broken curb / missing curb cut",
+      "Scaffold Safety": "Scaffold hazard",
+      "DEP Sidewalk Condition": "Sidewalk damaged by water/sewer work",
+    };
+    function complaintTypeLabel(type) {
+      return COMPLAINT_TYPE_LABELS[type] || type;
+    }
+
+    // Human station label with routes: "Prospect Park (B, Q, S)".
+    function stationDisplayName(station, gtfsId) {
+      if (!station) return gtfsId ? "nearest ADA station" : "";
+      const name = station.name || "";
+      const routes = Array.isArray(station.routes) ? station.routes : [];
+      if (name && routes.length) return `${name} (${routes.join(", ")})`;
+      if (name) return name;
+      return gtfsId ? "nearest ADA station" : "";
+    }
+
+    // Human label for the MTA ADA code. 1 = fully ADA-accessible;
+    // 2 = one direction only (adaDirectionNotes carries the specifics).
+    function adaLabel(station) {
+      if (!station) return "";
+      if (station.ada === 1) return "step-free access";
+      if (station.ada === 2) return "partially step-free — see direction notes";
+      return "no ADA status on record";
+    }
+
+    // Render the "nearest station" line on the expanded card. Human
+    // sentence, GTFS id demoted to a monospace suffix (same treatment
+    // as dataset IDs elsewhere in the UI).
+    function renderNearestStationLine(site, station) {
+      if (!site.nearestStationId) return "";
+      const label = stationDisplayName(station, site.nearestStationId);
+      const ada = adaLabel(station);
+      const elevN = station?.elevators?.length ?? 0;
+      const elevPart = station
+        ? ` — ${ada}, ${elevN} elevator${elevN === 1 ? "" : "s"}`
+        : " — status unavailable";
+      const directions = station?.adaDirectionNotes
+        ? `<div class="meta-sub">${escapeHtml(station.adaDirectionNotes)}</div>`
+        : "";
+      return `
+        <div class="meta-line">
+          <span class="k">${escapeHtml(tr("nearestStation"))}</span>
+          ${escapeHtml(label)}${escapeHtml(elevPart)}
+          <span class="code-suffix">GTFS ${escapeHtml(site.nearestStationId)}</span>
+        </div>
+        ${directions}
+      `;
+    }
+
     function renderMarkers() {
       for (const m of markers.values()) map.removeLayer(m);
       markers.clear();
@@ -623,7 +684,7 @@
           : "";
         const typeRows = Object.entries(c311.byType)
           .sort((a, b) => b[1] - a[1])
-          .map(([type, n]) => `<div class="type-row"><span>${escapeHtml(type)}</span><span class="m">${n}</span></div>`)
+          .map(([type, n]) => `<div class="type-row"><span title="${escapeHtml(type)}">${escapeHtml(complaintTypeLabel(type))}</span><span class="m">${n}</span></div>`)
           .join("");
 
         let elevatorBlock = "";
@@ -761,7 +822,7 @@
           <h3>${escapeHtml(tr("provenance"))}</h3>
           <ul>${v.provenance.map((p) => `<li>${escapeHtml(p)}</li>`).join("")}</ul>
           ${phoneLink ? `<div class="meta-line"><span class="k">${escapeHtml(tr("phone"))}</span>${phoneLink}</div>` : ""}
-          ${site.nearestStationId ? `<div class="meta-line"><span class="k">${escapeHtml(tr("nearestStation"))}</span>${escapeHtml(site.nearestStationId)}${station ? ` — ADA=${station.ada}, ${station.elevators?.length ?? 0} elevators` : ""}</div>` : ""}
+          ${renderNearestStationLine(site, station)}
           ${renderCorridorSection(site)}
         </div>
       `;
@@ -914,9 +975,9 @@
     const EXAMPLE_QUERIES = [
       "free lunch for my 6 year old in the Bronx",
       "mi mamá usa silla de ruedas y necesitamos comida hoy",
-      "I use a walker and can't go far without sitting down",
+      "free lunch but I use a walker and can't go far without sitting down",
       "meals near me that are open Saturday",
-      "somewhere shaded to walk with my kids in the heat",
+      "meals for my kids somewhere shaded, it's too hot",
       "halal food for a family of five",
     ];
     const examplesRoot = $("examplesChips");

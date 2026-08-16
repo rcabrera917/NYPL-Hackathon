@@ -1,5 +1,11 @@
 {
   "104": {
+    "name": "231 St",
+    "routes": [
+      "1"
+    ],
+    "line": "Broadway - 7Av",
+    "borough": "Bronx",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -18,6 +24,12 @@
     ]
   },
   "109": {
+    "name": "Dyckman St",
+    "routes": [
+      "1"
+    ],
+    "line": "Broadway - 7Av",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -42,6 +54,12 @@
     ]
   },
   "115": {
+    "name": "137 St-City College",
+    "routes": [
+      "1"
+    ],
+    "line": "Broadway - 7Av",
+    "borough": "Manhattan",
     "ada": 2,
     "adaDirectionNotes": "Accessible Uptown (northbound)",
     "elevators": [
@@ -72,6 +90,14 @@
     ]
   },
   "120": {
+    "name": "96 St",
+    "routes": [
+      "1",
+      "2",
+      "3"
+    ],
+    "line": "Broadway - 7Av",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -90,6 +116,14 @@
     ]
   },
   "123": {
+    "name": "72 St",
+    "routes": [
+      "1",
+      "2",
+      "3"
+    ],
+    "line": "Broadway - 7Av",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -108,6 +142,12 @@
     ]
   },
   "124": {
+    "name": "66 St-Lincoln Center",
+    "routes": [
+      "1"
+    ],
+    "line": "Broadway - 7Av",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -126,6 +166,12 @@
     ]
   },
   "125": {
+    "name": "59 St-Columbus Circle",
+    "routes": [
+      "1"
+    ],
+    "line": "Broadway - 7Av",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -168,6 +214,14 @@
     ]
   },
   "127": {
+    "name": "Times Sq-42 St",
+    "routes": [
+      "1",
+      "2",
+      "3"
+    ],
+    "line": "Broadway - 7Av",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -214,13 +268,13 @@
         "inService": true
       },
       {
-        "id": "EL229",
+        "id": "EL232",
         "servingDescription": "Times Sq-42 St - Station",
         "onAdaPath": true,
         "inService": false
       },
       {
-        "id": "EL232",
+        "id": "EL229",
         "servingDescription": "Times Sq-42 St - Station",
         "onAdaPath": true,
         "inService": false
@@ -234,6 +288,14 @@
     ]
   },
   "128": {
+    "name": "34 St-Penn Station",
+    "routes": [
+      "1",
+      "2",
+      "3"
+    ],
+    "line": "Broadway - 7Av",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -270,6 +332,14 @@
     ]
   },
   "132": {
+    "name": "14 St",
+    "routes": [
+      "1",
+      "2",
+      "3"
+    ],
+    "line": "Broadway - 7Av",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -330,6 +400,14 @@
     ]
   },
   "137": {
+    "name": "Chambers St",
+    "routes": [
+      "1",
+      "2",
+      "3"
+    ],
+    "line": "Broadway - 7Av",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -354,6 +432,12 @@
     ]
   },
   "138": {
+    "name": "WTC Cortlandt",
+    "routes": [
+      "1"
+    ],
+    "line": "Broadway - 7Av",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -402,6 +486,12 @@
     ]
   },
   "142": {
+    "name": "South Ferry",
+    "routes": [
+      "1"
+    ],
+    "line": "Broadway - 7Av",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -420,6 +510,13 @@
     ]
   },
   "205": {
+    "name": "233 St",
+    "routes": [
+      "2",
+      "5"
+    ],
+    "line": "Lenox - White Plains Rd",
+    "borough": "Bronx",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -444,6 +541,13 @@
     ]
   },
   "208": {
+    "name": "Gun Hill Rd",
+    "routes": [
+      "2",
+      "5"
+    ],
+    "line": "Lenox - White Plains Rd",
+    "borough": "Bronx",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -462,6 +566,13 @@
     ]
   },
   "211": {
+    "name": "Pelham Pkwy",
+    "routes": [
+      "2",
+      "5"
+    ],
+    "line": "Lenox - White Plains Rd",
+    "borough": "Bronx",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -486,6 +597,13 @@
     ]
   },
   "213": {
+    "name": "E 180 St",
+    "routes": [
+      "2",
+      "5"
+    ],
+    "line": "Lenox - White Plains Rd",
+    "borough": "Bronx",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -504,6 +622,13 @@
     ]
   },
   "217": {
+    "name": "Simpson St",
+    "routes": [
+      "2",
+      "5"
+    ],
+    "line": "Lenox - White Plains Rd",
+    "borough": "Bronx",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -522,6 +647,13 @@
     ]
   },
   "221": {
+    "name": "3 Av-149 St",
+    "routes": [
+      "2",
+      "5"
+    ],
+    "line": "Lenox - White Plains Rd",
+    "borough": "Bronx",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -540,6 +672,13 @@
     ]
   },
   "224": {
+    "name": "135 St",
+    "routes": [
+      "2",
+      "3"
+    ],
+    "line": "Lenox - White Plains Rd",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -558,6 +697,13 @@
     ]
   },
   "229": {
+    "name": "Fulton St",
+    "routes": [
+      "2",
+      "3"
+    ],
+    "line": "Clark St",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -666,6 +812,13 @@
     ]
   },
   "232": {
+    "name": "Borough Hall",
+    "routes": [
+      "2",
+      "3"
+    ],
+    "line": "Clark St",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -714,6 +867,13 @@
     ]
   },
   "233": {
+    "name": "Hoyt St",
+    "routes": [
+      "2",
+      "3"
+    ],
+    "line": "Eastern Pky",
+    "borough": "Brooklyn",
     "ada": 2,
     "adaDirectionNotes": "Accessible Outbound (southbound)",
     "elevators": [
@@ -726,6 +886,15 @@
     ]
   },
   "235": {
+    "name": "Atlantic Av-Barclays Ctr",
+    "routes": [
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "line": "Eastern Pky",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -792,6 +961,13 @@
     ]
   },
   "238": {
+    "name": "Eastern Pkwy-Brooklyn Museum",
+    "routes": [
+      "2",
+      "3"
+    ],
+    "line": "Eastern Pky",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -816,6 +992,13 @@
     ]
   },
   "244": {
+    "name": "Church Av",
+    "routes": [
+      "2",
+      "5"
+    ],
+    "line": "Nostrand",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -834,6 +1017,13 @@
     ]
   },
   "247": {
+    "name": "Flatbush Av-Brooklyn College",
+    "routes": [
+      "2",
+      "5"
+    ],
+    "line": "Nostrand",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -846,6 +1036,13 @@
     ]
   },
   "250": {
+    "name": "Crown Hts-Utica Av",
+    "routes": [
+      "3",
+      "4"
+    ],
+    "line": "Eastern Pky",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -864,11 +1061,23 @@
     ]
   },
   "301": {
+    "name": "Harlem-148 St",
+    "routes": [
+      "3"
+    ],
+    "line": "Lenox - White Plains Rd",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": []
   },
   "402": {
+    "name": "Mosholu Pkwy",
+    "routes": [
+      "4"
+    ],
+    "line": "Jerome Av",
+    "borough": "Bronx",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -887,6 +1096,12 @@
     ]
   },
   "407": {
+    "name": "Fordham Rd",
+    "routes": [
+      "4"
+    ],
+    "line": "Jerome Av",
+    "borough": "Bronx",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -911,6 +1126,12 @@
     ]
   },
   "412": {
+    "name": "170 St",
+    "routes": [
+      "4"
+    ],
+    "line": "Jerome Av",
+    "borough": "Bronx",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -935,6 +1156,12 @@
     ]
   },
   "414": {
+    "name": "161 St-Yankee Stadium",
+    "routes": [
+      "4"
+    ],
+    "line": "Jerome Av",
+    "borough": "Bronx",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -971,6 +1198,13 @@
     ]
   },
   "418": {
+    "name": "Fulton St",
+    "routes": [
+      "4",
+      "5"
+    ],
+    "line": "Lexington Av",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1079,6 +1313,13 @@
     ]
   },
   "420": {
+    "name": "Bowling Green",
+    "routes": [
+      "4",
+      "5"
+    ],
+    "line": "Lexington Av",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1097,6 +1338,13 @@
     ]
   },
   "423": {
+    "name": "Borough Hall",
+    "routes": [
+      "4",
+      "5"
+    ],
+    "line": "Eastern Pky",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1145,6 +1393,12 @@
     ]
   },
   "503": {
+    "name": "Gun Hill Rd",
+    "routes": [
+      "5"
+    ],
+    "line": "Dyre Av",
+    "borough": "Bronx",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1163,6 +1417,12 @@
     ]
   },
   "601": {
+    "name": "Pelham Bay Park",
+    "routes": [
+      "6"
+    ],
+    "line": "Pelham",
+    "borough": "Bronx",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1181,6 +1441,12 @@
     ]
   },
   "604": {
+    "name": "Westchester Sq-E Tremont Av",
+    "routes": [
+      "6"
+    ],
+    "line": "Pelham",
+    "borough": "Bronx",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1217,6 +1483,12 @@
     ]
   },
   "608": {
+    "name": "Parkchester",
+    "routes": [
+      "6"
+    ],
+    "line": "Pelham",
+    "borough": "Bronx",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1235,6 +1507,12 @@
     ]
   },
   "613": {
+    "name": "Hunts Point Av",
+    "routes": [
+      "6"
+    ],
+    "line": "Pelham",
+    "borough": "Bronx",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1259,6 +1537,12 @@
     ]
   },
   "615": {
+    "name": "E 149 St",
+    "routes": [
+      "6"
+    ],
+    "line": "Pelham",
+    "borough": "Bronx",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1277,6 +1561,14 @@
     ]
   },
   "621": {
+    "name": "125 St",
+    "routes": [
+      "4",
+      "5",
+      "6"
+    ],
+    "line": "Lexington Av",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1295,6 +1587,14 @@
     ]
   },
   "626": {
+    "name": "86 St",
+    "routes": [
+      "4",
+      "5",
+      "6"
+    ],
+    "line": "Lexington Av",
+    "borough": "Manhattan",
     "ada": 2,
     "adaDirectionNotes": "Accessible Uptown (northbound)",
     "elevators": [
@@ -1307,6 +1607,12 @@
     ]
   },
   "628": {
+    "name": "68 St-Hunter College",
+    "routes": [
+      "6"
+    ],
+    "line": "Lexington Av",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1331,6 +1637,12 @@
     ]
   },
   "630": {
+    "name": "51 St",
+    "routes": [
+      "6"
+    ],
+    "line": "Lexington Av",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1361,6 +1673,14 @@
     ]
   },
   "631": {
+    "name": "Grand Central-42 St",
+    "routes": [
+      "4",
+      "5",
+      "6"
+    ],
+    "line": "Lexington Av",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1415,6 +1735,12 @@
     ]
   },
   "633": {
+    "name": "28 St",
+    "routes": [
+      "6"
+    ],
+    "line": "Lexington Av",
+    "borough": "Manhattan",
     "ada": 2,
     "adaDirectionNotes": "Accessible Downtown (southbound)",
     "elevators": [
@@ -1427,6 +1753,12 @@
     ]
   },
   "634": {
+    "name": "23 St-Baruch College",
+    "routes": [
+      "6"
+    ],
+    "line": "Lexington Av",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1445,6 +1777,12 @@
     ]
   },
   "637": {
+    "name": "Bleecker St",
+    "routes": [
+      "6"
+    ],
+    "line": "Lexington Av",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1481,6 +1819,12 @@
     ]
   },
   "639": {
+    "name": "Canal St",
+    "routes": [
+      "6"
+    ],
+    "line": "Lexington Av",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1499,6 +1843,14 @@
     ]
   },
   "640": {
+    "name": "Brooklyn Bridge-City Hall",
+    "routes": [
+      "4",
+      "5",
+      "6"
+    ],
+    "line": "Lexington Av",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1535,6 +1887,12 @@
     ]
   },
   "701": {
+    "name": "Flushing-Main St",
+    "routes": [
+      "7"
+    ],
+    "line": "Flushing",
+    "borough": "Queens",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1547,6 +1905,12 @@
     ]
   },
   "707": {
+    "name": "Junction Blvd",
+    "routes": [
+      "7"
+    ],
+    "line": "Flushing",
+    "borough": "Queens",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1571,6 +1935,12 @@
     ]
   },
   "710": {
+    "name": "74 St-Broadway",
+    "routes": [
+      "7"
+    ],
+    "line": "Flushing",
+    "borough": "Queens",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1601,6 +1971,12 @@
     ]
   },
   "712": {
+    "name": "61 St-Woodside",
+    "routes": [
+      "7"
+    ],
+    "line": "Flushing",
+    "borough": "Queens",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1637,6 +2013,12 @@
     ]
   },
   "718": {
+    "name": "Queensboro Plaza",
+    "routes": [
+      "7"
+    ],
+    "line": "Flushing",
+    "borough": "Queens",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1661,6 +2043,12 @@
     ]
   },
   "719": {
+    "name": "Court Sq",
+    "routes": [
+      "7"
+    ],
+    "line": "Flushing",
+    "borough": "Queens",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1697,6 +2085,12 @@
     ]
   },
   "723": {
+    "name": "Grand Central-42 St",
+    "routes": [
+      "7"
+    ],
+    "line": "Flushing",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1751,6 +2145,12 @@
     ]
   },
   "725": {
+    "name": "Times Sq-42 St",
+    "routes": [
+      "7"
+    ],
+    "line": "Flushing",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1797,13 +2197,13 @@
         "inService": true
       },
       {
-        "id": "EL229",
+        "id": "EL232",
         "servingDescription": "Times Sq-42 St - Station",
         "onAdaPath": true,
         "inService": false
       },
       {
-        "id": "EL232",
+        "id": "EL229",
         "servingDescription": "Times Sq-42 St - Station",
         "onAdaPath": true,
         "inService": false
@@ -1817,6 +2217,12 @@
     ]
   },
   "726": {
+    "name": "34 St-Hudson Yards",
+    "routes": [
+      "7"
+    ],
+    "line": "Flushing",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1847,6 +2253,12 @@
     ]
   },
   "901": {
+    "name": "Grand Central-42 St",
+    "routes": [
+      "S"
+    ],
+    "line": "Lexington - Shuttle",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1901,6 +2313,12 @@
     ]
   },
   "902": {
+    "name": "Times Sq-42 St",
+    "routes": [
+      "S"
+    ],
+    "line": "Lexington - Shuttle",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1947,13 +2365,13 @@
         "inService": true
       },
       {
-        "id": "EL229",
+        "id": "EL232",
         "servingDescription": "Times Sq-42 St - Station",
         "onAdaPath": true,
         "inService": false
       },
       {
-        "id": "EL232",
+        "id": "EL229",
         "servingDescription": "Times Sq-42 St - Station",
         "onAdaPath": true,
         "inService": false
@@ -1967,11 +2385,25 @@
     ]
   },
   "M01": {
+    "name": "Middle Village-Metropolitan Av",
+    "routes": [
+      "M"
+    ],
+    "line": "Myrtle Av",
+    "borough": "Queens",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": []
   },
   "M16": {
+    "name": "Marcy Av",
+    "routes": [
+      "M",
+      "J",
+      "Z"
+    ],
+    "line": "Jamaica",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1990,6 +2422,12 @@
     ]
   },
   "L10": {
+    "name": "Lorimer St",
+    "routes": [
+      "L"
+    ],
+    "line": "Canarsie",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2032,6 +2470,12 @@
     ]
   },
   "S01": {
+    "name": "Franklin Av",
+    "routes": [
+      "S"
+    ],
+    "line": "Franklin Shuttle",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2050,6 +2494,14 @@
     ]
   },
   "A41": {
+    "name": "Jay St-MetroTech",
+    "routes": [
+      "A",
+      "C",
+      "F"
+    ],
+    "line": "8th Av - Fulton St",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2086,6 +2538,12 @@
     ]
   },
   "G29": {
+    "name": "Metropolitan Av",
+    "routes": [
+      "G"
+    ],
+    "line": "Crosstown",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2128,6 +2586,14 @@
     ]
   },
   "G21": {
+    "name": "Queens Plaza",
+    "routes": [
+      "E",
+      "F",
+      "R"
+    ],
+    "line": "Queens Blvd",
+    "borough": "Queens",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2152,11 +2618,23 @@
     ]
   },
   "S25": {
+    "name": "Dongan Hills",
+    "routes": [
+      "SIR"
+    ],
+    "line": "Staten Island",
+    "borough": "Staten Island",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": []
   },
   "H01": {
+    "name": "Aqueduct Racetrack",
+    "routes": [
+      "A"
+    ],
+    "line": "Rockaway",
+    "borough": "Queens",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2169,6 +2647,15 @@
     ]
   },
   "A15": {
+    "name": "125 St",
+    "routes": [
+      "A",
+      "C",
+      "B",
+      "D"
+    ],
+    "line": "8th Av - Fulton St",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2193,6 +2680,13 @@
     ]
   },
   "D03": {
+    "name": "Bedford Park Blvd",
+    "routes": [
+      "B",
+      "D"
+    ],
+    "line": "Concourse",
+    "borough": "Bronx",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2217,6 +2711,12 @@
     ]
   },
   "Q05": {
+    "name": "96 St",
+    "routes": [
+      "Q"
+    ],
+    "line": "Second Av",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2235,6 +2735,14 @@
     ]
   },
   "R30": {
+    "name": "DeKalb Av",
+    "routes": [
+      "B",
+      "Q",
+      "R"
+    ],
+    "line": "Broadway - Brighton",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2259,6 +2767,12 @@
     ]
   },
   "B04": {
+    "name": "21 St-Queensbridge",
+    "routes": [
+      "M"
+    ],
+    "line": "63rd St",
+    "borough": "Queens",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2283,6 +2797,12 @@
     ]
   },
   "R29": {
+    "name": "Jay St-MetroTech",
+    "routes": [
+      "R"
+    ],
+    "line": "Broadway",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2319,6 +2839,13 @@
     ]
   },
   "D24": {
+    "name": "Atlantic Av-Barclays Ctr",
+    "routes": [
+      "B",
+      "Q"
+    ],
+    "line": "Broadway - Brighton",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2385,6 +2912,13 @@
     ]
   },
   "F27": {
+    "name": "Church Av",
+    "routes": [
+      "F",
+      "G"
+    ],
+    "line": "6th Av - Culver",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2409,6 +2943,12 @@
     ]
   },
   "F01": {
+    "name": "Jamaica-179 St",
+    "routes": [
+      "F"
+    ],
+    "line": "Queens Blvd",
+    "borough": "Queens",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2433,6 +2973,15 @@
     ]
   },
   "R14": {
+    "name": "57 St-7 Av",
+    "routes": [
+      "N",
+      "Q",
+      "R",
+      "W"
+    ],
+    "line": "Broadway - Brighton",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2463,6 +3012,12 @@
     ]
   },
   "B21": {
+    "name": "Bay Pkwy",
+    "routes": [
+      "D"
+    ],
+    "line": "West End",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2487,6 +3042,12 @@
     ]
   },
   "Q04": {
+    "name": "86 St",
+    "routes": [
+      "Q"
+    ],
+    "line": "Second Av",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2505,6 +3066,15 @@
     ]
   },
   "A24": {
+    "name": "59 St-Columbus Circle",
+    "routes": [
+      "A",
+      "C",
+      "B",
+      "D"
+    ],
+    "line": "8th Av - Fulton St",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2547,6 +3117,13 @@
     ]
   },
   "R25": {
+    "name": "Cortlandt St",
+    "routes": [
+      "R",
+      "W"
+    ],
+    "line": "Broadway",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2601,6 +3178,12 @@
     ]
   },
   "A61": {
+    "name": "Rockaway Blvd",
+    "routes": [
+      "A"
+    ],
+    "line": "Liberty Av",
+    "borough": "Queens",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2619,6 +3202,15 @@
     ]
   },
   "D43": {
+    "name": "Coney Island-Stillwell Av",
+    "routes": [
+      "D",
+      "F",
+      "N",
+      "Q"
+    ],
+    "line": "Sea Beach / West End / Culver / Brighton",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2643,6 +3235,13 @@
     ]
   },
   "G16": {
+    "name": "Northern Blvd",
+    "routes": [
+      "M",
+      "R"
+    ],
+    "line": "Queens Blvd",
+    "borough": "Queens",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2661,11 +3260,25 @@
     ]
   },
   "L29": {
+    "name": "Canarsie-Rockaway Pkwy",
+    "routes": [
+      "L"
+    ],
+    "line": "Canarsie",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": []
   },
   "A31": {
+    "name": "14 St",
+    "routes": [
+      "A",
+      "C",
+      "E"
+    ],
+    "line": "8th Av - Fulton St",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2696,6 +3309,12 @@
     ]
   },
   "G22": {
+    "name": "Court Sq",
+    "routes": [
+      "G"
+    ],
+    "line": "Crosstown",
+    "borough": "Queens",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2732,6 +3351,13 @@
     ]
   },
   "D19": {
+    "name": "14 St",
+    "routes": [
+      "F",
+      "M"
+    ],
+    "line": "6th Av - Culver",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2792,6 +3418,12 @@
     ]
   },
   "B10": {
+    "name": "57 St",
+    "routes": [
+      "M"
+    ],
+    "line": "6th Av - Culver",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2810,6 +3442,13 @@
     ]
   },
   "A55": {
+    "name": "Euclid Av",
+    "routes": [
+      "A",
+      "C"
+    ],
+    "line": "8th Av - Fulton St",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2834,6 +3473,12 @@
     ]
   },
   "A02": {
+    "name": "Inwood-207 St",
+    "routes": [
+      "A"
+    ],
+    "line": "8th Av - Fulton St",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2852,6 +3497,12 @@
     ]
   },
   "L03": {
+    "name": "14 St-Union Sq",
+    "routes": [
+      "L"
+    ],
+    "line": "Canarsie",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2882,6 +3533,15 @@
     ]
   },
   "D15": {
+    "name": "47-50 Sts-Rockefeller Ctr",
+    "routes": [
+      "B",
+      "D",
+      "F",
+      "M"
+    ],
+    "line": "6th Av - Culver",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2906,6 +3566,13 @@
     ]
   },
   "M21": {
+    "name": "Chambers St",
+    "routes": [
+      "J",
+      "Z"
+    ],
+    "line": "Jamaica",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2942,6 +3609,13 @@
     ]
   },
   "D04": {
+    "name": "Kingsbridge Rd",
+    "routes": [
+      "B",
+      "D"
+    ],
+    "line": "Concourse",
+    "borough": "Bronx",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2966,6 +3640,15 @@
     ]
   },
   "G08": {
+    "name": "Forest Hills-71 Av",
+    "routes": [
+      "E",
+      "F",
+      "M",
+      "R"
+    ],
+    "line": "Queens Blvd",
+    "borough": "Queens",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2990,11 +3673,23 @@
     ]
   },
   "S11": {
+    "name": "Arthur Kill",
+    "routes": [
+      "SIR"
+    ],
+    "line": "Staten Island",
+    "borough": "Staten Island",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": []
   },
   "L26": {
+    "name": "Livonia Av",
+    "routes": [
+      "L"
+    ],
+    "line": "Canarsie",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3013,6 +3708,12 @@
     ]
   },
   "F35": {
+    "name": "Kings Hwy",
+    "routes": [
+      "F"
+    ],
+    "line": "6th Av - Culver",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3037,11 +3738,25 @@
     ]
   },
   "S22": {
+    "name": "New Dorp",
+    "routes": [
+      "SIR"
+    ],
+    "line": "Staten Island",
+    "borough": "Staten Island",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": []
   },
   "R31": {
+    "name": "Atlantic Av-Barclays Ctr",
+    "routes": [
+      "D",
+      "N",
+      "R"
+    ],
+    "line": "4th Av",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3108,6 +3823,13 @@
     ]
   },
   "D39": {
+    "name": "Sheepshead Bay",
+    "routes": [
+      "B",
+      "Q"
+    ],
+    "line": "Broadway - Brighton",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3126,6 +3848,14 @@
     ]
   },
   "A32": {
+    "name": "W 4 St-Wash Sq",
+    "routes": [
+      "A",
+      "C",
+      "E"
+    ],
+    "line": "8th Av - Fulton St",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3150,6 +3880,12 @@
     ]
   },
   "G07": {
+    "name": "Jamaica-Van Wyck",
+    "routes": [
+      "E"
+    ],
+    "line": "Queens - Archer",
+    "borough": "Queens",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3168,6 +3904,12 @@
     ]
   },
   "N04": {
+    "name": "New Utrecht Av",
+    "routes": [
+      "N"
+    ],
+    "line": "Sea Beach",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3198,6 +3940,12 @@
     ]
   },
   "H06": {
+    "name": "Beach 67 St",
+    "routes": [
+      "A"
+    ],
+    "line": "Rockaway",
+    "borough": "Queens",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3216,6 +3964,13 @@
     ]
   },
   "F11": {
+    "name": "Lexington Av/53 St",
+    "routes": [
+      "E",
+      "F"
+    ],
+    "line": "Queens Blvd",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3246,6 +4001,14 @@
     ]
   },
   "D26": {
+    "name": "Prospect Park",
+    "routes": [
+      "B",
+      "Q",
+      "S"
+    ],
+    "line": "Broadway - Brighton",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3264,6 +4027,15 @@
     ]
   },
   "R16": {
+    "name": "Times Sq-42 St",
+    "routes": [
+      "N",
+      "Q",
+      "R",
+      "W"
+    ],
+    "line": "Broadway - Brighton",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3310,13 +4082,13 @@
         "inService": true
       },
       {
-        "id": "EL229",
+        "id": "EL232",
         "servingDescription": "Times Sq-42 St - Station",
         "onAdaPath": true,
         "inService": false
       },
       {
-        "id": "EL232",
+        "id": "EL229",
         "servingDescription": "Times Sq-42 St - Station",
         "onAdaPath": true,
         "inService": false
@@ -3330,6 +4102,12 @@
     ]
   },
   "A06": {
+    "name": "181 St",
+    "routes": [
+      "A"
+    ],
+    "line": "8th Av - Fulton St",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3366,6 +4144,13 @@
     ]
   },
   "A48": {
+    "name": "Utica Av",
+    "routes": [
+      "A",
+      "C"
+    ],
+    "line": "8th Av - Fulton St",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3390,6 +4175,12 @@
     ]
   },
   "Q03": {
+    "name": "72 St",
+    "routes": [
+      "Q"
+    ],
+    "line": "Second Av",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3438,6 +4229,13 @@
     ]
   },
   "R41": {
+    "name": "59 St",
+    "routes": [
+      "N",
+      "R"
+    ],
+    "line": "4th Av",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3462,6 +4260,13 @@
     ]
   },
   "A38": {
+    "name": "Fulton St",
+    "routes": [
+      "A",
+      "C"
+    ],
+    "line": "8th Av - Fulton St",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3570,6 +4375,13 @@
     ]
   },
   "D11": {
+    "name": "161 St-Yankee Stadium",
+    "routes": [
+      "B",
+      "D"
+    ],
+    "line": "Concourse",
+    "borough": "Bronx",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3606,11 +4418,26 @@
     ]
   },
   "D32": {
+    "name": "Avenue H",
+    "routes": [
+      "Q"
+    ],
+    "line": "Broadway - Brighton",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": []
   },
   "D21": {
+    "name": "Broadway-Lafayette St",
+    "routes": [
+      "B",
+      "D",
+      "F",
+      "M"
+    ],
+    "line": "6th Av - Culver",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3647,6 +4474,12 @@
     ]
   },
   "B16": {
+    "name": "62 St",
+    "routes": [
+      "D"
+    ],
+    "line": "West End",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3677,6 +4510,13 @@
     ]
   },
   "M22": {
+    "name": "Fulton St",
+    "routes": [
+      "J",
+      "Z"
+    ],
+    "line": "Jamaica",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3785,6 +4625,12 @@
     ]
   },
   "L12": {
+    "name": "Grand St",
+    "routes": [
+      "L"
+    ],
+    "line": "Canarsie",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3803,6 +4649,12 @@
     ]
   },
   "M08": {
+    "name": "Myrtle-Wyckoff Avs",
+    "routes": [
+      "M"
+    ],
+    "line": "Myrtle Av",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3827,6 +4679,13 @@
     ]
   },
   "F24": {
+    "name": "7 Av",
+    "routes": [
+      "F",
+      "G"
+    ],
+    "line": "6th Av - Culver",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3851,6 +4710,12 @@
     ]
   },
   "H03": {
+    "name": "Howard Beach-JFK Airport",
+    "routes": [
+      "A"
+    ],
+    "line": "Rockaway",
+    "borough": "Queens",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3893,6 +4758,13 @@
     ]
   },
   "B08": {
+    "name": "Lexington Av/63 St",
+    "routes": [
+      "M",
+      "Q"
+    ],
+    "line": "63rd St",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3941,6 +4813,15 @@
     ]
   },
   "D20": {
+    "name": "W 4 St-Wash Sq",
+    "routes": [
+      "B",
+      "D",
+      "F",
+      "M"
+    ],
+    "line": "6th Av - Culver",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3965,6 +4846,12 @@
     ]
   },
   "G26": {
+    "name": "Greenpoint Av",
+    "routes": [
+      "G"
+    ],
+    "line": "Crosstown",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3989,6 +4876,12 @@
     ]
   },
   "L06": {
+    "name": "1 Av",
+    "routes": [
+      "L"
+    ],
+    "line": "Canarsie",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4007,6 +4900,14 @@
     ]
   },
   "A27": {
+    "name": "42 St-Port Authority Bus Terminal",
+    "routes": [
+      "A",
+      "C",
+      "E"
+    ],
+    "line": "8th Av - Fulton St",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4053,13 +4954,13 @@
         "inService": true
       },
       {
-        "id": "EL229",
+        "id": "EL232",
         "servingDescription": "Times Sq-42 St - Station",
         "onAdaPath": true,
         "inService": false
       },
       {
-        "id": "EL232",
+        "id": "EL229",
         "servingDescription": "Times Sq-42 St - Station",
         "onAdaPath": true,
         "inService": false
@@ -4073,6 +4974,12 @@
     ]
   },
   "H11": {
+    "name": "Far Rockaway-Mott Av",
+    "routes": [
+      "A"
+    ],
+    "line": "Rockaway",
+    "borough": "Queens",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4091,6 +4998,12 @@
     ]
   },
   "L02": {
+    "name": "6 Av",
+    "routes": [
+      "L"
+    ],
+    "line": "Canarsie",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4151,6 +5064,12 @@
     ]
   },
   "A07": {
+    "name": "175 St",
+    "routes": [
+      "A"
+    ],
+    "line": "8th Av - Fulton St",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4169,6 +5088,12 @@
     ]
   },
   "R44": {
+    "name": "86 St",
+    "routes": [
+      "R"
+    ],
+    "line": "4th Av",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4187,11 +5112,23 @@
     ]
   },
   "S09": {
+    "name": "Tottenville",
+    "routes": [
+      "SIR"
+    ],
+    "line": "Staten Island",
+    "borough": "Staten Island",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": []
   },
   "L17": {
+    "name": "Myrtle-Wyckoff Avs",
+    "routes": [
+      "L"
+    ],
+    "line": "Canarsie",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4216,6 +5153,13 @@
     ]
   },
   "R09": {
+    "name": "Queensboro Plaza",
+    "routes": [
+      "N",
+      "W"
+    ],
+    "line": "Astoria",
+    "borough": "Queens",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4240,6 +5184,14 @@
     ]
   },
   "G06": {
+    "name": "Sutphin Blvd-Archer Av-JFK Airport",
+    "routes": [
+      "E",
+      "J",
+      "Z"
+    ],
+    "line": "Queens - Archer",
+    "borough": "Queens",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4276,6 +5228,13 @@
     ]
   },
   "F06": {
+    "name": "Kew Gardens-Union Tpke",
+    "routes": [
+      "E",
+      "F"
+    ],
+    "line": "Queens Blvd",
+    "borough": "Queens",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4306,6 +5265,15 @@
     ]
   },
   "R20": {
+    "name": "14 St-Union Sq",
+    "routes": [
+      "N",
+      "Q",
+      "R",
+      "W"
+    ],
+    "line": "Broadway - Brighton",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4336,11 +5304,24 @@
     ]
   },
   "S19": {
+    "name": "Great Kills",
+    "routes": [
+      "SIR"
+    ],
+    "line": "Staten Island",
+    "borough": "Staten Island",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": []
   },
   "H15": {
+    "name": "Rockaway Park-Beach 116 St",
+    "routes": [
+      "A",
+      "S"
+    ],
+    "line": "Rockaway",
+    "borough": "Queens",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4353,11 +5334,23 @@
     ]
   },
   "S31": {
+    "name": "St George",
+    "routes": [
+      "SIR"
+    ],
+    "line": "Staten Island",
+    "borough": "Staten Island",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": []
   },
   "E01": {
+    "name": "World Trade Center",
+    "routes": [
+      "E"
+    ],
+    "line": "8th Av - Fulton St",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4412,11 +5405,26 @@
     ]
   },
   "S03": {
+    "name": "Park Pl",
+    "routes": [
+      "S"
+    ],
+    "line": "Franklin Shuttle",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": []
   },
   "R17": {
+    "name": "34 St-Herald Sq",
+    "routes": [
+      "N",
+      "Q",
+      "R",
+      "W"
+    ],
+    "line": "Broadway - Brighton",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4459,6 +5467,12 @@
     ]
   },
   "R45": {
+    "name": "Bay Ridge-95 St",
+    "routes": [
+      "R"
+    ],
+    "line": "4th Av",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4477,6 +5491,13 @@
     ]
   },
   "A09": {
+    "name": "168 St",
+    "routes": [
+      "A",
+      "C"
+    ],
+    "line": "8th Av - Fulton St",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4525,6 +5546,14 @@
     ]
   },
   "G05": {
+    "name": "Jamaica Center-Parsons/Archer",
+    "routes": [
+      "E",
+      "J",
+      "Z"
+    ],
+    "line": "Queens - Archer",
+    "borough": "Queens",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4543,6 +5572,15 @@
     ]
   },
   "G14": {
+    "name": "Jackson Hts-Roosevelt Av",
+    "routes": [
+      "E",
+      "F",
+      "M",
+      "R"
+    ],
+    "line": "Queens Blvd",
+    "borough": "Queens",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4573,6 +5611,13 @@
     ]
   },
   "D35": {
+    "name": "Kings Hwy",
+    "routes": [
+      "B",
+      "Q"
+    ],
+    "line": "Broadway - Brighton",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4591,6 +5636,13 @@
     ]
   },
   "R03": {
+    "name": "Astoria Blvd",
+    "routes": [
+      "N",
+      "W"
+    ],
+    "line": "Astoria",
+    "borough": "Queens",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4621,6 +5673,12 @@
     ]
   },
   "A65": {
+    "name": "Ozone Park-Lefferts Blvd",
+    "routes": [
+      "A"
+    ],
+    "line": "Liberty Av",
+    "borough": "Queens",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4639,6 +5697,13 @@
     ]
   },
   "D28": {
+    "name": "Church Av",
+    "routes": [
+      "B",
+      "Q"
+    ],
+    "line": "Broadway - Brighton",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4657,6 +5722,14 @@
     ]
   },
   "A28": {
+    "name": "34 St-Penn Station",
+    "routes": [
+      "A",
+      "C",
+      "E"
+    ],
+    "line": "8th Av - Fulton St",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4687,6 +5760,12 @@
     ]
   },
   "A45": {
+    "name": "Franklin Av",
+    "routes": [
+      "C"
+    ],
+    "line": "8th Av - Fulton St",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4705,6 +5784,12 @@
     ]
   },
   "N02": {
+    "name": "8 Av",
+    "routes": [
+      "N"
+    ],
+    "line": "Sea Beach",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4723,6 +5808,15 @@
     ]
   },
   "D17": {
+    "name": "34 St-Herald Sq",
+    "routes": [
+      "B",
+      "D",
+      "F",
+      "M"
+    ],
+    "line": "6th Av - Culver",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4765,6 +5859,12 @@
     ]
   },
   "L01": {
+    "name": "8 Av",
+    "routes": [
+      "L"
+    ],
+    "line": "Canarsie",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4795,6 +5895,13 @@
     ]
   },
   "M12": {
+    "name": "Flushing Av",
+    "routes": [
+      "M",
+      "J"
+    ],
+    "line": "Jamaica",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4819,6 +5926,13 @@
     ]
   },
   "D07": {
+    "name": "Tremont Av",
+    "routes": [
+      "B",
+      "D"
+    ],
+    "line": "Concourse",
+    "borough": "Bronx",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4843,6 +5957,12 @@
     ]
   },
   "L08": {
+    "name": "Bedford Av",
+    "routes": [
+      "L"
+    ],
+    "line": "Canarsie",
+    "borough": "Brooklyn",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4861,6 +5981,12 @@
     ]
   },
   "B06": {
+    "name": "Roosevelt Island",
+    "routes": [
+      "M"
+    ],
+    "line": "63rd St",
+    "borough": "Manhattan",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4879,6 +6005,13 @@
     ]
   },
   "J15": {
+    "name": "Woodhaven Blvd",
+    "routes": [
+      "J",
+      "Z"
+    ],
+    "line": "Jamaica",
+    "borough": "Queens",
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4897,6 +6030,14 @@
     ]
   },
   "R15": {
+    "name": "49 St",
+    "routes": [
+      "N",
+      "R",
+      "W"
+    ],
+    "line": "Broadway - Brighton",
+    "borough": "Manhattan",
     "ada": 2,
     "adaDirectionNotes": "Accessible Uptown (northbound)",
     "elevators": [
@@ -4909,11 +6050,24 @@
     ]
   },
   "L20": {
+    "name": "Wilson Av",
+    "routes": [
+      "L"
+    ],
+    "line": "Canarsie",
+    "borough": "Brooklyn",
     "ada": 2,
     "adaDirectionNotes": "Accessible Manhattan (northbound)",
     "elevators": []
   },
   "A25": {
+    "name": "50 St",
+    "routes": [
+      "C",
+      "E"
+    ],
+    "line": "8th Av - Fulton St",
+    "borough": "Manhattan",
     "ada": 2,
     "adaDirectionNotes": "Accessible Downtown (southbound)",
     "elevators": [
@@ -4932,6 +6086,13 @@
     ]
   },
   "F09": {
+    "name": "Court Sq-23 St",
+    "routes": [
+      "E",
+      "F"
+    ],
+    "line": "Queens Blvd",
+    "borough": "Queens",
     "ada": 2,
     "adaDirectionNotes": "Accessible Manhattan (southbound)",
     "elevators": [
@@ -4968,6 +6129,13 @@
     ]
   },
   "A33": {
+    "name": "Spring St",
+    "routes": [
+      "C",
+      "E"
+    ],
+    "line": "8th Av - Fulton St",
+    "borough": "Manhattan",
     "ada": 2,
     "adaDirectionNotes": "Accessible Downtown (southbound)",
     "elevators": [
