@@ -4,6 +4,8 @@
   "navHint": "Dashed line shows which accessible subway station serves each site — it is a straight line, not a walking route. Set your location above to sort by distance. Block counts are approximate — NYC blocks vary in length, and this is straight-line distance.",
   "blocksAbout": "about {n} blocks",
   "blocksLess": "less than a block",
+  "langLabel": "Language",
+  "langMatchSearch": "Match my search",
   "gtHeading": "Getting there",
   "gtCallLabel": "Call ahead — confirm hours and entrance",
   "gtDirectionsButton": "Directions",

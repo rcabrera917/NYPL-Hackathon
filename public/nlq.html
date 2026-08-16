@@ -157,6 +157,22 @@
     }
     .toggle-pill input { accent-color: var(--accent); margin: 0; }
 
+    /* Language selector — pill in the results top bar, corner button
+       in the resting card. Native <select> so it stays keyboard- and
+       screen-reader-accessible for free. */
+    .lang-select {
+      background: var(--raised); border: 1px solid var(--border);
+      color: var(--text); font-size: 12px; padding: 6px 10px;
+      border-radius: 999px; cursor: pointer;
+      font-family: inherit;
+    }
+    .lang-select:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .lang-select option { background: var(--panel); color: var(--text); }
+    .rest-card .lang-corner {
+      position: absolute; top: 12px; right: 12px;
+    }
+    .rest-card { position: relative; }
+
     /* Results column is a repositionable side panel. Absolutely
        positioned inside #results-scroll so left/right toggling and
        drag don't reflow the top bar. */
@@ -370,6 +386,16 @@
        ========================================================= -->
   <div id="resting-panel">
     <div class="rest-card">
+      <div class="lang-corner">
+        <select id="langSelectRest" class="lang-select" aria-label="Language">
+          <option value="__match__">Match my search</option>
+          <option value="en">English</option>
+          <option value="es">Español</option>
+          <option value="zh">中文</option>
+          <option value="bn">বাংলা</option>
+          <option value="ru">Русский</option>
+        </select>
+      </div>
       <h1 id="titleEl">Reachable NYC</h1>
       <p class="subtitle" id="subtitleEl">Free summer meals for anyone 18 and under. Verdict shows whether a step-free, elevator-served trip is possible.</p>
 
@@ -421,6 +447,14 @@
         <input type="checkbox" id="toggleLibraries" checked />
         <span id="toggleLibrariesLabel">Libraries</span>
       </label>
+      <select id="langSelectTop" class="lang-select" aria-label="Language">
+        <option value="__match__">Match my search</option>
+        <option value="en">English</option>
+        <option value="es">Español</option>
+        <option value="zh">中文</option>
+        <option value="bn">বাংলা</option>
+        <option value="ru">Русский</option>
+      </select>
     </div>
 
     <div id="results-scroll">
@@ -464,6 +498,11 @@
       lastQuery: "",
       dock: "right",         // "left" | "right" | "hidden"
       lastVisibleDock: "right",
+      // Language override. null = follow the parser (or boot guess);
+      // a language code = user picked, parser is not allowed to change
+      // the UI language on search. Fixes: search-in-Spanish leaves a
+      // reader stranded in Spanish with no way back.
+      langOverride: null,
     };
 
     const $ = (id) => document.getElementById(id);
@@ -494,8 +533,10 @@
       for (const [k, v] of Object.entries(vars)) s = s.replaceAll(`{${k}}`, String(v));
       return s;
     }
+    const SUPPORTED_LANGS = ["en", "es", "zh", "bn", "ru"];
+
     async function loadDict(lang) {
-      const tryLang = ["en", "es", "zh", "bn", "ru"].includes(lang) ? lang : "en";
+      const tryLang = SUPPORTED_LANGS.includes(lang) ? lang : "en";
       try {
         const res = await fetch(`data/i18n/${tryLang}.json`);
         if (!res.ok) throw new Error(`i18n ${res.status}`);
@@ -504,6 +545,41 @@
         const res = await fetch(`data/i18n/en.json`);
         return { lang: "en", dict: await res.json() };
       }
+    }
+
+    // First-load starting guess only. Does NOT set langOverride —
+    // the parser is still allowed to switch the UI on the first
+    // search unless the user picks a language from the dropdown.
+    function guessLangFromNavigator() {
+      const raw = ((navigator.language || navigator.userLanguage || "en") + "").toLowerCase();
+      for (const code of SUPPORTED_LANGS) {
+        if (raw === code || raw.startsWith(code + "-")) return code;
+      }
+      return "en";
+    }
+
+    // Switch UI language and refresh every rendered string. Called
+    // by the dropdown handlers and by the search flow (only when
+    // langOverride is null).
+    async function switchUiLanguage(lang) {
+      const dict = await loadDict(lang);
+      state.lang = dict.lang;
+      state.i18n = dict.dict;
+      applyI18n();
+      // Cards on screen carry translated strings — re-render if any
+      // results are currently shown.
+      if (state.decorated?.length) renderList();
+      renderPlainIntent();
+    }
+
+    // Keep both dropdowns in sync with state.langOverride. Null
+    // renders as "Match my search" (the reset option).
+    function syncLangSelects() {
+      const v = state.langOverride ?? "__match__";
+      const a = document.getElementById("langSelectRest");
+      const b = document.getElementById("langSelectTop");
+      if (a) a.value = v;
+      if (b) b.value = v;
     }
 
     function applyI18n() {
@@ -522,6 +598,15 @@
       $("searchBtn").textContent = tr("searchButton");
       $("editHint").textContent = "edit";
       $("navHintEl").textContent = tr("navHint");
+      // Language selects: fixed language names stay in their own
+      // language (never translated); only the "Match my search"
+      // option label follows the UI language.
+      for (const sel of document.querySelectorAll(".lang-select")) {
+        sel.setAttribute("aria-label", tr("langLabel"));
+        const matchOpt = sel.querySelector('option[value="__match__"]');
+        if (matchOpt) matchOpt.textContent = tr("langMatchSearch");
+      }
+      syncLangSelects();
       document.documentElement.lang = state.lang;
     }
 
@@ -745,10 +830,13 @@
 
     // ---- data load (unchanged) -------------------------------------------
     async function loadData() {
+      // Starting UI language is a guess from the browser locale.
+      // langOverride stays null — this is not a user choice.
+      const guess = guessLangFromNavigator();
       const [sites, stations, dict] = await Promise.all([
         fetch("data/sites.json").then((r) => r.json()),
         fetch("data/stations.json").then((r) => r.json()),
-        loadDict("en"),
+        loadDict(guess),
       ]);
       state.sites = sites;
       state.stations = stations;
@@ -1269,10 +1357,12 @@
         state.parsed = parsed;
         state.parseSource = source;
         state.parseError = reason ?? null;
-        const dict = await loadDict(parsed.detectedLanguage);
-        state.lang = dict.lang;
-        state.i18n = dict.dict;
-        applyI18n();
+        // Parser is allowed to switch the UI language ONLY if the
+        // user has not explicitly picked one. Once they've picked,
+        // that language sticks until they choose "Match my search".
+        if (state.langOverride == null && parsed?.detectedLanguage) {
+          await switchUiLanguage(parsed.detectedLanguage);
+        }
       }
       renderBanners();
       renderPlainIntent();
@@ -1339,6 +1429,29 @@
       if (e.target.checked) overlayLayers.libraries.addTo(map);
       else map.removeLayer(overlayLayers.libraries);
     });
+
+    // Language selects — both dropdowns share one handler and stay
+    // in sync. "__match__" clears the override so the parser is
+    // allowed to switch UI on the next search; if a parse is already
+    // in state, snap the UI to that detected language now.
+    async function onLangSelectChange(e) {
+      const v = e.target.value;
+      if (v === "__match__") {
+        state.langOverride = null;
+        const target = state.parsed?.detectedLanguage;
+        if (target && SUPPORTED_LANGS.includes(target) && target !== state.lang) {
+          await switchUiLanguage(target);
+        } else {
+          syncLangSelects();
+        }
+      } else if (SUPPORTED_LANGS.includes(v)) {
+        state.langOverride = v;
+        if (v !== state.lang) await switchUiLanguage(v);
+        else syncLangSelects();
+      }
+    }
+    $("langSelectRest").addEventListener("change", onLangSelectChange);
+    $("langSelectTop").addEventListener("change", onLangSelectChange);
 
     // Dock: buttons + restore-tab + drag-to-snap.
     for (const btn of document.querySelectorAll(".dock-btn")) {
