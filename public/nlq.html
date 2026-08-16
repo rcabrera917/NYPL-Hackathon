@@ -229,6 +229,10 @@
 
     /* ---- Overlay layer + corridor styles (unchanged) ---- */
     .lib-marker { background: #7c3aed; width: 12px; height: 12px; border: 2px solid #0b1220; border-radius: 2px; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15); }
+    /* ADA station marker for the expanded-result straight-line link.
+       Muted slate to match the dashed polyline — never the accent
+       color so it doesn't read as "verdict signal". */
+    .station-marker { background: #9ca3af; width: 14px; height: 14px; border: 2px solid #0b1220; border-radius: 50%; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15); }
     .corridor { margin-top: 14px; }
     .corridor > .cor-heading { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); font-weight: 600; margin-bottom: 6px; }
     .corridor-item { padding: 6px 0; border-top: 1px dashed var(--border); font-size: 12px; }
@@ -504,6 +508,50 @@
     const overlayLayers = { libraries: L.layerGroup() };
     let overlaysData = null;
 
+    // Straight-line "as the crow flies" link + station pin. Drawn only
+    // when a result card is expanded, torn down when it collapses or
+    // another result expands. Additive — never a router, never a claim
+    // about walking distance.
+    let stationLinkLayer = null; // { line, marker }
+    function clearStationLink() {
+      if (!stationLinkLayer) return;
+      if (stationLinkLayer.line) map.removeLayer(stationLinkLayer.line);
+      if (stationLinkLayer.marker) map.removeLayer(stationLinkLayer.marker);
+      stationLinkLayer = null;
+    }
+    function drawStationLink(site) {
+      clearStationLink();
+      if (!site || site.lat == null || site.lng == null) return;
+      const station = stationFor(site);
+      if (!station || !Number.isFinite(station.lat) || !Number.isFinite(station.lng)) return;
+      const from = [site.lat, site.lng];
+      const to = [station.lat, station.lng];
+      const miles = haversineMiles(site.lat, site.lng, station.lat, station.lng);
+      const line = L.polyline([from, to], {
+        color: "#9ca3af",     // muted slate — not the accent color a router would use
+        weight: 2,
+        opacity: 0.75,
+        dashArray: "6 6",     // clearly dashed
+        interactive: true,
+      }).addTo(map);
+      const label = stationDisplayName(station, site.nearestStationId);
+      const popupHtml =
+        `<div style="font-size:12px;line-height:1.35">` +
+        `<div><strong>${escapeHtml(label)}</strong></div>` +
+        `<div style="color:#6b7280;margin-top:2px">${miles.toFixed(2)} mi — straight-line distance, not a walking route.</div>` +
+        `</div>`;
+      line.bindPopup(popupHtml);
+      const stationIcon = L.divIcon({
+        className: "",
+        html: '<div class="station-marker" title="Nearest ADA station"></div>',
+        iconSize: [14, 14], iconAnchor: [7, 7],
+      });
+      const marker = L.marker(to, { icon: stationIcon });
+      marker.bindPopup(popupHtml);
+      marker.addTo(map);
+      stationLinkLayer = { line, marker };
+    }
+
     // ---- data load (unchanged) -------------------------------------------
     async function loadData() {
       const [sites, stations, dict] = await Promise.all([
@@ -633,6 +681,7 @@
         marker.on("click", () => {
           state.expandedId = site.id;
           renderList();
+          drawStationLink(site);
           document.querySelector(`.result-card[data-id="${CSS.escape(site.id)}"]`)?.scrollIntoView({ behavior: "smooth", block: "start" });
         });
         markers.set(site.id, marker);
@@ -799,8 +848,22 @@
           state.expandedId = isExpanded ? null : site.id;
           renderList();
           if (!isExpanded) {
+            // Just expanded this card. Draw the site→station straight
+            // line, then re-center so both endpoints are visible.
+            drawStationLink(site);
             const m = markers.get(site.id);
-            if (m) map.setView(m.getLatLng(), Math.max(map.getZoom(), 14));
+            const station = stationFor(site);
+            if (m && station && Number.isFinite(station.lat)) {
+              map.fitBounds(
+                L.latLngBounds([m.getLatLng(), [station.lat, station.lng]]),
+                { padding: [60, 60], maxZoom: 15 },
+              );
+            } else if (m) {
+              map.setView(m.getLatLng(), Math.max(map.getZoom(), 14));
+            }
+          } else {
+            // Just collapsed the currently-expanded card.
+            clearStationLink();
           }
         });
         list.appendChild(card);
@@ -941,6 +1004,7 @@
       $("searchBtn").disabled = true;
       state.lastQuery = query;
       state.expandedId = null;
+      clearStationLink();
       if (!query) {
         state.parsed = null; state.parseSource = null; state.parseError = null;
       } else {

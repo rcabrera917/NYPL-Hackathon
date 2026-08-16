@@ -6,6 +6,8 @@
     ],
     "line": "Broadway - 7Av",
     "borough": "Bronx",
+    "lat": 40.878856,
+    "lng": -73.904834,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -30,6 +32,8 @@
     ],
     "line": "Broadway - 7Av",
     "borough": "Manhattan",
+    "lat": 40.860531,
+    "lng": -73.925536,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -60,6 +64,8 @@
     ],
     "line": "Broadway - 7Av",
     "borough": "Manhattan",
+    "lat": 40.822008,
+    "lng": -73.953676,
     "ada": 2,
     "adaDirectionNotes": "Accessible Uptown (northbound)",
     "elevators": [
@@ -98,6 +104,8 @@
     ],
     "line": "Broadway - 7Av",
     "borough": "Manhattan",
+    "lat": 40.793919,
+    "lng": -73.972323,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -124,6 +132,8 @@
     ],
     "line": "Broadway - 7Av",
     "borough": "Manhattan",
+    "lat": 40.778453,
+    "lng": -73.98197,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -148,6 +158,8 @@
     ],
     "line": "Broadway - 7Av",
     "borough": "Manhattan",
+    "lat": 40.77344,
+    "lng": -73.982209,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -172,6 +184,8 @@
     ],
     "line": "Broadway - 7Av",
     "borough": "Manhattan",
+    "lat": 40.768247,
+    "lng": -73.981929,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -222,6 +236,8 @@
     ],
     "line": "Broadway - 7Av",
     "borough": "Manhattan",
+    "lat": 40.75529,
+    "lng": -73.987495,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -296,6 +312,8 @@
     ],
     "line": "Broadway - 7Av",
     "borough": "Manhattan",
+    "lat": 40.750373,
+    "lng": -73.991057,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -340,6 +358,8 @@
     ],
     "line": "Broadway - 7Av",
     "borough": "Manhattan",
+    "lat": 40.737826,
+    "lng": -74.000201,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -408,6 +428,8 @@
     ],
     "line": "Broadway - 7Av",
     "borough": "Manhattan",
+    "lat": 40.715478,
+    "lng": -74.009266,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -438,6 +460,8 @@
     ],
     "line": "Broadway - 7Av",
     "borough": "Manhattan",
+    "lat": 40.711835,
+    "lng": -74.012188,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -492,6 +516,8 @@
     ],
     "line": "Broadway - 7Av",
     "borough": "Manhattan",
+    "lat": 40.702068,
+    "lng": -74.013664,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -517,6 +543,8 @@
     ],
     "line": "Lenox - White Plains Rd",
     "borough": "Bronx",
+    "lat": 40.893193,
+    "lng": -73.857473,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -548,6 +576,8 @@
     ],
     "line": "Lenox - White Plains Rd",
     "borough": "Bronx",
+    "lat": 40.87785,
+    "lng": -73.866256,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -573,6 +603,8 @@
     ],
     "line": "Lenox - White Plains Rd",
     "borough": "Bronx",
+    "lat": 40.857192,
+    "lng": -73.867615,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -604,6 +636,8 @@
     ],
     "line": "Lenox - White Plains Rd",
     "borough": "Bronx",
+    "lat": 40.841894,
+    "lng": -73.873488,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -629,6 +663,8 @@
     ],
     "line": "Lenox - White Plains Rd",
     "borough": "Bronx",
+    "lat": 40.824073,
+    "lng": -73.893064,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -654,6 +690,8 @@
     ],
     "line": "Lenox - White Plains Rd",
     "borough": "Bronx",
+    "lat": 40.816109,
+    "lng": -73.917757,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -679,6 +717,8 @@
     ],
     "line": "Lenox - White Plains Rd",
     "borough": "Manhattan",
+    "lat": 40.814229,
+    "lng": -73.94077,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -704,6 +744,8 @@
     ],
     "line": "Clark St",
     "borough": "Manhattan",
+    "lat": 40.709416,
+    "lng": -74.006571,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -819,6 +861,8 @@
     ],
     "line": "Clark St",
     "borough": "Brooklyn",
+    "lat": 40.693219,
+    "lng": -73.989998,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -874,6 +918,8 @@
     ],
     "line": "Eastern Pky",
     "borough": "Brooklyn",
+    "lat": 40.690545,
+    "lng": -73.985065,
     "ada": 2,
     "adaDirectionNotes": "Accessible Outbound (southbound)",
     "elevators": [
@@ -895,6 +941,8 @@
     ],
     "line": "Eastern Pky",
     "borough": "Brooklyn",
+    "lat": 40.684359,
+    "lng": -73.977666,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -968,6 +1016,8 @@
     ],
     "line": "Eastern Pky",
     "borough": "Brooklyn",
+    "lat": 40.671987,
+    "lng": -73.964375,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -999,6 +1049,8 @@
     ],
     "line": "Nostrand",
     "borough": "Brooklyn",
+    "lat": 40.650843,
+    "lng": -73.949575,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1024,6 +1076,8 @@
     ],
     "line": "Nostrand",
     "borough": "Brooklyn",
+    "lat": 40.632836,
+    "lng": -73.947642,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1043,6 +1097,8 @@
     ],
     "line": "Eastern Pky",
     "borough": "Brooklyn",
+    "lat": 40.668897,
+    "lng": -73.932942,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1067,6 +1123,8 @@
     ],
     "line": "Lenox - White Plains Rd",
     "borough": "Manhattan",
+    "lat": 40.82388,
+    "lng": -73.93647,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": []
@@ -1078,6 +1136,8 @@
     ],
     "line": "Jerome Av",
     "borough": "Bronx",
+    "lat": 40.87975,
+    "lng": -73.884655,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1102,6 +1162,8 @@
     ],
     "line": "Jerome Av",
     "borough": "Bronx",
+    "lat": 40.862803,
+    "lng": -73.901034,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1132,6 +1194,8 @@
     ],
     "line": "Jerome Av",
     "borough": "Bronx",
+    "lat": 40.840075,
+    "lng": -73.917791,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1162,6 +1226,8 @@
     ],
     "line": "Jerome Av",
     "borough": "Bronx",
+    "lat": 40.827994,
+    "lng": -73.925831,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1205,6 +1271,8 @@
     ],
     "line": "Lexington Av",
     "borough": "Manhattan",
+    "lat": 40.710368,
+    "lng": -74.009509,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1320,6 +1388,8 @@
     ],
     "line": "Lexington Av",
     "borough": "Manhattan",
+    "lat": 40.704817,
+    "lng": -74.014065,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1345,6 +1415,8 @@
     ],
     "line": "Eastern Pky",
     "borough": "Brooklyn",
+    "lat": 40.692404,
+    "lng": -73.990151,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1399,6 +1471,8 @@
     ],
     "line": "Dyre Av",
     "borough": "Bronx",
+    "lat": 40.869526,
+    "lng": -73.846384,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1423,6 +1497,8 @@
     ],
     "line": "Pelham",
     "borough": "Bronx",
+    "lat": 40.852462,
+    "lng": -73.828121,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1447,6 +1523,8 @@
     ],
     "line": "Pelham",
     "borough": "Bronx",
+    "lat": 40.839892,
+    "lng": -73.842952,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1489,6 +1567,8 @@
     ],
     "line": "Pelham",
     "borough": "Bronx",
+    "lat": 40.833226,
+    "lng": -73.860816,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1513,6 +1593,8 @@
     ],
     "line": "Pelham",
     "borough": "Bronx",
+    "lat": 40.820948,
+    "lng": -73.890549,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1543,6 +1625,8 @@
     ],
     "line": "Pelham",
     "borough": "Bronx",
+    "lat": 40.812118,
+    "lng": -73.904098,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1569,6 +1653,8 @@
     ],
     "line": "Lexington Av",
     "borough": "Manhattan",
+    "lat": 40.804138,
+    "lng": -73.937594,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1595,6 +1681,8 @@
     ],
     "line": "Lexington Av",
     "borough": "Manhattan",
+    "lat": 40.779492,
+    "lng": -73.955589,
     "ada": 2,
     "adaDirectionNotes": "Accessible Uptown (northbound)",
     "elevators": [
@@ -1613,6 +1701,8 @@
     ],
     "line": "Lexington Av",
     "borough": "Manhattan",
+    "lat": 40.768141,
+    "lng": -73.96387,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1643,6 +1733,8 @@
     ],
     "line": "Lexington Av",
     "borough": "Manhattan",
+    "lat": 40.757107,
+    "lng": -73.97192,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1681,6 +1773,8 @@
     ],
     "line": "Lexington Av",
     "borough": "Manhattan",
+    "lat": 40.751776,
+    "lng": -73.976848,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1741,6 +1835,8 @@
     ],
     "line": "Lexington Av",
     "borough": "Manhattan",
+    "lat": 40.74307,
+    "lng": -73.984264,
     "ada": 2,
     "adaDirectionNotes": "Accessible Downtown (southbound)",
     "elevators": [
@@ -1759,6 +1855,8 @@
     ],
     "line": "Lexington Av",
     "borough": "Manhattan",
+    "lat": 40.739864,
+    "lng": -73.986599,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1783,6 +1881,8 @@
     ],
     "line": "Lexington Av",
     "borough": "Manhattan",
+    "lat": 40.725915,
+    "lng": -73.994659,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1825,6 +1925,8 @@
     ],
     "line": "Lexington Av",
     "borough": "Manhattan",
+    "lat": 40.718803,
+    "lng": -74.000193,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1851,6 +1953,8 @@
     ],
     "line": "Lexington Av",
     "borough": "Manhattan",
+    "lat": 40.713065,
+    "lng": -74.004131,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1893,6 +1997,8 @@
     ],
     "line": "Flushing",
     "borough": "Queens",
+    "lat": 40.7596,
+    "lng": -73.83003,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1911,6 +2017,8 @@
     ],
     "line": "Flushing",
     "borough": "Queens",
+    "lat": 40.749145,
+    "lng": -73.869527,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1941,6 +2049,8 @@
     ],
     "line": "Flushing",
     "borough": "Queens",
+    "lat": 40.746848,
+    "lng": -73.891394,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -1977,6 +2087,8 @@
     ],
     "line": "Flushing",
     "borough": "Queens",
+    "lat": 40.74563,
+    "lng": -73.902984,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2019,6 +2131,8 @@
     ],
     "line": "Flushing",
     "borough": "Queens",
+    "lat": 40.750582,
+    "lng": -73.940202,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2049,6 +2163,8 @@
     ],
     "line": "Flushing",
     "borough": "Queens",
+    "lat": 40.747023,
+    "lng": -73.945264,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2091,6 +2207,8 @@
     ],
     "line": "Flushing",
     "borough": "Manhattan",
+    "lat": 40.751431,
+    "lng": -73.976041,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2151,6 +2269,8 @@
     ],
     "line": "Flushing",
     "borough": "Manhattan",
+    "lat": 40.755477,
+    "lng": -73.987691,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2223,6 +2343,8 @@
     ],
     "line": "Flushing",
     "borough": "Manhattan",
+    "lat": 40.755882,
+    "lng": -74.00191,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2259,6 +2381,8 @@
     ],
     "line": "Lexington - Shuttle",
     "borough": "Manhattan",
+    "lat": 40.752769,
+    "lng": -73.979189,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2319,6 +2443,8 @@
     ],
     "line": "Lexington - Shuttle",
     "borough": "Manhattan",
+    "lat": 40.755983,
+    "lng": -73.986229,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2391,6 +2517,8 @@
     ],
     "line": "Myrtle Av",
     "borough": "Queens",
+    "lat": 40.711396,
+    "lng": -73.889601,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": []
@@ -2404,6 +2532,8 @@
     ],
     "line": "Jamaica",
     "borough": "Brooklyn",
+    "lat": 40.708359,
+    "lng": -73.957757,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2428,6 +2558,8 @@
     ],
     "line": "Canarsie",
     "borough": "Brooklyn",
+    "lat": 40.714063,
+    "lng": -73.950275,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2476,6 +2608,8 @@
     ],
     "line": "Franklin Shuttle",
     "borough": "Brooklyn",
+    "lat": 40.680596,
+    "lng": -73.955827,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2502,6 +2636,8 @@
     ],
     "line": "8th Av - Fulton St",
     "borough": "Brooklyn",
+    "lat": 40.692338,
+    "lng": -73.987342,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2544,6 +2680,8 @@
     ],
     "line": "Crosstown",
     "borough": "Brooklyn",
+    "lat": 40.712792,
+    "lng": -73.951418,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2594,6 +2732,8 @@
     ],
     "line": "Queens Blvd",
     "borough": "Queens",
+    "lat": 40.748973,
+    "lng": -73.937243,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2624,6 +2764,8 @@
     ],
     "line": "Staten Island",
     "borough": "Staten Island",
+    "lat": 40.588849,
+    "lng": -74.09609,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": []
@@ -2635,6 +2777,8 @@
     ],
     "line": "Rockaway",
     "borough": "Queens",
+    "lat": 40.672097,
+    "lng": -73.835919,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2656,6 +2800,8 @@
     ],
     "line": "8th Av - Fulton St",
     "borough": "Manhattan",
+    "lat": 40.811109,
+    "lng": -73.952343,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2687,6 +2833,8 @@
     ],
     "line": "Concourse",
     "borough": "Bronx",
+    "lat": 40.873244,
+    "lng": -73.887138,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2717,6 +2865,8 @@
     ],
     "line": "Second Av",
     "borough": "Manhattan",
+    "lat": 40.784318,
+    "lng": -73.947152,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2743,6 +2893,8 @@
     ],
     "line": "Broadway - Brighton",
     "borough": "Brooklyn",
+    "lat": 40.690635,
+    "lng": -73.981824,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2773,6 +2925,8 @@
     ],
     "line": "63rd St",
     "borough": "Queens",
+    "lat": 40.754203,
+    "lng": -73.942836,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2803,6 +2957,8 @@
     ],
     "line": "Broadway",
     "borough": "Brooklyn",
+    "lat": 40.69218,
+    "lng": -73.985942,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2846,6 +3002,8 @@
     ],
     "line": "Broadway - Brighton",
     "borough": "Brooklyn",
+    "lat": 40.68446,
+    "lng": -73.97689,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2919,6 +3077,8 @@
     ],
     "line": "6th Av - Culver",
     "borough": "Brooklyn",
+    "lat": 40.644041,
+    "lng": -73.979678,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2949,6 +3109,8 @@
     ],
     "line": "Queens Blvd",
     "borough": "Queens",
+    "lat": 40.712646,
+    "lng": -73.783817,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -2982,6 +3144,8 @@
     ],
     "line": "Broadway - Brighton",
     "borough": "Manhattan",
+    "lat": 40.764664,
+    "lng": -73.980658,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3018,6 +3182,8 @@
     ],
     "line": "West End",
     "borough": "Brooklyn",
+    "lat": 40.601875,
+    "lng": -73.993728,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3048,6 +3214,8 @@
     ],
     "line": "Second Av",
     "borough": "Manhattan",
+    "lat": 40.777891,
+    "lng": -73.951787,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3075,6 +3243,8 @@
     ],
     "line": "8th Av - Fulton St",
     "borough": "Manhattan",
+    "lat": 40.768296,
+    "lng": -73.981736,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3124,6 +3294,8 @@
     ],
     "line": "Broadway",
     "borough": "Manhattan",
+    "lat": 40.710668,
+    "lng": -74.011029,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3184,6 +3356,8 @@
     ],
     "line": "Liberty Av",
     "borough": "Queens",
+    "lat": 40.680429,
+    "lng": -73.843853,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3211,6 +3385,8 @@
     ],
     "line": "Sea Beach / West End / Culver / Brighton",
     "borough": "Brooklyn",
+    "lat": 40.577422,
+    "lng": -73.981233,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3242,6 +3418,8 @@
     ],
     "line": "Queens Blvd",
     "borough": "Queens",
+    "lat": 40.752885,
+    "lng": -73.906006,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3266,6 +3444,8 @@
     ],
     "line": "Canarsie",
     "borough": "Brooklyn",
+    "lat": 40.646654,
+    "lng": -73.90185,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": []
@@ -3279,6 +3459,8 @@
     ],
     "line": "8th Av - Fulton St",
     "borough": "Manhattan",
+    "lat": 40.740893,
+    "lng": -74.00169,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3315,6 +3497,8 @@
     ],
     "line": "Crosstown",
     "borough": "Queens",
+    "lat": 40.746554,
+    "lng": -73.943832,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3358,6 +3542,8 @@
     ],
     "line": "6th Av - Culver",
     "borough": "Manhattan",
+    "lat": 40.738228,
+    "lng": -73.996209,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3424,6 +3610,8 @@
     ],
     "line": "6th Av - Culver",
     "borough": "Manhattan",
+    "lat": 40.763972,
+    "lng": -73.97745,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3449,6 +3637,8 @@
     ],
     "line": "8th Av - Fulton St",
     "borough": "Brooklyn",
+    "lat": 40.675377,
+    "lng": -73.872106,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3479,6 +3669,8 @@
     ],
     "line": "8th Av - Fulton St",
     "borough": "Manhattan",
+    "lat": 40.868072,
+    "lng": -73.919899,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3503,6 +3695,8 @@
     ],
     "line": "Canarsie",
     "borough": "Manhattan",
+    "lat": 40.734789,
+    "lng": -73.99073,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3542,6 +3736,8 @@
     ],
     "line": "6th Av - Culver",
     "borough": "Manhattan",
+    "lat": 40.758663,
+    "lng": -73.981329,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3573,6 +3769,8 @@
     ],
     "line": "Jamaica",
     "borough": "Manhattan",
+    "lat": 40.713243,
+    "lng": -74.003401,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3616,6 +3814,8 @@
     ],
     "line": "Concourse",
     "borough": "Bronx",
+    "lat": 40.866978,
+    "lng": -73.893509,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3649,6 +3849,8 @@
     ],
     "line": "Queens Blvd",
     "borough": "Queens",
+    "lat": 40.721691,
+    "lng": -73.844521,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3679,6 +3881,8 @@
     ],
     "line": "Staten Island",
     "borough": "Staten Island",
+    "lat": 40.516578,
+    "lng": -74.242096,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": []
@@ -3690,6 +3894,8 @@
     ],
     "line": "Canarsie",
     "borough": "Brooklyn",
+    "lat": 40.664038,
+    "lng": -73.900571,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3714,6 +3920,8 @@
     ],
     "line": "6th Av - Culver",
     "borough": "Brooklyn",
+    "lat": 40.603217,
+    "lng": -73.972361,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3744,6 +3952,8 @@
     ],
     "line": "Staten Island",
     "borough": "Staten Island",
+    "lat": 40.57348,
+    "lng": -74.11721,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": []
@@ -3757,6 +3967,8 @@
     ],
     "line": "4th Av",
     "borough": "Brooklyn",
+    "lat": 40.683666,
+    "lng": -73.97881,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3830,6 +4042,8 @@
     ],
     "line": "Broadway - Brighton",
     "borough": "Brooklyn",
+    "lat": 40.586896,
+    "lng": -73.954155,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3856,6 +4070,8 @@
     ],
     "line": "8th Av - Fulton St",
     "borough": "Manhattan",
+    "lat": 40.732338,
+    "lng": -74.000495,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3886,6 +4102,8 @@
     ],
     "line": "Queens - Archer",
     "borough": "Queens",
+    "lat": 40.702566,
+    "lng": -73.816859,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3910,6 +4128,8 @@
     ],
     "line": "Sea Beach",
     "borough": "Brooklyn",
+    "lat": 40.624842,
+    "lng": -73.996353,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3946,6 +4166,8 @@
     ],
     "line": "Rockaway",
     "borough": "Queens",
+    "lat": 40.590927,
+    "lng": -73.796924,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -3971,6 +4193,8 @@
     ],
     "line": "Queens Blvd",
     "borough": "Manhattan",
+    "lat": 40.757552,
+    "lng": -73.969055,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4009,6 +4233,8 @@
     ],
     "line": "Broadway - Brighton",
     "borough": "Brooklyn",
+    "lat": 40.661614,
+    "lng": -73.962246,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4036,6 +4262,8 @@
     ],
     "line": "Broadway - Brighton",
     "borough": "Manhattan",
+    "lat": 40.754672,
+    "lng": -73.986754,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4108,6 +4336,8 @@
     ],
     "line": "8th Av - Fulton St",
     "borough": "Manhattan",
+    "lat": 40.851695,
+    "lng": -73.937969,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4151,6 +4381,8 @@
     ],
     "line": "8th Av - Fulton St",
     "borough": "Brooklyn",
+    "lat": 40.679364,
+    "lng": -73.930729,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4181,6 +4413,8 @@
     ],
     "line": "Second Av",
     "borough": "Manhattan",
+    "lat": 40.768799,
+    "lng": -73.958424,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4236,6 +4470,8 @@
     ],
     "line": "4th Av",
     "borough": "Brooklyn",
+    "lat": 40.641362,
+    "lng": -74.017881,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4267,6 +4503,8 @@
     ],
     "line": "8th Av - Fulton St",
     "borough": "Manhattan",
+    "lat": 40.710197,
+    "lng": -74.007691,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4382,6 +4620,8 @@
     ],
     "line": "Concourse",
     "borough": "Bronx",
+    "lat": 40.827905,
+    "lng": -73.925651,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4424,6 +4664,8 @@
     ],
     "line": "Broadway - Brighton",
     "borough": "Brooklyn",
+    "lat": 40.62927,
+    "lng": -73.961639,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": []
@@ -4438,6 +4680,8 @@
     ],
     "line": "6th Av - Culver",
     "borough": "Manhattan",
+    "lat": 40.725297,
+    "lng": -73.996204,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4480,6 +4724,8 @@
     ],
     "line": "West End",
     "borough": "Brooklyn",
+    "lat": 40.626472,
+    "lng": -73.996895,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4517,6 +4763,8 @@
     ],
     "line": "Jamaica",
     "borough": "Manhattan",
+    "lat": 40.710374,
+    "lng": -74.007582,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4631,6 +4879,8 @@
     ],
     "line": "Canarsie",
     "borough": "Brooklyn",
+    "lat": 40.711926,
+    "lng": -73.94067,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4655,6 +4905,8 @@
     ],
     "line": "Myrtle Av",
     "borough": "Brooklyn",
+    "lat": 40.69943,
+    "lng": -73.912385,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4686,6 +4938,8 @@
     ],
     "line": "6th Av - Culver",
     "borough": "Brooklyn",
+    "lat": 40.666271,
+    "lng": -73.980305,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4716,6 +4970,8 @@
     ],
     "line": "Rockaway",
     "borough": "Queens",
+    "lat": 40.660476,
+    "lng": -73.830301,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4765,6 +5021,8 @@
     ],
     "line": "63rd St",
     "borough": "Manhattan",
+    "lat": 40.764629,
+    "lng": -73.966113,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4822,6 +5080,8 @@
     ],
     "line": "6th Av - Culver",
     "borough": "Manhattan",
+    "lat": 40.732338,
+    "lng": -74.000495,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4852,6 +5112,8 @@
     ],
     "line": "Crosstown",
     "borough": "Brooklyn",
+    "lat": 40.731352,
+    "lng": -73.954449,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4882,6 +5144,8 @@
     ],
     "line": "Canarsie",
     "borough": "Manhattan",
+    "lat": 40.730953,
+    "lng": -73.981628,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4908,6 +5172,8 @@
     ],
     "line": "8th Av - Fulton St",
     "borough": "Manhattan",
+    "lat": 40.757308,
+    "lng": -73.989735,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -4980,6 +5246,8 @@
     ],
     "line": "Rockaway",
     "borough": "Queens",
+    "lat": 40.603995,
+    "lng": -73.755405,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -5004,6 +5272,8 @@
     ],
     "line": "Canarsie",
     "borough": "Manhattan",
+    "lat": 40.737335,
+    "lng": -73.996786,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -5070,6 +5340,8 @@
     ],
     "line": "8th Av - Fulton St",
     "borough": "Manhattan",
+    "lat": 40.847391,
+    "lng": -73.939704,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -5094,6 +5366,8 @@
     ],
     "line": "4th Av",
     "borough": "Brooklyn",
+    "lat": 40.622687,
+    "lng": -74.028398,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -5118,6 +5392,8 @@
     ],
     "line": "Staten Island",
     "borough": "Staten Island",
+    "lat": 40.512764,
+    "lng": -74.251961,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": []
@@ -5129,6 +5405,8 @@
     ],
     "line": "Canarsie",
     "borough": "Brooklyn",
+    "lat": 40.699814,
+    "lng": -73.911586,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -5160,6 +5438,8 @@
     ],
     "line": "Astoria",
     "borough": "Queens",
+    "lat": 40.750582,
+    "lng": -73.940202,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -5192,6 +5472,8 @@
     ],
     "line": "Queens - Archer",
     "borough": "Queens",
+    "lat": 40.700486,
+    "lng": -73.807969,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -5235,6 +5517,8 @@
     ],
     "line": "Queens Blvd",
     "borough": "Queens",
+    "lat": 40.714441,
+    "lng": -73.831008,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -5274,6 +5558,8 @@
     ],
     "line": "Broadway - Brighton",
     "borough": "Manhattan",
+    "lat": 40.735736,
+    "lng": -73.990568,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -5310,6 +5596,8 @@
     ],
     "line": "Staten Island",
     "borough": "Staten Island",
+    "lat": 40.551231,
+    "lng": -74.151399,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": []
@@ -5322,6 +5610,8 @@
     ],
     "line": "Rockaway",
     "borough": "Queens",
+    "lat": 40.580903,
+    "lng": -73.835592,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -5340,6 +5630,8 @@
     ],
     "line": "Staten Island",
     "borough": "Staten Island",
+    "lat": 40.643748,
+    "lng": -74.073643,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": []
@@ -5351,6 +5643,8 @@
     ],
     "line": "8th Av - Fulton St",
     "borough": "Manhattan",
+    "lat": 40.712582,
+    "lng": -74.009781,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -5411,6 +5705,8 @@
     ],
     "line": "Franklin Shuttle",
     "borough": "Brooklyn",
+    "lat": 40.674772,
+    "lng": -73.957624,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": []
@@ -5425,6 +5721,8 @@
     ],
     "line": "Broadway - Brighton",
     "borough": "Manhattan",
+    "lat": 40.749567,
+    "lng": -73.98795,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -5473,6 +5771,8 @@
     ],
     "line": "4th Av",
     "borough": "Brooklyn",
+    "lat": 40.616622,
+    "lng": -74.030876,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -5498,6 +5798,8 @@
     ],
     "line": "8th Av - Fulton St",
     "borough": "Manhattan",
+    "lat": 40.840719,
+    "lng": -73.939561,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -5554,6 +5856,8 @@
     ],
     "line": "Queens - Archer",
     "borough": "Queens",
+    "lat": 40.702147,
+    "lng": -73.801109,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -5581,6 +5885,8 @@
     ],
     "line": "Queens Blvd",
     "borough": "Queens",
+    "lat": 40.746644,
+    "lng": -73.891338,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -5618,6 +5924,8 @@
     ],
     "line": "Broadway - Brighton",
     "borough": "Brooklyn",
+    "lat": 40.60867,
+    "lng": -73.957734,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -5643,6 +5951,8 @@
     ],
     "line": "Astoria",
     "borough": "Queens",
+    "lat": 40.770258,
+    "lng": -73.917843,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -5679,6 +5989,8 @@
     ],
     "line": "Liberty Av",
     "borough": "Queens",
+    "lat": 40.685951,
+    "lng": -73.825798,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -5704,6 +6016,8 @@
     ],
     "line": "Broadway - Brighton",
     "borough": "Brooklyn",
+    "lat": 40.650527,
+    "lng": -73.962982,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -5730,6 +6044,8 @@
     ],
     "line": "8th Av - Fulton St",
     "borough": "Manhattan",
+    "lat": 40.752287,
+    "lng": -73.993391,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -5766,6 +6082,8 @@
     ],
     "line": "8th Av - Fulton St",
     "borough": "Brooklyn",
+    "lat": 40.68138,
+    "lng": -73.956848,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -5790,6 +6108,8 @@
     ],
     "line": "Sea Beach",
     "borough": "Brooklyn",
+    "lat": 40.635064,
+    "lng": -74.011719,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -5817,6 +6137,8 @@
     ],
     "line": "6th Av - Culver",
     "borough": "Manhattan",
+    "lat": 40.749719,
+    "lng": -73.987823,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -5865,6 +6187,8 @@
     ],
     "line": "Canarsie",
     "borough": "Manhattan",
+    "lat": 40.739777,
+    "lng": -74.002578,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -5902,6 +6226,8 @@
     ],
     "line": "Jamaica",
     "borough": "Brooklyn",
+    "lat": 40.70026,
+    "lng": -73.941126,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -5933,6 +6259,8 @@
     ],
     "line": "Concourse",
     "borough": "Bronx",
+    "lat": 40.85041,
+    "lng": -73.905227,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -5963,6 +6291,8 @@
     ],
     "line": "Canarsie",
     "borough": "Brooklyn",
+    "lat": 40.717304,
+    "lng": -73.956872,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -5987,6 +6317,8 @@
     ],
     "line": "63rd St",
     "borough": "Manhattan",
+    "lat": 40.759145,
+    "lng": -73.95326,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -6012,6 +6344,8 @@
     ],
     "line": "Jamaica",
     "borough": "Queens",
+    "lat": 40.693879,
+    "lng": -73.851576,
     "ada": 1,
     "adaDirectionNotes": null,
     "elevators": [
@@ -6038,6 +6372,8 @@
     ],
     "line": "Broadway - Brighton",
     "borough": "Manhattan",
+    "lat": 40.759901,
+    "lng": -73.984139,
     "ada": 2,
     "adaDirectionNotes": "Accessible Uptown (northbound)",
     "elevators": [
@@ -6056,6 +6392,8 @@
     ],
     "line": "Canarsie",
     "borough": "Brooklyn",
+    "lat": 40.688764,
+    "lng": -73.904046,
     "ada": 2,
     "adaDirectionNotes": "Accessible Manhattan (northbound)",
     "elevators": []
@@ -6068,6 +6406,8 @@
     ],
     "line": "8th Av - Fulton St",
     "borough": "Manhattan",
+    "lat": 40.762456,
+    "lng": -73.985984,
     "ada": 2,
     "adaDirectionNotes": "Accessible Downtown (southbound)",
     "elevators": [
@@ -6093,6 +6433,8 @@
     ],
     "line": "Queens Blvd",
     "borough": "Queens",
+    "lat": 40.747846,
+    "lng": -73.946,
     "ada": 2,
     "adaDirectionNotes": "Accessible Manhattan (southbound)",
     "elevators": [
@@ -6136,6 +6478,8 @@
     ],
     "line": "8th Av - Fulton St",
     "borough": "Manhattan",
+    "lat": 40.726227,
+    "lng": -74.003739,
     "ada": 2,
     "adaDirectionNotes": "Accessible Downtown (southbound)",
     "elevators": [

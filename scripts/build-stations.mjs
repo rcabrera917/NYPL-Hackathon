@@ -4,11 +4,12 @@
 // nearest ADA station.
 //
 // Contract extension (2026-08-16): each station record now also carries
-// name, routes (array), line, and borough so the UI can render
-// "Prospect Park (B, Q, S)" instead of "D28". The GTFS id remains the
-// key and is shown only in monospace provenance suffixes. Adding
-// display-only fields is compatible with the original frozen shape:
-// ada, adaDirectionNotes, elevators[] are unchanged.
+// name, routes (array), line, borough, lat, lng so the UI can render
+// "Prospect Park (B, Q, S)" instead of "D28" and draw the site→station
+// straight-line link on the map. The GTFS id remains the key and is
+// shown only in monospace provenance suffixes. Adding display-only
+// fields is compatible with the original frozen shape: ada,
+// adaDirectionNotes, elevators[] are unchanged.
 //
 // Sources:
 //   Stations w/ ADA + coords: data.ny.gov 39hk-dx4f
@@ -125,6 +126,8 @@ async function main() {
       routes: parseRoutes(s.daytime_routes),
       line: s.line ?? null,
       borough: s.borough ? (BOROUGH_NAME[s.borough] ?? s.borough) : null,
+      lat: Number(s.gtfs_latitude),
+      lng: Number(s.gtfs_longitude),
       ada: Number(s.ada),
       adaDirectionNotes: buildDirectionNotes(s),
       elevators,

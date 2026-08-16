@@ -23,15 +23,18 @@ FNS record's Start_date / End_date. verdict.js returns red outside
 that window.
 
 public/data/stations.json is keyed by GTFS stop id:
-{ name, routes, line, borough,
+{ name, routes, line, borough, lat, lng,
   ada, adaDirectionNotes, elevators: [{ id, servingDescription,
   onAdaPath, inService }] }
 
 name is stop_name from 39hk-dx4f. routes is daytime_routes split on
 whitespace into an array (e.g. ["B", "Q", "S"]). line is the MTA
 line label. borough is the full name expanded from the single-letter
-code. These four exist so the UI can render "Prospect Park (B, Q, S)"
-instead of "D28"; the GTFS id remains the key.
+code. lat/lng are the GTFS station coords, used to draw the
+straight-line site→station link when a result card is expanded.
+These six display fields exist so the UI can render
+"Prospect Park (B, Q, S)" instead of "D28"; the GTFS id remains
+the key.
 
 Do not change these shapes. Do not add fields.
 
