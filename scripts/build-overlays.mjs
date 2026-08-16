@@ -11,6 +11,7 @@
 //   [ ] 4. Film permits (date-scoped)
 //   [x] 5. Census tract context (ACS 5-year 2023 + USDA LRAM 2019)
 //   [x] 6. Street Tree Census — living trees in the 300m corridor
+//   [x] 7. CityBench (DOT) — public bench locations, nearest bench distance
 //
 // Usage:
 //   node scripts/build-overlays.mjs                # all layers, fetch/print/write
@@ -33,6 +34,7 @@ const MTA_STATIONS_URL = "https://data.ny.gov/resource/39hk-dx4f.json";
 const NYC311_URL = "https://data.cityofnewyork.us/resource/erm2-nwe9.json";
 const FCC_BLOCK_URL = "https://geo.fcc.gov/api/census/block/find";
 const TREES_URL = "https://data.cityofnewyork.us/resource/uvpi-gqnh.json";
+const BENCHES_URL = "https://data.cityofnewyork.us/resource/kuxa-tauh.json";
 const CENSUS_ACS_DETAIL_URL = "https://api.census.gov/data/2023/acs/acs5";
 const CENSUS_ACS_SUBJECT_URL = "https://api.census.gov/data/2023/acs/acs5/subject";
 const ACS_VINTAGE_LABEL = "ACS 5-year, 2023";
@@ -589,6 +591,102 @@ async function runTreeLayer(sites, perSite, pulledAt, opts) {
   };
 }
 
+// ---- Layer 7 helper: CityBench ----------------------------------------
+// Bench dataset (kuxa-tauh) exposes a `the_geom` Point column, so we
+// can use Socrata's within_circle. Query per origin and merge.
+async function fetchBenchesNearOrigin(origin, radiusMeters) {
+  const params = {
+    $where: `within_circle(the_geom, ${origin.lat}, ${origin.lng}, ${radiusMeters})`,
+    $select: "benchid,latitude,longitude,benchtype,category,installati,street,address",
+    $limit: "2000",
+  };
+  return fetchAll(BENCHES_URL, params);
+}
+
+async function runBenchLayer(sites, perSite, pulledAt, opts) {
+  console.log(`\n[Layer 7: CityBench — public benches in ${RADIUS_METERS}m corridor]`);
+  console.log(`  dataset: kuxa-tauh (CityBench Locations — Historical, NYC DOT)`);
+  console.log(`  note: dataset labeled 'Historical' by DOT; includes bench installations that may since have been removed.`);
+  const stationById = opts.stationById;
+  let totalBenches = 0;
+  let sitesWithAnyBench = 0;
+  let sitesWithBenchAtStation = 0; // nearest bench <= 50m of station
+
+  for (const site of sites) {
+    const origins = originsFor(site, stationById);
+    const entry = perSite.get(site.id) ?? {};
+    if (!origins.length) {
+      entry.benches = { count: 0, error: "no coords" };
+      perSite.set(site.id, entry);
+      continue;
+    }
+    const seen = new Map();
+    try {
+      for (const o of origins) {
+        const rows = await fetchBenchesNearOrigin(o, RADIUS_METERS);
+        for (const r of rows) {
+          const lat = Number(r.latitude);
+          const lng = Number(r.longitude);
+          if (!Number.isFinite(lat) || !Number.isFinite(lng)) continue;
+          if (seen.has(r.benchid)) continue;
+          seen.set(r.benchid, {
+            id: r.benchid,
+            lat, lng,
+            type: r.benchtype ?? null,
+            category: r.category ?? null,
+            installedAt: r.installati ?? null,
+            street: r.street ?? null,
+            address: r.address ?? null,
+          });
+        }
+      }
+    } catch (err) {
+      console.warn(`  ${site.id}: benches fetch failed — ${err.message}`);
+      entry.benches = { count: 0, error: err.message };
+      perSite.set(site.id, entry);
+      continue;
+    }
+    const benches = [...seen.values()];
+    // Nearest-bench-to-station distance: this is the "range" number for
+    // a rider stepping off at the ADA station.
+    let nearestToStationMeters = null;
+    const station = site.nearestStationId ? stationById.get(site.nearestStationId) : null;
+    if (station && benches.length) {
+      for (const b of benches) {
+        const d = haversineMeters(b.lat, b.lng, station.lat, station.lng);
+        if (nearestToStationMeters == null || d < nearestToStationMeters) nearestToStationMeters = d;
+      }
+    }
+    // Nearest-bench-to-site (for a resting stop closer to the destination).
+    let nearestToSiteMeters = null;
+    if (site.lat != null && site.lng != null && benches.length) {
+      for (const b of benches) {
+        const d = haversineMeters(b.lat, b.lng, site.lat, site.lng);
+        if (nearestToSiteMeters == null || d < nearestToSiteMeters) nearestToSiteMeters = d;
+      }
+    }
+    entry.benches = {
+      count: benches.length,
+      nearestToStationMeters: nearestToStationMeters != null ? Math.round(nearestToStationMeters) : null,
+      nearestToSiteMeters: nearestToSiteMeters != null ? Math.round(nearestToSiteMeters) : null,
+    };
+    perSite.set(site.id, entry);
+    totalBenches += benches.length;
+    if (benches.length > 0) sitesWithAnyBench++;
+    if (nearestToStationMeters != null && nearestToStationMeters <= 50) sitesWithBenchAtStation++;
+  }
+  console.log(`  ${totalBenches} bench records across corridors (deduped per site)`);
+  console.log(`  ${sitesWithAnyBench} of ${sites.length} sites have >=1 bench in corridor; ${sitesWithBenchAtStation} have a bench within 50m of the station`);
+  return {
+    dataset: "CityBench Locations — Historical (kuxa-tauh)",
+    publisher: "NYC Department of Transportation",
+    url: "https://data.cityofnewyork.us/Transportation/City-Bench-Locations-Historical-/kuxa-tauh",
+    vintage_label: "NYC CityBench (Historical)",
+    pulled_at: pulledAt,
+    note: "Dataset labeled 'Historical' by DOT. Some benches may have been removed since installation; use as a range-of-rest indicator, not a guarantee.",
+  };
+}
+
 function parseOnlyFlag(argv) {
   const arg = argv.find((a) => a.startsWith("--only="));
   if (!arg) return null;
@@ -670,6 +768,10 @@ async function main() {
     if (runLayer(6)) {
       const meta = await runTreeLayer(sites, perSite, pulledAt, { stationById });
       existing._meta.sources.trees = meta;
+    }
+    if (runLayer(7)) {
+      const meta = await runBenchLayer(sites, perSite, pulledAt, { stationById });
+      existing._meta.sources.benches = meta;
     }
 
     const out = { ...existing };
@@ -863,6 +965,9 @@ async function main() {
   // ---- Layer 6: Street Tree Census (uvpi-gqnh) --------------------------
   const treesMeta = await runTreeLayer(sites, perSite, pulledAt, { stationById });
 
+  // ---- Layer 7: CityBench (kuxa-tauh) -----------------------------------
+  const benchesMeta = await runBenchLayer(sites, perSite, pulledAt, { stationById });
+
   // ---- Assemble overlays.json -------------------------------------------
   const out = {
     _meta: {
@@ -922,6 +1027,7 @@ async function main() {
           pulled_at: pulledAt,
         },
         trees: treesMeta,
+        benches: benchesMeta,
       },
     },
   };

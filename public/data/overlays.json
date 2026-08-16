@@ -142,6 +142,14 @@
         "vintage_label": "NYC Street Tree Census, 2015",
         "pulled_at": "2026-08-16T14:45:15.037Z",
         "note": "Counts living street trees within 300m of the site or its nearest ADA station. dbh ≥ 12\" flagged as a rough mature-canopy proxy. This is a shade / walkability signal — no temperature claim is made from it."
+      },
+      "benches": {
+        "dataset": "CityBench Locations — Historical (kuxa-tauh)",
+        "publisher": "NYC Department of Transportation",
+        "url": "https://data.cityofnewyork.us/Transportation/City-Bench-Locations-Historical-/kuxa-tauh",
+        "vintage_label": "NYC CityBench (Historical)",
+        "pulled_at": "2026-08-16T14:46:41.590Z",
+        "note": "Dataset labeled 'Historical' by DOT. Some benches may have been removed since installation; use as a range-of-rest indicator, not a guarantee."
       }
     }
   },
@@ -253,6 +261,11 @@
           "count": 37
         }
       ]
+    },
+    "benches": {
+      "count": 1,
+      "nearestToStationMeters": 175,
+      "nearestToSiteMeters": 1599
     }
   },
   "cycle-05-ny-sfsp-0100": {
@@ -408,6 +421,11 @@
           "count": 43
         }
       ]
+    },
+    "benches": {
+      "count": 3,
+      "nearestToStationMeters": 24,
+      "nearestToSiteMeters": 257
     }
   },
   "cycle-05-ny-sfsp-0140": {
@@ -560,6 +578,11 @@
           "count": 81
         }
       ]
+    },
+    "benches": {
+      "count": 10,
+      "nearestToStationMeters": 25,
+      "nearestToSiteMeters": 64
     }
   },
   "cycle-05-ny-sfsp-0630": {
@@ -696,6 +719,11 @@
           "count": 33
         }
       ]
+    },
+    "benches": {
+      "count": 4,
+      "nearestToStationMeters": 274,
+      "nearestToSiteMeters": 85
     }
   },
   "cycle-05-ny-sfsp-0285": {
@@ -864,6 +892,11 @@
           "count": 92
         }
       ]
+    },
+    "benches": {
+      "count": 4,
+      "nearestToStationMeters": 163,
+      "nearestToSiteMeters": 121
     }
   },
   "cycle-05-ny-sfsp-0230": {
@@ -1006,6 +1039,11 @@
           "count": 69
         }
       ]
+    },
+    "benches": {
+      "count": 3,
+      "nearestToStationMeters": 108,
+      "nearestToSiteMeters": 348
     }
   },
   "cycle-05-ny-sfsp-0801": {
@@ -1160,6 +1198,11 @@
           "count": 55
         }
       ]
+    },
+    "benches": {
+      "count": 7,
+      "nearestToStationMeters": 78,
+      "nearestToSiteMeters": 384
     }
   },
   "cycle-05-ny-sfsp-0311": {
@@ -1329,6 +1372,11 @@
           "count": 94
         }
       ]
+    },
+    "benches": {
+      "count": 10,
+      "nearestToStationMeters": 40,
+      "nearestToSiteMeters": 521
     }
   },
   "cycle-05-ny-sfsp-0766": {
@@ -1497,6 +1545,11 @@
           "count": 61
         }
       ]
+    },
+    "benches": {
+      "count": 11,
+      "nearestToStationMeters": 78,
+      "nearestToSiteMeters": 29
     }
   },
   "cycle-05-ny-sfsp-0793": {
@@ -1649,6 +1702,11 @@
           "count": 37
         }
       ]
+    },
+    "benches": {
+      "count": 2,
+      "nearestToStationMeters": 225,
+      "nearestToSiteMeters": 1269
     }
   },
   "cycle-05-ny-sfsp-0368": {
@@ -1801,6 +1859,11 @@
           "count": 33
         }
       ]
+    },
+    "benches": {
+      "count": 2,
+      "nearestToStationMeters": 1464,
+      "nearestToSiteMeters": 219
     }
   },
   "cycle-05-ny-sfsp-0217": {
@@ -1955,6 +2018,11 @@
           "count": 73
         }
       ]
+    },
+    "benches": {
+      "count": 5,
+      "nearestToStationMeters": 25,
+      "nearestToSiteMeters": 1082
     }
   },
   "cycle-05-ny-sfsp-0119": {
@@ -2096,6 +2164,11 @@
           "count": 44
         }
       ]
+    },
+    "benches": {
+      "count": 0,
+      "nearestToStationMeters": null,
+      "nearestToSiteMeters": null
     }
   },
   "cycle-05-ny-sfsp-0818": {
@@ -2194,6 +2267,11 @@
           "count": 11
         }
       ]
+    },
+    "benches": {
+      "count": 3,
+      "nearestToStationMeters": 254,
+      "nearestToSiteMeters": 217
     }
   },
   "cycle-05-ny-sfsp-0171": {
@@ -2346,6 +2424,11 @@
           "count": 76
         }
       ]
+    },
+    "benches": {
+      "count": 1,
+      "nearestToStationMeters": 919,
+      "nearestToSiteMeters": 160
     }
   },
   "cycle-05-ny-sfsp-0694": {
@@ -2492,6 +2575,11 @@
           "count": 30
         }
       ]
+    },
+    "benches": {
+      "count": 8,
+      "nearestToStationMeters": 80,
+      "nearestToSiteMeters": 188
     }
   },
   "cycle-05-ny-sfsp-0167": {
@@ -2623,6 +2711,11 @@
           "count": 14
         }
       ]
+    },
+    "benches": {
+      "count": 1,
+      "nearestToStationMeters": 254,
+      "nearestToSiteMeters": 5161
     }
   },
   "cycle-05-ny-sfsp-0438": {
@@ -2761,6 +2854,11 @@
           "count": 44
         }
       ]
+    },
+    "benches": {
+      "count": 7,
+      "nearestToStationMeters": 25,
+      "nearestToSiteMeters": 132
     }
   },
   "cycle-05-ny-sfsp-0359": {
@@ -2877,6 +2975,11 @@
           "count": 12
         }
       ]
+    },
+    "benches": {
+      "count": 2,
+      "nearestToStationMeters": 254,
+      "nearestToSiteMeters": 257
     }
   },
   "cycle-05-ny-sfsp-0393": {
@@ -3009,6 +3112,11 @@
           "count": 35
         }
       ]
+    },
+    "benches": {
+      "count": 1,
+      "nearestToStationMeters": 96,
+      "nearestToSiteMeters": 765
     }
   },
   "cycle-05-ny-sfsp-0440": {
@@ -3177,6 +3285,11 @@
           "count": 83
         }
       ]
+    },
+    "benches": {
+      "count": 10,
+      "nearestToStationMeters": 78,
+      "nearestToSiteMeters": 90
     }
   },
   "cycle-05-ny-sfsp-0411": {
@@ -3310,6 +3423,11 @@
           "count": 68
         }
       ]
+    },
+    "benches": {
+      "count": 8,
+      "nearestToStationMeters": 231,
+      "nearestToSiteMeters": 109
     }
   },
   "cycle-05-ny-sfsp-0343": {
@@ -3439,6 +3557,11 @@
           "count": 45
         }
       ]
+    },
+    "benches": {
+      "count": 2,
+      "nearestToStationMeters": 26,
+      "nearestToSiteMeters": 948
     }
   },
   "cycle-05-ny-sfsp-0371": {
@@ -3620,6 +3743,11 @@
           "count": 75
         }
       ]
+    },
+    "benches": {
+      "count": 8,
+      "nearestToStationMeters": 78,
+      "nearestToSiteMeters": 140
     }
   },
   "cycle-05-ny-sfsp-0715": {
@@ -3788,6 +3916,11 @@
           "count": 49
         }
       ]
+    },
+    "benches": {
+      "count": 6,
+      "nearestToStationMeters": 82,
+      "nearestToSiteMeters": 202
     }
   },
   "cycle-05-ny-sfsp-0392": {
@@ -3908,6 +4041,11 @@
           "count": 43
         }
       ]
+    },
+    "benches": {
+      "count": 1,
+      "nearestToStationMeters": 236,
+      "nearestToSiteMeters": 2916
     }
   },
   "cycle-05-ny-sfsp-0439": {
@@ -4056,6 +4194,11 @@
           "count": 22
         }
       ]
+    },
+    "benches": {
+      "count": 2,
+      "nearestToStationMeters": 212,
+      "nearestToSiteMeters": 5980
     }
   },
   "cycle-08-ny-sfsp-0002": {
@@ -4134,6 +4277,11 @@
           "count": 27
         }
       ]
+    },
+    "benches": {
+      "count": 0,
+      "nearestToStationMeters": null,
+      "nearestToSiteMeters": null
     }
   },
   "cycle-09-ny-sfsp-0542": {
@@ -4316,6 +4464,11 @@
           "count": 58
         }
       ]
+    },
+    "benches": {
+      "count": 4,
+      "nearestToStationMeters": 212,
+      "nearestToSiteMeters": 228
     }
   },
   "cycle-05-ny-sfsp-0023": {
@@ -4478,6 +4631,11 @@
           "count": 49
         }
       ]
+    },
+    "benches": {
+      "count": 4,
+      "nearestToStationMeters": 220,
+      "nearestToSiteMeters": 21
     }
   },
   "cycle-05-ny-sfsp-0017": {
@@ -4631,6 +4789,11 @@
           "count": 59
         }
       ]
+    },
+    "benches": {
+      "count": 3,
+      "nearestToStationMeters": 68,
+      "nearestToSiteMeters": 955
     }
   },
   "cycle-05-ny-sfsp-0035": {
@@ -4777,6 +4940,11 @@
           "count": 64
         }
       ]
+    },
+    "benches": {
+      "count": 5,
+      "nearestToStationMeters": 549,
+      "nearestToSiteMeters": 178
     }
   },
   "cycle-05-ny-sfsp-0007": {
@@ -4942,6 +5110,11 @@
           "count": 57
         }
       ]
+    },
+    "benches": {
+      "count": 10,
+      "nearestToStationMeters": 16,
+      "nearestToSiteMeters": 430
     }
   },
   "cycle-05-ny-sfsp-0120": {
@@ -5082,6 +5255,11 @@
           "count": 62
         }
       ]
+    },
+    "benches": {
+      "count": 0,
+      "nearestToStationMeters": null,
+      "nearestToSiteMeters": null
     }
   },
   "cycle-05-ny-sfsp-0037": {
@@ -5237,6 +5415,11 @@
           "count": 39
         }
       ]
+    },
+    "benches": {
+      "count": 9,
+      "nearestToStationMeters": 278,
+      "nearestToSiteMeters": 41
     }
   },
   "cycle-05-ny-sfsp-0030": {
@@ -5388,6 +5571,11 @@
           "count": 45
         }
       ]
+    },
+    "benches": {
+      "count": 3,
+      "nearestToStationMeters": 36,
+      "nearestToSiteMeters": 92
     }
   },
   "cycle-05-ny-sfsp-0088": {
@@ -5538,6 +5726,11 @@
           "count": 72
         }
       ]
+    },
+    "benches": {
+      "count": 13,
+      "nearestToStationMeters": 53,
+      "nearestToSiteMeters": 29
     }
   },
   "cycle-05-ny-sfsp-0034": {
@@ -5695,6 +5888,11 @@
           "count": 48
         }
       ]
+    },
+    "benches": {
+      "count": 10,
+      "nearestToStationMeters": 212,
+      "nearestToSiteMeters": 112
     }
   },
   "cycle-05-ny-sfsp-0122": {
@@ -5803,6 +6001,11 @@
           "count": 18
         }
       ]
+    },
+    "benches": {
+      "count": 1,
+      "nearestToStationMeters": 254,
+      "nearestToSiteMeters": 725
     }
   },
   "cycle-05-ny-sfsp-0062": {
@@ -5943,6 +6146,11 @@
           "count": 57
         }
       ]
+    },
+    "benches": {
+      "count": 2,
+      "nearestToStationMeters": 101,
+      "nearestToSiteMeters": 826
     }
   }
 }
