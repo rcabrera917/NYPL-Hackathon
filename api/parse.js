@@ -26,7 +26,18 @@ Field guide:
   if none.
 - accessibilityNeeds: enum values only. Empty [] if none mentioned.
 - urgency: "high" for words like "today", "urgent", "now"; "medium" for planning \
-  within days; "low" for general browsing.`;
+  within days; "low" for general browsing.
+- mobilityRange: "short" if the user says they tire quickly, need to rest, use a \
+  walker/cane/wheelchair, is elderly, or is travelling with a small child on foot. \
+  "moderate" for a plain walking trip with no signal either way. "unlimited" only \
+  if the user says they can walk far or ride. "unknown" if there is no signal at all.
+- heatSensitive: true if the user mentions heat, shade, sun, being hot, or brings \
+  young kids/elderly outdoors during summer. Otherwise false.
+- needsRestroom: true if the user mentions a restroom, bathroom, toilet, or a \
+  changing station for a baby. Otherwise false.
+- crossingCaution: true if the user mentions a child, a vision impairment, slow \
+  walking, or fear of traffic — anything that makes crossing a busy street harder. \
+  Otherwise false.`;
 
 const OUTPUT_SCHEMA = {
   type: "object",
@@ -46,8 +57,15 @@ const OUTPUT_SCHEMA = {
       items: { type: "string", enum: ["wheelchair", "walker", "stroller", "vision", "hearing", "none"] },
     },
     urgency: { type: "string", enum: ["high", "medium", "low"] },
+    mobilityRange: { type: "string", enum: ["short", "moderate", "unlimited", "unknown"] },
+    heatSensitive: { type: "boolean" },
+    needsRestroom: { type: "boolean" },
+    crossingCaution: { type: "boolean" },
   },
-  required: ["detectedLanguage", "need", "ageGroups", "dietaryFlags", "accessibilityNeeds", "urgency"],
+  required: [
+    "detectedLanguage", "need", "ageGroups", "dietaryFlags", "accessibilityNeeds",
+    "urgency", "mobilityRange", "heatSensitive", "needsRestroom", "crossingCaution",
+  ],
   additionalProperties: false,
 };
 

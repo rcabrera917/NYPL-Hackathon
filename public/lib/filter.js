@@ -49,6 +49,35 @@ const AGE_BUCKETS = [
   { key: "senior", min: 65, max: 120, words: ["senior", "elderly", "abuelo", "anciano"] },
 ];
 
+// Short-range mobility signals. Any hit → mobilityRange = "short".
+// Broad on purpose — the ranking is additive, so a false positive costs
+// at most a small nudge upward for benches / short distance.
+const MOBILITY_SHORT_WORDS = [
+  "walker", "cane", "wheelchair", "silla de ruedas", "andador", "bastón",
+  "tire", "tired", "get tired", "cansada", "cansado", "cansar",
+  "rest", "need to rest", "sit down", "sentar", "descansar",
+  "can't go far", "cannot go far", "can't walk far", "short walk",
+  "elderly", "abuelo", "abuela", "anciano", "anciana",
+  "small child", "little one", "toddler", "on foot with",
+  "老人", "легко устаю",
+];
+const HEAT_SENSITIVE_WORDS = [
+  "shade", "shaded", "shady", "sombra", "sombreado",
+  "heat", "hot day", "hot out", "sun", "sunny",
+  "calor", "caluroso",
+];
+const RESTROOM_WORDS = [
+  "restroom", "bathroom", "toilet", "washroom",
+  "baño", "aseo",
+  "changing station", "diaper", "pañales",
+];
+const CROSSING_CAUTION_WORDS = [
+  "traffic", "afraid of traffic", "busy street", "cross the street",
+  "slow walking", "slow walker", "slow to cross",
+  "blind", "vision impaired", "low vision", "ciego",
+  "child", "children", "kid", "kids", "niño", "niños", "hijo", "hija",
+];
+
 function detectLanguageIso(text) {
   if (/[一-鿿]/.test(text)) return "zh";
   if (/[ঀ-৿]/.test(text)) return "bn";
@@ -92,17 +121,34 @@ function detectUrgency(lower) {
   return "low";
 }
 
+function anyHit(lower, words) {
+  return words.some((w) => lower.includes(w));
+}
+
+function detectMobilityRange(lower, ageGroups, accessibilityNeeds) {
+  if (accessibilityNeeds.includes("wheelchair") || accessibilityNeeds.includes("walker")) return "short";
+  if (ageGroups.includes("senior") || ageGroups.includes("infant") || ageGroups.includes("child")) return "short";
+  if (anyHit(lower, MOBILITY_SHORT_WORDS)) return "short";
+  return "unknown";
+}
+
 export function keywordParse(query) {
   const text = String(query || "");
   const lower = text.toLowerCase();
   const dietaryFlags = detectMulti(lower, DIETARY_KEYWORDS);
+  const ageGroups = detectAgeGroups(lower);
+  const accessibilityNeeds = detectMulti(lower, ACCESSIBILITY_KEYWORDS);
   return {
     detectedLanguage: detectLanguageIso(text),
     need: detectNeed(lower),
-    ageGroups: detectAgeGroups(lower),
+    ageGroups,
     dietaryFlags,
-    accessibilityNeeds: detectMulti(lower, ACCESSIBILITY_KEYWORDS),
+    accessibilityNeeds,
     urgency: detectUrgency(lower),
+    mobilityRange: detectMobilityRange(lower, ageGroups, accessibilityNeeds),
+    heatSensitive: anyHit(lower, HEAT_SENSITIVE_WORDS),
+    needsRestroom: anyHit(lower, RESTROOM_WORDS),
+    crossingCaution: anyHit(lower, CROSSING_CAUTION_WORDS),
     allergyWarning: dietaryFlags.includes("allergy"),
   };
 }
@@ -121,7 +167,13 @@ export function haversineMiles(lat1, lng1, lat2, lng2) {
 
 // Decorate each site with a distance, a matchChips[] array, and a rank score.
 // Filters are RANKING, never exclusion — every site stays in the returned list.
-export function rankSites(sites, parsed, origin) {
+//
+// `overlays` (optional): the loaded overlays.json object. When present,
+// mobilityRange / heatSensitive / needsRestroom / crossingCaution add
+// weighted chips that name the source dataset (dataset labels sourced
+// from overlays.json _meta.sources so if that block is updated, the
+// chips update too).
+export function rankSites(sites, parsed, origin, overlays) {
   const needsAccess =
     parsed && Array.isArray(parsed.accessibilityNeeds) &&
     parsed.accessibilityNeeds.some((n) => n !== "none");
@@ -129,6 +181,21 @@ export function rankSites(sites, parsed, origin) {
     parsed && Array.isArray(parsed.dietaryFlags) &&
     parsed.dietaryFlags.some((f) => f !== "none");
   const urgencyHigh = parsed && parsed.urgency === "high";
+  const mobilityShort = parsed && parsed.mobilityRange === "short";
+  const heatSensitive = parsed && parsed.heatSensitive === true;
+  const needsRestroom = parsed && parsed.needsRestroom === true;
+  const crossingCaution = parsed && parsed.crossingCaution === true;
+
+  // Pull dataset display labels from overlays.json _meta so the chips
+  // don't have to duplicate them.
+  const sources = overlays?._meta?.sources ?? {};
+  const label = {
+    trees:         sources.trees?.dataset         ?? "NYC Street Tree Census (uvpi-gqnh)",
+    benches:       sources.benches?.dataset       ?? "NYC DOT CityBench (kuxa-tauh)",
+    pedCollisions: sources.pedCollisions?.dataset ?? "NYPD Collisions (h9gi-nx95)",
+    restrooms:     sources.restrooms?.dataset     ?? "NYC Public Restrooms (i7jb-7jku)",
+    aps:           sources.aps?.dataset           ?? "NYC DOT APS (de3m-c5p4)",
+  };
 
   const decorated = sites.map((site) => {
     const distanceMiles =
@@ -138,6 +205,7 @@ export function rankSites(sites, parsed, origin) {
 
     const chips = [];
     let score = 0;
+    const overlay = overlays?.[site.id] ?? null;
 
     if (needsAccess) {
       if (site.entranceStepFree === true && site.verifiedBy) {
@@ -156,6 +224,102 @@ export function rankSites(sites, parsed, origin) {
     }
 
     if (urgencyHigh) score += 2;
+
+    // ---- Corridor-context weights (overlays must be loaded) ----
+    if (mobilityShort && overlay) {
+      const benchNearStation = overlay.benches?.nearestToStationMeters;
+      if (typeof benchNearStation === "number" && benchNearStation <= 100) {
+        chips.push({
+          kind: "match",
+          text: `bench within ${benchNearStation}m of the station`,
+          source: label.benches,
+        });
+        score += 8;
+      } else if ((overlay.benches?.count ?? 0) > 0) {
+        chips.push({
+          kind: "match",
+          text: `${overlay.benches.count} bench${overlay.benches.count === 1 ? "" : "es"} in corridor`,
+          source: label.benches,
+        });
+        score += 3;
+      }
+      // Shorter station distance up. Uses census.milesToAdaStation which
+      // Layer 5 populated per site.
+      const milesToAda = overlay.census?.milesToAdaStation;
+      if (typeof milesToAda === "number" && milesToAda <= 0.4) {
+        chips.push({
+          kind: "match",
+          text: `ADA station only ${milesToAda.toFixed(2)} mi from site`,
+          source: "MTA + sites.json",
+        });
+        score += 6;
+      }
+    }
+
+    if (heatSensitive && overlay) {
+      const treeCount = overlay.trees?.count ?? 0;
+      const largeCount = overlay.trees?.largeCount ?? 0;
+      if (treeCount >= 100) {
+        chips.push({
+          kind: "match",
+          text: `${treeCount} street trees in corridor${largeCount ? ` (${largeCount} mature)` : ""}`,
+          source: label.trees,
+        });
+        score += 5;
+      } else if (treeCount >= 30) {
+        chips.push({
+          kind: "match",
+          text: `${treeCount} street trees in corridor`,
+          source: label.trees,
+        });
+        score += 3;
+      }
+    }
+
+    if (needsRestroom && overlay) {
+      const rc = overlay.restrooms?.count ?? 0;
+      if (rc > 0) {
+        const near = overlay.restrooms.nearestToSiteMeters;
+        const changing = overlay.restrooms.hasChangingStation;
+        chips.push({
+          kind: "match",
+          text: `${rc} operational restroom${rc === 1 ? "" : "s"}${near != null ? `, nearest ${near}m` : ""}${changing ? " (with changing station)" : ""}`,
+          source: label.restrooms,
+        });
+        score += 5;
+      }
+    }
+
+    if (crossingCaution && overlay) {
+      const c = overlay.pedCollisions?.count;
+      const months = overlay.pedCollisions?.lookbackMonths ?? 24;
+      if (typeof c === "number") {
+        if (c <= 3) {
+          chips.push({
+            kind: "match",
+            text: `low pedestrian-injury count in corridor (${c} in ${months} mo)`,
+            source: label.pedCollisions,
+          });
+          score += 4;
+        } else if (c >= 40) {
+          chips.push({
+            kind: "warn",
+            text: `high pedestrian-injury count in corridor (${c} in ${months} mo) — take extra care crossing`,
+            source: label.pedCollisions,
+          });
+          // No score change — the site is not penalized. Chip is informational.
+        }
+      }
+      const aps = overlay.aps?.count ?? 0;
+      if (aps > 0) {
+        chips.push({
+          kind: "match",
+          text: `${aps} accessible pedestrian signal${aps === 1 ? "" : "s"} in corridor`,
+          source: label.aps,
+        });
+        score += 3;
+      }
+    }
 
     return { site, distanceMiles, chips, score };
   });
