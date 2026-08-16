@@ -1037,7 +1037,7 @@
         const site = row.site;
         const v = verdictFor(site);
         const isExpanded = state.expandedId === site.id;
-        const distText = row.distanceMiles != null ? `${row.distanceMiles.toFixed(1)} mi away` : "";
+        const distText = row.distanceMiles != null ? `${distancePhrase(row.distanceMiles)} away` : "";
         const topReason = v.reasons[0] ?? "";
 
         const card = document.createElement("div");
