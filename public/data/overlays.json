@@ -167,6 +167,14 @@
         "vintage_label": "NYC Public Restrooms — filtered to status='Operational'",
         "pulled_at": "2026-08-16T14:51:57.193Z",
         "note": "Operational status is what the dataset reports; it does not confirm the restroom is open at the moment of the trip."
+      },
+      "aps": {
+        "dataset": "Accessible Pedestrian Signal Locations (de3m-c5p4)",
+        "publisher": "NYC Department of Transportation",
+        "url": "https://data.cityofnewyork.us/Transportation/Accessible-Pedestrian-Signal-Locations/de3m-c5p4",
+        "vintage_label": "NYC APS installations",
+        "pulled_at": "2026-08-16T14:53:20.950Z",
+        "note": "APS provide audible/tactile crossing signals at intersections. This is a count in corridor, not a claim of coverage at every crossing."
       }
     }
   },
@@ -294,6 +302,9 @@
       "count": 1,
       "nearestToSiteMeters": 49,
       "hasChangingStation": true
+    },
+    "aps": {
+      "count": 6
     }
   },
   "cycle-05-ny-sfsp-0100": {
@@ -465,6 +476,9 @@
       "count": 2,
       "nearestToSiteMeters": 42,
       "hasChangingStation": false
+    },
+    "aps": {
+      "count": 14
     }
   },
   "cycle-05-ny-sfsp-0140": {
@@ -633,6 +647,9 @@
       "count": 0,
       "nearestToSiteMeters": null,
       "hasChangingStation": false
+    },
+    "aps": {
+      "count": 11
     }
   },
   "cycle-05-ny-sfsp-0630": {
@@ -785,6 +802,9 @@
       "count": 1,
       "nearestToSiteMeters": 460,
       "hasChangingStation": true
+    },
+    "aps": {
+      "count": 7
     }
   },
   "cycle-05-ny-sfsp-0285": {
@@ -969,6 +989,9 @@
       "count": 4,
       "nearestToSiteMeters": 240,
       "hasChangingStation": true
+    },
+    "aps": {
+      "count": 9
     }
   },
   "cycle-05-ny-sfsp-0230": {
@@ -1127,6 +1150,9 @@
       "count": 1,
       "nearestToSiteMeters": 316,
       "hasChangingStation": true
+    },
+    "aps": {
+      "count": 5
     }
   },
   "cycle-05-ny-sfsp-0801": {
@@ -1297,6 +1323,9 @@
       "count": 1,
       "nearestToSiteMeters": 342,
       "hasChangingStation": true
+    },
+    "aps": {
+      "count": 4
     }
   },
   "cycle-05-ny-sfsp-0311": {
@@ -1482,6 +1511,9 @@
       "count": 2,
       "nearestToSiteMeters": 78,
       "hasChangingStation": true
+    },
+    "aps": {
+      "count": 5
     }
   },
   "cycle-05-ny-sfsp-0766": {
@@ -1666,6 +1698,9 @@
       "count": 2,
       "nearestToSiteMeters": 193,
       "hasChangingStation": true
+    },
+    "aps": {
+      "count": 7
     }
   },
   "cycle-05-ny-sfsp-0793": {
@@ -1834,6 +1869,9 @@
       "count": 3,
       "nearestToSiteMeters": 100,
       "hasChangingStation": true
+    },
+    "aps": {
+      "count": 5
     }
   },
   "cycle-05-ny-sfsp-0368": {
@@ -2002,6 +2040,9 @@
       "count": 0,
       "nearestToSiteMeters": null,
       "hasChangingStation": false
+    },
+    "aps": {
+      "count": 5
     }
   },
   "cycle-05-ny-sfsp-0217": {
@@ -2172,6 +2213,9 @@
       "count": 0,
       "nearestToSiteMeters": null,
       "hasChangingStation": false
+    },
+    "aps": {
+      "count": 13
     }
   },
   "cycle-05-ny-sfsp-0119": {
@@ -2329,6 +2373,9 @@
       "count": 4,
       "nearestToSiteMeters": 46,
       "hasChangingStation": true
+    },
+    "aps": {
+      "count": 11
     }
   },
   "cycle-05-ny-sfsp-0818": {
@@ -2443,6 +2490,9 @@
       "count": 0,
       "nearestToSiteMeters": null,
       "hasChangingStation": false
+    },
+    "aps": {
+      "count": 1
     }
   },
   "cycle-05-ny-sfsp-0171": {
@@ -2611,6 +2661,9 @@
       "count": 1,
       "nearestToSiteMeters": 158,
       "hasChangingStation": false
+    },
+    "aps": {
+      "count": 10
     }
   },
   "cycle-05-ny-sfsp-0694": {
@@ -2773,6 +2826,9 @@
       "count": 2,
       "nearestToSiteMeters": 35,
       "hasChangingStation": true
+    },
+    "aps": {
+      "count": 7
     }
   },
   "cycle-05-ny-sfsp-0167": {
@@ -2920,6 +2976,9 @@
       "count": 0,
       "nearestToSiteMeters": null,
       "hasChangingStation": false
+    },
+    "aps": {
+      "count": 2
     }
   },
   "cycle-05-ny-sfsp-0438": {
@@ -3074,6 +3133,9 @@
       "count": 0,
       "nearestToSiteMeters": null,
       "hasChangingStation": false
+    },
+    "aps": {
+      "count": 10
     }
   },
   "cycle-05-ny-sfsp-0359": {
@@ -3206,6 +3268,9 @@
       "count": 0,
       "nearestToSiteMeters": null,
       "hasChangingStation": false
+    },
+    "aps": {
+      "count": 3
     }
   },
   "cycle-05-ny-sfsp-0393": {
@@ -3354,6 +3419,9 @@
       "count": 2,
       "nearestToSiteMeters": 155,
       "hasChangingStation": false
+    },
+    "aps": {
+      "count": 3
     }
   },
   "cycle-05-ny-sfsp-0440": {
@@ -3538,6 +3606,9 @@
       "count": 3,
       "nearestToSiteMeters": 147,
       "hasChangingStation": true
+    },
+    "aps": {
+      "count": 7
     }
   },
   "cycle-05-ny-sfsp-0411": {
@@ -3687,6 +3758,9 @@
       "count": 2,
       "nearestToSiteMeters": 134,
       "hasChangingStation": true
+    },
+    "aps": {
+      "count": 9
     }
   },
   "cycle-05-ny-sfsp-0343": {
@@ -3832,6 +3906,9 @@
       "count": 2,
       "nearestToSiteMeters": 42,
       "hasChangingStation": true
+    },
+    "aps": {
+      "count": 3
     }
   },
   "cycle-05-ny-sfsp-0371": {
@@ -4029,6 +4106,9 @@
       "count": 3,
       "nearestToSiteMeters": 68,
       "hasChangingStation": true
+    },
+    "aps": {
+      "count": 8
     }
   },
   "cycle-05-ny-sfsp-0715": {
@@ -4213,6 +4293,9 @@
       "count": 2,
       "nearestToSiteMeters": 88,
       "hasChangingStation": true
+    },
+    "aps": {
+      "count": 9
     }
   },
   "cycle-05-ny-sfsp-0392": {
@@ -4349,6 +4432,9 @@
       "count": 0,
       "nearestToSiteMeters": null,
       "hasChangingStation": false
+    },
+    "aps": {
+      "count": 5
     }
   },
   "cycle-05-ny-sfsp-0439": {
@@ -4513,6 +4599,9 @@
       "count": 1,
       "nearestToSiteMeters": 5956,
       "hasChangingStation": true
+    },
+    "aps": {
+      "count": 5
     }
   },
   "cycle-08-ny-sfsp-0002": {
@@ -4607,6 +4696,9 @@
       "count": 0,
       "nearestToSiteMeters": null,
       "hasChangingStation": false
+    },
+    "aps": {
+      "count": 4
     }
   },
   "cycle-09-ny-sfsp-0542": {
@@ -4805,6 +4897,9 @@
       "count": 2,
       "nearestToSiteMeters": 291,
       "hasChangingStation": true
+    },
+    "aps": {
+      "count": 8
     }
   },
   "cycle-05-ny-sfsp-0023": {
@@ -4983,6 +5078,9 @@
       "count": 2,
       "nearestToSiteMeters": 2133,
       "hasChangingStation": true
+    },
+    "aps": {
+      "count": 8
     }
   },
   "cycle-05-ny-sfsp-0017": {
@@ -5152,6 +5250,9 @@
       "count": 0,
       "nearestToSiteMeters": null,
       "hasChangingStation": false
+    },
+    "aps": {
+      "count": 15
     }
   },
   "cycle-05-ny-sfsp-0035": {
@@ -5314,6 +5415,9 @@
       "count": 2,
       "nearestToSiteMeters": 248,
       "hasChangingStation": true
+    },
+    "aps": {
+      "count": 11
     }
   },
   "cycle-05-ny-sfsp-0007": {
@@ -5495,6 +5599,9 @@
       "count": 1,
       "nearestToSiteMeters": 376,
       "hasChangingStation": true
+    },
+    "aps": {
+      "count": 7
     }
   },
   "cycle-05-ny-sfsp-0120": {
@@ -5651,6 +5758,9 @@
       "count": 1,
       "nearestToSiteMeters": 3274,
       "hasChangingStation": true
+    },
+    "aps": {
+      "count": 8
     }
   },
   "cycle-05-ny-sfsp-0037": {
@@ -5822,6 +5932,9 @@
       "count": 0,
       "nearestToSiteMeters": null,
       "hasChangingStation": false
+    },
+    "aps": {
+      "count": 5
     }
   },
   "cycle-05-ny-sfsp-0030": {
@@ -5989,6 +6102,9 @@
       "count": 0,
       "nearestToSiteMeters": null,
       "hasChangingStation": false
+    },
+    "aps": {
+      "count": 9
     }
   },
   "cycle-05-ny-sfsp-0088": {
@@ -6155,6 +6271,9 @@
       "count": 2,
       "nearestToSiteMeters": 295,
       "hasChangingStation": true
+    },
+    "aps": {
+      "count": 12
     }
   },
   "cycle-05-ny-sfsp-0034": {
@@ -6328,6 +6447,9 @@
       "count": 1,
       "nearestToSiteMeters": 4847,
       "hasChangingStation": true
+    },
+    "aps": {
+      "count": 5
     }
   },
   "cycle-05-ny-sfsp-0122": {
@@ -6452,6 +6574,9 @@
       "count": 0,
       "nearestToSiteMeters": null,
       "hasChangingStation": false
+    },
+    "aps": {
+      "count": 3
     }
   },
   "cycle-05-ny-sfsp-0062": {
@@ -6608,6 +6733,9 @@
       "count": 3,
       "nearestToSiteMeters": 257,
       "hasChangingStation": true
+    },
+    "aps": {
+      "count": 9
     }
   }
 }

@@ -20,6 +20,7 @@
 //          coords is possible but too heavy for a corridor layer here.
 //          Documented in FUTURE.md.
 //   [x] 10. Public Restrooms — Operational restrooms in the corridor
+//   [x] 11. Accessible Pedestrian Signals — DOT APS installations
 //
 // Usage:
 //   node scripts/build-overlays.mjs                # all layers, fetch/print/write
@@ -46,6 +47,7 @@ const BENCHES_URL = "https://data.cityofnewyork.us/resource/kuxa-tauh.json";
 const COLLISIONS_URL = "https://data.cityofnewyork.us/resource/h9gi-nx95.json";
 const COLLISIONS_LOOKBACK_MONTHS = 24;
 const RESTROOMS_URL = "https://data.cityofnewyork.us/resource/i7jb-7jku.json";
+const APS_URL = "https://data.cityofnewyork.us/resource/de3m-c5p4.json";
 const CENSUS_ACS_DETAIL_URL = "https://api.census.gov/data/2023/acs/acs5";
 const CENSUS_ACS_SUBJECT_URL = "https://api.census.gov/data/2023/acs/acs5/subject";
 const ACS_VINTAGE_LABEL = "ACS 5-year, 2023";
@@ -876,6 +878,76 @@ async function runRestroomLayer(sites, perSite, pulledAt, opts) {
   };
 }
 
+// ---- Layer 11 helper: Accessible Pedestrian Signals -------------------
+// de3m-c5p4 exposes only a `the_geom` Point column and `borough`,
+// `location` (intersection name), `date_insta`. within_circle works.
+async function fetchApsNearOrigin(origin, radiusMeters) {
+  const params = {
+    $where: `within_circle(the_geom, ${origin.lat}, ${origin.lng}, ${radiusMeters})`,
+    $select: "location,borough,date_insta,the_geom",
+    $limit: "1000",
+  };
+  return fetchAll(APS_URL, params);
+}
+
+async function runApsLayer(sites, perSite, pulledAt, opts) {
+  console.log(`\n[Layer 11: Accessible Pedestrian Signals — APS in ${RADIUS_METERS}m corridor]`);
+  console.log(`  dataset: de3m-c5p4 (Accessible Pedestrian Signal Locations, NYC DOT)`);
+  const stationById = opts.stationById;
+  let totalAps = 0;
+  let sitesWithAps = 0;
+
+  for (const site of sites) {
+    const origins = originsFor(site, stationById);
+    const entry = perSite.get(site.id) ?? {};
+    if (!origins.length) {
+      entry.aps = { count: 0, error: "no coords" };
+      perSite.set(site.id, entry);
+      continue;
+    }
+    const seen = new Map();
+    try {
+      for (const o of origins) {
+        const rows = await fetchApsNearOrigin(o, RADIUS_METERS);
+        for (const r of rows) {
+          // Intersection + install date is the closest thing to a stable key.
+          const key = `${r.location ?? ""}|${r.date_insta ?? ""}`;
+          if (seen.has(key)) continue;
+          const geom = r.the_geom;
+          const coords = geom?.coordinates;
+          seen.set(key, {
+            location: r.location ?? null,
+            borough: r.borough ?? null,
+            installedAt: r.date_insta ?? null,
+            lat: Array.isArray(coords) ? coords[1] : null,
+            lng: Array.isArray(coords) ? coords[0] : null,
+          });
+        }
+      }
+    } catch (err) {
+      console.warn(`  ${site.id}: APS fetch failed — ${err.message}`);
+      entry.aps = { count: 0, error: err.message };
+      perSite.set(site.id, entry);
+      continue;
+    }
+    const aps = [...seen.values()];
+    entry.aps = { count: aps.length };
+    perSite.set(site.id, entry);
+    totalAps += aps.length;
+    if (aps.length > 0) sitesWithAps++;
+  }
+  console.log(`  ${totalAps} APS across corridors (deduped per site)`);
+  console.log(`  ${sitesWithAps} of ${sites.length} sites have >=1 APS in the ${RADIUS_METERS}m corridor`);
+  return {
+    dataset: "Accessible Pedestrian Signal Locations (de3m-c5p4)",
+    publisher: "NYC Department of Transportation",
+    url: "https://data.cityofnewyork.us/Transportation/Accessible-Pedestrian-Signal-Locations/de3m-c5p4",
+    vintage_label: "NYC APS installations",
+    pulled_at: pulledAt,
+    note: "APS provide audible/tactile crossing signals at intersections. This is a count in corridor, not a claim of coverage at every crossing.",
+  };
+}
+
 function parseOnlyFlag(argv) {
   const arg = argv.find((a) => a.startsWith("--only="));
   if (!arg) return null;
@@ -969,6 +1041,10 @@ async function main() {
     if (runLayer(10)) {
       const meta = await runRestroomLayer(sites, perSite, pulledAt, { stationById });
       existing._meta.sources.restrooms = meta;
+    }
+    if (runLayer(11)) {
+      const meta = await runApsLayer(sites, perSite, pulledAt, { stationById });
+      existing._meta.sources.aps = meta;
     }
 
     const out = { ...existing };
@@ -1173,6 +1249,9 @@ async function main() {
   // ---- Layer 10: Public Restrooms (i7jb-7jku) ---------------------------
   const restroomsMeta = await runRestroomLayer(sites, perSite, pulledAt, { stationById });
 
+  // ---- Layer 11: Accessible Pedestrian Signals (de3m-c5p4) --------------
+  const apsMeta = await runApsLayer(sites, perSite, pulledAt, { stationById });
+
   // ---- Assemble overlays.json -------------------------------------------
   const out = {
     _meta: {
@@ -1235,6 +1314,7 @@ async function main() {
         benches: benchesMeta,
         pedCollisions: pedCollisionsMeta,
         restrooms: restroomsMeta,
+        aps: apsMeta,
       },
     },
   };
