@@ -16,6 +16,39 @@
 
 const DAY_NAMES = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
+// Haversine in miles. Local to this module so verdict.js stays
+// import-free (see file header). Same formula as the UI's
+// haversineMiles — a provenance line derived from a different
+// computation would be a lie.
+function haversineMilesLocal(lat1, lng1, lat2, lng2) {
+  const R = 3958.7613;
+  const toRad = (d) => (d * Math.PI) / 180;
+  const dLat = toRad(lat2 - lat1);
+  const dLng = toRad(lng2 - lng1);
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(a));
+}
+
+// Provenance line for the site→station straight-line distance. Same
+// 20-blocks-per-mile convention and < 0.025 mi threshold that the UI
+// uses in distancePhrase() — one derivation, two renderers.
+function distanceProvenance(site, stationStatus) {
+  if (
+    !stationStatus ||
+    site.lat == null || site.lng == null ||
+    !Number.isFinite(stationStatus.lat) || !Number.isFinite(stationStatus.lng)
+  ) return null;
+  const miles = haversineMilesLocal(site.lat, site.lng, stationStatus.lat, stationStatus.lng);
+  const mileStr = `${miles.toFixed(2)} mi`;
+  const blockPart =
+    miles < 0.025
+      ? "less than a block"
+      : `~${Math.max(1, Math.round(miles * 20))} blocks`;
+  return `distance: ${mileStr} straight-line, estimated at 20 blocks per mile = ${blockPart}`;
+}
+
 // Render a human station label: "Prospect Park (B, Q, S)". Falls back
 // to whatever we do have (name, then borough, then a generic "nearest
 // ADA station" — never leaks the raw GTFS id into a sentence).
@@ -82,6 +115,8 @@ export function getVerdict(site, stationStatus, date) {
 
   if (site.nearestStationId) {
     provenance.push(`nearest ADA station: ${stationHuman}`);
+    const distLine = distanceProvenance(site, stationStatus);
+    if (distLine) provenance.push(distLine);
   } else {
     provenance.push("no nearest ADA station on record");
   }
