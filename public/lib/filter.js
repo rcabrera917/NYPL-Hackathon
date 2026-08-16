@@ -165,6 +165,23 @@ export function haversineMiles(lat1, lng1, lat2, lng2) {
   return 2 * R * Math.asin(Math.sqrt(a));
 }
 
+// NYC block phrase for mile-scale distances. Same rule as the UI's
+// distancePhrase and verdict.js's distanceProvenance: 20 blocks/mi,
+// round to nearest whole block, "less than a block" below 0.025 mi.
+// Format: "about 6 blocks (0.31 mi)".
+//
+// Note: meter-scale corridor distances (bench-to-station, restroom-
+// to-site) stay in meters. At 0–300m, block-rounding compresses the
+// useful precision — "1 block away" hides whether a bench is at the
+// corner or 200m up the block.
+export function blocksPhrase(miles) {
+  if (!Number.isFinite(miles)) return "";
+  const mileStr = `${miles.toFixed(2)} mi`;
+  if (miles < 0.025) return `less than a block (${mileStr})`;
+  const blocks = Math.max(1, Math.round(miles * 20));
+  return `about ${blocks} blocks (${mileStr})`;
+}
+
 // Decorate each site with a distance, a matchChips[] array, and a rank score.
 // Filters are RANKING, never exclusion — every site stays in the returned list.
 //
@@ -249,7 +266,7 @@ export function rankSites(sites, parsed, origin, overlays) {
       if (typeof milesToAda === "number" && milesToAda <= 0.4) {
         chips.push({
           kind: "match",
-          text: `ADA station only ${milesToAda.toFixed(2)} mi from site`,
+          text: `ADA station ${blocksPhrase(milesToAda)} from site`,
           source: "MTA + sites.json",
         });
         score += 6;
