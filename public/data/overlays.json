@@ -31,6 +31,109 @@
         "lookback_days": 90,
         "filter": "complaint_type in (\"Elevator\", \"Sidewalk Condition\", \"Root/Sewer/Sidewalk Condition\", \"Curb Condition\", \"Scaffold Safety\", \"DEP Sidewalk Condition\") AND within_circle(location, siteOrStation, 300m)",
         "note": "Per-site query uses Socrata within_circle() OR'd across the site coord and its nearest ADA station coord. Complaint types are matched case-insensitively so 'Elevator' and 'ELEVATOR' merge. Elevator complaints in this feed are DOB/HPD building elevators — NOT transit elevators. MTA elevator status is a separate feed."
+      },
+      "census_acs": {
+        "dataset": "American Community Survey 5-year estimates (2023)",
+        "publisher": "U.S. Census Bureau",
+        "vintage_label": "ACS 5-year, 2023",
+        "url": "https://www.census.gov/data/developers/data-sets/acs-5year.html",
+        "endpoints": [
+          "https://api.census.gov/data/2023/acs/acs5",
+          "https://api.census.gov/data/2023/acs/acs5/subject"
+        ],
+        "variables": [
+          {
+            "code": "B01001_001E",
+            "key": "totalPop",
+            "label": "Total population",
+            "endpoint": "detail"
+          },
+          {
+            "code": "B17001_002E",
+            "key": "belowPovertyCount",
+            "label": "Population below poverty (12mo)",
+            "endpoint": "detail"
+          },
+          {
+            "code": "B17001_001E",
+            "key": "povertyUniverse",
+            "label": "Poverty universe (for whom status determined)",
+            "endpoint": "detail"
+          },
+          {
+            "code": "B08201_002E",
+            "key": "hhNoVehicleCount",
+            "label": "Households with no vehicle",
+            "endpoint": "detail"
+          },
+          {
+            "code": "B08201_001E",
+            "key": "hhTotal",
+            "label": "Total households",
+            "endpoint": "detail"
+          },
+          {
+            "code": "B01002_001E",
+            "key": "medianAge",
+            "label": "Median age",
+            "endpoint": "detail"
+          },
+          {
+            "code": "C16002_004E",
+            "key": "hhLepSpanishCount",
+            "label": "Spanish-speaking limited-English households",
+            "endpoint": "detail"
+          },
+          {
+            "code": "C16002_001E",
+            "key": "hhLepUniverse",
+            "label": "Households (language universe)",
+            "endpoint": "detail"
+          },
+          {
+            "code": "S1810_C03_001E",
+            "key": "disabilityPct",
+            "label": "Percent of civilian noninstitutionalized population with any disability",
+            "endpoint": "subject"
+          },
+          {
+            "code": "S1810_C03_001M",
+            "key": "disabilityPctMoe",
+            "label": "MOE for percent-with-any-disability (90% confidence)",
+            "endpoint": "subject"
+          },
+          {
+            "code": "S1810_C03_047E",
+            "key": "ambulatoryDifficultyPct",
+            "label": "Percent of civilian noninstitutionalized population with an ambulatory difficulty",
+            "endpoint": "subject"
+          },
+          {
+            "code": "S1810_C03_047M",
+            "key": "ambulatoryDifficultyPctMoe",
+            "label": "MOE for percent-with-an-ambulatory-difficulty (90% confidence)",
+            "endpoint": "subject"
+          }
+        ],
+        "citywide_ambulatory_median": 0.064,
+        "citywide_disability_median": 0.105,
+        "citywide_tract_count": 2240,
+        "pulled_at": "2026-08-16T14:39:32.654Z",
+        "note": "Never presented as current. Tract-level estimates lag by roughly two years. Detailed (B/C) and subject (S) tables are served from different endpoints."
+      },
+      "usda_lram": {
+        "dataset": "USDA Food Access Research Atlas, 2019 data (LRAM)",
+        "publisher": "USDA Economic Research Service",
+        "vintage_label": "USDA LRAM, 2019 data",
+        "source_file": "public/data/usda-lram-2019.json (preprocess of FoodAccessResearchAtlasData2019.xlsx)",
+        "note": "Vehicle-flag variant retained — the successor SRAM drops it.",
+        "pulled_at": "2026-08-16T14:39:32.654Z"
+      },
+      "tract_lookup": {
+        "dataset": "FCC Block Find API (Census 2020 vintage)",
+        "url": "https://geo.fcc.gov/api/census/block/find",
+        "note": "Site → tract via FCC geo.fcc.gov/api/census/block/find (2020 vintage). Tract = first 11 digits of the 15-digit block FIPS.",
+        "pulled_at": "2026-08-16T14:39:32.654Z"
       }
     }
   },
@@ -105,6 +208,25 @@
           "agency": "DOB"
         }
       ]
+    },
+    "census": {
+      "geoid": "36005009302",
+      "milesToAdaStation": 0.886,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 405,
+        "povertyRate": 0.3333333333333333,
+        "noVehicleRate": null,
+        "medianAge": 39.6,
+        "spanishLepRate": null,
+        "disabilityRate": 1,
+        "disabilityRateMoe": 0.35600000000000004,
+        "ambulatoryDifficultyRate": 0.667,
+        "ambulatoryDifficultyRateMoe": 0.15,
+        "tractReliable": false,
+        "tractUnreliableReason": "estimate exceeds 30% — small-tract / group-quarters artifact suspected"
+      },
+      "lram": null
     }
   },
   "cycle-05-ny-sfsp-0100": {
@@ -216,6 +338,32 @@
           "agency": "DOB"
         }
       ]
+    },
+    "census": {
+      "geoid": "36005017702",
+      "milesToAdaStation": 0.555,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 5236,
+        "povertyRate": 0.3787242169595111,
+        "noVehicleRate": 0.627007733491969,
+        "medianAge": 31.9,
+        "spanishLepRate": 0.11124330755502677,
+        "disabilityRate": 0.204,
+        "disabilityRateMoe": 0.057,
+        "ambulatoryDifficultyRate": 0.151,
+        "ambulatoryDifficultyRateMoe": 0.049,
+        "tractReliable": true,
+        "tractUnreliableReason": null
+      },
+      "lram": {
+        "vintage": "USDA LRAM, 2019 data",
+        "lilaVehicle": false,
+        "hunvFlag": false,
+        "lowIncome": true,
+        "povertyRate": 31.7317663325268,
+        "urban": true
+      }
     }
   },
   "cycle-05-ny-sfsp-0140": {
@@ -324,6 +472,32 @@
           "agency": "DOB"
         }
       ]
+    },
+    "census": {
+      "geoid": "36061002800",
+      "milesToAdaStation": 0.442,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 6234,
+        "povertyRate": 0.1922395749476735,
+        "noVehicleRate": 0.7602960102960103,
+        "medianAge": 41.9,
+        "spanishLepRate": 0.06048906048906049,
+        "disabilityRate": 0.245,
+        "disabilityRateMoe": 0.085,
+        "ambulatoryDifficultyRate": 0.064,
+        "ambulatoryDifficultyRateMoe": 0.027999999999999997,
+        "tractReliable": true,
+        "tractUnreliableReason": null
+      },
+      "lram": {
+        "vintage": "USDA LRAM, 2019 data",
+        "lilaVehicle": false,
+        "hunvFlag": false,
+        "lowIncome": true,
+        "povertyRate": 20.1742526663662,
+        "urban": true
+      }
     }
   },
   "cycle-05-ny-sfsp-0630": {
@@ -423,6 +597,25 @@
           "agency": "DOB"
         }
       ]
+    },
+    "census": {
+      "geoid": "36047017700",
+      "milesToAdaStation": 0.305,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 0,
+        "povertyRate": null,
+        "noVehicleRate": null,
+        "medianAge": -666666666,
+        "spanishLepRate": null,
+        "disabilityRate": null,
+        "disabilityRateMoe": null,
+        "ambulatoryDifficultyRate": null,
+        "ambulatoryDifficultyRateMoe": null,
+        "tractReliable": true,
+        "tractUnreliableReason": null
+      },
+      "lram": null
     }
   },
   "cycle-05-ny-sfsp-0285": {
@@ -547,6 +740,32 @@
           "agency": "DOB"
         }
       ]
+    },
+    "census": {
+      "geoid": "36061025900",
+      "milesToAdaStation": 0.311,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 4713,
+        "povertyRate": 0.16570942352690918,
+        "noVehicleRate": 0.679622431982232,
+        "medianAge": 33.9,
+        "spanishLepRate": 0.09439200444197668,
+        "disabilityRate": 0.07400000000000001,
+        "disabilityRateMoe": 0.024,
+        "ambulatoryDifficultyRate": 0.036000000000000004,
+        "ambulatoryDifficultyRateMoe": 0.017,
+        "tractReliable": true,
+        "tractUnreliableReason": null
+      },
+      "lram": {
+        "vintage": "USDA LRAM, 2019 data",
+        "lilaVehicle": false,
+        "hunvFlag": false,
+        "lowIncome": false,
+        "povertyRate": 12.8544924463292,
+        "urban": true
+      }
     }
   },
   "cycle-05-ny-sfsp-0230": {
@@ -645,6 +864,32 @@
           "agency": "DOB"
         }
       ]
+    },
+    "census": {
+      "geoid": "36061031100",
+      "milesToAdaStation": 0.305,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 0,
+        "povertyRate": null,
+        "noVehicleRate": null,
+        "medianAge": -666666666,
+        "spanishLepRate": null,
+        "disabilityRate": null,
+        "disabilityRateMoe": null,
+        "ambulatoryDifficultyRate": null,
+        "ambulatoryDifficultyRateMoe": null,
+        "tractReliable": true,
+        "tractUnreliableReason": null
+      },
+      "lram": {
+        "vintage": "USDA LRAM, 2019 data",
+        "lilaVehicle": false,
+        "hunvFlag": false,
+        "lowIncome": false,
+        "povertyRate": 0,
+        "urban": true
+      }
     }
   },
   "cycle-05-ny-sfsp-0801": {
@@ -755,6 +1000,32 @@
           "agency": "DOT"
         }
       ]
+    },
+    "census": {
+      "geoid": "36061024200",
+      "milesToAdaStation": 0.373,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 5603,
+        "povertyRate": 0.3148313403533821,
+        "noVehicleRate": 0.8227320125130344,
+        "medianAge": 30.6,
+        "spanishLepRate": 0.09176225234619395,
+        "disabilityRate": 0.163,
+        "disabilityRateMoe": 0.042,
+        "ambulatoryDifficultyRate": 0.10400000000000001,
+        "ambulatoryDifficultyRateMoe": 0.033,
+        "tractReliable": true,
+        "tractUnreliableReason": null
+      },
+      "lram": {
+        "vintage": "USDA LRAM, 2019 data",
+        "lilaVehicle": false,
+        "hunvFlag": false,
+        "lowIncome": true,
+        "povertyRate": 37.3564463705309,
+        "urban": true
+      }
     }
   },
   "cycle-05-ny-sfsp-0311": {
@@ -887,6 +1158,25 @@
           "agency": "DOT"
         }
       ]
+    },
+    "census": {
+      "geoid": "36061013202",
+      "milesToAdaStation": 0.448,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 3649,
+        "povertyRate": 0.11592217045765964,
+        "noVehicleRate": 0.7225225225225225,
+        "medianAge": 35.2,
+        "spanishLepRate": 0,
+        "disabilityRate": 0.098,
+        "disabilityRateMoe": 0.08199999999999999,
+        "ambulatoryDifficultyRate": 0.081,
+        "ambulatoryDifficultyRateMoe": 0.079,
+        "tractReliable": false,
+        "tractUnreliableReason": "MOE ≥ 50% of estimate"
+      },
+      "lram": null
     }
   },
   "cycle-05-ny-sfsp-0766": {
@@ -1011,6 +1301,32 @@
           "agency": "DOT"
         }
       ]
+    },
+    "census": {
+      "geoid": "36061017800",
+      "milesToAdaStation": 0.715,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 4050,
+        "povertyRate": 0.29407389040416565,
+        "noVehicleRate": 0.8134328358208955,
+        "medianAge": 32.7,
+        "spanishLepRate": 0.060767590618336885,
+        "disabilityRate": 0.107,
+        "disabilityRateMoe": 0.055,
+        "ambulatoryDifficultyRate": 0.055999999999999994,
+        "ambulatoryDifficultyRateMoe": 0.027999999999999997,
+        "tractReliable": false,
+        "tractUnreliableReason": "MOE ≥ 50% of estimate"
+      },
+      "lram": {
+        "vintage": "USDA LRAM, 2019 data",
+        "lilaVehicle": false,
+        "hunvFlag": false,
+        "lowIncome": true,
+        "povertyRate": 25.183773482167197,
+        "urban": true
+      }
     }
   },
   "cycle-05-ny-sfsp-0793": {
@@ -1119,6 +1435,32 @@
           "agency": "DOB"
         }
       ]
+    },
+    "census": {
+      "geoid": "36005028500",
+      "milesToAdaStation": 0.806,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 3309,
+        "povertyRate": 0.0691747572815534,
+        "noVehicleRate": 0.40539023020774845,
+        "medianAge": 46.4,
+        "spanishLepRate": 0.04772599663110612,
+        "disabilityRate": 0.154,
+        "disabilityRateMoe": 0.07200000000000001,
+        "ambulatoryDifficultyRate": 0.059000000000000004,
+        "ambulatoryDifficultyRateMoe": 0.032,
+        "tractReliable": false,
+        "tractUnreliableReason": "MOE ≥ 50% of estimate"
+      },
+      "lram": {
+        "vintage": "USDA LRAM, 2019 data",
+        "lilaVehicle": false,
+        "hunvFlag": false,
+        "lowIncome": true,
+        "povertyRate": 21.079691516709502,
+        "urban": true
+      }
     }
   },
   "cycle-05-ny-sfsp-0368": {
@@ -1227,6 +1569,32 @@
           "agency": "DOB"
         }
       ]
+    },
+    "census": {
+      "geoid": "36005037100",
+      "milesToAdaStation": 0.778,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 3948,
+        "povertyRate": 0.31494661921708184,
+        "noVehicleRate": 0.711046511627907,
+        "medianAge": 38.5,
+        "spanishLepRate": 0.325,
+        "disabilityRate": 0.264,
+        "disabilityRateMoe": 0.075,
+        "ambulatoryDifficultyRate": 0.18,
+        "ambulatoryDifficultyRateMoe": 0.06,
+        "tractReliable": true,
+        "tractUnreliableReason": null
+      },
+      "lram": {
+        "vintage": "USDA LRAM, 2019 data",
+        "lilaVehicle": false,
+        "hunvFlag": false,
+        "lowIncome": true,
+        "povertyRate": 27.2727272727273,
+        "urban": true
+      }
     }
   },
   "cycle-05-ny-sfsp-0217": {
@@ -1337,6 +1705,32 @@
           "agency": "DOT"
         }
       ]
+    },
+    "census": {
+      "geoid": "36061002201",
+      "milesToAdaStation": 0.753,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 6437,
+        "povertyRate": 0.2613370733987845,
+        "noVehicleRate": 0.7794752573895716,
+        "medianAge": 40.9,
+        "spanishLepRate": 0.08070408502158752,
+        "disabilityRate": 0.168,
+        "disabilityRateMoe": 0.045,
+        "ambulatoryDifficultyRate": 0.098,
+        "ambulatoryDifficultyRateMoe": 0.028999999999999998,
+        "tractReliable": true,
+        "tractUnreliableReason": null
+      },
+      "lram": {
+        "vintage": "USDA LRAM, 2019 data",
+        "lilaVehicle": false,
+        "hunvFlag": false,
+        "lowIncome": true,
+        "povertyRate": 37.9695746662527,
+        "urban": true
+      }
     }
   },
   "cycle-05-ny-sfsp-0119": {
@@ -1434,6 +1828,32 @@
           "agency": "DOB"
         }
       ]
+    },
+    "census": {
+      "geoid": "36005016500",
+      "milesToAdaStation": 0.763,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 1233,
+        "povertyRate": 0.16626115166261152,
+        "noVehicleRate": 0.6027777777777777,
+        "medianAge": 33.2,
+        "spanishLepRate": 0.03333333333333333,
+        "disabilityRate": 0.114,
+        "disabilityRateMoe": 0.069,
+        "ambulatoryDifficultyRate": 0.055,
+        "ambulatoryDifficultyRateMoe": 0.057,
+        "tractReliable": false,
+        "tractUnreliableReason": "MOE ≥ 50% of estimate"
+      },
+      "lram": {
+        "vintage": "USDA LRAM, 2019 data",
+        "lilaVehicle": false,
+        "hunvFlag": false,
+        "lowIncome": true,
+        "povertyRate": 29.3264248704663,
+        "urban": true
+      }
     }
   },
   "cycle-05-ny-sfsp-0818": {
@@ -1488,6 +1908,32 @@
           "agency": "DOB"
         }
       ]
+    },
+    "census": {
+      "geoid": "36085013302",
+      "milesToAdaStation": 2.511,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 3468,
+        "povertyRate": 0.25980392156862747,
+        "noVehicleRate": 0.16363636363636364,
+        "medianAge": 27.6,
+        "spanishLepRate": 0.06060606060606061,
+        "disabilityRate": 0.037000000000000005,
+        "disabilityRateMoe": 0.024,
+        "ambulatoryDifficultyRate": 0.016,
+        "ambulatoryDifficultyRateMoe": 0.015,
+        "tractReliable": false,
+        "tractUnreliableReason": "MOE ≥ 50% of estimate"
+      },
+      "lram": {
+        "vintage": "USDA LRAM, 2019 data",
+        "lilaVehicle": true,
+        "hunvFlag": true,
+        "lowIncome": true,
+        "povertyRate": 24.757118927973202,
+        "urban": true
+      }
     }
   },
   "cycle-05-ny-sfsp-0171": {
@@ -1596,6 +2042,32 @@
           "agency": "DOT"
         }
       ]
+    },
+    "census": {
+      "geoid": "36081036300",
+      "milesToAdaStation": 0.621,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 2173,
+        "povertyRate": 0.12100139082058414,
+        "noVehicleRate": 0.34554140127388533,
+        "medianAge": 34.8,
+        "spanishLepRate": 0.1305732484076433,
+        "disabilityRate": 0.075,
+        "disabilityRateMoe": 0.026000000000000002,
+        "ambulatoryDifficultyRate": 0.037000000000000005,
+        "ambulatoryDifficultyRateMoe": 0.017,
+        "tractReliable": true,
+        "tractUnreliableReason": null
+      },
+      "lram": {
+        "vintage": "USDA LRAM, 2019 data",
+        "lilaVehicle": false,
+        "hunvFlag": false,
+        "lowIncome": true,
+        "povertyRate": 20.8946439081813,
+        "urban": true
+      }
     }
   },
   "cycle-05-ny-sfsp-0694": {
@@ -1698,6 +2170,32 @@
           "agency": "DOT"
         }
       ]
+    },
+    "census": {
+      "geoid": "36061001600",
+      "milesToAdaStation": 0.369,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 7040,
+        "povertyRate": 0.10892780862879112,
+        "noVehicleRate": 0.8617429837518464,
+        "medianAge": 43.6,
+        "spanishLepRate": 0,
+        "disabilityRate": 0.092,
+        "disabilityRateMoe": 0.027999999999999997,
+        "ambulatoryDifficultyRate": 0.054000000000000006,
+        "ambulatoryDifficultyRateMoe": 0.027000000000000003,
+        "tractReliable": false,
+        "tractUnreliableReason": "MOE ≥ 50% of estimate"
+      },
+      "lram": {
+        "vintage": "USDA LRAM, 2019 data",
+        "lilaVehicle": false,
+        "hunvFlag": false,
+        "lowIncome": true,
+        "povertyRate": 22.5720309205903,
+        "urban": true
+      }
     }
   },
   "cycle-05-ny-sfsp-0167": {
@@ -1792,6 +2290,25 @@
           "agency": "DPR"
         }
       ]
+    },
+    "census": {
+      "geoid": "36085020702",
+      "milesToAdaStation": 3.232,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 2635,
+        "povertyRate": 0.3231707317073171,
+        "noVehicleRate": 0.4136460554371002,
+        "medianAge": 35.3,
+        "spanishLepRate": 0.13646055437100213,
+        "disabilityRate": 0.109,
+        "disabilityRateMoe": 0.057999999999999996,
+        "ambulatoryDifficultyRate": 0.107,
+        "ambulatoryDifficultyRateMoe": 0.069,
+        "tractReliable": false,
+        "tractUnreliableReason": "MOE ≥ 50% of estimate"
+      },
+      "lram": null
     }
   },
   "cycle-05-ny-sfsp-0438": {
@@ -1886,6 +2403,32 @@
           "agency": "DOT"
         }
       ]
+    },
+    "census": {
+      "geoid": "36061006200",
+      "milesToAdaStation": 0.443,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 4303,
+        "povertyRate": 0.20168302945301542,
+        "noVehicleRate": 0.8660714285714286,
+        "medianAge": 32.4,
+        "spanishLepRate": 0.005952380952380952,
+        "disabilityRate": 0.11800000000000001,
+        "disabilityRateMoe": 0.044000000000000004,
+        "ambulatoryDifficultyRate": 0.044000000000000004,
+        "ambulatoryDifficultyRateMoe": 0.021,
+        "tractReliable": true,
+        "tractUnreliableReason": null
+      },
+      "lram": {
+        "vintage": "USDA LRAM, 2019 data",
+        "lilaVehicle": false,
+        "hunvFlag": false,
+        "lowIncome": true,
+        "povertyRate": 28.730577543242504,
+        "urban": true
+      }
     }
   },
   "cycle-05-ny-sfsp-0359": {
@@ -1958,6 +2501,32 @@
           "agency": "DOT"
         }
       ]
+    },
+    "census": {
+      "geoid": "36085002100",
+      "milesToAdaStation": 0.414,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 5285,
+        "povertyRate": 0.24127465857359637,
+        "noVehicleRate": 0.4700047236655645,
+        "medianAge": 33.9,
+        "spanishLepRate": 0.04534718941898914,
+        "disabilityRate": 0.13,
+        "disabilityRateMoe": 0.045,
+        "ambulatoryDifficultyRate": 0.071,
+        "ambulatoryDifficultyRateMoe": 0.039,
+        "tractReliable": false,
+        "tractUnreliableReason": "MOE ≥ 50% of estimate"
+      },
+      "lram": {
+        "vintage": "USDA LRAM, 2019 data",
+        "lilaVehicle": true,
+        "hunvFlag": true,
+        "lowIncome": true,
+        "povertyRate": 27.931121802988102,
+        "urban": true
+      }
     }
   },
   "cycle-05-ny-sfsp-0393": {
@@ -2053,6 +2622,25 @@
           "agency": "DPR"
         }
       ]
+    },
+    "census": {
+      "geoid": "36005046208",
+      "milesToAdaStation": 0.532,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 5042,
+        "povertyRate": 0.08450379921713101,
+        "noVehicleRate": 0.19487179487179487,
+        "medianAge": 38.9,
+        "spanishLepRate": 0,
+        "disabilityRate": 0.057,
+        "disabilityRateMoe": 0.044000000000000004,
+        "ambulatoryDifficultyRate": 0.027000000000000003,
+        "ambulatoryDifficultyRateMoe": 0.02,
+        "tractReliable": false,
+        "tractUnreliableReason": "MOE ≥ 50% of estimate"
+      },
+      "lram": null
     }
   },
   "cycle-05-ny-sfsp-0440": {
@@ -2177,6 +2765,32 @@
           "agency": "DOB"
         }
       ]
+    },
+    "census": {
+      "geoid": "36061018600",
+      "milesToAdaStation": 0.875,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 6009,
+        "povertyRate": 0.2973878097789685,
+        "noVehicleRate": 0.7748377433849226,
+        "medianAge": 32.9,
+        "spanishLepRate": 0.06140788816774838,
+        "disabilityRate": 0.152,
+        "disabilityRateMoe": 0.06,
+        "ambulatoryDifficultyRate": 0.122,
+        "ambulatoryDifficultyRateMoe": 0.047,
+        "tractReliable": true,
+        "tractUnreliableReason": null
+      },
+      "lram": {
+        "vintage": "USDA LRAM, 2019 data",
+        "lilaVehicle": false,
+        "hunvFlag": false,
+        "lowIncome": true,
+        "povertyRate": 37.977718234381605,
+        "urban": true
+      }
     }
   },
   "cycle-05-ny-sfsp-0411": {
@@ -2273,6 +2887,25 @@
           "agency": "DOB"
         }
       ]
+    },
+    "census": {
+      "geoid": "36005006302",
+      "milesToAdaStation": 0.301,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 0,
+        "povertyRate": null,
+        "noVehicleRate": null,
+        "medianAge": -666666666,
+        "spanishLepRate": null,
+        "disabilityRate": null,
+        "disabilityRateMoe": null,
+        "ambulatoryDifficultyRate": null,
+        "ambulatoryDifficultyRateMoe": null,
+        "tractReliable": true,
+        "tractUnreliableReason": null
+      },
+      "lram": null
     }
   },
   "cycle-05-ny-sfsp-0343": {
@@ -2358,6 +2991,32 @@
           "agency": "DOT"
         }
       ]
+    },
+    "census": {
+      "geoid": "36081044000",
+      "milesToAdaStation": 0.73,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 3734,
+        "povertyRate": 0.0785101822079314,
+        "noVehicleRate": 0.10321969696969698,
+        "medianAge": 32.6,
+        "spanishLepRate": 0.07954545454545454,
+        "disabilityRate": 0.05,
+        "disabilityRateMoe": 0.044000000000000004,
+        "ambulatoryDifficultyRate": 0.043,
+        "ambulatoryDifficultyRateMoe": 0.032,
+        "tractReliable": false,
+        "tractUnreliableReason": "MOE ≥ 50% of estimate"
+      },
+      "lram": {
+        "vintage": "USDA LRAM, 2019 data",
+        "lilaVehicle": false,
+        "hunvFlag": false,
+        "lowIncome": true,
+        "povertyRate": 14.143269483075299,
+        "urban": true
+      }
     }
   },
   "cycle-05-ny-sfsp-0371": {
@@ -2495,6 +3154,32 @@
           "agency": "DOB"
         }
       ]
+    },
+    "census": {
+      "geoid": "36061019800",
+      "milesToAdaStation": 0.291,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 2534,
+        "povertyRate": 0.08647732089868589,
+        "noVehicleRate": 0.6861538461538461,
+        "medianAge": 43.5,
+        "spanishLepRate": 0.028717948717948718,
+        "disabilityRate": 0.08900000000000001,
+        "disabilityRateMoe": 0.043,
+        "ambulatoryDifficultyRate": 0.061,
+        "ambulatoryDifficultyRateMoe": 0.033,
+        "tractReliable": false,
+        "tractUnreliableReason": "MOE ≥ 50% of estimate"
+      },
+      "lram": {
+        "vintage": "USDA LRAM, 2019 data",
+        "lilaVehicle": false,
+        "hunvFlag": false,
+        "lowIncome": true,
+        "povertyRate": 20.2314165497896,
+        "urban": true
+      }
     }
   },
   "cycle-05-ny-sfsp-0715": {
@@ -2619,6 +3304,32 @@
           "agency": "DOB"
         }
       ]
+    },
+    "census": {
+      "geoid": "36061021303",
+      "milesToAdaStation": 0.309,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 6381,
+        "povertyRate": 0.2022702191392086,
+        "noVehicleRate": 0.7253668763102725,
+        "medianAge": 35.1,
+        "spanishLepRate": 0.11530398322851153,
+        "disabilityRate": 0.141,
+        "disabilityRateMoe": 0.048,
+        "ambulatoryDifficultyRate": 0.071,
+        "ambulatoryDifficultyRateMoe": 0.032,
+        "tractReliable": true,
+        "tractUnreliableReason": null
+      },
+      "lram": {
+        "vintage": "USDA LRAM, 2019 data",
+        "lilaVehicle": false,
+        "hunvFlag": false,
+        "lowIncome": true,
+        "povertyRate": 20.1603474194087,
+        "urban": true
+      }
     }
   },
   "cycle-05-ny-sfsp-0392": {
@@ -2702,6 +3413,25 @@
           "agency": "DPR"
         }
       ]
+    },
+    "census": {
+      "geoid": "36085005901",
+      "milesToAdaStation": 1.945,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 3075,
+        "povertyRate": 0.053350683148991544,
+        "noVehicleRate": 0.25333333333333335,
+        "medianAge": 36.1,
+        "spanishLepRate": 0.008888888888888889,
+        "disabilityRate": 0.10400000000000001,
+        "disabilityRateMoe": 0.040999999999999995,
+        "ambulatoryDifficultyRate": 0.059000000000000004,
+        "ambulatoryDifficultyRateMoe": 0.033,
+        "tractReliable": false,
+        "tractUnreliableReason": "MOE ≥ 50% of estimate"
+      },
+      "lram": null
     }
   },
   "cycle-05-ny-sfsp-0439": {
@@ -2813,6 +3543,25 @@
           "agency": "DOT"
         }
       ]
+    },
+    "census": {
+      "geoid": "36081099900",
+      "milesToAdaStation": 3.669,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 0,
+        "povertyRate": null,
+        "noVehicleRate": null,
+        "medianAge": -666666666,
+        "spanishLepRate": null,
+        "disabilityRate": null,
+        "disabilityRateMoe": null,
+        "ambulatoryDifficultyRate": null,
+        "ambulatoryDifficultyRateMoe": null,
+        "tractReliable": true,
+        "tractUnreliableReason": null
+      },
+      "lram": null
     }
   },
   "cycle-08-ny-sfsp-0002": {
@@ -2847,6 +3596,32 @@
           "agency": "DPR"
         }
       ]
+    },
+    "census": {
+      "geoid": "36085024402",
+      "milesToAdaStation": 0.807,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 4909,
+        "povertyRate": 0.029496108152396557,
+        "noVehicleRate": 0.07880910683012259,
+        "medianAge": 42.9,
+        "spanishLepRate": 0,
+        "disabilityRate": 0.08800000000000001,
+        "disabilityRateMoe": 0.033,
+        "ambulatoryDifficultyRate": 0.062,
+        "ambulatoryDifficultyRateMoe": 0.028999999999999998,
+        "tractReliable": true,
+        "tractUnreliableReason": null
+      },
+      "lram": {
+        "vintage": "USDA LRAM, 2019 data",
+        "lilaVehicle": false,
+        "hunvFlag": false,
+        "lowIncome": false,
+        "povertyRate": 6.36012032660077,
+        "urban": true
+      }
     }
   },
   "cycle-09-ny-sfsp-0542": {
@@ -2985,6 +3760,32 @@
           "agency": "DPR"
         }
       ]
+    },
+    "census": {
+      "geoid": "36081116100",
+      "milesToAdaStation": 0.53,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 3642,
+        "povertyRate": 0.2316614420062696,
+        "noVehicleRate": 0.4674644727000748,
+        "medianAge": 46.9,
+        "spanishLepRate": 0.11144353029169783,
+        "disabilityRate": 0.061,
+        "disabilityRateMoe": 0.043,
+        "ambulatoryDifficultyRate": 0.01,
+        "ambulatoryDifficultyRateMoe": 0.009000000000000001,
+        "tractReliable": false,
+        "tractUnreliableReason": "MOE ≥ 50% of estimate"
+      },
+      "lram": {
+        "vintage": "USDA LRAM, 2019 data",
+        "lilaVehicle": false,
+        "hunvFlag": false,
+        "lowIncome": true,
+        "povertyRate": 32.4430479183032,
+        "urban": true
+      }
     }
   },
   "cycle-05-ny-sfsp-0023": {
@@ -3103,6 +3904,32 @@
           "agency": "DPR"
         }
       ]
+    },
+    "census": {
+      "geoid": "36005000400",
+      "milesToAdaStation": 1.303,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 6481,
+        "povertyRate": 0.04891220490665021,
+        "noVehicleRate": 0.20391807658058772,
+        "medianAge": 34.8,
+        "spanishLepRate": 0.195013357079252,
+        "disabilityRate": 0.126,
+        "disabilityRateMoe": 0.051,
+        "ambulatoryDifficultyRate": 0.052000000000000005,
+        "ambulatoryDifficultyRateMoe": 0.025,
+        "tractReliable": true,
+        "tractUnreliableReason": null
+      },
+      "lram": {
+        "vintage": "USDA LRAM, 2019 data",
+        "lilaVehicle": false,
+        "hunvFlag": false,
+        "lowIncome": false,
+        "povertyRate": 9.76173541963016,
+        "urban": true
+      }
     }
   },
   "cycle-05-ny-sfsp-0017": {
@@ -3212,6 +4039,32 @@
           "agency": "DOB"
         }
       ]
+    },
+    "census": {
+      "geoid": "36047074800",
+      "milesToAdaStation": 0.629,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 1595,
+        "povertyRate": 0.14231974921630094,
+        "noVehicleRate": 0.3274336283185841,
+        "medianAge": 44.4,
+        "spanishLepRate": 0,
+        "disabilityRate": 0.096,
+        "disabilityRateMoe": 0.049,
+        "ambulatoryDifficultyRate": 0.065,
+        "ambulatoryDifficultyRateMoe": 0.032,
+        "tractReliable": false,
+        "tractUnreliableReason": "MOE ≥ 50% of estimate"
+      },
+      "lram": {
+        "vintage": "USDA LRAM, 2019 data",
+        "lilaVehicle": false,
+        "hunvFlag": false,
+        "lowIncome": false,
+        "povertyRate": 16.433385173665098,
+        "urban": true
+      }
     }
   },
   "cycle-05-ny-sfsp-0035": {
@@ -3321,6 +4174,25 @@
           "agency": "DOB"
         }
       ]
+    },
+    "census": {
+      "geoid": "36061012901",
+      "milesToAdaStation": 0.429,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 7091,
+        "povertyRate": 0.050503617534402044,
+        "noVehicleRate": 0.832306338028169,
+        "medianAge": 36.4,
+        "spanishLepRate": 0,
+        "disabilityRate": 0.042,
+        "disabilityRateMoe": 0.027999999999999997,
+        "ambulatoryDifficultyRate": 0.02,
+        "ambulatoryDifficultyRateMoe": 0.018000000000000002,
+        "tractReliable": false,
+        "tractUnreliableReason": "MOE ≥ 50% of estimate"
+      },
+      "lram": null
     }
   },
   "cycle-05-ny-sfsp-0007": {
@@ -3442,6 +4314,32 @@
           "agency": "DOT"
         }
       ]
+    },
+    "census": {
+      "geoid": "36081073900",
+      "milesToAdaStation": 0.263,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 5288,
+        "povertyRate": 0.03601859024012394,
+        "noVehicleRate": 0.5052508751458576,
+        "medianAge": 47.2,
+        "spanishLepRate": 0.03695060287825749,
+        "disabilityRate": 0.10800000000000001,
+        "disabilityRateMoe": 0.046,
+        "ambulatoryDifficultyRate": 0.067,
+        "ambulatoryDifficultyRateMoe": 0.040999999999999995,
+        "tractReliable": false,
+        "tractUnreliableReason": "MOE ≥ 50% of estimate"
+      },
+      "lram": {
+        "vintage": "USDA LRAM, 2019 data",
+        "lilaVehicle": false,
+        "hunvFlag": false,
+        "lowIncome": false,
+        "povertyRate": 6.21556473829201,
+        "urban": true
+      }
     }
   },
   "cycle-05-ny-sfsp-0120": {
@@ -3538,6 +4436,32 @@
           "agency": "DOT"
         }
       ]
+    },
+    "census": {
+      "geoid": "36085027702",
+      "milesToAdaStation": 2.113,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 6245,
+        "povertyRate": 0.15334081076750522,
+        "noVehicleRate": 0.15511204481792717,
+        "medianAge": 47.3,
+        "spanishLepRate": 0,
+        "disabilityRate": 0.067,
+        "disabilityRateMoe": 0.027000000000000003,
+        "ambulatoryDifficultyRate": 0.052000000000000005,
+        "ambulatoryDifficultyRateMoe": 0.027000000000000003,
+        "tractReliable": false,
+        "tractUnreliableReason": "MOE ≥ 50% of estimate"
+      },
+      "lram": {
+        "vintage": "USDA LRAM, 2019 data",
+        "lilaVehicle": false,
+        "hunvFlag": true,
+        "lowIncome": false,
+        "povertyRate": 9.7497468537538,
+        "urban": true
+      }
     }
   },
   "cycle-05-ny-sfsp-0037": {
@@ -3649,6 +4573,32 @@
           "agency": "DOT"
         }
       ]
+    },
+    "census": {
+      "geoid": "36005042500",
+      "milesToAdaStation": 0.595,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 6749,
+        "povertyRate": 0.24607724803862402,
+        "noVehicleRate": 0.6781857451403888,
+        "medianAge": 33.5,
+        "spanishLepRate": 0.20259179265658747,
+        "disabilityRate": 0.136,
+        "disabilityRateMoe": 0.044000000000000004,
+        "ambulatoryDifficultyRate": 0.094,
+        "ambulatoryDifficultyRateMoe": 0.043,
+        "tractReliable": true,
+        "tractUnreliableReason": null
+      },
+      "lram": {
+        "vintage": "USDA LRAM, 2019 data",
+        "lilaVehicle": false,
+        "hunvFlag": false,
+        "lowIncome": true,
+        "povertyRate": 34.0676883780332,
+        "urban": true
+      }
     }
   },
   "cycle-05-ny-sfsp-0030": {
@@ -3756,6 +4706,32 @@
           "agency": "DOT"
         }
       ]
+    },
+    "census": {
+      "geoid": "36047076800",
+      "milesToAdaStation": 0.627,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 3998,
+        "povertyRate": 0.19412219644238204,
+        "noVehicleRate": 0.40571870170015456,
+        "medianAge": 31.3,
+        "spanishLepRate": 0.012364760432766615,
+        "disabilityRate": 0.096,
+        "disabilityRateMoe": 0.042,
+        "ambulatoryDifficultyRate": 0.06,
+        "ambulatoryDifficultyRateMoe": 0.032,
+        "tractReliable": false,
+        "tractUnreliableReason": "MOE ≥ 50% of estimate"
+      },
+      "lram": {
+        "vintage": "USDA LRAM, 2019 data",
+        "lilaVehicle": false,
+        "hunvFlag": false,
+        "lowIncome": true,
+        "povertyRate": 25.493316359007,
+        "urban": true
+      }
     }
   },
   "cycle-05-ny-sfsp-0088": {
@@ -3862,6 +4838,32 @@
           "agency": "DOB"
         }
       ]
+    },
+    "census": {
+      "geoid": "36061017401",
+      "milesToAdaStation": 0.677,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 5218,
+        "povertyRate": 0.267504835589942,
+        "noVehicleRate": 0.9061032863849765,
+        "medianAge": 45.3,
+        "spanishLepRate": 0.14366197183098592,
+        "disabilityRate": 0.213,
+        "disabilityRateMoe": 0.054000000000000006,
+        "ambulatoryDifficultyRate": 0.14,
+        "ambulatoryDifficultyRateMoe": 0.045,
+        "tractReliable": true,
+        "tractUnreliableReason": null
+      },
+      "lram": {
+        "vintage": "USDA LRAM, 2019 data",
+        "lilaVehicle": false,
+        "hunvFlag": false,
+        "lowIncome": true,
+        "povertyRate": 46.1694456962596,
+        "urban": true
+      }
     }
   },
   "cycle-05-ny-sfsp-0034": {
@@ -3975,6 +4977,32 @@
           "agency": "DOT"
         }
       ]
+    },
+    "census": {
+      "geoid": "36081146700",
+      "milesToAdaStation": 3.06,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 2866,
+        "povertyRate": 0.09211444521981857,
+        "noVehicleRate": 0.12428571428571429,
+        "medianAge": 44.2,
+        "spanishLepRate": 0,
+        "disabilityRate": 0.067,
+        "disabilityRateMoe": 0.027999999999999997,
+        "ambulatoryDifficultyRate": 0.05,
+        "ambulatoryDifficultyRateMoe": 0.028999999999999998,
+        "tractReliable": false,
+        "tractUnreliableReason": "MOE ≥ 50% of estimate"
+      },
+      "lram": {
+        "vintage": "USDA LRAM, 2019 data",
+        "lilaVehicle": false,
+        "hunvFlag": false,
+        "lowIncome": false,
+        "povertyRate": 7.4186222558667705,
+        "urban": true
+      }
     }
   },
   "cycle-05-ny-sfsp-0122": {
@@ -4039,6 +5067,32 @@
           "agency": "DOT"
         }
       ]
+    },
+    "census": {
+      "geoid": "36085000700",
+      "milesToAdaStation": 0.413,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 5195,
+        "povertyRate": 0.30587102983638115,
+        "noVehicleRate": 0.3757444504602057,
+        "medianAge": 32.5,
+        "spanishLepRate": 0.04006497022198159,
+        "disabilityRate": 0.111,
+        "disabilityRateMoe": 0.038,
+        "ambulatoryDifficultyRate": 0.067,
+        "ambulatoryDifficultyRateMoe": 0.022000000000000002,
+        "tractReliable": true,
+        "tractUnreliableReason": null
+      },
+      "lram": {
+        "vintage": "USDA LRAM, 2019 data",
+        "lilaVehicle": true,
+        "hunvFlag": true,
+        "lowIncome": true,
+        "povertyRate": 38.382863759166305,
+        "urban": true
+      }
     }
   },
   "cycle-05-ny-sfsp-0062": {
@@ -4135,6 +5189,32 @@
           "agency": "DOB"
         }
       ]
+    },
+    "census": {
+      "geoid": "36005013100",
+      "milesToAdaStation": 0.474,
+      "acs": {
+        "vintage": "ACS 5-year, 2023",
+        "totalPop": 5210,
+        "povertyRate": 0.40784162982894484,
+        "noVehicleRate": 0.7508928571428571,
+        "medianAge": 38.7,
+        "spanishLepRate": 0.22321428571428573,
+        "disabilityRate": 0.248,
+        "disabilityRateMoe": 0.055,
+        "ambulatoryDifficultyRate": 0.16,
+        "ambulatoryDifficultyRateMoe": 0.049,
+        "tractReliable": true,
+        "tractUnreliableReason": null
+      },
+      "lram": {
+        "vintage": "USDA LRAM, 2019 data",
+        "lilaVehicle": false,
+        "hunvFlag": false,
+        "lowIncome": true,
+        "povertyRate": 30.8602999210734,
+        "urban": true
+      }
     }
   }
 }

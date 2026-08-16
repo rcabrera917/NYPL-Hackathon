@@ -6,13 +6,16 @@
 //
 // Layer build order (do one at a time, verify render, then extend):
 //   [x] 1. Libraries (NYPL + BPL + QPL, via Facilities Database)
-//   [ ] 2. 311 elevator/sidewalk/curb-cut/scaffolding complaints (90d)
+//   [x] 2. 311 elevator/sidewalk/curb-cut/scaffolding complaints (90d)
 //   [ ] 3. Cooling centers
 //   [ ] 4. Film permits (date-scoped)
+//   [x] 5. Census tract context (ACS 5-year 2023 + USDA LRAM 2019)
 //
 // Usage:
-//   node scripts/build-overlays.mjs           # fetch, print, write
-//   node scripts/build-overlays.mjs --dry-run # fetch, print, no write
+//   node scripts/build-overlays.mjs             # all layers, fetch/print/write
+//   node scripts/build-overlays.mjs --dry-run   # no write
+//   node scripts/build-overlays.mjs --only=5    # run only Layer 5 and merge
+//                                                 into existing overlays.json
 
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
@@ -21,10 +24,18 @@ import { fileURLToPath } from "node:url";
 const HERE = dirname(fileURLToPath(import.meta.url));
 const SITES_PATH = resolve(HERE, "..", "public", "data", "sites.json");
 const OUT_PATH = resolve(HERE, "..", "public", "data", "overlays.json");
+const LRAM_PATH = resolve(HERE, "..", "public", "data", "usda-lram-2019.json");
 
 const FACILITIES_URL = "https://data.cityofnewyork.us/resource/ji82-xba5.json";
 const MTA_STATIONS_URL = "https://data.ny.gov/resource/39hk-dx4f.json";
 const NYC311_URL = "https://data.cityofnewyork.us/resource/erm2-nwe9.json";
+const FCC_BLOCK_URL = "https://geo.fcc.gov/api/census/block/find";
+const CENSUS_ACS_DETAIL_URL = "https://api.census.gov/data/2023/acs/acs5";
+const CENSUS_ACS_SUBJECT_URL = "https://api.census.gov/data/2023/acs/acs5/subject";
+const ACS_VINTAGE_LABEL = "ACS 5-year, 2023";
+const LRAM_VINTAGE_LABEL = "USDA LRAM, 2019 data";
+const NYC_COUNTIES = ["005", "047", "061", "081", "085"]; // Bronx, Kings, NY, Queens, Richmond
+const ADA_DIST_ALERT_MILES = 0.75;
 const RADIUS_METERS = 300;
 const MEAL_SITE_MATCH_METERS = 60;
 const NYC311_LOOKBACK_DAYS = 90;
@@ -85,13 +96,437 @@ function nearestOriginMeters(point, origins) {
   return Number.isFinite(best) ? best : null;
 }
 
+// ---- Layer 5 helpers: FCC block lookup + ACS pull + LRAM join --------
+async function fetchTractGeoidForPoint(lat, lng) {
+  const u = new URL(FCC_BLOCK_URL);
+  u.searchParams.set("latitude", String(lat));
+  u.searchParams.set("longitude", String(lng));
+  u.searchParams.set("censusYear", "2020");
+  u.searchParams.set("format", "json");
+  const res = await fetch(u);
+  if (!res.ok) throw new Error(`FCC ${res.status} ${u}`);
+  const body = await res.json();
+  const fips = body?.Block?.FIPS;
+  if (typeof fips !== "string" || fips.length < 11) return null;
+  return fips.slice(0, 11); // state(2)+county(3)+tract(6)
+}
+
+// Variables we ask ACS for. Names + human labels kept together so the
+// provenance block can render each one back with its source var. Each
+// entry declares which endpoint it lives on — the detailed B/C tables
+// and the S subject tables are served from separate URLs.
+const ACS_VARS = [
+  // Detailed tables (B/C prefix).
+  { code: "B01001_001E", key: "totalPop",           label: "Total population",                                           endpoint: "detail"  },
+  { code: "B17001_002E", key: "belowPovertyCount",  label: "Population below poverty (12mo)",                            endpoint: "detail"  },
+  { code: "B17001_001E", key: "povertyUniverse",    label: "Poverty universe (for whom status determined)",              endpoint: "detail"  },
+  { code: "B08201_002E", key: "hhNoVehicleCount",   label: "Households with no vehicle",                                 endpoint: "detail"  },
+  { code: "B08201_001E", key: "hhTotal",            label: "Total households",                                           endpoint: "detail"  },
+  { code: "B01002_001E", key: "medianAge",          label: "Median age",                                                 endpoint: "detail"  },
+  { code: "C16002_004E", key: "hhLepSpanishCount",  label: "Spanish-speaking limited-English households",                endpoint: "detail"  },
+  { code: "C16002_001E", key: "hhLepUniverse",      label: "Households (language universe)",                             endpoint: "detail"  },
+  // Subject tables (S prefix). S1810 is the disability subject table;
+  // _C03_ columns are percent-of-civilian-noninstitutionalized-population.
+  { code: "S1810_C03_001E", key: "disabilityPct",              label: "Percent of civilian noninstitutionalized population with any disability", endpoint: "subject" },
+  { code: "S1810_C03_001M", key: "disabilityPctMoe",           label: "MOE for percent-with-any-disability (90% confidence)",                    endpoint: "subject" },
+  { code: "S1810_C03_047E", key: "ambulatoryDifficultyPct",    label: "Percent of civilian noninstitutionalized population with an ambulatory difficulty", endpoint: "subject" },
+  { code: "S1810_C03_047M", key: "ambulatoryDifficultyPctMoe", label: "MOE for percent-with-an-ambulatory-difficulty (90% confidence)",          endpoint: "subject" },
+];
+
+async function fetchAcsEndpoint(baseUrl, vars, county, key) {
+  const codes = vars.map((v) => v.code).join(",");
+  const u = new URL(baseUrl);
+  u.searchParams.set("get", `NAME,${codes}`);
+  u.searchParams.set("for", "tract:*");
+  u.searchParams.set("in", `state:36 county:${county}`);
+  if (key) u.searchParams.set("key", key);
+  const res = await fetch(u);
+  if (!res.ok) {
+    const body = await res.text().catch(() => "");
+    throw new Error(`ACS ${res.status} ${baseUrl} county=${county} — ${body.slice(0, 200)}`);
+  }
+  return res.json();
+}
+
+async function fetchAcsForCounty(county, key) {
+  const detailVars = ACS_VARS.filter((v) => v.endpoint === "detail");
+  const subjectVars = ACS_VARS.filter((v) => v.endpoint === "subject");
+
+  const [detailRows, subjectRows] = await Promise.all([
+    fetchAcsEndpoint(CENSUS_ACS_DETAIL_URL, detailVars, county, key),
+    fetchAcsEndpoint(CENSUS_ACS_SUBJECT_URL, subjectVars, county, key),
+  ]);
+
+  const out = new Map();
+
+  function ingest(rows, vars) {
+    const header = rows[0];
+    const stateIdx = header.indexOf("state");
+    const countyIdx = header.indexOf("county");
+    const tractIdx = header.indexOf("tract");
+    for (const row of rows.slice(1)) {
+      const geoid = `${row[stateIdx]}${row[countyIdx]}${row[tractIdx]}`;
+      const rec = out.get(geoid) ?? { geoid };
+      for (const v of vars) {
+        const raw = row[header.indexOf(v.code)];
+        const num = raw == null ? null : Number(raw);
+        rec[v.key] = Number.isFinite(num) ? num : null;
+      }
+      out.set(geoid, rec);
+    }
+  }
+  ingest(detailRows, detailVars);
+  ingest(subjectRows, subjectVars);
+
+  // Derived rates (nullable — ACS uses negatives for suppressed/error).
+  for (const rec of out.values()) {
+    rec.povertyRate =
+      rec.povertyUniverse > 0 && rec.belowPovertyCount != null && rec.belowPovertyCount >= 0
+        ? rec.belowPovertyCount / rec.povertyUniverse
+        : null;
+    rec.noVehicleRate =
+      rec.hhTotal > 0 && rec.hhNoVehicleCount != null && rec.hhNoVehicleCount >= 0
+        ? rec.hhNoVehicleCount / rec.hhTotal
+        : null;
+    rec.spanishLepRate =
+      rec.hhLepUniverse > 0 && rec.hhLepSpanishCount != null && rec.hhLepSpanishCount >= 0
+        ? rec.hhLepSpanishCount / rec.hhLepUniverse
+        : null;
+    // Subject-table C03 columns already come as percentages (0–100).
+    // Normalize into 0–1 to match the derived rates above, and drop the
+    // ACS suppression sentinels (< 0). MOE gets the same /100 scaling.
+    rec.disabilityRate =
+      rec.disabilityPct != null && rec.disabilityPct >= 0 ? rec.disabilityPct / 100 : null;
+    rec.disabilityRateMoe =
+      rec.disabilityPctMoe != null && rec.disabilityPctMoe >= 0 ? rec.disabilityPctMoe / 100 : null;
+    rec.ambulatoryDifficultyRate =
+      rec.ambulatoryDifficultyPct != null && rec.ambulatoryDifficultyPct >= 0
+        ? rec.ambulatoryDifficultyPct / 100
+        : null;
+    rec.ambulatoryDifficultyRateMoe =
+      rec.ambulatoryDifficultyPctMoe != null && rec.ambulatoryDifficultyPctMoe >= 0
+        ? rec.ambulatoryDifficultyPctMoe / 100
+        : null;
+
+    // Reliability heuristic: suppress the tract line in the UI when
+    // the MOE is large relative to the estimate (MOE/estimate >= 0.5
+    // — Census guidance treats CV>=40% as unreliable and this is a
+    // slightly looser proxy at 90% confidence) OR when the estimate
+    // itself blows past 30%, which in practice means a small tract
+    // whose civilian-noninstitutionalized denominator is skewed by
+    // group-quarters-adjacent population.
+    const relFor = (est, moe) => {
+      if (est == null || moe == null || est <= 0) return { ok: null, ratio: null, over30: false };
+      const ratio = moe / est;
+      const over30 = est > 0.3;
+      return { ok: ratio < 0.5 && !over30, ratio, over30 };
+    };
+    const rd = relFor(rec.disabilityRate, rec.disabilityRateMoe);
+    const ra = relFor(rec.ambulatoryDifficultyRate, rec.ambulatoryDifficultyRateMoe);
+    rec.disabilityReliable = rd.ok;
+    rec.ambulatoryReliable = ra.ok;
+    rec.disabilityMoeRatio = rd.ratio;
+    rec.ambulatoryMoeRatio = ra.ratio;
+    rec.tractReliable = (rd.ok !== false) && (ra.ok !== false);
+    rec.tractUnreliableReason =
+      rd.over30 || ra.over30
+        ? "estimate exceeds 30% — small-tract / group-quarters artifact suspected"
+        : (rd.ok === false || ra.ok === false)
+          ? "MOE ≥ 50% of estimate"
+          : null;
+  }
+
+  return out;
+}
+
+function haversineMiles(lat1, lng1, lat2, lng2) {
+  const R = 3958.7613;
+  const toRad = (d) => (d * Math.PI) / 180;
+  const dLat = toRad(lat2 - lat1);
+  const dLng = toRad(lng2 - lng1);
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(a));
+}
+
+function median(nums) {
+  const sorted = nums.filter((n) => Number.isFinite(n)).slice().sort((a, b) => a - b);
+  if (!sorted.length) return null;
+  const m = Math.floor(sorted.length / 2);
+  return sorted.length % 2 === 0 ? (sorted[m - 1] + sorted[m]) / 2 : sorted[m];
+}
+
+async function runCensusLayer(sites, perSite, pulledAt, opts = {}) {
+  console.log(`\n[Layer 5: Census tract context — ${ACS_VINTAGE_LABEL} + ${LRAM_VINTAGE_LABEL}]`);
+  const key = process.env.CENSUS_API_KEY || "";
+  if (!key) console.warn("  warn: CENSUS_API_KEY not set — Census API may throttle or error");
+
+  // Load LRAM (Rafy-owned preprocess output).
+  const lramRaw = JSON.parse(await readFile(LRAM_PATH, "utf8"));
+  const lram = lramRaw.tracts || {};
+  console.log(`  LRAM tracts loaded: ${Object.keys(lram).length}`);
+
+  // Station coords for site → nearest-ADA-station distance. Reuse if
+  // Layer 1 already fetched them; otherwise fetch now (--only=5 path).
+  let stationById = opts.stationById ?? null;
+  if (!stationById) {
+    const stations = await fetchAll(MTA_STATIONS_URL, {
+      $select: "gtfs_stop_id,gtfs_latitude,gtfs_longitude",
+    });
+    stationById = new Map();
+    for (const s of stations) {
+      stationById.set(s.gtfs_stop_id, { lat: Number(s.gtfs_latitude), lng: Number(s.gtfs_longitude) });
+    }
+    console.log(`  MTA station coords fetched: ${stationById.size}`);
+  }
+
+  // Pull ACS for all 5 NYC counties up front (10 requests: 5 counties × 2 endpoints).
+  const acsByGeoid = new Map();
+  for (const c of NYC_COUNTIES) {
+    const rows = await fetchAcsForCounty(c, key);
+    for (const [g, r] of rows) acsByGeoid.set(g, r);
+    console.log(`  ACS county ${c}: ${rows.size} tracts`);
+  }
+
+  // Citywide median ambulatory-difficulty rate across ALL NYC tracts
+  // pulled — computed before the per-site loop so we can label sites
+  // relative to it.
+  const allAmbulatoryRates = [...acsByGeoid.values()]
+    .map((r) => r.ambulatoryDifficultyRate)
+    .filter((n) => Number.isFinite(n));
+  const citywideAmbulatoryMedian = median(allAmbulatoryRates);
+  const citywideDisabilityMedian = median(
+    [...acsByGeoid.values()].map((r) => r.disabilityRate).filter((n) => Number.isFinite(n)),
+  );
+  console.log(
+    `  citywide tract-level ambulatory-difficulty median: ${
+      citywideAmbulatoryMedian != null ? (citywideAmbulatoryMedian * 100).toFixed(2) + "%" : "n/a"
+    } (n=${allAmbulatoryRates.length})`,
+  );
+
+  // Reverse-geocode each site to a tract via the FCC block API.
+  let sitesWithTract = 0;
+  let sitesLilaVehicle = 0;
+  const perSiteAmbulatory = []; // { id, name, rate, milesToAda }
+
+  for (const site of sites) {
+    if (site.lat == null || site.lng == null) {
+      const entry = perSite.get(site.id) ?? {};
+      entry.census = { geoid: null, error: "no coords" };
+      perSite.set(site.id, entry);
+      continue;
+    }
+    let geoid = null;
+    try {
+      geoid = await fetchTractGeoidForPoint(site.lat, site.lng);
+    } catch (err) {
+      console.warn(`  ${site.id}: FCC lookup failed — ${err.message}`);
+    }
+    const entry = perSite.get(site.id) ?? {};
+    if (!geoid) {
+      entry.census = { geoid: null, error: "no tract" };
+      perSite.set(site.id, entry);
+      continue;
+    }
+    const acs = acsByGeoid.get(geoid) ?? null;
+    const lramRec = lram[geoid] ?? null;
+
+    // Distance from site to its nearest ADA station (sites.json's
+    // nearestStationId is already the nearest ADA one — build-stations.mjs
+    // filters to ADA).
+    let milesToAda = null;
+    if (site.nearestStationId) {
+      const s = stationById.get(site.nearestStationId);
+      if (s && Number.isFinite(s.lat)) {
+        milesToAda = haversineMiles(site.lat, site.lng, s.lat, s.lng);
+      }
+    }
+
+    entry.census = {
+      geoid,
+      milesToAdaStation: milesToAda != null ? Number(milesToAda.toFixed(3)) : null,
+      acs: acs
+        ? {
+            vintage: ACS_VINTAGE_LABEL,
+            totalPop: acs.totalPop,
+            povertyRate: acs.povertyRate,
+            noVehicleRate: acs.noVehicleRate,
+            medianAge: acs.medianAge,
+            spanishLepRate: acs.spanishLepRate,
+            disabilityRate: acs.disabilityRate,
+            disabilityRateMoe: acs.disabilityRateMoe,
+            ambulatoryDifficultyRate: acs.ambulatoryDifficultyRate,
+            ambulatoryDifficultyRateMoe: acs.ambulatoryDifficultyRateMoe,
+            tractReliable: acs.tractReliable,
+            tractUnreliableReason: acs.tractUnreliableReason,
+          }
+        : null,
+      lram: lramRec
+        ? {
+            vintage: LRAM_VINTAGE_LABEL,
+            lilaVehicle: lramRec.lilaVehicle === 1,
+            hunvFlag: lramRec.hunvFlag === 1,
+            lowIncome: lramRec.lowIncome === 1,
+            povertyRate: lramRec.povertyRate,
+            urban: lramRec.urban === 1,
+          }
+        : null,
+    };
+    perSite.set(site.id, entry);
+    sitesWithTract++;
+    if (lramRec?.lilaVehicle === 1) sitesLilaVehicle++;
+    perSiteAmbulatory.push({
+      id: site.id,
+      name: site.name,
+      rate: acs?.ambulatoryDifficultyRate ?? null,
+      disabilityRate: acs?.disabilityRate ?? null,
+      milesToAda,
+    });
+  }
+
+  // Aggregate: sites in tracts ABOVE the citywide median, and the
+  // subset of those that are >0.75 mi from their nearest ADA station.
+  const aboveMedian = perSiteAmbulatory
+    .filter((s) => s.rate != null && citywideAmbulatoryMedian != null && s.rate > citywideAmbulatoryMedian)
+    .sort((a, b) => b.rate - a.rate);
+  const aboveMedianAndFar = aboveMedian.filter(
+    (s) => s.milesToAda != null && s.milesToAda > ADA_DIST_ALERT_MILES,
+  );
+
+  // Small-tract / high-estimate audit. Prints raw pop, estimate, MOE, and
+  // MOE/estimate ratio for any site whose ambulatory rate is > 30% and
+  // always for Barretto Point Park (the user asked for that one by name).
+  const auditIds = new Set(["cycle-05-ny-sfsp-0031"]); // Barretto Point Park
+  const highRateAudits = perSiteAmbulatory
+    .filter((s) => s.rate != null && s.rate > 0.3)
+    .map((s) => s.id);
+  for (const id of highRateAudits) auditIds.add(id);
+
+  console.log("\n  Small-tract / high-estimate audit:");
+  for (const id of auditIds) {
+    const entry = perSite.get(id);
+    const acs = entry?.census?.acs;
+    const site = sites.find((s) => s.id === id);
+    if (!site || !acs) {
+      console.log(`    ${id} (${site?.name ?? "unknown"}): no ACS record`);
+      continue;
+    }
+    const pct = (r) => (r == null ? "n/a" : (r * 100).toFixed(2) + "%");
+    const moeR = acs.ambulatoryDifficultyRateMoe;
+    const est = acs.ambulatoryDifficultyRate;
+    const ratio = est != null && est > 0 && moeR != null ? (moeR / est).toFixed(2) : "n/a";
+    console.log(`    ${site.name} (${id})`);
+    console.log(`      tract:                    ${entry.census.geoid}`);
+    console.log(`      total pop (B01001_001E):  ${acs.totalPop ?? "n/a"}`);
+    console.log(`      disability     est/MOE:   ${pct(acs.disabilityRate)} / ±${pct(acs.disabilityRateMoe)}`);
+    console.log(`      ambulatory     est/MOE:   ${pct(est)} / ±${pct(moeR)}   (MOE÷est=${ratio})`);
+    console.log(`      tract reliable:           ${acs.tractReliable}${acs.tractUnreliableReason ? " — " + acs.tractUnreliableReason : ""}`);
+  }
+
+  console.log(`\n  sites resolved to a 2020 tract:                 ${sitesWithTract} / ${sites.length}`);
+  console.log(`  sites in a LILA-vehicle tract (USDA LRAM 2019): ${sitesLilaVehicle}`);
+  console.log(
+    `\n  Above-citywide-median tract ambulatory-difficulty (${
+      citywideAmbulatoryMedian != null ? (citywideAmbulatoryMedian * 100).toFixed(2) + "%" : "n/a"
+    }): ${aboveMedian.length} of ${sites.length} sites`,
+  );
+  for (const s of aboveMedian) {
+    console.log(
+      `    ${(s.rate * 100).toFixed(1).padStart(5)}%  ${s.milesToAda != null ? s.milesToAda.toFixed(2).padStart(5) + " mi" : "  n/a"}   ${s.name}`,
+    );
+  }
+  console.log(
+    `\n  ...of which >${ADA_DIST_ALERT_MILES} mi from nearest ADA station: ${aboveMedianAndFar.length}`,
+  );
+  for (const s of aboveMedianAndFar) {
+    console.log(
+      `    ${(s.rate * 100).toFixed(1).padStart(5)}%  ${s.milesToAda.toFixed(2).padStart(5)} mi   ${s.name}`,
+    );
+  }
+
+  return {
+    dataset_labels: {
+      acs: ACS_VINTAGE_LABEL,
+      lram: LRAM_VINTAGE_LABEL,
+    },
+    acs_vars: ACS_VARS,
+    counties: NYC_COUNTIES,
+    pulled_at: pulledAt,
+    citywide_ambulatory_median: citywideAmbulatoryMedian,
+    citywide_disability_median: citywideDisabilityMedian,
+    citywide_tract_count: allAmbulatoryRates.length,
+    ada_distance_alert_miles: ADA_DIST_ALERT_MILES,
+    fcc_note: "Site → tract via FCC geo.fcc.gov/api/census/block/find (2020 vintage). Tract = first 11 digits of the 15-digit block FIPS.",
+    lram_note: "LILA-vehicle = Low-Income & Low-Access using the vehicle-availability threshold. Relevant for a population that does not drive.",
+  };
+}
+
 async function main() {
   const dryRun = process.argv.includes("--dry-run");
+  const onlyCensus = process.argv.includes("--only=5") || process.argv.includes("--only-census");
   const pulledAt = new Date().toISOString();
 
   console.log("Loading sites.json...");
   const sites = JSON.parse(await readFile(SITES_PATH, "utf8"));
   console.log(`  ${sites.length} sites`);
+
+  // --only=5 short-circuit: skip Layers 1-2, merge Layer 5 into whatever
+  // overlays.json already contains on disk. Keeps the network cost down
+  // when iterating on the census layer.
+  if (onlyCensus) {
+    let existing = { _meta: {} };
+    try {
+      existing = JSON.parse(await readFile(OUT_PATH, "utf8"));
+    } catch (err) {
+      console.warn(`  no existing overlays.json (${err.code ?? err.message}) — will write a census-only file`);
+    }
+    const perSite = new Map();
+    for (const site of sites) {
+      const prior = existing[site.id];
+      perSite.set(site.id, prior ? { ...prior } : {});
+    }
+    const censusMeta = await runCensusLayer(sites, perSite, pulledAt);
+    const out = { ...existing };
+    out._meta = out._meta || {};
+    out._meta.sources = out._meta.sources || {};
+    out._meta.sources.census_acs = {
+      dataset: "American Community Survey 5-year estimates (2023)",
+      publisher: "U.S. Census Bureau",
+      vintage_label: ACS_VINTAGE_LABEL,
+      url: "https://www.census.gov/data/developers/data-sets/acs-5year.html",
+      endpoints: [CENSUS_ACS_DETAIL_URL, CENSUS_ACS_SUBJECT_URL],
+      variables: ACS_VARS,
+      citywide_ambulatory_median: censusMeta.citywide_ambulatory_median,
+      citywide_disability_median: censusMeta.citywide_disability_median,
+      citywide_tract_count: censusMeta.citywide_tract_count,
+      pulled_at: pulledAt,
+      note: "Never presented as current. Tract-level estimates lag by roughly two years. Detailed (B/C) and subject (S) tables are served from different endpoints.",
+    };
+    out._meta.sources.usda_lram = {
+      dataset: "USDA Food Access Research Atlas, 2019 data (LRAM)",
+      publisher: "USDA Economic Research Service",
+      vintage_label: LRAM_VINTAGE_LABEL,
+      source_file: "public/data/usda-lram-2019.json (preprocess of FoodAccessResearchAtlasData2019.xlsx)",
+      note: "Vehicle-flag variant retained — the successor SRAM drops it.",
+      pulled_at: pulledAt,
+    };
+    out._meta.sources.tract_lookup = {
+      dataset: "FCC Block Find API (Census 2020 vintage)",
+      url: "https://geo.fcc.gov/api/census/block/find",
+      note: censusMeta.fcc_note,
+      pulled_at: pulledAt,
+    };
+    for (const site of sites) out[site.id] = perSite.get(site.id) ?? {};
+    if (dryRun) {
+      console.log("\n--dry-run set; not writing file.");
+      return;
+    }
+    await mkdir(dirname(OUT_PATH), { recursive: true });
+    await writeFile(OUT_PATH, JSON.stringify(out, null, 2) + "\n", "utf8");
+    console.log(`\nWrote ${OUT_PATH}`);
+    return;
+  }
 
   console.log("Fetching MTA subway stations for coord lookup...");
   const stations = await fetchAll(MTA_STATIONS_URL, { $select: "gtfs_stop_id,gtfs_latitude,gtfs_longitude" });
@@ -266,6 +701,9 @@ async function main() {
   console.log(`  ${complaint311Total} complaints across all corridors`);
   console.log(`  ${sitesWith311} of ${sites.length} sites have >=1 complaint in the ${RADIUS_METERS}m corridor`);
 
+  // ---- Layer 5: Census tract context (ACS 2023 + LRAM 2019) -------------
+  const censusMeta = await runCensusLayer(sites, perSite, pulledAt, { stationById });
+
   // ---- Assemble overlays.json -------------------------------------------
   const out = {
     _meta: {
@@ -296,6 +734,33 @@ async function main() {
           lookback_days: NYC311_LOOKBACK_DAYS,
           filter: `complaint_type in (${NYC311_TARGET_TYPES.map((t) => JSON.stringify(t)).join(", ")}) AND within_circle(location, siteOrStation, ${RADIUS_METERS}m)`,
           note: "Per-site query uses Socrata within_circle() OR'd across the site coord and its nearest ADA station coord. Complaint types are matched case-insensitively so 'Elevator' and 'ELEVATOR' merge. Elevator complaints in this feed are DOB/HPD building elevators — NOT transit elevators. MTA elevator status is a separate feed.",
+        },
+        census_acs: {
+          dataset: "American Community Survey 5-year estimates (2023)",
+          publisher: "U.S. Census Bureau",
+          vintage_label: ACS_VINTAGE_LABEL,
+          url: "https://www.census.gov/data/developers/data-sets/acs-5year.html",
+          endpoints: [CENSUS_ACS_DETAIL_URL, CENSUS_ACS_SUBJECT_URL],
+          variables: ACS_VARS,
+          citywide_ambulatory_median: censusMeta.citywide_ambulatory_median,
+          citywide_disability_median: censusMeta.citywide_disability_median,
+          citywide_tract_count: censusMeta.citywide_tract_count,
+          pulled_at: pulledAt,
+          note: "Never presented as current. Tract-level estimates lag by roughly two years. Detailed (B/C) and subject (S) tables are served from different endpoints.",
+        },
+        usda_lram: {
+          dataset: "USDA Food Access Research Atlas, 2019 data (LRAM)",
+          publisher: "USDA Economic Research Service",
+          vintage_label: LRAM_VINTAGE_LABEL,
+          source_file: "public/data/usda-lram-2019.json (preprocess of FoodAccessResearchAtlasData2019.xlsx)",
+          note: "Vehicle-flag variant retained — the successor SRAM drops it.",
+          pulled_at: pulledAt,
+        },
+        tract_lookup: {
+          dataset: "FCC Block Find API (Census 2020 vintage)",
+          url: "https://geo.fcc.gov/api/census/block/find",
+          note: "Site → tract via first 11 digits of the returned 15-digit block FIPS.",
+          pulled_at: pulledAt,
         },
       },
     },

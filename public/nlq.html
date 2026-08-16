@@ -573,7 +573,9 @@
       const libs = Array.isArray(entry.libraries) ? entry.libraries : [];
       const c311 = entry.complaints311 ?? null;
       const has311 = c311 && c311.total > 0;
-      if (libs.length === 0 && !has311) return "";
+      const acs = entry.census?.acs ?? null;
+      const hasTractDisability = acs && (acs.disabilityRate != null || acs.ambulatoryDifficultyRate != null);
+      if (libs.length === 0 && !has311 && !hasTractDisability) return "";
 
       const libSrc = overlaysData._meta?.sources?.libraries;
       const libSrcLine = libSrc
@@ -632,7 +634,46 @@
         `;
       }
 
+      // Tract-level disability signal. Kept sober — the "this tract" line
+      // is provenance-forward, and only the disability + ambulatory rates
+      // appear here. No-vehicle rate is intentionally NOT surfaced: NYC's
+      // low car-ownership skews that number in ways that don't correspond
+      // to accessibility need.
+      //
+      // Suppression rule: if the ACS estimate is unreliable (MOE ≥ 50%
+      // of estimate, or the estimate exceeds 30% — small-tract or
+      // group-quarters artifact), render a note instead of the number.
+      let tractBlock = "";
+      if (hasTractDisability) {
+        const vintage = acs.vintage || "ACS 5-year, 2023";
+        const pctOrDash = (r) => (r != null ? (r * 100).toFixed(1) + "%" : "—");
+        if (acs.tractReliable === false) {
+          const why = acs.tractUnreliableReason ? ` — ${escapeHtml(acs.tractUnreliableReason)}` : "";
+          tractBlock = `
+            <div class="tract-line corridor-item" style="border-top:none;">
+              <span class="n">This tract</span>
+              <span class="m">
+                disability estimate suppressed as unreliable at 90% confidence${why}
+                (${escapeHtml(vintage)}).
+              </span>
+            </div>
+          `;
+        } else {
+          tractBlock = `
+            <div class="tract-line corridor-item" style="border-top:none;">
+              <span class="n">This tract</span>
+              <span class="m">
+                ${pctOrDash(acs.disabilityRate)} of residents report a disability,
+                ${pctOrDash(acs.ambulatoryDifficultyRate)} an ambulatory difficulty
+                (${escapeHtml(vintage)}).
+              </span>
+            </div>
+          `;
+        }
+      }
+
       const parts = [`<div class="corridor">`, `<div class="cor-heading">Along the way</div>`];
+      if (tractBlock) parts.push(tractBlock);
       if (libs.length > 0) parts.push(`<div style="margin-bottom:6px;font-size:11px;color:var(--muted);">Libraries (${libs.length})</div>`, libItems);
       if (c311Block) parts.push(c311Block);
       parts.push(`</div>`);
@@ -688,7 +729,6 @@
     function renderResultBody(row, v) {
       const site = row.site;
       const station = stationFor(site);
-      const days = Array.isArray(site.daysOpen) ? site.daysOpen.join(", ") : "";
       const phoneLink = site.phone
         ? `<a href="tel:${escapeHtml(String(site.phone).replace(/[^0-9+]/g, ""))}">${escapeHtml(site.phone)}</a>`
         : "";
@@ -699,8 +739,6 @@
           <h3>${escapeHtml(tr("provenance"))}</h3>
           <ul>${v.provenance.map((p) => `<li>${escapeHtml(p)}</li>`).join("")}</ul>
           ${phoneLink ? `<div class="meta-line"><span class="k">${escapeHtml(tr("phone"))}</span>${phoneLink}</div>` : ""}
-          ${days ? `<div class="meta-line"><span class="k">${escapeHtml(tr("open"))}</span>${escapeHtml(days)}</div>` : ""}
-          ${site.hoursText ? `<div class="meta-line"><span class="k">${escapeHtml(tr("hours"))}</span>${escapeHtml(site.hoursText)}</div>` : ""}
           ${site.nearestStationId ? `<div class="meta-line"><span class="k">${escapeHtml(tr("nearestStation"))}</span>${escapeHtml(site.nearestStationId)}${station ? ` — ADA=${station.ada}, ${station.elevators?.length ?? 0} elevators` : ""}</div>` : ""}
           ${renderCorridorSection(site)}
         </div>
