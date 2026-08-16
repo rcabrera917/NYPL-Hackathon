@@ -102,6 +102,21 @@
     .secondary-fields { display: grid; grid-template-columns: 1fr 160px; gap: 12px; margin-bottom: 16px; align-items: end; }
     @media (max-width: 460px) { .secondary-fields { grid-template-columns: 1fr; } }
     .rest-card button.primary { width: 100%; padding: 13px; font-size: 15px; margin-bottom: 14px; }
+    /* ---- Example queries under the search box ---- */
+    .examples { margin: -4px 0 16px; }
+    .examples .hint { font-size: 12px; color: var(--muted); margin: 0 0 8px; }
+    .examples .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .example-chip {
+      background: rgba(148, 163, 184, 0.08);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      cursor: pointer;
+      text-align: left;
+    }
+    .example-chip:hover { border-color: var(--accent); background: rgba(148, 163, 184, 0.14); }
 
     /* ---- Results state: top bar + centered column ---- */
     #results-panel { position: fixed; inset: 0; z-index: 10; pointer-events: none;
@@ -251,6 +266,11 @@
       <div class="big-field autocomplete">
         <label id="intentLabel" for="intentInput">What do you need?</label>
         <input id="intentInput" class="big" type="text" autocomplete="off" />
+      </div>
+
+      <div class="examples">
+        <p class="hint" id="examplesHint">Ask in any language. Tell us who you're feeding and how you get around.</p>
+        <div class="chips" id="examplesChips"></div>
       </div>
 
       <div class="secondary-fields">
@@ -888,6 +908,30 @@
     }
 
     // ---- wire events ------------------------------------------------------
+    // Example queries — mixed languages, each demonstrating a parser signal
+    // (age, mobility, heat, urgency, dietary, day-of-week). Tapping one
+    // fills the input; the user still hits Search themselves.
+    const EXAMPLE_QUERIES = [
+      "free lunch for my 6 year old in the Bronx",
+      "mi mamá usa silla de ruedas y necesitamos comida hoy",
+      "I use a walker and can't go far without sitting down",
+      "meals near me that are open Saturday",
+      "somewhere shaded to walk with my kids in the heat",
+      "halal food for a family of five",
+    ];
+    const examplesRoot = $("examplesChips");
+    for (const q of EXAMPLE_QUERIES) {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "example-chip";
+      b.textContent = q;
+      b.addEventListener("click", () => {
+        $("intentInput").value = q;
+        $("intentInput").focus();
+      });
+      examplesRoot.appendChild(b);
+    }
+
     $("addressInput").addEventListener("input", (e) => {
       clearTimeout(acTimer);
       const v = e.target.value;
